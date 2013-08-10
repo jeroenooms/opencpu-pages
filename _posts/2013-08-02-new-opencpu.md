@@ -71,8 +71,3 @@ opencpu$browse("library/gitstats/www")
 ## Much more to come
 
 Over the upcoming weeks we will post more on this blog, on how to run apps in the cloud, share reproducible documents, and much more.
-
-
-    
-
-
