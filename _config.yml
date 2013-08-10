@@ -1,0 +1,15 @@
+markdown: rdiscount
+pygments: true
+permalink: /posts/:title
+rdiscount:
+  extensions: [smart]
+title : OpenCPU
+production_url : http://opencpu.org
+description: "OpenCPU: producing and reproducing results."
+disqus_shortname: opencpu
+#analytics: UA-32899481-1
+author :
+  name : Jeroen Ooms
+  github : opencpu
+  twitter : opencpu
+  email: jeroen.ooms@stat.ucla.edu
