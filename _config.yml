@@ -8,6 +8,7 @@ production_url : http://opencpu.org
 description: "OpenCPU: producing and reproducing results."
 disqus_shortname: opencpu
 #analytics: UA-32899481-1
+production_url: http://www.opencpu.org
 author :
   name : Jeroen Ooms
   github : opencpu
