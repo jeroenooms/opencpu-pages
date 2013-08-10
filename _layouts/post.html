@@ -3,8 +3,18 @@ layout: layout
 prefix: "../../"
 ---
 
-{% include cover.html %}
+<header class="subhead" id="topheader" style="background-image: url('{{page.cover}}');">
+  <div class="container">
+    <h1>{{page.title}}</h1>
+    <p class="lead">
+      {{ page.date | date: "%B %e, %Y" }}<br>UCLA, Los Angeles, California
+    </p>
+  </div>
+</header>
 
 <div class="container">
-  {{ content }}
+	<div class="row">
+	  <div class="col-lg-8">{{ content }}</div>
+    <div class="col-lg-3 col-lg-offset-1">Bla</div>	  
+	</div>	  
 </div>
