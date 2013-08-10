@@ -1,3 +1,8 @@
+###
+# sudo apt-get install ruby-full jekyll discount
+# sudo gem install rdiscount
+#
+
 all: build
 
 build:

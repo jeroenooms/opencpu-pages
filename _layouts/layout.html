@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <title>{{ page.title }}</title>
+  <title>OpenCPU - {{ page.title }}</title>
 
   <meta name="author" content="{{ site.author.name }}" />
   <meta name="description" content="{{ site.description }}" />
@@ -13,16 +13,16 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300'
     rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="css/pages.css" >
+  <link rel="stylesheet" href="{{ page.prefix }}css/pages.css" >
 
   <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57x57-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ page.prefix }}apple-touch-icon-144x144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ page.prefix }}apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ page.prefix }}apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="{{ page.prefix }}apple-touch-icon-57x57-precomposed.png">
   <link rel="shortcut icon" href="/favicon.ico">
 
 </head>
@@ -36,16 +36,16 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="/"><img src="images/opencpulogo.png" alt="logo"/></a>
+	      <a class="navbar-brand" href="."><img src="{{ page.prefix }}images/opencpulogo.png" alt="logo"/></a>
 	      <div class="nav-collapse collapse navbar-responsive-collapse">
 	        <ul class="nav navbar-nav">
-	       	   <li><a title="News" href="news.html">News</a></li>
-	       	   <li><a title="API" href="api.html">API</a></li>
-	       	   <li><a title="Download" href="download.html">Download</a></li>
-	       	   <li><a title="Apps" href="apps.html">Apps</a></li>
-	       	   <li><a title="JS library" href="jslib.html">JS lib</a></li>
-	       	   <li><a title="FAQ" href="faq.html">FAQ</a></li>
-	       	   <li><a title="Explorer" href="explorer.html">Explorer</a></li>
+	       	   <li><a title="News" href="{{ page.prefix }}news.html">News</a></li>
+	       	   <li><a title="API" href="{{ page.prefix }}api.html">API</a></li>
+	       	   <li><a title="Download" href="{{ page.prefix }}download.html">Download</a></li>
+	       	   <li><a title="Apps" href="{{ page.prefix }}apps.html">Apps</a></li>
+	       	   <li><a title="JS library" href="{{ page.prefix }}jslib.html">JS lib</a></li>
+	       	   <li><a title="FAQ" href="{{ page.prefix }}faq.html">FAQ</a></li>
+	       	   <li><a title="Explorer" href="{{ page.prefix }}explorer.html">Explorer</a></li>
 	        </ul>
 	        <ul class="nav navbar-nav pull-right hidden-print lowercase">
 	          <li><a title="Atom Feed" href="/atom.xml">RSS</a></li>
@@ -102,8 +102,8 @@
   </div>
   {% include analytics.html %}
 </body>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/pages.js"></script>
+<script src="{{ page.prefix }}js/jquery.min.js"></script>
+<script src="{{ page.prefix }}js/bootstrap.min.js"></script>
+<script src="{{ page.prefix }}js/pages.js"></script>
 
 </html>
