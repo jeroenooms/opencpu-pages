@@ -3,7 +3,7 @@ layout: layout
 prefix: "../../"
 ---
 
-<header class="subhead" id="topheader" style="background-image: url('{{page.cover}}');">
+<header class="subhead hidden-sm" id="topheader" style="background-image: url('{{page.cover}}');">
   <div class="container">
     <h1>{{page.title}}</h1>
     <p class="lead">
@@ -14,7 +14,7 @@ prefix: "../../"
 
 <div class="container">
 	<div class="row">
-	  <div class="col-lg-8">{{ content }}</div>
-    <div class="col-lg-3 col-lg-offset-1">Bla</div>	  
+    <div class="col-lg-3 visible-lg">{% include author.html %}</div>
+    <div class="col-lg-9">{{ content }}</div>
 	</div>	  
 </div>
