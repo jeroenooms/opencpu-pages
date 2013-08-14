@@ -3,3 +3,79 @@ layout: page
 title: "FAQ"
 ---
 
+<div class="row">
+  <div class="col-lg-8">
+
+		<div class="panel-group" id="accordion">
+		  <div class="panel">
+		    <div class="panel-heading">
+		      <h3 class="panel-title">
+		        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#faq1">
+		          What is OpenCPU?
+		        </a>
+		      </h3>
+		    </div>
+		    <div id="faq1" class="panel-collapse collapse">
+		      <div class="panel-body">
+	          OpenCPU is a software framework for embedded statistical computation and reproducible research.
+	          The server exposes a web API interfacing R, Latex and
+				    Pandoc. This API is used for example to integrate statistical functionality
+				    into systems, share and execute scripts or reports on centralized servers,
+				    and build R based "apps". The OpenCPU server can run either as a
+				    single-user server inside the interactive R session (using httpuv), or as a
+				    cloud server that builds on Linux and rApache. 
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+    <div class="panel-group" id="accordion">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#faq2">
+              What are OpenCPU Apps?
+            </a>
+          </h3>
+        </div>
+        <div id="faq2" class="panel-collapse collapse">
+          <div class="panel-body">
+            An OpenCPU app is an R package that ships with web page(s) that call the R functions in the package though the OpenCPU API.
+            This provides a convenient way to develop, package and ship standalone R web applications.
+            See the <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-manual.pdf">server manual</a> for more information.
+          </div>
+        </div>
+      </div>
+    </div>    		
+		
+    <div class="panel-group" id="accordion">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#faq3">
+              Does the OpenCPU cloud server support { Windows | OSX | RHEL | etc } ?
+            </a>
+          </h3>
+        </div>
+        <div id="faq3" class="panel-collapse collapse">
+          <div class="panel-body">
+	          You are asking the wrong question. OpenCPU is a cloud computing service. It is designed to run on its own server in the cloud or virtual machine. 
+	          Once installed, you will be interacting with OpenCPU mostly through the API. 
+	          It not recommended to host other software on the same server as OpenCPU, as R can be greedy with resources, and it is also unwise from a security point of view.
+          </div>
+        </div>
+      </div>
+    </div>		
+	  
+  
+  </div>
+  <div class="col-lg-4 blog">
+     <h2>Technical Questions</h2>
+     <p>
+       Technical questions about OpenCPU, R or anything related are best asked on <a href="http://stackoverflow.com/">Stack Overflow</a>.
+       Tag your questions with both <a href="http://stackoverflow.com/questions/tagged/opencpu"><code>#opencpu</code></a>
+       and <a href="http://stackoverflow.com/questions/tagged/r"><code>#r</code></a> to maximize the likelihood of an answer.
+     </p>
+ 
+  </div>
+</div>
