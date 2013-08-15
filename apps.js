@@ -14,14 +14,11 @@ $(function(){
               myimg.attr("src", value.owner.avatar_url);
            });
         $("<h3>").text(value.name).appendTo(mydiv);
-        var myul = $('<ul class="nav nav-stacked">')
-           .css("text-align", "left")
-           .appendTo(mydiv);
         
-        $('<li>').append($('<a>').attr("target", "_blank").attr("href", "http://www.github.com/opencpu/" + value.name).text("Source code")).appendTo(myul);
-        $('<li>').append($('<a>').attr("target", "_blank").attr("href", "/ocpu/github/opencpu/" + value.name).text("Package info")).appendTo(myul);
-        $('<li>').append($('<a>').attr("target", "_blank").attr("href", "/ocpu/github/opencpu/" + value.name + "/www").text("Live Demo")).appendTo(myul);
-  
+        $('<a class="btn btn-default">').attr("target", "_blank").attr("href", "http://www.github.com/opencpu/" + value.name).text("Source").appendTo(mydiv);
+        $('<a class="btn btn-default">').attr("target", "_blank").attr("href", "/ocpu/github/opencpu/" + value.name).text("Info").appendTo(mydiv);
+        $('<a class="btn btn-default">').attr("target", "_blank").attr("href", "/ocpu/github/opencpu/" + value.name + "/www").text("Demo").appendTo(mydiv);
+          
       });
     } else {
     	res.data.message && alert(res.data.message)
