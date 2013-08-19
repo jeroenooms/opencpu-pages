@@ -13,23 +13,34 @@ $(function(){
            .appendTo(mydiv).on("error", function(){
               myimg.attr("src", value.owner.avatar_url);
            });
-        $("<h3>").text(value.name).appendTo(mydiv);
         
-        $('<a class="btn btn-default">').attr("target", "_blank").attr("href", "http://www.github.com/opencpu/" + value.name).text("Source").appendTo(mydiv);
-        $('<a class="btn btn-default">').attr("target", "_blank").attr("href", "/ocpu/github/opencpu/" + value.name).text("Info").appendTo(mydiv);
-        
-        var myurl = $('<a class="btn btn-default">').attr("target", "_blank").attr("disabled", "disabled").text("Demo").appendTo(mydiv);
-        
+        var btngrp = $('<div class="btn-group">').appendTo(mydiv);
+        var appbtn = $('<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">').text(value.name + " ").appendTo(btngrp);
+        var appurl;
+       
         $.ajax({
           url: "/ocpu/library/" + value.name
         }).done(function(){
-          myurl.attr("href", "/ocpu/library/" + value.name + "/www").removeAttr("disabled");       	
+          appurl = "/ocpu/library/" + value.name;
         }).error(function(){
-          myurl.attr("href", "/ocpu/github/opencpu/" + value.name + "/www").removeAttr("disabled");       
+          appurl = "/ocpu/github/opencpu/" + value.name;       
+        }).always(function(){
+           var myul = $('<ul class="dropdown-menu" role="menu">').appendTo(btngrp);
+           myul.append('<li><a target="_blank" href="' + appurl + '/"><i class="icon icon-info-sign"> Package Info </a></li>');
+           myul.append('<li><a target="_blank" href="' + appurl + '/www/"><i class="icon icon-play"> Live App Demo </a></li>'); 
+           myul.append('<li class="divider"></li>');
+           myul.append('<li><a target="_blank" href="http://www.github.com/opencpu/' + value.name + '"><i class="icon icon-github"> Source Code </a></li>');           
+           appbtn.append($('<span class="caret"></span>'))
         });          
       });
     } else {
-    	res.data.message && alert(res.data.message)
+      res.data.message && alert(res.data.message)
     }
   });
+  
+  function li(title, url){
+    var myli = $("li");
+    $("<a>").attr("href", url).attr("target", "_blank").text(title).appendTo(myli);
+    return myli;
+  }
 });

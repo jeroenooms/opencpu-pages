@@ -1,9 +1,18 @@
+.carousel {
+  .item {
+    max-height: 600px;
+  }
+  img {
+    min-width: 100%;
+  }
+}
+
 .carousel-caption{
-  text-shadow: -1px -1px 1px black, 3px 3px 5px black;
+  z-index: 10;
   h1 {
+    text-shadow: -1px -1px 1px black, 3px 3px 5px black;  
     font-size: 60px;
     padding: 20px;
-    color: white;
     margin-bottom: 10px;  
     font-weight:500;   
   }
@@ -12,3 +21,34 @@
     margin-bottom: 16px;
   }
 }
+
+.marketing h1 {
+  margin: 36px 0 27px;
+  font-size: 40px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.marketing-byline {
+  margin: -18px 0 27px;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 24px;
+  color: #999;
+  text-align: center;
+}
+
+.quick-links {
+  min-height: 30px;
+  margin: 36px 0;
+  padding: 5px 20px;
+  list-style: none;
+  text-align: center;
+  overflow: hidden;
+  li {
+    display: inline;
+    margin: 0 5px;
+    color: #999;
+  }  
+}
+

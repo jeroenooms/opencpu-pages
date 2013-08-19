@@ -6,15 +6,17 @@ title: "FAQ"
 <div class="row">
   <div class="col-lg-8">
 
-		<div class="accordion"">
-		  <div class="accordion-group">
-		    <div class="accordion-heading">
-		      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq1">
-		        What is OpenCPU?
-		      </a>
+		<div class="panel-group">
+		  <div class="panel">
+		    <div class="panel-heading">
+			    <h4 class="panel-title">
+			      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq1">
+			        What is OpenCPU?
+			      </a>
+			    </h4>
 		    </div>
-		    <div id="faq1" class="accordion-body collapse">
-		      <div class="accordion-inner">
+		    <div id="faq1" class="panel-collapse collapse">
+		      <div class="panel-body">
 		            OpenCPU is a software framework for embedded statistical computation and reproducible research.
 		            The server exposes a web API interfacing R, Latex and Pandoc. This API is used for example to 
 		            integrate statistical functionality into systems, share and execute scripts or reports on centralized servers,
@@ -23,42 +25,48 @@ title: "FAQ"
 		      </div>
 		    </div>
 		  </div>
-		  <div class="accordion-group">
-		    <div class="accordion-heading">
-		      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq2">
-		        What are OpenCPU Apps?
-		      </a>
+		  <div class="panel">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+			      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq2">
+			        What are OpenCPU Apps?
+			      </a>
+		      </h4>
 		    </div>
-		    <div id="faq2" class="accordion-body collapse">
-		      <div class="accordion-inner">
+		    <div id="faq2" class="panel-collapse collapse">
+		      <div class="panel-body">
 		            An OpenCPU app is an R package which includes some web page(s) that call the R functions in the package using the OpenCPU API.
 		            This makes a convenient way to develop, package and ship standalone R web applications.
 		            See the <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-manual.pdf">server manual</a> for more information.
 		      </div>
 		    </div>
 		  </div>
-		  <div class="accordion-group">
-		    <div class="accordion-heading">
-		      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq3">
-		         Does the OpenCPU cloud server support { Windows | OSX | RHEL | etc } ?
-		      </a>
+		  <div class="panel">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+			      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq3">
+			         Does the OpenCPU cloud server support { Windows | OSX | RHEL | etc } ?
+			      </a>
+			    </h4>
 		    </div>
-		    <div id="faq3" class="accordion-body collapse">
-		      <div class="accordion-inner">
+		    <div id="faq3" class="panel-collapse collapse">
+		      <div class="panel-body">
 		            You are asking the wrong question. The OpenCPU cloud server is designed to run on a remote server in the cloud or virtual machine. 
 		            Once installed, you will be interacting with OpenCPU mostly through the API. 
 		            It not recommended to host other software on the same server as OpenCPU, as R can be greedy with resources, and it is also unwise from a security point of view.
 		      </div>
 		    </div>
 		  </div>
-      <div class="accordion-group">
-        <div class="accordion-heading">
-          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq4">
-             What about security?
-          </a>
+      <div class="panel">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq4">
+              What about security?
+            </a>
+          </h4>
         </div>
-        <div id="faq4" class="accordion-body collapse">
-          <div class="accordion-inner">
+        <div id="faq4" class="panel-collapse collapse">
+          <div class="panel-body">
             Security is enforced using AppArmor. AppArmor is a security module for the linux kernel and enforces mandatory access control policies
             on a by-process basis. These policies can easily be customized by modifying the AppArmor profiles that ship with the OpenCPU cloud server.
             See the <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-manual.pdf">server manual</a> for more information.
@@ -66,28 +74,32 @@ title: "FAQ"
         </div>
       </div>	
       
-      <div class="accordion-group">
-        <div class="accordion-heading">
-          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq5">
-             Can I use OpenCPU with RStudio? 
-          </a>
+      <div class="panel">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq5">
+              Can I use OpenCPU with RStudio? 
+            </a>
+          </h4>
         </div>
-        <div id="faq5" class="accordion-body collapse">
-          <div class="accordion-inner">
+        <div id="faq5" class="panel-collapse collapse">
+          <div class="panel-body">
             Yes! Both the OpenCPU single-user server and OpenCPU cloud server have been tested to work with <a href="http://www.rstudio.com/ide/download/preview">RStudio 0.98</a> and above.
             See also the appendix in the <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-manual.pdf">server manual</a> on this topic.   
           </div>
         </div>
       </div>      
       
-      <div class="accordion-group">
-        <div class="accordion-heading">
-          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq6">
-             Can OpenCPU be used to build proprietary applications?
-          </a>
+      <div class="panel">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq6">
+              Can OpenCPU be used to build proprietary applications?
+            </a>
+          </h4>
         </div>
-        <div id="faq6" class="accordion-body collapse">
-          <div class="accordion-inner">
+        <div id="faq6" class="panel-collapse collapse">
+          <div class="panel-body">
             Absolutely. OpenCPU is released under the Apache2 License.
           </div>
         </div>
@@ -96,7 +108,7 @@ title: "FAQ"
 	  
   
   </div>
-  <div class="col-lg-4 blog">
+  <div class="col-lg-4 fancy">
      <h2>Technical Questions</h2>
      <p>
        Technical questions about OpenCPU, R or anything related are best asked on <a href="http://stackoverflow.com/">Stack Overflow</a>.

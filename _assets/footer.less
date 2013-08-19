@@ -12,3 +12,38 @@ html,body {
 #push, #footer {
   height: 150px;
 }
+
+
+#footer {
+  a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.25s ease-in;
+    -webkit-transition: color 0.25s ease-in;
+    &:hover {
+      color: #307EA9;
+    }
+  }
+}
+
+#footer {
+  border-top: 1px solid #f5f5f5;
+  section.meta {
+    padding: 30px;
+    color: #EEE;
+    text-align: center;
+    a {
+      font-size: 0.8em;
+    }
+  }
+  i.icon {
+    display: block;
+    margin: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  #footer .col-span-2.next {
+    margin-top: 30px;
+  }
+}

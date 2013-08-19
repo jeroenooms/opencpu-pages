@@ -1,14 +1,109 @@
----
-layout: page
-title: "API Docs"
+--- 
+layout: page 
+title: "API Docs" 
 ---
 
 <div class="row">
-	<div class="alert alert-danger col-lg-8 col-lg-offset-2">
-	  <strong>Heads Up!</strong> (last updated August 18) The OpenCPU documentation and demo servers are in the process of being updated
-	  to the new OpenCPU 1.0! Unfortunately, the 1.x series is not backward-compatible with the 0.x (beta) series. A copy of the old site
-	  is still available <a href="http://public.opencpu.org/legacy/">here</a>.  
+	<div class="alert alert-danger col-sm-8 col-sm-offset-2">
+		<strong>Heads Up!</strong> (last updated August 18) The OpenCPU documentation and demo servers are in the process of being updated to the new
+		OpenCPU 1.0! A copy of the old site is still available <a href="http://public.opencpu.org/legacy/">here</a>.
 	</div>
 </div>
 
-This page is currently being rewritten. In the mean time, have a look at the <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-manual.pdf">server manual PDF</a>.
+
+<div class="row">
+	<div class="col-md-3">
+		<div id="docmenu" class="bs-sidebar hidden-print" data-spy="affix" data-offset-top="240" role="complementary">
+			<ul class="nav bs-sidenav">
+				<li class="active"><a href="#api-overview">Overview</a>
+					<ul class="nav">
+						<li><a href="#api-web">Web API</a></li>
+						<li><a href="#api-functionality">Functionality</a></li>
+						<li><a href="#api-state">Server State</a></li>
+						<li><a href="#api-static">Static Content</a></li>
+						<li><a href="#api-apps">Apps</a></li>
+					</ul></li>	
+					
+        <li class="active"><a href="#api-http">HTTP</a>
+          <ul class="nav">
+            <li><a href="#api-methods">Methods</a></li>
+            <li><a href="#api-statuscodes">Status Codes</a></li>
+            <li><a href="#api-contenttypes">Content-types</a></li>
+          </ul></li>    		
+          				
+				<li><a href="#api-endpoints">Endpoints</a>
+					<ul class="nav">
+						<li><a href="#api-libraries">Libraries</a></li>
+						<li><a href="#api-packages">Packages</a></li>
+						<li><a href="#api-objects">Objects</a></li>
+						<li><a href="#api-manuals">Manuals</a></li>
+						<li><a href="#api-sessions">Sessions</a></li>
+					</ul></li>
+
+        <li><a href="#tooltips">Output Formats</a>
+          <ul class="nav">
+            <li><a href="#tooltips-examples">Examples</a></li>
+            <li><a href="#tooltips-usage">Usage</a></li>
+          </ul></li>					
+
+        <li><a href="#tooltips">Argument Formats</a>
+          <ul class="nav">
+            <li><a href="#tooltips-examples">Examples</a></li>
+            <li><a href="#tooltips-usage">Usage</a></li>
+          </ul></li>      
+					
+        <li><a href="#tabs">JSON I/O</a>
+          <ul class="nav">
+            <li><a href="#tabs-examples">JSON input</a></li>
+            <li><a href="#tabs-usage">JSON output</a></li>
+          </ul></li>					
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-9" role="main">
+
+    <!-- SECTION Overview -->	
+	  <div class="page-header">
+      <h1 id="api-overview">API Overview</h1>
+    </div>
+    
+    <h2 id="api-web">The HTTP Protocol</h2>  <div class="space50"></div>
+    
+    <h2 id="api-functionality">High Level Functionality</h2> <div class="space50"></div>
+    <h2 id="api-state">On Server State</h2> <div class="space50"></div>
+    <h2 id="api-static">Serving Static Content</h2> <div class="space50"></div>
+    <h2 id="api-apps">Developing Apps</h2> <div class="space50"></div>
+    
+
+    <!-- SECTION HTTP --> 
+    <div class="page-header">
+      <h1 id="api-http">HTTP Implementation</h1> <div class="space50"></div>
+    </div>
+    
+    <h2 id="api-methods">HTTP Methods</h2> <div class="space50"></div>
+    <h2 id="api-statuscodes">HTTP Status Codes</h2> <div class="space50"></div>
+    <h2 id="api-contenttypes">HTTP Content Types</h2> <div class="space50"></div>
+    
+    
+    <!-- SECTION Endpoints --> 
+    <div class="page-header">
+      <h1 id="api-endpoints">HTTP Endpoints</h1> <div class="space50"></div>
+    </div>
+    
+    <h2 id="api-libraries">Libraries</h2> <div class="space50"></div>
+    <h2 id="api-packages">Packages</h2> <div class="space50"></div>
+    <h2 id="api-objects">Objects</h2> <div class="space50"></div>   
+    <h2 id="api-manuals">Manuals</h2>  <div class="space50"></div>  
+    <h2 id="api-sessions">Sessions</h2> <div class="space50"></div>  
+  
+    
+    
+
+	</div>
+</div>
+
+<script>
+$(function(){
+  $('body').scrollspy({ target: '#docmenu' })
+});
+</script>
