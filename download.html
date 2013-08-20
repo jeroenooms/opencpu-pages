@@ -4,17 +4,17 @@ title: "Download & Install"
 ---
 
 
-<div class="row fancy">
-  <div class="col-lg-6">
+<div class="row">
+  <div class="col-md-6">
     <h3>Local Single-User Server</h3>
 {% highlight r %}
-install.packages("opencpu", 
-  repos = c('http://rforge.net', 'http://cran.rstudio.org'))
+install.packages("opencpu", repos = 
+  c('http://rforge.net', 'http://cran.rstudio.org'))
 library(opencpu)
 {% endhighlight %}
   </div>
   
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <h3>Ubuntu Cloud Server</h3>
 {% highlight bash %}
 sudo add-apt-repository ppa:opencpu/opencpu-1.0
@@ -26,9 +26,9 @@ sudo apt-get install opencpu
 
 <br />
 
-<div class="row fancy">  
+<div class="row">  
 
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <h3>Installing OpenCPU Apps</h3>
 {% highlight r %}
 #install the "gitstats" app from github
@@ -41,7 +41,7 @@ opencpu$browse("/library/gitstats/www")
 {% endhighlight %}
   </div>  
 
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <h3>PDF Server Manual</h3>
     <div class="well">
       <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-manual.pdf">
