@@ -120,13 +120,13 @@ title: "API Docs"
 		    
 {% highlight bash %}
 #curl uses http get method by default
-curl http://my.server.com/ocpu/library/datasets/R/mtcars/json
-curl http://my.server.com/ocpu/library/MASS/NEWS
-curl http://my.server.com/ocpu/library/MASS/scripts/
+curl https://public.opencpu.org/ocpu/library/datasets/R/mtcars/json
+curl https://public.opencpu.org/ocpu/library/MASS/NEWS
+curl https://public.opencpu.org/ocpu/library/MASS/scripts/
 
 #curl uses http post method for -X POST or -d 'arg=postdata'
-curl http://my.server.com/ocpu/library/MASS/scripts/ch01.R -X POST
-curl http://my.server.com/ocpu/library/stats/R/rnorm -d 'n=10&mean=5'
+curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
+curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d 'n=10&mean=5'
 {% endhighlight %}		    
 		    
 		  </div>
@@ -218,10 +218,10 @@ curl http://my.server.com/ocpu/library/stats/R/rnorm -d 'n=10&mean=5'
 		    
 {% highlight bash %}
 #read packages
-curl http://my.server.com/ocpu/library/MASS
-curl http://my.server.com/ocpu/user/jeroen/somepackage
+curl https://public.opencpu.org/ocpu/library/MASS
+curl https://public.opencpu.org/ocpu/user/jeroen/somepackage
 #read session
-curl http://my.server.com/ocpu/tmp/x2c5ab8d4
+curl https://public.opencpu.org/ocpu/tmp/x2c5ab8d4
 {% endhighlight %}  		    
 		    
 		    <p>In addition, a server might have support for the following remote API's enabled:</p>
@@ -255,11 +255,11 @@ curl http://my.server.com/ocpu/tmp/x2c5ab8d4
         
 {% highlight bash %}
 #read packages
-curl http://my.server.com/ocpu/cran/plyr/
-curl http://my.server.com/ocpu/github/hadley/
-curl http://my.server.com/ocpu/github/hadley/plyr/
+curl https://public.opencpu.org/ocpu/cran/plyr/
+curl https://public.opencpu.org/ocpu/github/hadley/
+curl https://public.opencpu.org/ocpu/github/hadley/plyr/
 #read files
-curl http://my.server.com/ocpu/gist/hadley/
+curl https://public.opencpu.org/ocpu/gist/hadley/
 {% endhighlight %}         
             
 		  </div>
@@ -309,27 +309,27 @@ curl http://my.server.com/ocpu/gist/hadley/
 		    
 {% highlight bash %}
 #read package resources
-curl http://my.server.com/ocpu/library/MASS/
-curl http://my.server.com/ocpu/library/MASS/R/
-curl http://my.server.com/ocpu/library/MASS/R/rlm/print
-curl http://my.server.com/ocpu/library/MASS/man/
-curl http://my.server.com/ocpu/library/MASS/man/rlm/text
-curl http://my.server.com/ocpu/library/MASS/man/rlm/html
-curl http://my.server.com/ocpu/library/MASS/man/rlm/pdf
+curl https://public.opencpu.org/ocpu/library/MASS/
+curl https://public.opencpu.org/ocpu/library/MASS/R/
+curl https://public.opencpu.org/ocpu/library/MASS/R/rlm/print
+curl https://public.opencpu.org/ocpu/library/MASS/man/
+curl https://public.opencpu.org/ocpu/library/MASS/man/rlm/text
+curl https://public.opencpu.org/ocpu/library/MASS/man/rlm/html
+curl https://public.opencpu.org/ocpu/library/MASS/man/rlm/pdf
 
 #read files included with this package
-curl http://my.server.com/ocpu/library/MASS/scripts/
-curl http://my.server.com/ocpu/library/MASS/scripts/ch01.R
-curl http://my.server.com/ocpu/library/MASS/NEWS
+curl https://public.opencpu.org/ocpu/library/MASS/scripts/
+curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R
+curl https://public.opencpu.org/ocpu/library/MASS/NEWS
 
 #call a function from rlm manual
-curl http://my.server.com/ocpu/library/MASS/R/rlm -d 'formula=stack.loss ~ .&data=stackloss&psi=psi.bisquare'
+curl https://public.opencpu.org/ocpu/library/MASS/R/rlm -d 'formula=stack.loss ~ .&data=stackloss&psi=psi.bisquare'
 
 #run R script
-curl http://my.server.com/ocpu/library/MASS/scripts/ch01.R -X POST
+curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
 
 #read output (replace with returned sessionid)
-curl http://my.server.com/ocpu/tmp/x0648ec6b/R/.val/print
+curl https://public.opencpu.org/ocpu/tmp/x0648ec6b/R/.val/print
 {% endhighlight %}    		    
 		        
       </div>
@@ -424,6 +424,31 @@ curl http://my.server.com/ocpu/tmp/x0648ec6b/R/.val/print
 		                                                                                   
 		      </tbody>
 		    </table> 
+		    
+{% highlight bash %}
+#A POST will create a temporary session
+#Use the returned sessionid for the subsequent calls below
+curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
+
+#Look at console input/output
+curl https://public.opencpu.org/ocpu/tmp/x05b85461/console/text
+
+#We read session R objects
+curl https://public.opencpu.org/ocpu/tmp/x05b85461/
+curl https://public.opencpu.org/ocpu/tmp/x05b85461/R/
+curl https://public.opencpu.org/ocpu/tmp/x05b85461/R/dd/csv
+curl https://public.opencpu.org/ocpu/tmp/x05b85461/R/t.stat/print
+
+#Or even call a function
+curl https://public.opencpu.org/ocpu/tmp/x05b85461/R/t.stat -d 'x=[1,0,0,1,1,1,0,1,1,0]'
+
+#Download file from the working dir
+curl https://public.opencpu.org/ocpu/tmp/x05b85461/files/ch01.pdf
+
+#Check sessionInfo
+curl https://public.opencpu.org/ocpu/tmp/x05b85461/info/print
+{% endhighlight %}
+
 		  </div>
 		</div>       
     
@@ -551,21 +576,21 @@ curl http://my.server.com/ocpu/tmp/x0648ec6b/R/.val/print
 		    
 {% highlight bash %}
 #read R objects from packages.
-curl http://my.server.com/ocpu/library/datasets/R/mtcars/json?digits=0
-curl http://my.server.com/ocpu/library/datasets/R/mtcars/csv
-curl http://my.server.com/ocpu/library/datasets/R/mtcars/tab?sep="|"
-curl http://my.server.com/ocpu/library/MASS/R/loglm/print
+curl https://public.opencpu.org/ocpu/library/datasets/R/mtcars/json?digits=0
+curl https://public.opencpu.org/ocpu/library/datasets/R/mtcars/csv
+curl https://public.opencpu.org/ocpu/library/datasets/R/mtcars/tab?sep="|"
+curl https://public.opencpu.org/ocpu/library/MASS/R/loglm/print
 {% endhighlight %}
 
 {% highlight bash %}
 #create a simple plot
-curl http://my.server.com/ocpu/library/graphics/R/plot -d 'x=cars'
+curl https://public.opencpu.org/ocpu/library/graphics/R/plot -d 'x=cars'
  
 #replace session id with returned one
-curl http://my.server.com/ocpu/tmp/x0468b7ab/graphics/last/png
-curl http://my.server.com/ocpu/tmp/x0468b7ab/graphics/1/png?width=1000
-curl http://my.server.com/ocpu/tmp/x0468b7ab/graphics/last/svg
-curl http://my.server.com/ocpu/tmp/x0468b7ab/graphics/last/pdf?width=8
+curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/png
+curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/1/png?width=1000
+curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/svg
+curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/pdf?width=8
 {% endhighlight %}         		    
 		    
 		  </div>
@@ -665,19 +690,19 @@ curl http://my.server.com/ocpu/tmp/x0468b7ab/graphics/last/pdf?width=8
 		    </table>               
 {% highlight bash %}
 #call some functions
-curl http://my.server.com/ocpu/library/stats/R/rnorm -d 'n=10&mean=5' 
-curl http://my.server.com/ocpu/library/graphics/R/hist -d 'x=[2,3,2,3,4,3,3]&breaks=10'
-curl http://my.server.com/ocpu/library/graphics/R/plot -d 'x=cars&main="test"'
-curl http://my.server.com/ocpu/library/base/R/identity -d 'x=coef(lm(speed~dist, data=cars))'
+curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d 'n=10&mean=5' 
+curl https://public.opencpu.org/ocpu/library/graphics/R/hist -d 'x=[2,3,2,3,4,3,3]&breaks=10'
+curl https://public.opencpu.org/ocpu/library/graphics/R/plot -d 'x=cars&main="test"'
+curl https://public.opencpu.org/ocpu/library/base/R/identity -d 'x=coef(lm(speed~dist, data=cars))'
 {% endhighlight %} 
 
 {% highlight bash %}
 #upload local file mydata.csv
-curl http://my.server.com/ocpu/library/utils/R/read.csv -F "file=@mydata.csv"
+curl https://public.opencpu.org/ocpu/library/utils/R/read.csv -F "file=@mydata.csv"
 
 #replace session id with returned one above
-curl http://my.server.com/ocpu/tmp/x067b4172/R/.val/print
-curl http://my.server.com/ocpu/library/base/R/summary -d 'object=x067b4172'
+curl https://public.opencpu.org/ocpu/tmp/x067b4172/R/.val/print
+curl https://public.opencpu.org/ocpu/library/base/R/summary -d 'object=x067b4172'
 {% endhighlight %} 
 
 {% highlight bash %}
@@ -754,28 +779,28 @@ curl http://your.server.com/ocpu/library/stats/R/rnorm \
         
 {% highlight bash %}
 #run scripts which exist in packages
-curl http://my.server.com/ocpu/library/MASS/scripts/ch01.R -X POST
-curl http://my.server.com/ocpu/library/brew/featurefull.brew -X POST
-curl http://my.server.com/ocpu/library/brew/brew-test-2.brew -d 'output=output.html'
-curl http://my.server.com/ocpu/library/knitr/examples/knitr-minimal.Rmd -X POST
-curl http://my.server.com/ocpu/library/knitr/examples/knitr-minimal.Rmd -d 'format=docx'
-curl http://my.server.com/ocpu/library/knitr/examples/knitr-minimal.Rmd -d 'format=html'
-curl http://my.server.com/ocpu/library/knitr/examples/knitr-minimal.Rnw 
+curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
+curl https://public.opencpu.org/ocpu/library/brew/featurefull.brew -X POST
+curl https://public.opencpu.org/ocpu/library/brew/brew-test-2.brew -d 'output=output.html'
+curl https://public.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rmd -X POST
+curl https://public.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rmd -d 'format=docx'
+curl https://public.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rmd -d 'format=html'
+curl https://public.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rnw 
 
 #run scripts from gist
-curl http://my.server.com/ocpu/gist/hadley/6195660/r-is-like.md -X POST
-curl http://my.server.com/ocpu/gist/hadley/5721744/html.r -X POST
+curl https://public.opencpu.org/ocpu/gist/hadley/6195660/r-is-like.md -X POST
+curl https://public.opencpu.org/ocpu/gist/hadley/5721744/html.r -X POST
 {% endhighlight %}         
                   
       </div>
     </div> 
     
      <div class="panel panel-primary">
-      <div class="panel-heading"><h4>JSON I/O RPC (Data Processing Units)</h4></div>
+      <div class="panel-heading"><h4>JSON I/O RPC (a.k.a. Data Processing Units)</h4></div>
       <div class="panel-body">
-			<p>In the common special case where the client wants to call an R function and is only interested in the JSON representation of the object
-			returned by the function the HTTP POST request path can be post-fixed with <code>/json</code>. In this case, a successfull call will not 
-			return 200 (instead of 201), and the response body contains the output from the function in JSON; no need for an additional GET request:</p>
+			<p>For the common special case where a client is only interested in the output data from a function call in JSON format, 
+			the HTTP POST request url can be post-fixed with <code>/json</code>. In this case, a successfull call will return status 200
+			(instead of 201), and the response body directly contains the returned object in JSON; no need for an additional GET request.</p>
 
 {% highlight bash %}
 curl http://your.server.com/ocpu/library/stats/R/rnorm/json -d n=2
@@ -795,7 +820,8 @@ curl http://your.server.com/ocpu/library/stats/R/rnorm/json \
   6.3104,
   11.411
  ]  
-{% endhighlight %}			
+{% endhighlight %}
+        <p>However this is a bit of a hack, and in most cases the two step procedure is preferred for better caching and error handling.</p>			
       </div>
     </div>    
     
