@@ -768,7 +768,38 @@ curl http://my.server.com/ocpu/gist/hadley/5721744/html.r -X POST
 {% endhighlight %}         
                   
       </div>
-    </div>     
+    </div> 
+    
+     <div class="panel panel-primary">
+      <div class="panel-heading"><h4>JSON I/O RPC (Data Processing Units)</h4></div>
+      <div class="panel-body">
+			<p>In the common special case where the client wants to call an R function and is only interested in the JSON representation of the object
+			returned by the function the HTTP POST request path can be post-fixed with <code>/json</code>. In this case, a successfull call will not 
+			return 200 (instead of 201), and the response body contains the output from the function in JSON; no need for an additional GET request:</p>
+
+{% highlight bash %}
+curl http://your.server.com/ocpu/library/stats/R/rnorm/json -d n=2
+ [
+	-1.2804,
+	-0.75013
+ ]
+{% endhighlight %}
+
+      <p>We can combine this with the <code>application/json</code> request content type for full JSON RPC on R functions</p>
+      
+{% highlight bash %}
+curl http://your.server.com/ocpu/library/stats/R/rnorm/json \
+  -H "Content-Type: application/json" -d '{"n":3, "mean": 10, "sd":10}'
+ [
+  4.9829,
+  6.3104,
+  11.411
+ ]  
+{% endhighlight %}			
+      </div>
+    </div>    
+    
+        
 	</div>
 </div>
 
