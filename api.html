@@ -3,6 +3,9 @@ layout: page
 title: "API Docs" 
 ---
 
+<style>
+
+</style>
 
 <div class="row">
 	<div class="col-md-3">
@@ -813,15 +816,16 @@ curl https://public.opencpu.org/ocpu/gist/hadley/5721744/html.r -X POST
       <div class="panel-body">
         <p>OpenCPU apps are web pages which are included in an R package that interface R functions in this package through the OpenCPU API's.
         By convention, these apps are placed in the <code>/inst/www/</code> directory of the R source package.</p>       
-      </div>
-      
+        
+        <p>See for more information the <a href="apps.html">apps page</a>.</p>
 {% highlight bash %}
-#Some exmaple apps. Should really be opened in the browser instead of curl of course.
+#Some example apps. Should really be opened in the browser instead of curl of course.
 curl https://public.opencpu.org/ocpu/library/stocks/www/
 curl https://public.opencpu.org/ocpu/library/nabel/www/
 curl https://public.opencpu.org/ocpu/library/gitstats/www/
 {% endhighlight %}       
-    </div>    
+      </div>
+    </div>   
      
 	</div>
 </div>
