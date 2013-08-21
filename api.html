@@ -9,7 +9,7 @@ title: "API Docs"
 
 <div class="row">
 	<div class="col-md-3">
-		<div id="docmenu" class="bs-sidebar hidden-print" data-spy="affix" data-offset-top="240" role="complementary">
+		<div id="docmenu" class="bs-sidebar hidden-print" data-spy="affix" data-offset-top="150" role="complementary">
 			<ul class="nav bs-sidenav">
 					
         <li><a class="active" href="#api-root">HTTP</a>
@@ -45,6 +45,7 @@ title: "API Docs"
 	<div class="col-md-9" role="main">
 	
 	    <div class="alert alert-warning">
+	      <a href="#" class="close" data-dismiss="alert">&times;</a>
 	      <strong>Last updated: August 21</strong> The OpenCPU documentation and demo servers are in the process of being updated to the new
 	      OpenCPU 1.0! This version is not backward compatible with 0.x (beta) series. A copy of the old site is still available
 	      <a href="http://public.opencpu.org/legacy/" class="alert-link">here</a>.
@@ -814,7 +815,8 @@ curl https://public.opencpu.org/ocpu/gist/hadley/5721744/html.r -X POST
     <div class="panel panel-primary" id="api-scripts">
       <div class="panel-heading"><h4>OpenCPU Apps</h4></div>
       <div class="panel-body">
-        <p>OpenCPU apps are web pages which are included in an R package that interface R functions in this package through the OpenCPU API's.
+        <p>OpenCPU apps are static web pages (html, css, js) which are included in an R package. 
+        They interface the R functions in this package through the OpenCPU API's.
         By convention, these apps are placed in the <code>/inst/www/</code> directory of the R source package.</p>       
         
         <p>See for more information the <a href="apps.html">apps page</a>.</p>
