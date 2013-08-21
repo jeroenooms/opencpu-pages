@@ -119,9 +119,12 @@ title: "API Docs"
 		    </table>
 		    
 {% highlight bash %}
+#curl uses http get method by default
 curl http://my.server.com/ocpu/library/datasets/R/mtcars/json
 curl http://my.server.com/ocpu/library/MASS/NEWS
 curl http://my.server.com/ocpu/library/MASS/scripts/
+
+#curl uses http post method for -X POST or -d 'arg=postdata'
 curl http://my.server.com/ocpu/library/MASS/scripts/ch01.R -X POST
 curl http://my.server.com/ocpu/library/stats/R/rnorm -d 'n=10&mean=5'
 {% endhighlight %}		    
@@ -543,6 +546,7 @@ curl http://my.server.com/ocpu/tmp/x0648ec6b/R/.val/print
 		    </table>  
 		    
 {% highlight bash %}
+#read R objects from packages.
 curl http://my.server.com/ocpu/library/datasets/R/mtcars/json?digits=0
 curl http://my.server.com/ocpu/library/datasets/R/mtcars/csv
 curl http://my.server.com/ocpu/library/datasets/R/mtcars/tab?sep="|"
@@ -550,7 +554,9 @@ curl http://my.server.com/ocpu/library/MASS/R/loglm/print
 {% endhighlight %}
 
 {% highlight bash %}
-curl http://my.server.com/ocpu/library/graphics/R/plot -d 'x=cars' 
+#create a simple plot
+curl http://my.server.com/ocpu/library/graphics/R/plot -d 'x=cars'
+ 
 #replace session id with returned one
 curl http://my.server.com/ocpu/tmp/x0468b7ab/graphics/last/png
 curl http://my.server.com/ocpu/tmp/x0468b7ab/graphics/1/png?width=1000
@@ -654,6 +660,7 @@ curl http://my.server.com/ocpu/tmp/x0468b7ab/graphics/last/pdf?width=8
 		      </tbody>
 		    </table>               
 {% highlight bash %}
+#call some functions
 curl http://my.server.com/ocpu/library/stats/R/rnorm -d 'n=10&mean=5' 
 curl http://my.server.com/ocpu/library/graphics/R/hist -d 'x=[2,3,2,3,4,3,3]&breaks=10'
 curl http://my.server.com/ocpu/library/graphics/R/plot -d 'x=cars&main="test"'
@@ -663,12 +670,13 @@ curl http://my.server.com/ocpu/library/base/R/identity -d 'x=coef(lm(speed~dist,
 {% highlight bash %}
 #upload local file mydata.csv
 curl http://my.server.com/ocpu/library/utils/R/read.csv -F "file=@mydata.csv"
-#replace session id with returned one
+#replace session id with returned one above
 curl http://my.server.com/ocpu/tmp/x067b4172/R/.val/print
 curl http://my.server.com/ocpu/library/base/R/summary -d 'object=x067b4172'
 {% endhighlight %} 
 
 {% highlight bash %}
+#post arguments in json
 curl http://your.server.com/ocpu/library/stats/R/rnorm \
   -H "Content-Type: application/json" -d '{"n":10, "mean": 10, "sd":10}'
 {% endhighlight %} 
