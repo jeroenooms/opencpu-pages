@@ -296,6 +296,10 @@ curl http://my.server.com/ocpu/gist/hadley/
 		          <td><code>../:pkgname/man/:topic/:manformat</code></td>
 		          <td>Get help page about <code>topic</code> in output format <code>manformat</code>. Manual format must be one of <code>text</code>, <code>html</code>, <code>pdf</code></td>
 		        </tr> 
+            <tr>
+              <td><code>../:pkgname/html</code></td>
+              <td>Simulates the R-base html help pages (for backward compatibility).</td>
+            </tr> 		        
 		        <tr>
 		          <td><code>../:pkgname/:path</code></td>
 		          <td>For anything else, interfaces to the Files API for file <code>path</code> in the package installation directory.</td>
@@ -670,6 +674,7 @@ curl http://my.server.com/ocpu/library/base/R/identity -d 'x=coef(lm(speed~dist,
 {% highlight bash %}
 #upload local file mydata.csv
 curl http://my.server.com/ocpu/library/utils/R/read.csv -F "file=@mydata.csv"
+
 #replace session id with returned one above
 curl http://my.server.com/ocpu/tmp/x067b4172/R/.val/print
 curl http://my.server.com/ocpu/library/base/R/summary -d 'object=x067b4172'
@@ -764,9 +769,6 @@ curl http://my.server.com/ocpu/gist/hadley/5721744/html.r -X POST
                   
       </div>
     </div>     
-    
-    
-    
 	</div>
 </div>
 
