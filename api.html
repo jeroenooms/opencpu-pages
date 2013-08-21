@@ -192,7 +192,7 @@ title: "API Docs"
     <p>The root of the OpenCPU API is dynamic. In the cloud server it defaults to <code>/ocpu/</code>, however system administrators are free to change this.
     Clients should make the OpenCPU server address and root path configurable. In the examples below we assume the default <code>/ocpu/</code>.</p>
 
-    <h2 id="api-libraries">Libraries</h2> 
+    <h2 id="api-libraries">The API Libraries</h2> 
     
     <table class="table table-hover">
       <thead>
@@ -269,9 +269,351 @@ title: "API Docs"
       </tbody>
     </table>        
     
-    <h2 id="api-objects">Objects</h2>    
-    <h2 id="api-manuals">Manuals</h2>    
-    <h2 id="api-sessions">Sessions</h2>   
+    <h2 id="api-objects">The R API</h2> 
+    
+    The <code>/R</code> API is used to read R objects, or call R functions.
+    
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Path</th>
+          <th>What</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>../R/</code></td>
+          <td>List R objects in this package or session.</td>
+        </tr>  
+        <tr>
+          <td><code>../R/:object</code></td>
+          <td>Read R object in default format. If <code>object</code> is a function, it can be called using HTTP POST.</td>
+        </tr>            
+        <tr>
+          <td><code>../R/:object/:format</code></td>
+          <td>Retrieve an R object in a particular output format.</td>
+        </tr>                                                                                    
+      </tbody>
+    </table>           
+    
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h4>The Session API</h4></div>
+       <div class="panel-body"> 
+    
+		    <p>Sessions are currently only used to store the output of a function/script call.</p>
+		    
+		    <table class="table table-bordered">
+		      <thead>
+		        <tr>
+		          <th>Path</th>
+		          <th>What</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		        <tr>
+		          <td><code>/ocpu/tmp/:sessionid/</code></td>
+		          <td>List available output for this session.</td>
+		        </tr>  
+		        <tr>
+		          <td><code>/ocpu/tmp/:sessionid/R</code></td>
+		          <td>Interfaces to the R API for R objects stored in this session.</td>
+		        </tr>
+		        <tr>
+		          <td><code>/ocpu/tmp/:sessionid/graphics/</code></td>
+		          <td>List graphics (plots) stored in this session.</td>
+		        </tr>  
+		        <tr>
+		          <td><code>/ocpu/tmp/:sessionid/graphics/:n/:format</code></td>
+		          <td>Retrieve graphic number <code>:n</code> in output format <code>:format</code>. Format is usually one of <code>png</code>, <code>pdf</code> or <code>svg</code>. Valid values for <code>:n</code> are integers or "last".</td>
+		        </tr>    
+		        <tr>
+		          <td><code>/ocpu/tmp/:sessionid/source</code></td>
+		          <td>Reads the input source code for this session.</td>
+		        </tr>      
+		        <tr>
+		          <td><code>/ocpu/tmp/:sessionid/stdout</code></td>
+		          <td>Shows text printed to STDOUT in this session.</td>
+		        </tr>  
+		        <tr>
+		          <td><code>/ocpu/tmp/:sessionid/console</code></td>
+		          <td>Shows the console input/output for this session (combines source and stdout)</td>
+		        </tr>                       
+		        <tr>
+		          <td><code>/ocpu/tmp/:sessionid/zip</code></td>
+		          <td>Download the entire session as a zip archive.</td>
+		        </tr>
+		        <tr>
+		          <td><code>/ocpu/tmp/:sessionid/tar</code></td>
+		          <td>Download the entire session as a gzipped tarball.</td>
+		        </tr>
+		        <tr>
+		          <td><code>/ocpu/tmp/:sessionid/files/:path</code></td>
+		          <td>Interfaces to the file API in the working dir of the session.</td>
+		        </tr>                                         
+		                                                                                   
+		      </tbody>
+		    </table> 
+		  </div>
+		</div>       
+    
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h4>Object Output Formats</h4></div>
+       <div class="panel-body"> 
+    
+		    <p>Any R object (including recorded graphics) can be retrieved in various output formats, indicated by <code>:format</code> in the API tables.</p>
+		    
+		    <table class="table table-bordered">
+		      <thead>
+		        <tr>
+		          <th>Format</th>
+		          <th>Content-type</th>
+		          <th>Encoder (args)</th>
+		          <th>Data Frame</th>
+		          <th>Matrix</th>
+		          <th>List</th>
+		          <th>Graphics</th>
+		          <th>Other (closure, S4, etc)</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		        <tr>
+		          <td><code>print</code></td>
+		          <td>text/plain</td>
+		          <td>base::print</td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		        </tr>   
+		        
+		        <tr>
+		          <td><code>json</code></td>
+		          <td>application/json</td>
+		          <td>RJSONIO::toJSON</td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		        </tr>      
+		        
+		        <tr>
+		          <td><code>csv</code></td>
+		          <td>text/csv</td>
+		          <td>utils::write.csv</td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		        </tr>  
+		        
+		        <tr>
+		          <td><code>tab</code></td>
+		          <td>text/plain</td>
+		          <td>utils::write.table</td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		        </tr>    
+		        
+		        <tr>
+		          <td><code>rda</code></td>
+		          <td>application/octet-stream</td>
+		          <td>base::save</td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		        </tr>   
+		        
+		        <tr>
+		          <td><code>rds</code></td>
+		          <td>application/octet-stream</td>
+		          <td>base::saveRDS</td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		        </tr>   
+		        
+		        <tr>
+		          <td><code>png</code></td>
+		          <td>image/png</td>
+		          <td>grDevices::png</td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		        </tr>    
+		        
+		        <tr>
+		          <td><code>pdf</code></td>
+		          <td>application/pdf</td>
+		          <td>grDevices::pdf</td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		        </tr>  
+		        
+		        <tr>
+		          <td><code>svg</code></td>
+		          <td>image/svg+xml</td>
+		          <td>grDevices::svg</td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		        </tr>                                                                                            
+		                                                                                   
+		      </tbody>
+		    </table>  
+		    
+{% highlight bash %}
+curl http://my.server.com/ocpu/library/datasets/R/mtcars/json?digits=0
+curl http://my.server.com/ocpu/library/datasets/R/mtcars/csv
+curl http://my.server.com/ocpu/library/datasets/R/mtcars/tab?sep="|"
+curl http://my.server.com/ocpu/library/MASS/R/loglm/print
+{% endhighlight %}
+
+{% highlight bash %}
+curl http://my.server.com/ocpu/library/graphics/R/plot -d 'x=cars' 
+#replace session id with returned one
+curl http://my.server.com/ocpu/tmp/x0468b7ab/graphics/last/png
+curl http://my.server.com/ocpu/tmp/x0468b7ab/graphics/1/png?width=1000
+curl http://my.server.com/ocpu/tmp/x0468b7ab/graphics/last/svg
+curl http://my.server.com/ocpu/tmp/x0468b7ab/graphics/last/pdf?width=8
+{% endhighlight %}         		    
+		    
+		  </div>
+		</div>  
+    
+    
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h4>POST Argument Formats</h4></div>
+       <div class="panel-body">
+		    <p>When calling a function, we need to pass arguments. OpenCPU accepts the following types of arguments</p>
+		    
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>What</th>
+              <th>Examples</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Primitives</td>
+              <td>Numbers, strings, booleans</td>
+              <td><code>3.1415</code>, <code>false</code>, <code>"mytitle"</code></td>
+            </tr>   
+
+            <tr>
+              <td>JSON object</td>
+              <td>An array or object</td>
+              <td><code>{"foo" : [1,2,3], "bar" : {"name" : "jerry"}}</code></td>
+            </tr>  
+            
+            <tr>
+              <td>R code</td>
+              <td>plain R code</td>
+              <td><code>paste("useR", "2013")</code>, <code>mtcars</code></td>
+            </tr>  
+            
+            <tr>
+              <td>File upload</td>
+              <td>File argument will be temporary file path.</td>
+              <td>(multipart only)</td>
+            </tr>                                    
+ 
+            <tr>
+              <td>Chained Object</td>
+              <td>Session ID from previous function call.</td>
+              <td><code>x2ac58d69</code></td>
+            </tr>                                                                                         
+                                                                                       
+          </tbody>
+        </table> 		   
+        
+        <p>When performing a fucntion call, the POST data (request body) can be formated using either <code>multipart/form-data</code>, 
+        <code>application/x-www-form-urlencoded</code> or <code>application/json</code>. Not every content-type supports any argument format:</p>
+		    
+		    <table class="table table-bordered">
+		      <thead>
+		        <tr>
+		          <th>Content-type</th>
+		          <th>Primitives</th>
+		          <th>JSON object</th>
+		          <th>R code</th>
+		          <th>File upload</th>
+		          <th>Chained object</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		        <tr>
+		          <td><code>application/x-www-form-urlencoded</code></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		        </tr>   
+		        
+		         <tr>
+		          <td><code>multipart/form-data</code></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		        </tr>    
+		        
+		         <tr>
+		          <td><code>application/json</code></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="success"><i class="icon icon-check"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
+		        </tr>                                                                                               
+		                                                                                   
+		      </tbody>
+		    </table>               
+{% highlight bash %}
+curl http://my.server.com/ocpu/library/stats/R/rnorm -d 'n=10&mean=5' 
+curl http://my.server.com/ocpu/library/graphics/R/hist -d 'x=[2,3,2,3,4,3,3]&breaks=10'
+curl http://my.server.com/ocpu/library/graphics/R/plot -d 'x=cars&main="test"'
+curl http://my.server.com/ocpu/library/base/R/identity -d 'x=coef(lm(speed~dist, data=cars))'
+{% endhighlight %} 
+
+{% highlight bash %}
+#upload local file mydata.csv
+curl http://my.server.com/ocpu/library/utils/R/read.csv -F "file=@mydata.csv"
+#replace session id with returned one
+curl http://my.server.com/ocpu/tmp/x067b4172/R/.val/print
+curl http://my.server.com/ocpu/library/base/R/summary -d 'object=x067b4172'
+{% endhighlight %} 
+
+{% highlight bash %}
+curl http://your.server.com/ocpu/library/stats/R/rnorm \
+  -H "Content-Type: application/json" -d '{"n":10, "mean": 10, "sd":10}'
+{% endhighlight %} 
+
+
+      </div>        
+    </div>
+    
+    
  
     
     
