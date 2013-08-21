@@ -3,15 +3,6 @@ layout: page
 title: "API Docs" 
 ---
 
-<div class="row">
-  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-	  <div class="alert alert-danger">
-	    <strong>Heads Up!</strong> (last updated August 18) The OpenCPU documentation and demo servers are in the process of being updated to the new
-	    OpenCPU 1.0! A copy of the old site is still available <a href="http://public.opencpu.org/legacy/">here</a>.
-	  </div>  
-  </div>
-</div>
-
 
 <div class="row">
 	<div class="col-md-3">
@@ -63,241 +54,314 @@ title: "API Docs"
 		</div>
 	</div>
 	<div class="col-md-9" role="main">
+	
+	    <div class="alert alert-warning">
+	      <strong>Last updated: August 18</strong> The OpenCPU documentation and demo servers are in the process of being updated to the new
+	      OpenCPU 1.0! This version is not backward compatible with 0.x (beta) series. A copy of the old site is still available
+	      <a href="http://public.opencpu.org/legacy/" class="alert-link">here</a>.
+	    </div> 
 
-    <!-- SECTION Overview -->	
-	  <div class="page-header">
-      <h1 id="api-overview">API Overview</h1>
+     <div class="panel panel-primary">
+      <div class="panel-heading"><h4>The API root path</h4></div>
+      <div class="panel-body">
+        <p>The root of the OpenCPU API is dynamic. It usually defaults to <code>/ocpu/</code>, however system administrators can change this.
+        Clients should make the OpenCPU server address and root path configurable. In the examples below we assume the default <code>/ocpu/</code>.</p>
+      </div>
     </div>
     
-    <p>
-    The OpenCPU server exposes a web API interfacing R, Latex and Pandoc. 
-    The API allows clients to read, write and call functions and objects, as well as run scripts reproducible documents (Sweave, knitr, etc).
-    This is used for example to integrate statistical functionality into systems, 
-    share and execute scripts or reports on centralized servers, or build statistical "apps".  
-    </p>
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h4>HTTP Methods</h4></div>
+      <div class="panel-body">
+      
+        <p>OpenCPU currently only uses HTTP methods <code>GET</code> and <code>POST</code>. GET is used to read a resource, and POST is to
+        execute/call/run the resource. POST is only valid on scripts, reproducible documents and R functions.</p>
     
-    <h2 id="api-web">A web API</h2>  
+		    <table class="table table-bordered">
+		      <thead>
+		        <tr>
+		          <th>Method</th>
+		          <th>Target</th>
+		          <th>Action</th>
+		          <th>Arguments</th>          
+		          <th>Example</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		        <tr>
+		          <td><code>GET</code></td>
+		          <td>object</td>
+		          <td>read object</td>
+		          <td>control output format</td>          
+		          <td><code>GET /ocpu/library/datasets/R/mtcars/json</code></td>
+		        </tr>
+		        <tr>
+		          <td><code>POST</code></td>
+		          <td>object</td>
+		          <td>call function</td>
+		          <td>function arguments</td>
+		          <td><code>POST /ocpu/library/stats/R/rnorm</code></td>
+		        </tr>
+            <tr>
+              <td><code>GET</code></td>
+              <td>file</td>
+              <td>read file</td>
+              <td>-</td>
+              <td><code>GET /ocpu/library/MASS/NEWS</code> <br /> <code>GET /ocpu/library/MASS/scripts/</code></td>
+            </tr>  		         
+		        <tr>
+		          <td><code>POST</code></td>
+		          <td>file</td>
+		          <td>run script</td>
+		          <td>control interpreter </td>
+		          <td><code>POST /ocpu/library/MASS/scripts/ch01.R</code> <br /><code>POST /ocpu/library/knitr/examples/knitr-minimal.Rmd</code></td>
+		        </tr>                         
+		      </tbody>
+		    </table>
+		    
+{% highlight bash %}
+curl http://my.server.com/ocpu/library/datasets/R/mtcars/json
+curl http://my.server.com/ocpu/library/MASS/NEWS
+curl http://my.server.com/ocpu/library/MASS/scripts/
+curl http://my.server.com/ocpu/library/MASS/scripts/ch01.R -X POST
+curl http://my.server.com/ocpu/library/stats/R/rnorm -d 'n=10&mean=5'
+{% endhighlight %}		    
+		    
+		  </div>
+		</div>
     
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h4>HTTP Status Codes</h4></div>
+      <div class="panel-body">
+      
+        <p>These are common statuscodes returned by OpenCPU that the client should be able to interpret</p>
     
-    
-    <h2 id="api-functionality">High Level Functionality</h2> 
-    <h2 id="api-state">On Server State</h2> 
-    
-    <p>OpenCPU is HTTP and therefore stateless. There is also no authentication or http sessions. 
-    Each request is independent of the previous one. In order to simulate state, we can chain function calls <code>f(g(x), h(y))</code>
-    passing the output ID of a previous call as an argument to a subsequent call. See the section below on arguments for more information on function chaining.  
-
-    
-    <h2 id="api-static">Serving Static Content</h2> 
-    <h2 id="api-apps">Developing Apps</h2> 
-    
-
-    <!-- SECTION HTTP --> 
-    <div class="page-header">
-      <h1 id="api-http">HTTP Implementation</h1> 
-    </div>
-    
-    <h2 id="api-methods">HTTP Methods</h2>
-    
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Method</th>
-          <th>Target</th>
-          <th>Action</th>
-          <th>Arguments</th>          
-          <th>Example</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>GET</code></td>
-          <td>object</td>
-          <td>read object</td>
-          <td>control output format</td>          
-          <td><code>GET /ocpu/library/datasets/R/mtcars/json?digits=0</code></td>
-        </tr>
-        <tr>
-          <td><code>GET</code></td>
-          <td>file</td>
-          <td>read file</td>
-          <td>-</td>
-          <td><code>GET /ocpu/library/MASS/NEWS</code> <br /> <code>GET /ocpu/library/MASS/scripts/</code></td>
-        </tr>  
-        <tr>
-          <td><code>POST</code></td>
-          <td>object</td>
-          <td>call function</td>
-          <td>function arguments</td>
-          <td><code>POST /ocpu/library/stats/R/rnorm</code></td>
-        </tr> 
-        <tr>
-          <td><code>POST</code></td>
-          <td>file</td>
-          <td>run script</td>
-          <td>control interpreter </td>
-          <td><code>POST /ocpu/library/MASS/scripts/ch01.R</code> <br /><code>POST /ocpu/library/knitr/examples/knitr-minimal.Rmd</code></td>
-        </tr>                         
-      </tbody>
-    </table>
-    
-    <h2 id="api-statuscodes">HTTP Status Codes</h2> 
-    
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>HTTP Code</th>
-          <th>When</th>
-          <th>Returns</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>200 OK</code></td>
-          <td>On successful GET request</td>
-          <td>Resource content</td>
-        </tr>
-         <tr>
-          <td><code>201 Created</code></td>
-          <td>On successful POST request</td>
-          <td>Output location</td>
-        </tr>
-        <tr>
-          <td><code>302 Found</code></td>
-          <td>Redirect</td>
-          <td>Redirect Location</td>
-        </tr>
-        <tr>
-          <td><code>400 Bad Request</code></td>
-          <td>R raised an error.</td>
-          <td>Error message in <code>text/plain</code></td>
-        </tr>  
-        <tr>
-          <td><code>502 Bad Gateway</code></td>
-          <td>Nginx (opencpu-cache) can't connect to OpenCPU server.</td>
-          <td>(admin needs to look in error logs)</td>
-        </tr>   
-        <tr>
-          <td><code>503 Bad Request</code></td>
-          <td>Serious problem with the server</td>
-          <td>(admin needs to look in error logs)</td>
-        </tr>                                                    
-      </tbody>
-    </table>
+		    <table class="table table-bordered">
+		      <thead>
+		        <tr>
+		          <th>HTTP Code</th>
+		          <th>When</th>
+		          <th>Returns</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		        <tr>
+		          <td><code>200 OK</code></td>
+		          <td>On successful GET request</td>
+		          <td>Resource content</td>
+		        </tr>
+		         <tr>
+		          <td><code>201 Created</code></td>
+		          <td>On successful POST request</td>
+		          <td>Output location</td>
+		        </tr>
+		        <tr>
+		          <td><code>302 Found</code></td>
+		          <td>Redirect</td>
+		          <td>Redirect Location</td>
+		        </tr>
+		        <tr>
+		          <td><code>400 Bad Request</code></td>
+		          <td>R raised an error.</td>
+		          <td>Error message in <code>text/plain</code></td>
+		        </tr>  
+		        <tr>
+		          <td><code>502 Bad Gateway</code></td>
+		          <td>Nginx (opencpu-cache) can't connect to OpenCPU server.</td>
+		          <td>(admin needs to look in error logs)</td>
+		        </tr>   
+		        <tr>
+		          <td><code>503 Bad Request</code></td>
+		          <td>Serious problem with the server</td>
+		          <td>(admin needs to look in error logs)</td>
+		        </tr>                                                    
+		      </tbody>
+		    </table>
+		  </div>
+		</div>
          
     
     <!-- SECTION Endpoints --> 
     
-    <h2 id="api-root">API root</h2>
-    <p>The root of the OpenCPU API is dynamic. In the cloud server it defaults to <code>/ocpu/</code>, however system administrators are free to change this.
-    Clients should make the OpenCPU server address and root path configurable. In the examples below we assume the default <code>/ocpu/</code>.</p>
 
-    <h2 id="api-libraries">The API Libraries</h2> 
+
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h4>The API Libraries</h4></div>
+       <div class="panel-body">
+       
+        <p>The following libraries hold packages and sessions that are available on the server</p>
     
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Path</th>
-          <th>What</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>/ocpu/library/:pkgname/</code></td>
-          <td>Interfaces to Package API for a package installed in one of the global libraries on the server.</td>
-        </tr>
-        <tr>
-          <td><code>/ocpu/user/:username/:pkgname/</code></td>
-          <td>Interfaces to Package API for a package installed in the home library of user <code>username</code>.</td>
-        </tr>   
-        <tr>
-          <td><code>/ocpu/cran/:pkgname/</code></td>
-          <td>Interfaces to Package API for a package <code>pkgname</code> that is <i>current</i> on CRAN.</td>
-        </tr>   
-        <tr>
-          <td><code>/ocpu/bioc/:pkgname/</code></td>
-          <td>Interfaces to Package API for a package <code>pkgname</code> that is <i>current</i> on BioConductor.</td>
-        </tr>  
-        <tr>
-          <td><code>/ocpu/github/:gituser/:pkgname/</code></td>
-          <td>Interfaces to Package API for a package <code>pkgname</code> that is <i>current</i> on the identically named repository from github user <code>gituser</code>.</td>
-        </tr>
-        <tr>
-          <td><code>/ocpu/gist/:gituser/:path/</code></td>
-          <td>Interfaces to Files API for file <code>path</code> as exists in the gist repository from github user <code>gituser</code>.</td>
-        </tr>  
-        <tr>
-          <td><code>/ocpu/tmp/:sessionid/</code></td>
-          <td>Interfaces to session (output) from session <code>sessionid</code></td>
-        </tr>                                                                                             
-      </tbody>
-    </table>    
+		    <table class="table table-bordered">
+		      <thead>
+		        <tr>
+		          <th>Path</th>
+		          <th>What</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		        <tr>
+		          <td><code>/ocpu/library/:pkgname/</code></td>
+		          <td>Interfaces to R packages installed in one of the global libraries on the server.</td>
+		        </tr>
+		        <tr>
+		          <td><code>/ocpu/user/:username/:pkgname/</code></td>
+		          <td>Interfaces to R packages installed in the home library of <code>:username</code>.</td>
+		        </tr>   
+		        <tr>
+		          <td><code>/ocpu/tmp/:sessionid/</code></td>
+		          <td>Interfaces temporary sessions, usually the result of function/script executions.</td>
+		        </tr>                                                                                             
+		      </tbody>
+		    </table>   
+		    
+{% highlight bash %}
+#read packages
+curl http://my.server.com/ocpu/library/MASS
+curl http://my.server.com/ocpu/user/jeroen/somepackage
+#read session
+curl http://my.server.com/ocpu/tmp/x2c5ab8d4
+{% endhighlight %}  		    
+		    
+		    <p>In addition, a server might have support for the following remote API's enabled:</p>
+		    
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Path</th>
+              <th>What</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>/ocpu/cran/:pkgname/</code></td>
+              <td>Interfaces to the R package <code>:pkgname</code> that is <i>current</i> on CRAN.</td>
+            </tr>   
+            <tr>
+              <td><code>/ocpu/bioc/:pkgname/</code></td>
+              <td>Interfaces to the R package <code>:pkgname</code> that is <i>current</i> on BioConductor.</td>
+            </tr>  
+            <tr>
+              <td><code>/ocpu/github/:gituser/:pkgname/</code></td>
+              <td>Interfaces to R package <code>:pkgname</code> in the <i>master branch</i> of the identically named repository from github user <code>:gituser</code>.</td>
+            </tr>
+            <tr>
+              <td><code>/ocpu/gist/:gituser/:path/</code></td>
+              <td>Interfaces to static files and directories which are located in the gist repository from github user <code>gituser</code>. This API does not support packages, just files (scripts, documents, etc)</td>
+            </tr>                                                                                           
+          </tbody>
+        </table> 		
+        
+{% highlight bash %}
+#read packages
+curl http://my.server.com/ocpu/cran/plyr/
+curl http://my.server.com/ocpu/github/hadley/
+curl http://my.server.com/ocpu/github/hadley/plyr/
+#read files
+curl http://my.server.com/ocpu/gist/hadley/
+{% endhighlight %}         
+            
+		  </div>
+		</div> 
     
         
-    <h2 id="api-packages">The Package API</h2> 
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h4>The R package API</h4></div>
+       <div class="panel-body">
+		    
+		    <p>Any of the libraries above that supports the <code>/:package/</code> API can call the following endpoints:</p>
+		    
+		    <table class="table table-bordered">
+		      <thead>
+		        <tr>
+		          <th>Path</th>
+		          <th>What</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		        <tr>
+		          <td><code>../:pkgname/</code></td>
+		          <td>Show information about this package.</td>
+		        </tr>      
+		        <tr>
+		          <td><code>../:pkgname/R</code></td>
+		          <td>Interfaces R objects exported by this package. See R object API.</td>
+		        </tr>
+		        <tr>
+		          <td><code>../:pkgname/man/</code></td>
+		          <td>Lists manuals (help pages) available in this package.</td>
+		        </tr>   
+		        <tr>
+		          <td><code>../:pkgname/man/:topic/:manformat</code></td>
+		          <td>Get help page about <code>topic</code> in output format <code>manformat</code>. Manual format must be one of <code>text</code>, <code>html</code>, <code>pdf</code></td>
+		        </tr> 
+		        <tr>
+		          <td><code>../:pkgname/:path</code></td>
+		          <td>For anything else, interfaces to the Files API for file <code>path</code> in the package installation directory.</td>
+		        </tr>                                                                                                     
+		      </tbody>
+		    </table>    
+		    
+{% highlight bash %}
+#read package resources
+curl http://my.server.com/ocpu/library/MASS/
+curl http://my.server.com/ocpu/library/MASS/R/
+curl http://my.server.com/ocpu/library/MASS/R/rlm/print
+curl http://my.server.com/ocpu/library/MASS/man/
+curl http://my.server.com/ocpu/library/MASS/man/rlm/text
+curl http://my.server.com/ocpu/library/MASS/man/rlm/html
+curl http://my.server.com/ocpu/library/MASS/man/rlm/pdf
+
+#read files included with this package
+curl http://my.server.com/ocpu/library/MASS/scripts/
+curl http://my.server.com/ocpu/library/MASS/scripts/ch01.R
+curl http://my.server.com/ocpu/library/MASS/NEWS
+
+#call a function from rlm manual
+curl http://my.server.com/ocpu/library/MASS/R/rlm -d 'formula=stack.loss ~ .&data=stackloss&psi=psi.bisquare'
+
+#run R script
+curl http://my.server.com/ocpu/library/MASS/scripts/ch01.R -X POST
+
+#read output (replace with returned sessionid)
+curl http://my.server.com/ocpu/tmp/x0648ec6b/R/.val/print
+{% endhighlight %}    		    
+		        
+      </div>
+    </div>
     
-    Any of the libraries above that supports the <code>/:package/</code> API can call the following endpoints:
-    
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Path</th>
-          <th>What</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>../:pkgname/</code></td>
-          <td>Show information about this package.</td>
-        </tr>      
-        <tr>
-          <td><code>../:pkgname/R</code></td>
-          <td>Interfaces to the R API for R objects exported by this package.</td>
-        </tr>
-        <tr>
-          <td><code>../:pkgname/man/</code></td>
-          <td>Lists manuals (help pages) available in this package.</td>
-        </tr>   
-        <tr>
-          <td><code>../:pkgname/man/:topic/:manformat</code></td>
-          <td>Get help page about <code>topic</code> in output format <code>manformat</code>. Manual format must be one of <code>text</code>, <code>html</code>, <code>pdf</code></td>
-        </tr> 
-        <tr>
-          <td><code>../:pkgname/:path</code></td>
-          <td>For anything else, interfaces to the Files API for file <code>path</code> in the package installation directory.</td>
-        </tr>                                                                                                     
-      </tbody>
-    </table>        
-    
-    <h2 id="api-objects">The R API</h2> 
-    
-    The <code>/R</code> API is used to read R objects, or call R functions.
-    
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Path</th>
-          <th>What</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>../R/</code></td>
-          <td>List R objects in this package or session.</td>
-        </tr>  
-        <tr>
-          <td><code>../R/:object</code></td>
-          <td>Read R object in default format. If <code>object</code> is a function, it can be called using HTTP POST.</td>
-        </tr>            
-        <tr>
-          <td><code>../R/:object/:format</code></td>
-          <td>Retrieve an R object in a particular output format.</td>
-        </tr>                                                                                    
-      </tbody>
-    </table>           
     
     <div class="panel panel-primary">
-      <div class="panel-heading"><h4>The Session API</h4></div>
+      <div class="panel-heading"><h4>The R object API</h4></div>
+       <div class="panel-body">
+    
+		    <p>The <code>/R</code> API is used to read R objects, or call R functions.</p>
+		    
+		    <table class="table table-bordered">
+		      <thead>
+		        <tr>
+		          <th>Path</th>
+		          <th>What</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		        <tr>
+		          <td><code>../R/</code></td>
+		          <td>List R objects in this package or session.</td>
+		        </tr>  
+		        <tr>
+		          <td><code>../R/:object</code></td>
+		          <td>Read R object in default format. If <code>object</code> is a function, it can be called using HTTP POST.</td>
+		        </tr>            
+		        <tr>
+		          <td><code>../R/:object/:format</code></td>
+		          <td>Retrieve an R object in a particular output format.</td>
+		        </tr>                                                                                    
+		      </tbody>
+		    </table>          
+		  </div>
+		</div> 
+    
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h4>The R session API</h4></div>
        <div class="panel-body"> 
     
 		    <p>Sessions are currently only used to store the output of a function/script call.</p>
@@ -357,7 +421,7 @@ title: "API Docs"
 		</div>       
     
     <div class="panel panel-primary">
-      <div class="panel-heading"><h4>Object Output Formats</h4></div>
+      <div class="panel-heading"><h4>Output formats for R objects</h4></div>
        <div class="panel-body"> 
     
 		    <p>Any R object (including recorded graphics) can be retrieved in various output formats, indicated by <code>:format</code> in the API tables.</p>
@@ -367,12 +431,12 @@ title: "API Docs"
 		        <tr>
 		          <th>Format</th>
 		          <th>Content-type</th>
-		          <th>Encoder (args)</th>
+		          <th>Encoder (+args)</th>
 		          <th>Data Frame</th>
 		          <th>Matrix</th>
 		          <th>List</th>
 		          <th>Graphics</th>
-		          <th>Other (closure, S4, etc)</th>
+		          <th>Other (function, S4)</th>
 		        </tr>
 		      </thead>
 		      <tbody>
@@ -499,7 +563,7 @@ curl http://my.server.com/ocpu/tmp/x0468b7ab/graphics/last/pdf?width=8
     
     
     <div class="panel panel-primary">
-      <div class="panel-heading"><h4>POST Argument Formats</h4></div>
+      <div class="panel-heading"><h4>Argument formats for R function calls (HTTP POST only)</h4></div>
        <div class="panel-body">
 		    <p>When calling a function, we need to pass arguments. OpenCPU accepts the following types of arguments</p>
 		    
@@ -613,11 +677,88 @@ curl http://your.server.com/ocpu/library/stats/R/rnorm \
       </div>        
     </div>
     
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h4>Running scripts and reproducible documents</h4></div>
+       <div class="panel-body">
     
- 
-    
-    
+        <p>We can run a script by performing HTTP POST on a file. The script is interpreted according to its (case insensitive) file extension. 
+        Any HTTP POST arguments are passed on to the interpreting function. The following types are supported:</p>
+        
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>File extension</th>
+              <th>Type</th>
+              <th>Interpreter</th>
+              <th>Arguments</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>file.r</code></td>
+              <td>R script</td>
+              <td>evaluate::evaluate</td>
+              <td>-</td>
+            </tr>  
+            
+            <tr>
+              <td><code>file.tex</code></td>
+              <td>latex</td>
+              <td>tools::texi2pdf</td>
+              <td>-</td>
+            </tr>            
+            
+            <tr>
+              <td><code>file.rnw</code></td>
+              <td>knitr/sweave</td>
+              <td>knitr::knit + tools::texi2pdf</td>
+              <td>-</td>
+            </tr>
+            
+            <tr>
+              <td><code>file.md</code></td>
+              <td>markdown</td>
+              <td>knitr::pandoc</td>
+              <td><code>format</code> (see ?pandoc) </td>
+            </tr>             
+            
+            <tr>
+              <td><code>file.rmd</code></td>
+              <td>knitr/markdown</td>
+              <td>knitr::knit + knitr::pandoc</td>
+              <td><code>format</code> (see ?pandoc) </td>
+            </tr>    
+            
+            <tr>
+              <td><code>file.brew</code></td>
+              <td>brew</td>
+              <td>brew::brew</td>
+              <td><code>output</code> (see ?brew)</td>
+            </tr>                                    
+                                                                               
+          </tbody>
+        </table>
+        
+{% highlight bash %}
+#run scripts which exist in packages
+curl http://my.server.com/ocpu/library/MASS/scripts/ch01.R -X POST
+curl http://my.server.com/ocpu/library/brew/featurefull.brew -X POST
+curl http://my.server.com/ocpu/library/brew/brew-test-2.brew -d 'output=output.html'
+curl http://my.server.com/ocpu/library/knitr/examples/knitr-minimal.Rmd -X POST
+curl http://my.server.com/ocpu/library/knitr/examples/knitr-minimal.Rmd -d 'format=docx'
+curl http://my.server.com/ocpu/library/knitr/examples/knitr-minimal.Rmd -d 'format=html'
+curl http://my.server.com/ocpu/library/knitr/examples/knitr-minimal.Rnw 
 
+#run scripts from gist
+curl http://my.server.com/ocpu/gist/hadley/6195660/r-is-like.md -X POST
+curl http://my.server.com/ocpu/gist/hadley/5721744/html.r -X POST
+{% endhighlight %}         
+                  
+      </div>
+    </div>     
+    
+    
+    
 	</div>
 </div>
 
