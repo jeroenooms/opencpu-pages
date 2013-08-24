@@ -2,20 +2,25 @@
 layout: layout
 prefix: "../../"
 ---
-<div class="fancy post">
-	<header class="subhead hidden-xs" id="topheader" style="background-image: url('{{page.cover}}');">
+<div class="post">
+	<header class="subhead hidden-xs" id="topheader" style="background-image: url('{{ page.prefix }}covers/{{page.cover}}');">
 	  <div class="container">
 	    <h1>{{page.title}}</h1>
 	    <p class="lead">
-	      {{ page.date | date: "%B %e, %Y" }}<br>UCLA, Los Angeles, California
+	      {{ page.date | date: "%B %e, %Y" }}
 	    </p>
 	  </div>
 	</header>
 	
+	<header class="pageheader visible-xs">
+	  <h1>{{page.title}}</h1> 
+	  <hr>
+	</header>
+	
 	<div class="container">
 	  <div class="row">
-	    <div class="col-lg-3 visible-lg">{% include author.html %}</div>
-	    <div class="col-lg-9">{{ content }}</div>
+	    <div class="col-md-3 col-visible-md hidden-xs hidden-sm">{% include author.html %}</div>
+	    <div class="col-md-9">{{ content }}</div>
 	  </div>    
 	</div>
 </div>
