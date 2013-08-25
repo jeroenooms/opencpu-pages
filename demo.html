@@ -2,9 +2,33 @@
 layout: page
 title: "Demo Server"
 ---
-<div class="row fancy">
-  <div class="col-sm-12">
-	  <table class="table table-hover">
+<div class="row">
+  
+  <div class="col-md-6">
+    <div class="alert alert-success">
+      <a href="#" class="close" data-dismiss="alert">&times;</a>
+      A public demo server is provided for anyone to get started with OpenCPU, and play around with apps and packages.
+      It has a standard OpenCPU cloud server installation with approx <a href="https://public.opencpu.org/ocpu/library">1000 popular CRAN packages</a>
+      in the <code>/ocpu/library/</code>.
+    </div>
+  </div>
+ 
+  
+  <div class="col-md-6">
+    <div class="alert alert-warning">
+      <a href="#" class="close" data-dismiss="alert">&times;</a>
+      The server is mostly here to demo the API. Performance will vary (depending on how busy it is) and it might go down
+      or be upgraded without warnings. To host important OpenCPU apps, please <a href="http://localhost/opencpu-pages/_site/download.html">install 
+      your own OpenCPU cloud server</a>.
+    </div>
+  </div> 
+</div>  
+
+<br />
+
+<div class="row"> 
+	<div class="col-lg-12">
+	  <table class="table table-hover table-bordered">
 	    <thead>
 	      <tr>
 	        <th>URL</th>
@@ -24,5 +48,48 @@ title: "Demo Server"
 	      </tr>
 	    </tbody>
 	  </table>  
-  </div>
+	</div>
+</div>
+
+<br />
+ 
+<div class="row">  
+  <div class="col-lg-12">
+    <h2>Custom code</h2>   
+	  <p>The easiest way to share your scripts, documents, packages or apps on OpenCPU is by putting them on github/gist:</p>
+	  
+	  <table class="table table-hover table-bordered">
+	    <thead>
+	      <tr>
+	        <th>API</th>
+	        <th>Supports</th>
+	        <th>Example</th>
+	      </tr>
+	    </thead>
+	    <tbody>      
+	      <tr>
+	        <td><code>/ocpu/github/:user/</code></td>
+	        <td>List user repositories</td>
+	        <td><a href="https://public.opencpu.org/ocpu/github/jeroenooms/">https://public.opencpu.org/ocpu/github/jeroenooms/</a></td>
+	      </tr>      
+	
+	      <tr>
+	        <td><code>/ocpu/github/:user/:package/</code></td>
+	        <td>Packages / Apps</td>
+	        <td><a href="https://public.opencpu.org/ocpu/github/jeroenooms/nabel/www">https://public.opencpu.org/ocpu/github/jeroenooms/nabel/www</a></td>
+	      </tr>
+	      <tr>
+	        <td><code>/ocpu/gist/:user/</code></td>
+	        <td>List user gists</td>
+	        <td><a href="https://public.opencpu.org/ocpu/gist/hadley/">https://public.opencpu.org/ocpu/gist/hadley/</a></td>
+	      </tr>  
+	      
+	      <tr>
+	        <td><code>/ocpu/gist/:user/:id/</code></td>
+	        <td>Files / Scripts</td>
+	        <td><a href="https://public.opencpu.org/ocpu/gist/hadley/5721744/html.r">https://public.opencpu.org/ocpu/gist/hadley/5721744/html.r</a></td>
+	      </tr>            
+	    </tbody>
+	  </table>  
+	</div>
 </div>
