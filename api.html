@@ -42,7 +42,7 @@ title: "API Docs"
 	
 	    <div class="alert alert-warning">
 	      <a href="#" class="close" data-dismiss="alert">&times;</a>
-	      <strong>Last updated: August 21</strong> The OpenCPU documentation and demo servers are in the process of being updated to the new
+	      <strong>Last updated: August 27</strong> The OpenCPU documentation and demo servers have been updated to the new
 	      OpenCPU 1.0! This version is not backward compatible with 0.x (beta) series. A copy of the old site is still available
 	      <a href="http://public.opencpu.org/legacy/" class="alert-link">here</a>.
 	    </div> 
@@ -841,11 +841,11 @@ curl https://public.opencpu.org/ocpu/library/gitstats/www/
 
 <script>
 $(function(){
-  $('body').scrollspy({ target: '#docmenu' })
+  $('body').scrollspy({ target: '#docmenu', offset:80 })
 });
 
 $("#docmenu li a").on('click', function(e) {
   e.preventDefault();
-  $.scrollTo(this.hash, 500);
+  $.scrollTo(this.hash, 500, {offset: -65});
 });  
 </script>
