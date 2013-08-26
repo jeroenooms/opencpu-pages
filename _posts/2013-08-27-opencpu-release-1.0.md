@@ -5,9 +5,12 @@ category: posts
 cover: "containers.jpg"
 ---
 
-Almost 2 years after the initial beta version, we release the first official version of the OpenCPU framework. 
-Based on feedback and experiences from the beta series, OpenCPU version 1.0 has been rewritten from scratch.
+After more than 3 years of development, we release the first official version of the OpenCPU system. 
+Based on feedback and experiences from the beta series, OpenCPU version 1.0 has been rewritten entirely from scratch.
 The result is simple and flexible API that is easier to understand yet more powerful than before.
+
+With the new release also comes a new website and blog in which we will post tutorials and examples over the upcoming weeks/months. 
+This first post features some highlights to get your feet wet.
 
 ## The package API
 
