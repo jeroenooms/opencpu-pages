@@ -819,7 +819,7 @@ curl https://public.opencpu.org/ocpu/gist/hadley/5721744/html.r -X POST
     </div> 
     
     
-    <div class="panel panel-primary" id="api-scripts">
+    <div class="panel panel-primary" id="api-apps">
       <div class="panel-heading"><h4>OpenCPU Apps</h4></div>
       <div class="panel-body">
         <p>OpenCPU apps are static web pages (html, css, js) which are included in an R package. 
@@ -843,4 +843,9 @@ curl https://public.opencpu.org/ocpu/library/gitstats/www/
 $(function(){
   $('body').scrollspy({ target: '#docmenu' })
 });
+
+$("#docmenu li a").on('click', function(e) {
+  e.preventDefault();
+  $.scrollTo(this.hash, 500);
+});  
 </script>
