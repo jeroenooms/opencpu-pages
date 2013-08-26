@@ -4,12 +4,11 @@ permalink: /posts/:title
 rdiscount:
   extensions: [smart]
 title : OpenCPU
-production_url : http://opencpu.org
 description: "OpenCPU: producing and reproducing results."
 disqus_shortname: opencpu
-#analytics: UA-32899481-1
-production_url: http://www.opencpu.org
-url: http://www.opencpu.org
+analytics: UA-701288-6
+production_url: https://public.opencpu.org
+url: https://public.opencpu.org
 author :
   name : Jeroen Ooms
   github : opencpu
