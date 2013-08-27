@@ -30,9 +30,18 @@ body {
     font-weight: bold;
     line-height: 1;
   }
+  
+  .navbar-nav.pull-right {
+    display: none;
+  }
 }
 
-
-.space50{
-  height: 50px;
+//prevent double navbar in small mode
+@media (min-width: @screen-sm) and (max-width: @screen-sm-max){ 
+  .navbar-collapse {
+    padding-right: 0px;
+  }
+  .nav li a {
+    padding-right: 5px;
+  }
 }

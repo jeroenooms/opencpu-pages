@@ -17,7 +17,7 @@ title: "FAQ"
 		    </div>
 		    <div id="faq1" class="panel-collapse collapse">
 		      <div class="panel-body">
-		            OpenCPU is a software framework for embedded statistical computation and reproducible research.
+		            OpenCPU is a software system for embedded statistical computation and reproducible research.
 		            The server exposes a web API interfacing R, Latex and Pandoc. This API is used for example to 
 		            integrate statistical functionality into systems, share and execute scripts or reports on centralized servers,
 		            and build R based "apps". The OpenCPU server can run either as a single-user server inside the 
@@ -104,8 +104,58 @@ title: "FAQ"
           </div>
         </div>
       </div>          	  
-		</div>
+
 	  
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq7">
+              Can the cloud server on Amazon EC2? Which instance type do I need?
+            </a>
+          </h4>
+        </div>
+        <div id="faq7" class="panel-collapse collapse">
+          <div class="panel-body">
+            Yes, EC2 is great to get started with OpenCPU.  
+            The Ubuntu team provides daily <a href="http://cloud-images.ubuntu.com/">cloud images</a> for EC2, which contain a pre-installed, up-to-date, ready-to-go Ubuntu Server.
+            Usually you pick the "current" image of the latest stable release of Ubuntu Server, e.g: <a href="http://cloud-images.ubuntu.com/raring/current/">http://cloud-images.ubuntu.com/raring/current/</a>.
+            
+            R and Latex require CPU more than anything else so it is recommended to pick one of the <i>compute optimized</i> instance types, for example <code>c1.medium</code> or <code>c1.xlarge</code>. 
+            The c1.medium has 2 CPU's, which is pretty much the minimum required for a smooth OpenCPU server.  
+            
+            The small and micro EC2 instance types have only half a CPU or less, which will seriously test your patience :-)
+            
+          </div>
+        </div>
+      </div> 
+      
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq8">
+              Do you recommend any hosting provider for the cloud server?
+            </a>
+          </h4>
+        </div>
+        <div id="faq8" class="panel-collapse collapse">
+          <div class="panel-body">
+            Finding a good provider can be a bit difficult because most providers focus on traffic, disk space and support, 
+            but OpenCPU really only needs fast CPU (and some memory). 
+            Get a server that has a couple of fast, uncapped, preferably private, processors. 
+            Ask the provider how many and how fast the processors are and whether or not they are shared with many other users on the same machine.
+            Pick a provider that offers a clean, unmanaged Ubuntu Server. Avoid anything with pre-configured control panels and all that stuff, it will only slow things down.
+            Many providers offer a trial period if you ask for it. Try running some quick <a href="http://r.research.att.com/benchmarks/">R benchmarks</a> to test performance.
+            If you really have no idea where to start looking, in the US <a href="http://www.rackspace.com/cloud/servers/">Rackspace</a> and 
+            <a href="http://aws.amazon.com/ec2/pricing/">Amazon EC2</a> are popular, and for Europe <a href="http://www.transip.eu/">TransIP</a> seems pretty good.
+          </div>
+        </div>
+      </div>       
+      
+      
+      
+                   
+    </div>	  
   
   </div>
   <div class="col-md-4 fancy">
