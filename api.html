@@ -188,7 +188,7 @@ curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d 'n=10&mean=5'
 		          <td>Interfaces to R packages installed in one of the global libraries on the server.</td>
 		        </tr>
 		        <tr>
-		          <td><code>/ocpu/user/:username/:pkgname/</code></td>
+		          <td><code>/ocpu/user/:username/library/:pkgname/</code></td>
 		          <td>Interfaces to R packages installed in the home library of <code>:username</code>.</td>
 		        </tr>   
 		        <tr>
@@ -202,6 +202,7 @@ curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d 'n=10&mean=5'
 #read packages
 curl https://public.opencpu.org/ocpu/library/MASS
 curl https://public.opencpu.org/ocpu/user/jeroen/somepackage
+
 #read session
 curl https://public.opencpu.org/ocpu/tmp/x2c5ab8d4
 {% endhighlight %}  		    
@@ -229,8 +230,8 @@ curl https://public.opencpu.org/ocpu/tmp/x2c5ab8d4
               <td>Interfaces to R package <code>:pkgname</code> in the <i>master branch</i> of the identically named repository from github user <code>:gituser</code>.</td>
             </tr>
             <tr>
-              <td><code>/ocpu/gist/:gituser/:path/</code></td>
-              <td>Interfaces to static files and directories which are located in the gist repository from github user <code>gituser</code>. This API does not support packages, just files (scripts, documents, etc)</td>
+              <td><code>/ocpu/gist/:gituser/:path</code></td>
+              <td>Static files and directories located in the gist repository from github user <code>gituser</code>. This API does not support packages, just files (scripts, html, etc)</td>
             </tr>                                                                                           
           </tbody>
         </table> 		
@@ -240,6 +241,7 @@ curl https://public.opencpu.org/ocpu/tmp/x2c5ab8d4
 curl https://public.opencpu.org/ocpu/cran/plyr/
 curl https://public.opencpu.org/ocpu/github/hadley/
 curl https://public.opencpu.org/ocpu/github/hadley/plyr/
+
 #read files
 curl https://public.opencpu.org/ocpu/gist/hadley/
 {% endhighlight %}         
@@ -267,12 +269,12 @@ curl https://public.opencpu.org/ocpu/gist/hadley/
 		          <td>Show information about this package.</td>
 		        </tr>      
 		        <tr>
-		          <td><code>../:pkgname/R</code></td>
-		          <td>Interfaces R objects exported by this package. See R object API.</td>
+		          <td><code>../:pkgname/R/</code></td>
+		          <td>List R objects exported by this package. See R object API.</td>
 		        </tr>
 		        <tr>
 		          <td><code>../:pkgname/man/</code></td>
-		          <td>Lists manuals (help pages) available in this package.</td>
+		          <td>List manuals (help pages) available in this package.</td>
 		        </tr>   
 		        <tr>
 		          <td><code>../:pkgname/man/:topic/:manformat</code></td>
@@ -284,7 +286,7 @@ curl https://public.opencpu.org/ocpu/gist/hadley/
             </tr> 		        
 		        <tr>
 		          <td><code>../:pkgname/:path</code></td>
-		          <td>For anything else, interfaces to the Files API for file <code>path</code> in the package installation directory.</td>
+		          <td>For anything else, interfaces to the file at <code>:path</code> in the package installation directory.</td>
 		        </tr>                                                                                                     
 		      </tbody>
 		    </table>    
@@ -342,7 +344,7 @@ curl https://public.opencpu.org/ocpu/tmp/x0648ec6b/R/.val/print
 		        </tr>            
 		        <tr>
 		          <td><code>../R/:object/:format</code></td>
-		          <td>Retrieve an R object in a particular output format.</td>
+		          <td>Retrieve an R object in a particular output format (see section on output formats).</td>
 		        </tr>                                                                                    
 		      </tbody>
 		    </table>          
