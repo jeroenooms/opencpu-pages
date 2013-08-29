@@ -11,7 +11,11 @@
   <!-- for social media preview stuff -->
   <link rel="image_src" href="{{ page.prefix }}images/mediumlogo.jpg"/>  
   <meta name="title" content="OpenCPU - {{ page.title }}" />
+{% if page.description != null %}
   <meta name="description" content="{{ page.description }}" />
+{% else %}
+  <meta name="description" content="OpenCPU is a framework for embedded scientific computing and reproducible research. It provides the foundations for integrating statistical functionality into the next generation of systems and applications." />  
+{% endif %}  
 
   <!-- for RSS readers and aggregators -->
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ page.prefix }}atom.xml" />
@@ -35,7 +39,7 @@
 </head>
 
 <body>
-	<div id="wrap">
+  <div id="wrap">
 
     <div class="navbar navbar-inverse navbar-default navbar-fixed-top fancy">
       <div class="container">
@@ -65,13 +69,13 @@
       </div>
     </div>
 
-	  
-	  
-	  
-	  
-	  {{ content }}
-	  
-	  <div id="push"></div>
+    
+    
+    
+    
+    {{ content }}
+    
+    <div id="push"></div>
   </div>
 
   <div id="footer" class="hidden-print fancy">
@@ -109,9 +113,9 @@
   </div>
   {% include analytics.html %}
 
-	<script src="{{ page.prefix }}js/bootstrap.min.js"></script>
-	<script src="{{ page.prefix }}js/jquery.scrollTo.min.js"></script>
-	<script src="{{ page.prefix }}js/pages.js"></script>
+  <script src="{{ page.prefix }}js/bootstrap.min.js"></script>
+  <script src="{{ page.prefix }}js/jquery.scrollTo.min.js"></script>
+  <script src="{{ page.prefix }}js/pages.js"></script>
 
 </body>
 </html>
