@@ -2,6 +2,7 @@
 layout: post
 title: "OpenCPU 1.0 release!"
 category: posts
+description: With the new release also comes a new website and blog in which we will post tutorials and examples over the upcoming weeks/months. This first post features some highlights to get your feet wet.
 cover: "containers.jpg"
 ---
 
