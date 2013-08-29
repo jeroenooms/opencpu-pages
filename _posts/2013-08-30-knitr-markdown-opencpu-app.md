@@ -2,6 +2,7 @@
 layout: post
 title: "Knitr/Markdown OpenCPU App"
 category: posts
+description: A new little OpenCPU app allows you to knit and markdown in the browser. It has a fancy pants code editor which automatically updates the output after 3 seconds of inactivity.
 cover: "containers.jpg"
 ---
 
