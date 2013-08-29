@@ -8,7 +8,7 @@ layout: nil
  <link href="{{ site.production_url }}/atom.xml" rel="self"/>
  <link href="{{ site.production_url }}/"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>{{ site.production_url }}</id>
+ <id>{{ site.production_url }}/</id>
  <author>
    <name>{{ site.author.name }}</name>
  </author>
@@ -22,7 +22,7 @@ layout: nil
    <updated>{{ post.date | date_to_xmlschema }}</updated>
    <id>{{ site.production_url }}{{ post.id }}</id>
    <content type="html">
-   <a href="{{ site.production_url }}"><img alt="opencpu logo" src="{{ site.production_url }}/images/mediumlogo.jpg" /></a>
+   &lt;a href=&quot;{{ site.production_url | xml_escape }}&quot;&gt;&lt;img alt=&quot;opencpu logo&quot; src=&quot;{{ site.production_url }}/images/mediumlogo.jpg&quot; /&gt;&lt;/a&gt;
    {{ post.content | xml_escape }}
    </content>
  </entry>
