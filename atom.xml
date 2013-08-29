@@ -12,6 +12,8 @@ layout: nil
  <author>
    <name>{{ site.author.name }}</name>
  </author>
+ <logo>{{ site.production_url }}/images/mediumlogo.jpg</logo>
+ <icon>{{ site.production_url }}/favicon.ico</icon>
 
  {% for post in site.posts %}
  <entry>
