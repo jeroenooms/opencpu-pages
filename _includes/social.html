@@ -1,0 +1,37 @@
+<ul class="socialbuttons list-unstyled">
+
+  <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ site.production_url }}{{page.url}}&t={{ page.title | uri_escape }}">
+    <img src="{{ page.prefix }}images/social/fb16.gif" alt="Share on Twitter"/>
+  </a></li>
+
+	<li><a target="_blank" href="https://plus.google.com/share?url={{ site.production_url }}{{ page.url }}">
+	  <img src="{{ page.prefix }}images/social/gplus16.png" alt="Share on Google+"/>
+	</a></li>
+	
+	<li><a target="_blank" href="http://twitter.com/home?status=%23rstats%20by%20%40opencpu%3A%20{{ page.title | uri_escape }}%20{{ site.production_url }}{{ page.url }}">
+	  <img src="{{ page.prefix }}images/social/twitter16.png" alt="Share on Twitter"/>
+	</a></li>
+</ul>
+
+<style>
+.socialbuttons {
+  margin-top: 30px;
+  float: right;
+}
+.socialbuttons a {
+  text-decoration:none;
+  opacity: 0.4;
+  filter: alpha(opacity=40);   
+}
+.socialbuttons a:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);   
+}
+</style>  
+  
+<script>
+$(".socialbuttons a").on("click", function(){
+  window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=500');
+  return false;
+});
+</script>

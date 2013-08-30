@@ -19,8 +19,13 @@ prefix: "../../"
 	
 	<div class="container">
 	  <div class="row">
-	    <div class="col-md-3 col-visible-md hidden-xs hidden-sm">{% include author.html %}</div>
-	    <div class="col-md-9">{{ content }}</div>
+	    <div class="col-md-3 col-visible-md hidden-xs hidden-sm">
+	      {% include author.html %}
+	      {% include social.html %}
+	    </div>
+	    <div class="col-md-9">
+	      {{ content }}
+	    </div>
 	  </div>    
 	</div>
 </div>
