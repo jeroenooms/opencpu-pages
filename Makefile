@@ -2,6 +2,12 @@
 # sudo apt-get install ruby-full jekyll discount
 # sudo gem install rdiscount
 #
+# sudo add-apt-repository ppa:chris-lea/node.js
+# sudo apt-get update
+# sudo apt-get install nodejs
+#
+# sudo npm install -g recess
+#
 
 all: build
 
