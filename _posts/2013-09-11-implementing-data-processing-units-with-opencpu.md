@@ -2,7 +2,7 @@
 layout: post
 title: "Implementing a DPU with OpenCPU"
 category: posts
-description: A "Data Processing Unit" (DPU) is a modular, stateless data I/O unit called remotely by other software. In OpenCPU any R function automatically becomes a DPU.  
+description: "A 'Data Processing Unit' (DPU) is a modular, stateless data I/O unit called remotely by other software. In OpenCPU any R function automatically becomes a DPU."  
 cover: "containers.jpg"
 ---
 
