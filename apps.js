@@ -14,6 +14,7 @@ $(function(){
               myimg.attr("src", value.owner.avatar_url);
            });
         
+        var mybr = $("<br />").appendTo(mydiv);
         var btngrp = $('<div class="btn-group">').appendTo(mydiv);
         var appbtn = $('<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">').text(value.name + " ").appendTo(btngrp);
         var appurl;
