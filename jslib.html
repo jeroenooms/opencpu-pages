@@ -11,8 +11,13 @@ title: "Javascript Library"
     
     <p>Source code, documentation and examples are available at the 
     <a href="http://github.com/jeroenooms/opencpu.js#readme">Github repository</a>.
-    </p>  
-  </div>
+    </p>
+    
+  <h1>appdemo</h1>
+    <p>To get started, have a look at the OpenCPU app called <a href="https://public.opencpu.org/apps.html">appdemo</a>.
+    It contains some minimal examples demonstrating how to use the opencpu.js library to call R functions from Javascript using OpenCPU.</p>     
+
+  </div>  
   
   <div class="col-md-8">
   
@@ -20,8 +25,8 @@ title: "Javascript Library"
   
 {% highlight js %}
 //calls the function "rnorm" in the current package
-var jqxhr = opencpu.r_fun_call("rnorm", {n:10, mean:5}, function(location) {
-  alert("Success! " + location);
+var jqxhr = opencpu.r_fun_call("rnorm", {n:10, mean:5}, function(session) {
+  alert("Success! " + session.getLoc());
 }).fail(function(){
   alert("Failure: " + jqxhr.responseText);
 });
