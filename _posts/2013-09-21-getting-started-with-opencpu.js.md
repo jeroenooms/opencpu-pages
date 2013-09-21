@@ -10,7 +10,19 @@ The [opencpu.js](https://public.opencpu.org/jslib.html) library builds on jQuery
 
 ## Getting started with opencpu.js
 
-The [readme page](https://github.com/jeroenooms/opencpu.js#readme) for opencpu.js has some brief documentation, but perhaps the easiest way to get started with opencpu.js is by example. The [opencpu apps](https://public.opencpu.org/apps.html) page lists a couple of example apps that you can play around with. The source code for each app is available from the [opencpu github organization](https://github.com/opencpu), and each app is based on opencpu.js. The [appdemo](https://public.opencpu.org/ocpu/library/appdemo/www/) app contains some pages with minimal examples illustrating the basic `opencpu.js` functionality.
+The [readme page](https://github.com/jeroenooms/opencpu.js#readme) for opencpu.js has some brief documentation, but perhaps the easiest way to get started with opencpu.js is by example. The [opencpu apps](https://public.opencpu.org/apps.html) page lists a couple of example apps that you can play around with. The source code for each app is available from the [opencpu github organization](https://github.com/opencpu), and each app is based on opencpu.js. The [appdemo](https://public.opencpu.org/ocpu/library/appdemo/www/) app contains some pages with minimal examples illustrating the basic `opencpu.js` functionality. Like all OpenCPU apps, you can either use it on the public cloud server, or install for local use:
+
+{% highlight r %}
+#install the appdemo app
+library(devtools)
+install_github("appdemo", "opencpu")
+
+#load the app
+library(opencpu)
+opencpu$browse("/library/appdemo/www")
+{% endhighlight %}
+
+
 
 ## Hello World: calling a function
 
