@@ -56,7 +56,7 @@ req.always(function(){
 });
 {% endhighlight %}
 
-Most web developers will immediately recognize this pattern: all functions in the opencpu.js library wrap around the jQuery `$.ajax` method and return the `jqXHR` object. Thereby you (the programmer) have full control over the request using all methods and properties from [jQuery.ajax](http://api.jquery.com/jQuery.ajax/). So you can register additional handlers to deal with errors or to add additional behavior after the request has completed (in the example to re-enable a button).
+Web developers will immediately recognize this pattern: all functions in the opencpu.js library wrap around the jQuery `$.ajax` method and return the `jqXHR` object. Thereby you (the programmer) have full control over the request using all methods and properties from [jQuery.ajax](http://api.jquery.com/jQuery.ajax/). So you can register additional handlers to deal with errors or to add additional behavior after the request has completed (in the example to re-enable a button).
 
 ## Making a plot
 
