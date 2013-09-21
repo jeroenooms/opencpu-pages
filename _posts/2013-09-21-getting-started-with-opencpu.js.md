@@ -6,7 +6,7 @@ description: "The opencpu.js library builds on jQuery to call R functions though
 cover: "containers.jpg"
 ---
 
-The [opencpu.js](https://public.opencpu.org/jslib.html) library builds on jQuery to call R functions through AJAX, straight from the browser. This makes it easy to embed R based computation or graphics in [apps](https://public.opencpu.org/apps.html). Moreover, asynchronous requests (which native in Javascript) make parallelization a natural part of the application. This post introduces some of the basic features of the library.
+The [opencpu.js](https://public.opencpu.org/jslib.html) library builds on jQuery to call R functions through AJAX, straight from the browser. This makes it easy to embed R based computation or graphics in [apps](https://public.opencpu.org/apps.html). Moreover, asynchronous requests (which are native in Javascript) make parallelization a natural part of the application. This post introduces some of the basic features of the library.
 
 ## Getting started with opencpu.js
 
@@ -14,7 +14,7 @@ The [readme page](https://github.com/jeroenooms/opencpu.js#readme) for opencpu.j
 
 ## Hello World: calling a function
 
-The [hello.html](https://public.opencpu.org/ocpu/library/appdemo/www/hello.html) demonstrates how to call an R function that is included with the R package contianing the app. In this example we call the R function named [hello](https://public.opencpu.org/ocpu/library/appdemo/R/hello). Navigate to the [hello.html](https://public.opencpu.org/ocpu/library/appdemo/www/hello.html) page in your favorite browser and look at the html source code to see what is going on. The magic happens in these lines of javascript:
+The [hello.html](https://public.opencpu.org/ocpu/library/appdemo/www/hello.html) page demonstrates how to call an R function that is included with the R package containing the app. In this example we call the R function named [hello](https://public.opencpu.org/ocpu/library/appdemo/R/hello). Navigate to the [hello.html](https://public.opencpu.org/ocpu/library/appdemo/www/hello.html) page in your favorite browser and look at the html source code to see what is going on. The magic happens in these lines of javascript:
 
 {% highlight javascript %}
 //read the value for 'myname'
