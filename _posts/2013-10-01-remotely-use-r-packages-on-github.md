@@ -9,7 +9,7 @@ cover: "containers.jpg"
 Any R package on Github can be used remotely on OpenCPU through the [`/ocpu/github/`](https://public.opencpu.org/api.html#api-libraries) API. Users on the internet can browse code, objects, help pages, or call functions in the package without having to learn R or install it on their local machine. Thereby you can make your method, algorithm, plot or DPU more accessible outside the R community.
 
 For example: [last time](https://public.opencpu.org/posts/implementing-data-processing-units-with-opencpu/) we discussed how OpenMHealth uses the [geodistance](https://github.com/openmhealth/dpu.mobility/blob/master/R/geodistance.R) function to calculate the total distance along a set of lon/lat coordinates using [Haversine](http://en.wikipedia.org/wiki/Haversine_formula) formula. The `geodistance` function is included in the [dpu.mobility](https://github.com/openmhealth/dpu.mobility) R package and avaible on the `openmhealth` github repository. By putting the `dpu.mobility` package on Github, all functionality in the package can now be accessed directly though the OpenCPU cloud server. 
-Try opening some of these URL's in the browser (feel free to play around with the URL). The package help pages are available under `/man/` (in various formats):
+Try opening some of the URL's below in your browser (play around with the URL to get a sense of the API). The package help pages are available under `/man/` (in several formats):
 
  * [/ocpu/github/openmhealth/dpu.mobility/man/](https://public.opencpu.org/ocpu/github/openmhealth/dpu.mobility/man/)
  * [/ocpu/github/openmhealth/dpu.mobility/man/geodistance/text](https://public.opencpu.org/ocpu/github/openmhealth/dpu.mobility/man/geodistance/text)
