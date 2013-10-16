@@ -37,6 +37,8 @@ $(function(){
     } else {
       res.data.message && alert(res.data.message)
     }
+  }).fail(function(){
+    $("#appsrow").append('<div class="alert alert-danger"> <a href="#" class="close" data-dismiss="alert">&times;</a><strong>Github API Error</strong> Could not load apps list from repository. Might be a problem with Github. Have a look at <a href="https://status.github.com/">status.github.com</a> and try again later.</div>');
   });
   
   function li(title, url){
