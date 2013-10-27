@@ -735,7 +735,21 @@ curl http://your.server.com/ocpu/library/stats/R/rnorm/json \
   11.411
  ]  
 {% endhighlight %}
-        <p>However this is a bit of a hack, and in most cases the two step procedure is preferred for better caching and error handling.</p>      
+		
+		<p> The above request invokes the following R function call:</p>
+
+{% highlight r %}
+library(RJSONIO)
+args <- fromJSON('{"n":3, "mean": 10, "sd":10}', simplifyWithNames = FALSE)
+do.call(stats::rnorm, args)
+{% endhighlight r%}
+
+		<p>Which in this case is equivalent to:<p>
+
+{% highlight r %}
+rnorm(n=3, mean=10, sd=10)
+{% endhighlight %}
+     
       </div>
     </div>      
     
