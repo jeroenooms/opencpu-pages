@@ -35,7 +35,15 @@ description: The opencpu.js JavaScript Client Library documentation.
 						<li><a href="#lib-plot">Create a Plot</a></li>
 						<li><a href="#lib-resizable">Resiable</a></li>
 					</ul>
-				</li>					
+				</li>
+
+				<li>
+					<a href="#lib-devel">Development Environment</a>
+					<ul class="nav">
+						<li><a href="#lib-singleuser">Single-user Server</a></li>
+						<li><a href="#lib-rstudio">Use in Rstudio</a></li>
+					</ul>
+				</li>								
 			</ul>
 		</div>
 	</div>
@@ -49,21 +57,41 @@ description: The opencpu.js JavaScript Client Library documentation.
 
 	    <h2 id="lib-apps">OpenCPU Apps</h2>
 
-	    <p>An OpenCPU app is an R packages which includes web page(s) that calls the R functions in the package over the OpenCPU API. This makes a convenient way to develop, package and ship portable, standalone R web applications.</p>
+	    <p>An OpenCPU app is an R packages which includes web page(s) that calls the R functions in the package over the OpenCPU API. This makes a convenient way to develop, package and ship portable, standalone R web applications. </p>
+
+	    <p>A repository of public OpenCPU apps is available at <a href="http://github.com/opencpu" target="_blank">http://github.com/opencpu</a>. These apps can be installed on any opencpu server:</p>
+
+{% highlight r %}
+#install apps 'stocks', 'markdownapp' and 'nabel'
+library(devtools)
+install_github(c("stocks", "markdownapp", "nabel"), username="opencpu")
+{% endhighlight %}
+
+		<p>By convention, the app is placed in the <code>/inst/www</code> directory in the R package, so the app is available at <code>/ocpu/library/app/www/</code> on your server:</p>
+
+		<ul>
+			<li>https://public.opencpu.org/ocpu/library/stocks/www</li>
+			<li>https://public.opencpu.org/ocpu/library/markdownapp/www</li>
+			<li>https://public.opencpu.org/ocpu/library/nabel/www</li>
+		</ul>
+
+		<h2 id="lib-ajax">Ajax and jQuery</h2>
+
+	    <p>The latest version of <code>opencpu.js</code> is available from github: <a href="https://github.com/jeroenooms/opencpu.js">https://github.com/jeroenooms/opencpu.js</a>. <p>The library depends on jQuery. This means jQuery must be included in your web page <emph>before</emph> opencpu.js. Your application code must be inluced <emph>after</emph> opencpu.js.</p>
+
+{% highlight html %}
+<script src="js/jquery.js"></script>
+<script src="js/opencpu.js"></script>
+<script src="js/yourapp.js"></script>
+{% endhighlight %}
+
+		<p>It is recommended to ship a copy of the <code>opencpu.js</code> library with your application or website (as opposed to hotlinking it from some public location). This because the JavaScript library is in active development (0.x version) and the latest version might (radically) change at any time. Shipping a version of <code>opencpu.js</code> with your app prevents it from breaking with upstream changes in the library. Also it is practical both for development and deployment if your app can work offline.</p> 
 
 
+		<h2 id="lib-cors">Cross Domain / CORS</h2>
 
+		<p>The recommended way to ship OpenCPU apps is by including the web pages with the R package. This results in a standalone application, that is easy to ship and deploy, guarantees that the version of front-end and R code are in sync, and automatically resolves R dependency packages when installed. However it is also possible to use the <code>opencpu.js</code> library from an external site that is itself not hosted on OpenCPU.</p> 
 
-	    {% highlight js %}
-		//calls the function "rnorm" in the current package
-		var jqxhr = opencpu.r_fun_call("rnorm", {n:10, mean:5}, function(session) {
-		  alert("Success! " + session.getLoc());
-		}).fail(function(){
-		  alert("Failure: " + jqxhr.responseText);
-		});
-		{% endhighlight %} 
-
-		<p> blab la bla</p>
 
 	</div>
 </div>
