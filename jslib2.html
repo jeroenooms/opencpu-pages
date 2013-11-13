@@ -14,26 +14,24 @@ description: The opencpu.js JavaScript Client Library documentation.
 						<li><a href="#lib-apps">OpenCPU Apps</a></li>
 						<li><a href="#lib-jquery">OpenCPU and jQuery</a></li>
 						<li><a href="#lib-cors">Cross Domain (CORS)</a></li>
-						<li><a href="#lib-examples">Examples</a></li>
-						<li><a href="#lib-download">Download / Hotlink</a></li>
 					</ul>
-				</li>    		
+				</li>    	
 
 				<li>
-					<a href="#lib-functions">Calling R Functions</a>
+					<a href="#lib-getstarted">Getting Started</a>
+					<ul class="nav">
+						<li><a href="#lib-plotwidget">Plotting Widget</a></li>
+						<li><a href="#lib-jsonrpc">Basic JSON RPC</a></li>
+					</ul>
+				</li>					
+
+				<li>
+					<a href="#lib-functions">Advanced Functionality</a>
 					<ul class="nav">
 						<li><a href="#lib-function">Function Call</a></li>
 						<li><a href="#lib-data">Passing Data</a></li>
 						<li><a href="#lib-callback">Callback Function</a></li>
 						<li><a href="#lib-session">Session Object</a></li>
-					</ul>
-				</li>
-
-				<li>
-					<a href="#lib-widget">The Plot Widget</a>
-					<ul class="nav">
-						<li><a href="#lib-plot">Create a Plot</a></li>
-						<li><a href="#lib-resizable">Resiable</a></li>
 					</ul>
 				</li>
 
@@ -73,8 +71,6 @@ install_github(c("stocks", "markdownapp", "nabel"), username="opencpu")
 			<li><a href="https://public.opencpu.org/ocpu/library/nabel/www" target="_blank">https://public.opencpu.org/ocpu/library/nabel/www</a></li>
 		</ul>
 
-		Anyone can get his apps published in the OpenCPU repository.
-
 		<h2 id="lib-jquery">OpenCPU and jQuery</h2>
 
 	    <p>The latest version of <code>opencpu.js</code> is available from github: <a href="https://github.com/jeroenooms/opencpu.js">https://github.com/jeroenooms/opencpu.js</a>. The jQuery library must be included in your web page <strong>before</strong> opencpu.js, because one depends on the other. Your application code must be included <strong>after</strong> opencpu.js.</p>
@@ -90,11 +86,74 @@ install_github(c("stocks", "markdownapp", "nabel"), username="opencpu")
 
 		<h2 id="lib-cors">Cross Domain / CORS</h2>
 
-		<p>The recommended way to ship OpenCPU apps is by including the web pages with the R package. This results in a standalone application, that is easy to ship and deploy, guarantees that the version of front-end and R code are in sync, and automatically resolves R dependency packages when installed. However it is also possible to use the <code>opencpu.js</code> library from an external site that is itself not hosted on OpenCPU. To do so, the external location of the package must be specified using <code>opencpu.seturl()</code></p>:
+		<p>The recommended design for OpenCPU apps is to include the web pages in the R package. This results in a standalone application, which is easy to distribute and deploy and can also be used offline. Furthermore, it guarantees that the version of front-end and R code are in sync, and dependency R packages get automatically installed with the app. </p>
 
-		 
+		<p>However it is also possible to use the <code>opencpu.js</code> library from an external site that is not hosted on OpenCPU. In this case, we must specify the external OpenCPU server using <code>opencpu.seturl()</code>:</p>
+
+{% highlight js %}
+//set page to communicate to with "mypackage" on server below
+opencpu.seturl("//public.opencpu.org/ocpu/library/mypackage/R")
+{% endhighlight %}	
+
+		<p>Cross domain requests are very convenient for development and illustrative examples, e.g: <a href="http://jsfiddle.net/4uPBY/">http://jsfiddle.net/4uPBY/</a>. However, it is still recommended to include a copy of your web pages in the R package once you are done, to get a nice redistributable app. </p>
+
+		<p>Note that even when using CORS, the <code>opencpu.js</code> library still requires that all R functions used by your application are contained in a single R package. This is on purpose, to to keep things organized. If you would like to use functionality from various R packages, you need to create an R package that includes wrapper functions and formally declares its dependencies on the other packages. Writing an R package is really easy these days, so this should be no problem. </p>
 
 
+	    <div class="page-header">
+	    	<h1 id="lib-getstarted">Getting Started with OpenCPU</h1>
+	    </div>
+
+	    <p>This section illustrates some of the basic high-level functionality, to get started with OpenCPU and <code>opencpu.js</code>.</p>
+
+	    <h2 id="lib-plotwidget">The Plotting Widget</h2>
+
+	    <p>One thing R is good at is making plots. The <code>opencpu.js</code> library implements a jquery plugin called <code>r_fun_plot</code> which makes it really easy to embed live plots in your app or website. For example, consider the R function <a href="http://public.opencpu.org/ocpu/library/stocks/R/smoothplot">smoothplot</a> in the <a href="http://github.com/opencpu/stocks">stocks package</a>:</p>
+
+{% highlight r%}
+#The R function
+function(ticker = "GOOG", from = "2013-01-01", to=Sys.time()){
+  mydata <- yahoodata(ticker, from, to);
+  qplot(Date, Close, data = mydata, geom = c("line", "smooth"));  
+}
+{% endhighlight %}
+
+		<p>It defines three arguments, each of which optional: <code>ticker</code>, <code>from</code>, and <code>to</code>. These are the arguments that we can pass from the <code>opencpu.js</code> client app. In this example, we only pass the first two arguments.</p>
+
+{% highlight js%}
+//JavaScript client code
+$("#submitbutton").click(function(){
+    var ticker = $("#ticker").val();    
+    var req = $("#plotdiv").r_fun_plot("smoothplot", {
+        ticker : ticker,
+        from : "2013-01-01"
+    })
+
+    //optional
+    req.fail(function(){
+        alert("R returned an error: " + req.responseText); 
+    });
+});
+{% endhighlight %}
+
+		<p>This creates a plot widget in the <code>#plotdiv</code> element (an empty div). It calls the R function <code>smoothplot</code> and passes argument values as specified, and displays the generated plot including PNG, PDF, and SVG export links. The final lines specify an error handler, which is optional but recommended. Have a look at the <a href="http://jsfiddle.net/yG29p/">jsfiddle</a>, or the full <a href="https://public.opencpu.org/ocpu/library/stocks/www/">stocks app</a> to see all of this in action!</p>
+
+
+		<h2 id="lib-jsonrpc">Basic JSON RPC (a.k.a. Data Processing Unit)</h2>
+
+		<p>bla</p>
+
+
+
+
+
+	    <div class="page-header">
+	    	<h1 id="lib-functions">Calling R functions</h1>
+	    </div>
+
+	    <p>The core of the OpenCPU framework is an RPC API for R. The <code>opencpu.js</code> library provides a wrappers to call R over Ajax. Note that the A in Ajax stands for <strong>asynchronous</strong>, which means each function call returns immediately, because the server response is processed using a <strong>callback function</strong>. This paradigm can be a bit confusing to R users, but it results in flexible, non-blocking applications.</p>
+
+	    <h2 id="lib-function">Basic Function Calls</h2>
 
 
 
