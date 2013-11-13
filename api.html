@@ -860,8 +860,12 @@ $(function(){
 });
 
 $("#docmenu li a").on('click', function(e) {
-  e.preventDefault();
-  $.scrollTo(this.hash, 500, {offset: -65});
-  $(this).blur();
+	if((/iPhone|iPod|iPad|Android|BlackBerry/).test(navigator.userAgent)){
+		//device default scroll
+	} else {
+		e.preventDefault();
+		$.scrollTo(this.hash, 500, {offset: -65});
+		$(this).blur();			
+	}
 });  
 </script>
