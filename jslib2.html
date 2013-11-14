@@ -141,7 +141,43 @@ $("#submitbutton").click(function(){
 
 		<h2 id="lib-jsonrpc">Basic JSON RPC (a.k.a. Data Processing Unit)</h2>
 
-		<p>bla</p>
+		<p>With opencpu.js we can use R as a remote calculator. Consider the very simple example of calculating the standard deviation for a vector of numbers. In this case we call the default R function sd in the stats package</p>
+
+{% highlight js%}
+var mydata = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+
+//call R function: stats::var(x=data)
+$("#submitbutton").click(function(){
+    var req = opencpu.r_fun_json("sd",{
+        x : mydata
+    }, function(output){
+        alert("Standard Deviation equals: " + output);
+    }); 
+
+    //optional
+    req.fail(function(){
+        alert("R returned an error: " + req.responseText); 
+    });
+});
+{% endhighlight %}
+
+		<p>See it in action here: <a href="http://jsfiddle.net/pXnU8/">http://jsfiddle.net/pXnU8/</a>. When calling <code>opencpu.r_fun_json</code>, the arguments as well as return value are transferred using JSON. On the R side, <code>RJSONIO</code> is used to convert between JSON and R objects. Hence, the above code is equivalent to the R code below. The <code>output</code> object is a JSON string which is sent back to the client and parsed by JavaScript.</p>
+
+{% highlight r%}
+library(RJSONIO)
+
+#parse input from JSON into R
+input <- "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]";
+x <- fromJSON(input)
+
+#the actual function call
+result <- sd(x)
+
+#convert result back to JSON
+output <- toJSON(result)
+{% endhighlight %}
+
+		<p>Another example is available here: <a href="http://jsfiddle.net/LT7GY/">http://jsfiddle.net/LT7GY/</a>. This example calls the <code>lowess</code> function in R, to smooth a bunch of values. This can be useful to remove outliers from noisy data. One difference with the previous example, is that <code>lowess</code> does not return a single value, but a list with two vectors: <code>x</code> and <code>y</code>. See the lowess help page for more detail.</p>
 
 
 
