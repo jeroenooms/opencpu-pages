@@ -37,6 +37,11 @@
     this.getFile = function(path){
       return this.getLoc() + "files/" + path;
     }
+
+    this.getObject = function(name){
+      var name = name || ".val";
+      return this.getLoc() + "R/" + name;
+    }
   }
   
   //for POSTing raw code snippets
