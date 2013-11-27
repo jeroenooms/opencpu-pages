@@ -10,17 +10,35 @@ title: "FAQ"
 		  <div class="panel panel-default">
 		    <div class="panel-heading">
 			    <h4 class="panel-title">
-			      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq1">
+			      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq0">
 			        What is OpenCPU?
 			      </a>
 			    </h4>
 		    </div>
-		    <div id="faq1" class="panel-collapse collapse">
+		    <div id="faq0" class="panel-collapse collapse">
 		      <div class="panel-body">
 		            OpenCPU is a software system for embedded statistical computation and reproducible research. The server exposes a web API interfacing R, Latex and Pandoc. This API is used for example to integrate statistical functionality into systems, share and execute scripts or reports on centralized servers, and build R based "apps". The OpenCPU server can run either as a single-user server inside the interactive R session (for local use and development), or as a cloud server that builds on Linux and rApache. 
 		      </div>
 		    </div>
 		  </div>
+
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq1">
+              What license is OpenCPU?
+            </a>
+          </h4>
+        </div>
+        <div id="faq1" class="panel-collapse collapse">
+          <div class="panel-body">
+              The OpenCPU software is released under Apache2 license. However note that some of the dependencies, such as R, have other open source licenses (e.g. GPL).
+          </div>
+        </div>
+      </div>
+
+
 		  <div class="panel panel-default">
 		    <div class="panel-heading">
 		      <h4 class="panel-title">
@@ -189,6 +207,21 @@ title: "FAQ"
         </div>
       </div>                           
 
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq13">
+              How do I know which version of OpenCPU or a certain R package is installed on a server?
+            </a>
+          </h4>
+        </div>
+        <div id="faq13" class="panel-collapse collapse">
+          <div class="panel-body">
+            The root path of the package URL shows information about a package. For example, to see which version of <code>knitr</code> is currently installed on the demo server, navigate to <a href="https://public.opencpu.org/ocpu/library/knitr/">https://public.opencpu.org/ocpu/library/knitr/</a>. OpenCPU is an R package like any other, so to find out which version of OpenCPU a server is running navigate to <a href="https://public.opencpu.org/ocpu/library/opencpu/">https://public.opencpu.org/ocpu/library/opencpu/</a>.
+         </div>
+        </div>
+      </div>  
       
                    
     </div>	  
