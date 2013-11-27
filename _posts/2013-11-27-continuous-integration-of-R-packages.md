@@ -6,7 +6,7 @@ description: "The latest version of OpenCPU adds support for continuous integrat
 cover: "containers.jpg"
 ---
 
-Starting version 1.0.7, the OpenCPU cloud server adds support for continuous integration (CI). This means that Github repositories can be configured to automatically build and install your package on an OpenCPU server, every time a commit is pushed. To take advantage of this feature, it is required that:
+Starting version 1.0.7, the OpenCPU cloud server adds support for continuous integration (CI). This means that Github repositories can be configured to automatically install your package on an OpenCPU server, every time a commit is pushed. To take advantage of this feature, it is required that:
 
 <ol>
 	<li>Your R source package is hosted on Github.</li>
@@ -18,7 +18,7 @@ To setup CI, add the following URL as a 'WebHook' in your Github repository:
 
     https://public.opencpu.org/ocpu/webhook
 
-For instructions how to add webhooks, see [here](https://help.github.com/articles/post-receive-hooks). That's it :-) To trigger a build, either push a commit to your master branch, or select the box with the URL and press the <code>Test Hook</code> button. You should receive an email that reports if the build was successful. If it was, the package will be available through the usual OpenCPU API at: <code>https://public.opencpu.org/ocpu/github/[username]/[pkgrepo]</code>.
+For instructions how to add webhooks, see [here](https://help.github.com/articles/post-receive-hooks). To trigger a build, either push a commit to the master branch, or select the box with the URL and press the <code>Test Hook</code> button. You should receive an email that reports if the build was successful. If it was, the package will directly be available for remote use through the OpenCPU API.
 
 <img class="img-thumbnail img-responsive" src="../../images/githook.png" alt="git hook screenshot">
 
