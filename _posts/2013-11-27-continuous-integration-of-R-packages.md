@@ -18,7 +18,7 @@ To setup CI, add the following URL as a 'WebHook' in your Github repository:
 
     https://public.opencpu.org/ocpu/webhook
 
-For instructions how to add webhooks, see [here](https://help.github.com/articles/post-receive-hooks). To trigger a build, either push a commit to the master branch, or select the box with the URL and press the <code>Test Hook</code> button. You should receive an email that reports if the build was successful. If it was, the package will directly be available for remote use through the OpenCPU API.
+For instructions how to add webhooks, see [here](https://help.github.com/articles/post-receive-hooks). To trigger a build, either push a commit to the master branch, or select the box with the URL and press the <code>Test Hook</code> button. You should receive an email that reports if the installation was successful. If it was, the package will directly be available for remote use through the OpenCPU API.
 
 <img class="img-thumbnail img-responsive" src="../../images/githook.png" alt="git hook screenshot">
 
@@ -32,7 +32,7 @@ Continuous Integration in OpenCPU addresses several issues at once:
 	<li>You can use CI without relying on a 3rd party service; installing your own OpenCPU server is easy.</li>
 </ul>
 
-Every active R package maintainer could benefit from some sort of CI environment, with or without OpenCPU. Earlier this year, Yihui had a cool [blog post](http://yihui.name/en/2013/04/travis-ci-for-r/) about [Travis CI](https://travis-ci.org/) (also see [r-travis](https://github.com/craigcitro/r-travis)). Also Simon Urbanek's rforge.net provides some auto-building functionality. One way or another, it's important to be continuously checking that your all your packages build, pass unit tests, don't introduce conflicts, etc. That way you catch problems immediately while the changes are still fresh in your memory.
+Every active R package maintainer could benefit from some sort of CI environment, with or without OpenCPU. Earlier this year, Yihui had a cool [blog post](http://yihui.name/en/2013/04/travis-ci-for-r/) about [Travis CI](https://travis-ci.org/) (also see [r-travis](https://github.com/craigcitro/r-travis)). Simon Urbanek's rforge.net is another service that provides some auto-building functionality. One way or another, it's important to frequently check that your all your packages still build, pass unit tests, haven't introduced conflicts, etc. That way you catch problems immediately while the changes are still fresh in your memory.
 
 Moreover, unexpected changes in R or dependencies are often beyond your control, but can cause your package to work one day, and break the next. The article on [Possible Directions for Improving Dependency Versioning in R](http://arxiv.org/abs/1303.2140) (<i>The R Journal [Vol. 5/1](http://journal.r-project.org/archive/2013-1), June 2013)</i> explained that CRAN requires all "current" packages to compatible, which assumes that all package authors are constantly on the lookout for changes in dependencies and reverse dependencies, forever. This system is unsustainable and will eventually have to be revised, but continuous integration can at least help detecting problems as soon as possible.
 
