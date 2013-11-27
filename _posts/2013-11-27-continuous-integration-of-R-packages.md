@@ -18,7 +18,7 @@ To setup CI, add the following URL as a 'WebHook' in your Github repository:
 
     https://public.opencpu.org/ocpu/webhook
 
-For instructions how to add webhooks, see [here](https://help.github.com/articles/post-receive-hooks). That's it :-) To trigger a build, either push a commit to your master branch, or select the webhook box with the URL and press the <code>Test Hook</code> button. You should receive an email that reports if the build was successful. If it was, the package will be available at: <code>https://public.opencpu.org/ocpu/github/[username]/[pkgrepo]</code>.
+For instructions how to add webhooks, see [here](https://help.github.com/articles/post-receive-hooks). That's it :-) To trigger a build, either push a commit to your master branch, or select the box with the URL and press the <code>Test Hook</code> button. You should receive an email that reports if the build was successful. If it was, the package will be available through the usual OpenCPU API at: <code>https://public.opencpu.org/ocpu/github/[username]/[pkgrepo]</code>.
 
 <img class="img-thumbnail img-responsive" src="../../images/githook.png" alt="git hook screenshot">
 
