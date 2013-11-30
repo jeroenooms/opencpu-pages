@@ -6,11 +6,11 @@
  * http://github.com/jeroenooms/opencpu.js
  * 
  * Include this file in your apps and packages. 
- * You only need to use opencpu.seturl if this page is hosted outside of the OpenCPU package. For example:
-
- * opencpu.seturl("/ocpu/library/mypackage/R")
- * opencpu.seturl("https://public.opencpu.org/ocpu/library/mypackage/R")
- * opencpu.seturl("../R") //default value
+ * You only need to use ocpu.seturl if this page is hosted outside of the OpenCPU package. For example:
+ *
+ * ocpu.seturl("../R") //default, use for apps
+ * ocpu.seturl("//public.opencpu.org/ocpu/library/mypackage/R") //CORS
+ * ocpu.seturl("/ocpu/library/mypackage/R") //hardcode path
  */
 
 (function ( $ ) {
@@ -44,7 +44,16 @@
     }
 
     this.getObject = function(name, data, success){
+      //in case of no arguments
       name = name || ".val";
+
+      //first arg is a function
+      if(name instanceof Function){
+        //pass on to second arg
+        success = name;
+        name = ".val";
+      }
+
       var url = this.getLoc() + "R/" + name + "/json";
       return $.get(url, data, success)
     }
@@ -57,7 +66,7 @@
     this.getConsole = function(success){
       var url = this.getLoc() + "console/text";
       return $.get(url, success);
-    }        
+    }
   }
   
   //for POSTing raw code snippets
@@ -356,11 +365,11 @@
   }
   
   //export
-  window.opencpu = window.opencpu || {};
-  var opencpu = window.opencpu;
+  window.ocpu = window.ocpu || {};
+  var ocpu = window.ocpu;
   
   //global settings
-  opencpu.seturl = function(newpath){
+  function seturl(newpath){
     if(!newpath.match("/R$")){
       alert("ERROR! Trying to set R url to: " + newpath +". Path to an OpenCPU R package must end with '/R'");
     } else {
@@ -387,13 +396,14 @@
   }
 
   //exported functions
-  opencpu.r_fun_call = r_fun_call;
-  opencpu.rpc = rpc;
+  ocpu.call = r_fun_call;
+  ocpu.rpc = rpc;
+  ocpu.seturl = seturl;
   
   //exported constructors
-  opencpu.Session = Session;
-  opencpu.Snippet = Snippet;
-  opencpu.Upload = Upload;
+  ocpu.Session = Session;
+  ocpu.Snippet = Snippet;
+  ocpu.Upload = Upload;
   
   //for innernetz exploder
   if (typeof console == "undefined") {
