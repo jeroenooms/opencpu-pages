@@ -380,7 +380,7 @@
   }
 
   //exported functions
-  ocpu.rcall = r_fun_call;
+  ocpu.call = r_fun_call;
   ocpu.rpc = rpc;
   ocpu.seturl = seturl;
   

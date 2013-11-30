@@ -263,7 +263,7 @@ jsonoutput <- toJSON(result)
 
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-				 		<h3 class="panel-title"><tt>ocpu.rcall( fun, [, args ] [, callback ] ) <span class="pull-right">Returns: Session Object</span> </tt></h3>
+				 		<h3 class="panel-title"><tt>ocpu.call( fun, [, args ] [, callback ] ) <span class="pull-right">Returns: Session Object</span> </tt></h3>
 					</div>
 					<div class="panel-body">
 						<strong>fun</strong> <tt>(string)</tt> <br>Name of the R function <em>(required)</em> <hr>
@@ -276,7 +276,7 @@ jsonoutput <- toJSON(result)
 
 {% highlight js%}
 //toy example
-ocpu.rcall("rnorm", {"n":100, mean:10}, function(session) {
+ocpu.call("rnorm", {"n":100, mean:10}, function(session) {
   alert("Key is: " + session.getKey());
 });
 {% endhighlight %}
@@ -291,7 +291,7 @@ ocpu.rcall("rnorm", {"n":100, mean:10}, function(session) {
 	    pass the output of one r function call on as an argument to another r function call.
 
 
-	 <br><br><br><br><br><br><br>
+	 	<br><br><br><br><br><br><br>
 
 	</div>
 </div>
