@@ -232,7 +232,7 @@
   
   //plotting widget
   //to be called on an (empty) div.
-  $.fn.r_fun_plot = function(fun, args) {
+  $.fn.rplot = function(fun, args) {
     var targetdiv = this;
     var myplot = initplot(targetdiv);
  
