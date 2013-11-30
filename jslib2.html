@@ -263,7 +263,7 @@ jsonoutput <- toJSON(result)
 
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-				 		<h3 class="panel-title"><tt>ocpu.call( fun, [, args ] [, callback ] ) <span class="pull-right">Returns: Session Object</span> </tt></h3>
+				 		<h3 class="panel-title"><tt>ocpu.rcall( fun, [, args ] [, callback ] ) <span class="pull-right">Returns: Session Object</span> </tt></h3>
 					</div>
 					<div class="panel-body">
 						<strong>fun</strong> <tt>(string)</tt> <br>Name of the R function <em>(required)</em> <hr>
@@ -276,33 +276,22 @@ jsonoutput <- toJSON(result)
 
 {% highlight js%}
 //toy example
-ocpu.call("rnorm", {"n":100, mean:10}, function(session) {
-	alert("Key is: " + session.getKey());
+ocpu.rcall("rnorm", {"n":100, mean:10}, function(session) {
+  alert("Key is: " + session.getKey());
 });
 {% endhighlight %}
 
 				<p>We can also use the Session object to <strong>pass the R value returned by the function call as an argument to a subsequent function call</strong>, without ever retrieving the object.</p>
 
-{% highlight js%}
-ocpu.r_fun_call()
-{% endhighlight %}			
-
 			</div>
 		</div>
 
-
-	    <p>If your applications needs to do anything beyond a single plot or function call, the high level functionality above might not work. The current section explains show to introduce state, 
-
-
-	    The core of the OpenCPU framework is an RPC API for R. The <code>opencpu.js</code> library provides a wrappers to call R over Ajax. 
-
-	    <h2 id="lib-function">Basic Function Calls</h2>
 
 	    two step process: calling a function is decoulped from getting output.
 	    pass the output of one r function call on as an argument to another r function call.
 
 
-	<br><br><br><br><br><br><br>
+	 <br><br><br><br><br><br><br>
 
 	</div>
 </div>
