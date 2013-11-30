@@ -110,11 +110,11 @@ opencpu$browse("/library/nabel/www")
 			<div class="panel-body">
 				<p>The recommended design for OpenCPU apps is to include the web pages in the R package. This results in a standalone application, which is easy to distribute and deploy and can also be used offline. Furthermore, it guarantees that the version of front-end and R code are in sync, and the package manager automatically takes care of dependencies when the app is installed on a server. </p>
 
-				<p>However it is also possible to use the <code>opencpu.js</code> library from an external site that is not hosted on OpenCPU. In this case, we must specify the external OpenCPU server using <code>opencpu.seturl()</code>:</p>
+				<p>However it is also possible to use the <code>opencpu.js</code> library from an external site that is not hosted on OpenCPU. In this case, we must specify the external OpenCPU server using <code>ocpu.seturl()</code>:</p>
 
 {% highlight js %}
 //set page to communicate to with "mypackage" on server below
-opencpu.seturl("//public.opencpu.org/ocpu/library/mypackage/R")
+ocpu.seturl("//public.opencpu.org/ocpu/library/mypackage/R")
 {% endhighlight %}	
 
 				<p>Cross domain requests are convenient for development and illustrative examples, e.g: <a href="http://jsfiddle.net/xH2Sh/">http://jsfiddle.net/xH2Sh</a>. However, when possible it is still recommended to include a copy of your web pages in the R package for every release of your app. That way you get a nice redistributable app and there is no ambiguity over version compatibility of the front-end (web pages) and back-end (R functions). </p>
@@ -183,7 +183,7 @@ req.fail(function(){
 
 				<div class="panel panel-primary">
 				  <div class="panel-heading">
-				    <h3 class="panel-title"><tt>opencpu.rpc( fun, [, args ] [, complete ] ) <span class="pull-right">Returns: JSON data</span> </tt></h3>
+				    <h3 class="panel-title"><tt>ocpu.rpc( fun, [, args ] [, complete ] ) <span class="pull-right">Returns: JSON data</span> </tt></h3>
 				  </div>
 				  <div class="panel-body">
 					  <strong>fun</strong> <tt>(string)</tt> <br>Name of the R function <em>(required)</em> <hr>
@@ -198,7 +198,7 @@ req.fail(function(){
 var mydata = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 
 //call R function: stats::sd(x=data)
-var req = opencpu.rpc("sd",{
+var req = ocpu.rpc("sd",{
     x : mydata
 }, function(output){
     alert("Standard Deviation equals: " + output);
@@ -210,7 +210,7 @@ req.fail(function(){
 });
 {% endhighlight %}
 
-				<p>See it in action here: <a href="http://jsfiddle.net/RcmU5/">http://jsfiddle.net/RcmU5/</a>. When calling <code>opencpu.rpc</code>, the arguments as well as return value are transferred using JSON. On the R side, <code>RJSONIO</code> is used to convert between JSON and R objects. Hence, the above code is equivalent to the R code below. The <code>output</code> object is a JSON string which is sent back to the client and parsed by JavaScript.</p>
+				<p>See it in action here: <a href="http://jsfiddle.net/RcmU5/">http://jsfiddle.net/RcmU5/</a>. When calling <code>ocpu.rpc</code>, the arguments as well as return value are transferred using JSON. On the R side, <code>RJSONIO</code> is used to convert between JSON and R objects. Hence, the above code is equivalent to the R code below. The <code>output</code> object is a JSON string which is sent back to the client and parsed by JavaScript.</p>
 
 {% highlight r%}
 library(RJSONIO)
@@ -263,7 +263,7 @@ jsonoutput <- toJSON(result)
 
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-				 		<h3 class="panel-title"><tt>opencpu.r_fun_call( fun, [, args ] [, callback ] ) <span class="pull-right">Returns: Session Object</span> </tt></h3>
+				 		<h3 class="panel-title"><tt>ocpu.call( fun, [, args ] [, callback ] ) <span class="pull-right">Returns: Session Object</span> </tt></h3>
 					</div>
 					<div class="panel-body">
 						<strong>fun</strong> <tt>(string)</tt> <br>Name of the R function <em>(required)</em> <hr>
@@ -272,17 +272,20 @@ jsonoutput <- toJSON(result)
 				  </div>
 				</div>	
 
-				<p>The <code>opencpu.r_fun_call</code> function is the stateful equivalent of <code>opencpu.rpc</code>. It has the same arguments, but the difference is in the callback function. The <code>opencpu.rpc</code> callback has a JSON object containing the data returned by the R function, but the <code>opencpu.r_fun_call</code> callback has a Session object. The session object is simply a javascript class that contains the session ID and some convenience function.  Using the session object, we can retrieve R objects, plots, files, stdout, etc. </p>
+				<p>The <code>ocpu.call</code> function is the stateful equivalent of <code>ocpu.rpc</code>. It has the same arguments, but the difference is in the callback function. The <code>opencpu.rpc</code> callback argument is a JSON object containing the data returned by the R function. The <code>ocpu.call</code> callback argument is a <em>Session object</em>. The session object is a javascript class that stores the session ID; it does not contain any actual data. However, from the session object, we can retrieve R objects, plots, files, stdout, etc:</p>
 
 {% highlight js%}
-opencpu.r_fun_call()
+//toy example
+ocpu.call("rnorm", {"n":100, mean:10}, function(session) {
+	alert("Key is: " + session.getKey());
+});
 {% endhighlight %}
 
 				<p>We can also use the Session object to <strong>pass the R value returned by the function call as an argument to a subsequent function call</strong>, without ever retrieving the object.</p>
 
 {% highlight js%}
-opencpu.r_fun_call()
-{% endhighlight %}				
+ocpu.r_fun_call()
+{% endhighlight %}			
 
 			</div>
 		</div>

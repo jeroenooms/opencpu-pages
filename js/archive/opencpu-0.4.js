@@ -14,7 +14,7 @@
  */
 
 (function ( $ ) {
-  
+
   //global variable 
   var r_cors = false;
   var r_path = document.createElement('a');
@@ -28,20 +28,20 @@
     
     this.getKey = function(){
       return key;
-    }
+    };
     
     this.getLoc = function(){
       return loc;
-    }
+    };
 
     this.getFileURL = function(path){
       return this.getLoc() + "files/" + path;
-    }
+    };
 
     this.getFile = function(path, success){
-      var url = this.getFileURL(path)
+      var url = this.getFileURL(path);
       return $.get(url, success);
-    }
+    };
 
     this.getObject = function(name, data, success){
       //in case of no arguments
@@ -55,18 +55,18 @@
       }
 
       var url = this.getLoc() + "R/" + name + "/json";
-      return $.get(url, data, success)
-    }
+      return $.get(url, data, success);
+    };
 
     this.getStdout = function(success){
       var url = this.getLoc() + "stdout/text";
       return $.get(url, success);
-    }
+    };
 
     this.getConsole = function(success){
       var url = this.getLoc() + "console/text";
       return $.get(url, success);
-    }
+    };
   }
   
   //for POSTing raw code snippets
@@ -76,7 +76,7 @@
     
     this.getCode = function(){
       return code;
-    }
+    };
   }
   
   //for POSTing files
@@ -96,7 +96,7 @@
     
     this.getFile = function(){
       return file;
-    }
+    };
   }
   
   function stringify(x){
@@ -123,8 +123,8 @@
   function r_fun_ajax(fun, settings, handler){
     //validate input
     if(!fun) throw "r_fun_call called without fun";
-    var settings = settings || {};
-    var handler = handler || function(){};
+    settings = settings || {};
+    handler = handler || function(){};
     
     //set global settings
     settings.url = settings.url || (r_path.href + "/" + fun);
@@ -143,7 +143,7 @@
       }
       handler(new Session(loc, key));
     }).fail(function(){
-      console.log("OpenCPU error HTTP " + jqxhr.status + "\n" + jqxhr.responseText)
+      console.log("OpenCPU error HTTP " + jqxhr.status + "\n" + jqxhr.responseText);
     });
     
     //function chaining
@@ -181,7 +181,6 @@
     });
     return r_fun_ajax(fun, {
       data: formdata,
-      contentType : 'multipart/form-data',       
       cache: false,
       contentType: false,
       processData: false      
@@ -190,9 +189,9 @@
   
   //Automatically determines type based on argument classes.
   function r_fun_call(fun, args, handler){
+    args = args || {};
     var hasfiles = false;
     var hascode = false;
-    var args = args || {};
     
     //find argument types
     $.each(args, function(key, value){
@@ -215,28 +214,13 @@
   
   //call a function and return JSON
   function rpc(fun, args, handler){
-    return r_fun_call(fun, args, function(tmp){
-      $.get(tmp.getLoc() + "R/.val/json", function(data){
-        handler && handler(data);
+    return r_fun_call(fun, args, function(session){
+      session.getObject(function(data){
+        if(handler) handler(data);
       }).fail(function(){
-        console.log("Failed to get JSON response for " + loc);
+        console.log("Failed to get JSON response for " + session.getLoc());
       });
     });
-  }
-  
-  //post form data (including files)
-  $.fn.r_post_form = function(fun, handler) {
-    
-    testhtml5();    
-    var targetform = this; 
-    var postdata = new FormData(targetform[0]);
-    
-    return r_fun_ajax(fun, {
-      data: postdata,
-      cache: false,
-      contentType: false,
-      processData: false   
-    }, handler);
   }
   
   //plotting widget
@@ -244,7 +228,7 @@
   $.fn.rplot = function(fun, args) {
     var targetdiv = this;
     var myplot = initplot(targetdiv);
- 
+
     //reset state
     myplot.setlocation();
     myplot.spinner.show();
@@ -255,7 +239,7 @@
     }).always(function(){
       myplot.spinner.hide();      
     });
-  }
+  };
   
   function initplot(targetdiv){
     if(targetdiv.data("ocpuplot")){
@@ -263,7 +247,7 @@
     }
     var ocpuplot = function(){
       //local variables
-      var Location
+      var Location;
       var pngwidth;
       var pngheight;
       
@@ -274,17 +258,17 @@
       var spinner = $('<span />').attr({
         style : "position: absolute; top: 20px; left: 20px; z-index:1000; font-family: monospace;" 
       }).text("loading...").appendTo(plotdiv);
-  
+
       var pdf = $('<a />').attr({
         target: "_blank",        
         style: "position: absolute; top: 10px; right: 10px; z-index:1000; text-decoration:underline; font-family: monospace;"
       }).text("pdf").appendTo(plotdiv);
-  
+
       var svg = $('<a />').attr({
         target: "_blank",
         style: "position: absolute; top: 30px; right: 10px; z-index:1000; text-decoration:underline; font-family: monospace;"
       }).text("svg").appendTo(plotdiv);
-  
+
       var png = $('<a />').attr({
         target: "_blank",
         style: "position: absolute; top: 50px; right: 10px; z-index:1000; text-decoration:underline; font-family: monospace;"
@@ -330,7 +314,7 @@
       return {
         setlocation: setlocation,
         spinner : spinner
-      }
+      };
     }();
     
     targetdiv.data("ocpuplot", ocpuplot);
@@ -354,7 +338,7 @@
       if (callNow)
         result = func.apply(context, args);
       return result;
-    }
+    };
   }
   
   function testhtml5(){
@@ -387,7 +371,7 @@
       if(r_cors){
         console.log("Setting path to CORS server " + r_path.href);
       } else {
-        console.log("Setting path to local (non-CORS) server " + r_path.href)
+        console.log("Setting path to local (non-CORS) server " + r_path.href);
       }
       $.get(r_path.href, function(resdata){
         console.log("Path updated. Available objects/functions:\n" + resdata);
@@ -409,5 +393,5 @@
   if (typeof console == "undefined") {
     this.console = {log: function() {}};
   }  
-      
+
 }( jQuery ));
