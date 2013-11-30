@@ -28,7 +28,8 @@ description: The opencpu.js JavaScript Client Library documentation.
 				<li>
 					<a href="#lib-callsandsessions">Calls and Sessions</a>
 					<ul class="nav">
-						<li><a href="#lib-function">Function Call</a></li>
+						<li><a href="#lib-sessions">State in OpenCPU</a></li>
+						<li><a href="#lib-function">Call a Function</a></li>
 						<li><a href="#lib-data">Passing Data</a></li>
 						<li><a href="#lib-callback">Callback Function</a></li>
 						<li><a href="#lib-session">Session Object</a></li>
@@ -143,7 +144,7 @@ opencpu.seturl("//public.opencpu.org/ocpu/library/mypackage/R")
 				  </div>
 				</div>
 
-			    <p>A fun an easy way to get started is by making plots. The <code>opencpu.js</code> library implements a jquery plugin called <code>rplot</code> which makes it easy to embed live plots in your app or website. For example, consider the R function <a href="http://public.opencpu.org/ocpu/library/stocks/R/smoothplot">smoothplot</a> in the <a href="http://github.com/opencpu/stocks">stocks package</a>:</p>
+			    <p>A fun an easy way to get started is by making plots. The <code>opencpu.js</code> library implements a jquery plugin called <code>rplot</code> which makes it easy to embed live plots in your webpage. For example, consider the R function <a href="http://public.opencpu.org/ocpu/library/stocks/R/smoothplot">smoothplot</a> in the <a href="http://github.com/opencpu/stocks">stocks package</a>:</p>
 
 {% highlight r%}
 #The R function
@@ -182,7 +183,7 @@ req.fail(function(){
 
 				<div class="panel panel-primary">
 				  <div class="panel-heading">
-				    <h3 class="panel-title"><tt>opencpu.rpc( fun, [, args ] [, complete ] ) <span class="pull-right">Returns: JSON object</span> </tt></h3>
+				    <h3 class="panel-title"><tt>opencpu.rpc( fun, [, args ] [, complete ] ) <span class="pull-right">Returns: JSON data</span> </tt></h3>
 				  </div>
 				  <div class="panel-body">
 					  <strong>fun</strong> <tt>(string)</tt> <br>Name of the R function <em>(required)</em> <hr>
@@ -209,23 +210,23 @@ req.fail(function(){
 });
 {% endhighlight %}
 
-				<p>See it in action here: <a href="http://jsfiddle.net/rWgc8/">http://jsfiddle.net/rWgc8/</a>. When calling <code>opencpu.rpc</code>, the arguments as well as return value are transferred using JSON. On the R side, <code>RJSONIO</code> is used to convert between JSON and R objects. Hence, the above code is equivalent to the R code below. The <code>output</code> object is a JSON string which is sent back to the client and parsed by JavaScript.</p>
+				<p>See it in action here: <a href="http://jsfiddle.net/RcmU5/">http://jsfiddle.net/RcmU5/</a>. When calling <code>opencpu.rpc</code>, the arguments as well as return value are transferred using JSON. On the R side, <code>RJSONIO</code> is used to convert between JSON and R objects. Hence, the above code is equivalent to the R code below. The <code>output</code> object is a JSON string which is sent back to the client and parsed by JavaScript.</p>
 
 {% highlight r%}
 library(RJSONIO)
 
 #parse input from JSON into R
-jsoninput <- '{ "x" : [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15] }'
-args <- fromJSON(jsoninput)
+jsoninput <- '{"x" : [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]}'
+fnargs <- fromJSON(jsoninput)
 
 #the actual function call
-result <- do.call(stats::sd, args)
+result <- do.call(stats::sd, fnargs)
 
 #convert result back to JSON
 jsonoutput <- toJSON(result)
 {% endhighlight %}
 
-				<p>Another example is available here: <a href="http://jsfiddle.net/LT7GY/">http://jsfiddle.net/LT7GY/</a>. This example calls the <code>lowess</code> function in R, to smooth a bunch of values. This can be useful to remove outliers from noisy data. One difference with the previous example, is that <code>lowess</code> does not return a single value, but a list with two vectors: <code>x</code> and <code>y</code>. See the lowess help page for more detail.</p>
+				<p>Another example is available here: <a href="http://jsfiddle.net/GGHwW/">http://jsfiddle.net/GGHwW/</a>. This example calls the <code>lowess</code> function in R, to smooth a bunch of values. This can be useful to remove outliers from noisy data. One difference with the previous example, is that <code>lowess</code> does not return a single value, but a list with two vectors: <code>x</code> and <code>y</code>. See the lowess help page for more detail.</p>
 			</div>
 		</div>
 
@@ -234,12 +235,30 @@ jsonoutput <- toJSON(result)
 	    	<h1>Calls and Sessions</h1>
 	    </div>
 
-	    <p>The high-level functions are convenient for applications with a single R function call and a single output (either a plot or the function return value). However, other applications might require more sophisticated interaction with the R session. This section section talks about reading stdout, getting one or more files/graphics from a session, and chaining function calls.</p>
+	    <p>The stateless functions are convenient for applications with a single R function call and a single output (either a plot or the function return value). However, other applications might require more sophisticated interaction with the R session. This section section talks about stateful applications.
+
+	    <div class="panel panel-default" id="lib-sessions">
+			<!-- Default panel contents -->
+			<div class="panel-heading"><h4>State in OpenCPU<small><em>  — managing sessions</em></small></h4></div>
+			<div class="panel-body">
+				<p>The way that state and sessions are managed in OpenCPU is quite different from what R users are used to, which can be confusing at first. In OpenCPU, the client does <strong>not</strong> have a single private R process on the server which handles all incoming requests, such as in e.g. Shiny or in an R terminal session. Instead, OpenCPU is plain HTTP, and therefore each requests is anonymous and <em>stateless</em>. After every function call, OpenCPU cleans (or kills) the R process that was used to handle the request. </p>
+
+				<p> However, after every function call, all outputs (return value, stdout, graphics, files in working directory) are stored on the server, and a <strong>session ID</strong> is returned to the client. These session IDs can be used to control these outputs on the server in future requests. For example, a client can retrieve outputs in various formats, share them with others, or use stored R objects as arguments in subsequent function calls. Hence to build a <em>statefull</em> application, there is no point in assigning objects to the global environment. Instead, we need to design R functions to return the value of interest. This way the client can call the function, and use its return value in subsequent function calls. </p>
+
+				<p>This design has several advantages that are important for scalable applications:</p>
+				<ul>
+					<li>Non blocking: everything is async, your GUI won't block while waiting for R to return.</li>
+					<li>Robustness: if an R call gets stuck, errors or crashes, it doesn't take down your application.</li>
+					<li>Concurrency: applications are parallel by design. Clients can perform simultaneous requests and combine results later.</li> 
+				</ul>
+
+			</div>
+		</div>
 
 
 	    <div class="panel panel-default" id="lib-function">
 			<!-- Default panel contents -->
-			<div class="panel-heading"><h4>R Function Calls <small><em>  — decouple funcion call from output</em></small></h4></div>
+			<div class="panel-heading"><h4>Call an R function <small><em>  — decouple call from output</em></small></h4></div>
 			<div class="panel-body">
 
 				<div class="panel panel-primary">
@@ -253,7 +272,17 @@ jsonoutput <- toJSON(result)
 				  </div>
 				</div>	
 
-				<p>The <code>opencpu.r_fun_call</code> function looks a bit like <code>opencpu.rpc</code> but there is a major difference: the callback function passes a <code>Session</code> object instead of the R function return value. 
+				<p>The <code>opencpu.r_fun_call</code> function is the stateful equivalent of <code>opencpu.rpc</code>. It has the same arguments, but the difference is in the callback function. The <code>opencpu.rpc</code> callback has a JSON object containing the data returned by the R function, but the <code>opencpu.r_fun_call</code> callback has a Session object. The session object is simply a javascript class that contains the session ID and some convenience function.  Using the session object, we can retrieve R objects, plots, files, stdout, etc. </p>
+
+{% highlight js%}
+opencpu.r_fun_call()
+{% endhighlight %}
+
+				<p>We can also use the Session object to <strong>pass the R value returned by the function call as an argument to a subsequent function call</strong>, without ever retrieving the object.</p>
+
+{% highlight js%}
+opencpu.r_fun_call()
+{% endhighlight %}				
 
 			</div>
 		</div>
@@ -268,10 +297,6 @@ jsonoutput <- toJSON(result)
 
 	    two step process: calling a function is decoulped from getting output.
 	    pass the output of one r function call on as an argument to another r function call.
-
-	    <p>The <code>opencpu.r_fun_call</code> function is used to call an R function. It has three arguments: <code>fun</code> (name of the function), <code>args</code> (function arguments) and <code>success</code>
-
-
 
 
 	<br><br><br><br><br><br><br>
