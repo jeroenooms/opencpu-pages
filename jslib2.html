@@ -116,7 +116,7 @@ opencpu$browse("/library/nabel/www")
 opencpu.seturl("//public.opencpu.org/ocpu/library/mypackage/R")
 {% endhighlight %}	
 
-				<p>Cross domain requests are convenient for development and illustrative examples, e.g: <a href="http://jsfiddle.net/4uPBY/">http://jsfiddle.net/4uPBY/</a>. However, when possible it is still recommended to include a copy of your web pages in the R package for every release of your app. That way you get a nice redistributable app and there is no ambiguity over version compatibility of the front-end (web pages) and back-end (R functions). </p>
+				<p>Cross domain requests are convenient for development and illustrative examples, e.g: <a href="http://jsfiddle.net/xH2Sh/">http://jsfiddle.net/xH2Sh</a>. However, when possible it is still recommended to include a copy of your web pages in the R package for every release of your app. That way you get a nice redistributable app and there is no ambiguity over version compatibility of the front-end (web pages) and back-end (R functions). </p>
 
 				<p>Also note that even when using CORS, the <code>opencpu.js</code> library still requires that all R functions used by a certain application are contained in a single R package. This is on purpose, to force you to keep things organized. If you would like to use functionality from various R packages, you need to create an R package that includes some wrapper functions and formally declares its dependencies on the other packages. Writing an R package is really easy these days, so this should be no problem. </p>
 			</div>
@@ -135,7 +135,7 @@ opencpu.seturl("//public.opencpu.org/ocpu/library/mypackage/R")
 			<div class="panel-body">
 				<div class="panel panel-primary">
 				  <div class="panel-heading">
-				    <h3 class="panel-title"><tt>$("#mydiv").r_fun_plot( fun, [, args ] [, complete ] ) <span class="pull-right">Returns: jqXHR</span> </tt></h3>
+				    <h3 class="panel-title"><tt>$("#mydiv").rplot( fun, [, args ] [, complete ] ) <span class="pull-right">Returns: jqXHR</span> </tt></h3>
 				  </div>
 				  <div class="panel-body">
 					  <strong>fun</strong> <tt>(string)</tt> <br>Name of the R function <em>(required)</em> <hr>
@@ -143,7 +143,7 @@ opencpu.seturl("//public.opencpu.org/ocpu/library/mypackage/R")
 				  </div>
 				</div>
 
-			    <p>A fun an easy way to get started is by making plots. The <code>opencpu.js</code> library implements a jquery plugin called <code>r_fun_plot</code> which makes it easy to embed live plots in your app or website. For example, consider the R function <a href="http://public.opencpu.org/ocpu/library/stocks/R/smoothplot">smoothplot</a> in the <a href="http://github.com/opencpu/stocks">stocks package</a>:</p>
+			    <p>A fun an easy way to get started is by making plots. The <code>opencpu.js</code> library implements a jquery plugin called <code>rplot</code> which makes it easy to embed live plots in your app or website. For example, consider the R function <a href="http://public.opencpu.org/ocpu/library/stocks/R/smoothplot">smoothplot</a> in the <a href="http://github.com/opencpu/stocks">stocks package</a>:</p>
 
 {% highlight r%}
 #The R function
@@ -158,7 +158,7 @@ function(ticker = "GOOG", from = "2013-01-01", to=Sys.time()){
 {% highlight js%}
 //JavaScript client code
 var ticker = $("#ticker").val();    
-var req = $("#plotdiv").r_fun_plot("smoothplot", {
+var req = $("#plotdiv").rplot("smoothplot", {
     ticker : ticker,
     from : "2013-01-01"
 })
@@ -169,7 +169,7 @@ req.fail(function(){
 });
 {% endhighlight %}
 
-				<p>This creates a plot widget in the <code>#plotdiv</code> element (a div in your html). It calls the R function <code>smoothplot</code> and passes argument values as specified, and displays the generated plot including PNG, PDF, and SVG export links. The final lines specify an error handler, which is optional but recommended. Have a look at the <a href="http://jsfiddle.net/yG29p/">jsfiddle</a>, or the full <a href="https://public.opencpu.org/ocpu/library/stocks/www/">stocks app</a> to see all of this in action!</p>
+				<p>This creates a plot widget in the <code>#plotdiv</code> element (a div in your html). It calls the R function <code>smoothplot</code> and passes argument values as specified, and displays the generated plot including PNG, PDF, and SVG export links. The final lines specify an error handler, which is optional but recommended. Have a look at the <a href="http://jsfiddle.net/vg75T/">jsfiddle</a>, or the full <a href="https://public.opencpu.org/ocpu/library/stocks/www/">stocks app</a> to see all of this in action!</p>
 			</div>
 		</div>
 
@@ -196,7 +196,7 @@ req.fail(function(){
 {% highlight js%}
 var mydata = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 
-//call R function: stats::var(x=data)
+//call R function: stats::sd(x=data)
 var req = opencpu.rpc("sd",{
     x : mydata
 }, function(output){
@@ -209,7 +209,7 @@ req.fail(function(){
 });
 {% endhighlight %}
 
-				<p>See it in action here: <a href="http://jsfiddle.net/pXnU8/">http://jsfiddle.net/pXnU8/</a>. When calling <code>opencpu.rpc</code>, the arguments as well as return value are transferred using JSON. On the R side, <code>RJSONIO</code> is used to convert between JSON and R objects. Hence, the above code is equivalent to the R code below. The <code>output</code> object is a JSON string which is sent back to the client and parsed by JavaScript.</p>
+				<p>See it in action here: <a href="http://jsfiddle.net/rWgc8/">http://jsfiddle.net/rWgc8/</a>. When calling <code>opencpu.rpc</code>, the arguments as well as return value are transferred using JSON. On the R side, <code>RJSONIO</code> is used to convert between JSON and R objects. Hence, the above code is equivalent to the R code below. The <code>output</code> object is a JSON string which is sent back to the client and parsed by JavaScript.</p>
 
 {% highlight r%}
 library(RJSONIO)
