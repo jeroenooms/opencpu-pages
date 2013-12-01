@@ -315,11 +315,11 @@ var req1 = ocpu.call("rnorm", {n: 100}, function(session1){
 			<!-- Default panel contents -->
 			<div class="panel-heading"><h4>Argument Types <small><em>  — passing data to opencpu</em></small></h4></div>
 			<div class="panel-body">
-				<p>In <code>opencpu.js</code> there are 4 types of arguments: a basic JavaScript value/object (automatically converted to R via JSON), a session object (represents an R value from a previous function call), a file and a code snippet. We have already seen examples the first two argument types earlier. Below is an example of using a file as an argument. The file will automatically be uploaded and used to call the R function. See it in action using <a href="http://jsfiddle.net/r8Yfs/">this jsfiddle</a>.</p>
+				<p>In <code>opencpu.js</code> there are 4 types of arguments: a basic JavaScript value/object (automatically converted to R via JSON), a session object (represents an R value from a previous function call), a file and a code snippet. We have already seen examples the first two argument types earlier. Below is an example of using a file as an argument. The file will automatically be uploaded and used to call the R function. See it in action using <a href="http://jsfiddle.net/LTfJ9/">this jsfiddle</a>.</p>
 
 {% highlight js %}
 //This must be HTML5 <input type="file"> 
-var myfile = $("#csvfile")[0].files[0];
+var myfile = new ocpu.File($("#csvfile"));
 var header = true;
 
 //call read.csv in R. File is automatically uploaded
