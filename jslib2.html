@@ -276,17 +276,18 @@ jsonoutput <- toJSON(result)
 
 {% highlight js%}
 //toy example
-var req = ocpu.call("rnorm", {n: 100, mean:rnd}, function(session){
+var req = ocpu.call("rnorm", {n: 100}, function(session){
  
     //read the session properties (just for fun)
     $("#key").text(session.getKey());
     $("#location").text(session.getLoc());
     
-    //retrieve session console (async)
+    //retrieve session console (stdout) async
     session.getConsole(function(outtxt){
         $("#output").text(outtxt);
     });
 
+    //retrieve the returned object async
     session.getObject(function(data){
         //data is the object returned by the R function
         alert("Array of length " + data.length + ".\nFirst few values:" + data.slice(0,3)); 
