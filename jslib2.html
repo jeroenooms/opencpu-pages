@@ -31,7 +31,6 @@ description: The opencpu.js JavaScript Client Library documentation.
 						<li><a href="#lib-sessions">State in OpenCPU</a></li>
 						<li><a href="#lib-function">Call a Function</a></li>
 						<li><a href="#lib-arguments">Argument Types</a></li>
-						<li><a href="#lib-callback">Callback Function</a></li>
 						<li><a href="#lib-session">Session Object</a></li>
 					</ul>
 				</li>
@@ -48,12 +47,17 @@ description: The opencpu.js JavaScript Client Library documentation.
 	</div>
 	<div class="col-md-9" role="main">
 
+
+	    <div class="alert alert-warning">
+	      <a href="#" class="close" data-dismiss="alert">&times;</a>
+	      <strong>Important</strong> The JavaScript client is still in initial development (version 0.x). When building an application with opencpu.js, please include a copy of the library with your app; don't hotlink it from our servers. That way your application does not break when we change the library.
+	    </div> 	
+
 	    <div class="page-header" id="lib-library">
 	    	<h1>About the Library</h1>
 	    </div>
 
 	    <p>The <a href="https://github.com/jeroenooms/opencpu.js">opencpu.js</a> JavaScript client library builds on <a target="_blank" href="http://jquery.com">jQuery</a> to provide Ajax wrappers for calling R from within a web page. The library works on all modern browsers, and lays the foundations for building scalable R web applications.</p>
-
 
 		<div class="panel panel-default" id="lib-apps">
 			<div class="panel-heading"><h4>Apps<small><em> — develop, ship and deploy standalone R web applications</em></small></h4></div>
@@ -315,11 +319,11 @@ var req1 = ocpu.call("rnorm", {n: 100}, function(session1){
 			<!-- Default panel contents -->
 			<div class="panel-heading"><h4>Argument Types <small><em>  — passing data to opencpu</em></small></h4></div>
 			<div class="panel-body">
-				<p>In <code>opencpu.js</code> there are 4 types of arguments: a basic JavaScript value/object (automatically converted to R via JSON), a session object (represents an R value from a previous function call), a file and a code snippet. We have already seen examples the first two argument types earlier. Below is an example of using a file as an argument. The file will automatically be uploaded and used to call the R function. See it in action using <a href="http://jsfiddle.net/LTfJ9/">this jsfiddle</a>.</p>
+				<p>In <code>opencpu.js</code> there are 4 types of arguments: a basic JavaScript value/object (automatically converted to R via JSON), a session object (represents an R value from a previous function call), a file and a code snippet. We have already seen examples the first two argument types earlier. Below is an example of using a file as an argument. The file will automatically be uploaded and used to call the R function. See it in action using <a href="http://jsfiddle.net/jVqDU/">this jsfiddle</a>.</p>
 
 {% highlight js %}
 //This must be HTML5 <input type="file"> 
-var myfile = new ocpu.File($("#csvfile"));
+var myfile = $("#csvfile")[0].files[0];
 var header = true;
 
 //call read.csv in R. File is automatically uploaded
