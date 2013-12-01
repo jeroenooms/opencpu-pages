@@ -30,7 +30,7 @@ description: The opencpu.js JavaScript Client Library documentation.
 					<ul class="nav">
 						<li><a href="#lib-sessions">State in OpenCPU</a></li>
 						<li><a href="#lib-function">Call a Function</a></li>
-						<li><a href="#lib-data">Passing Data</a></li>
+						<li><a href="#lib-arguments">Argument Types</a></li>
 						<li><a href="#lib-callback">Callback Function</a></li>
 						<li><a href="#lib-session">Session Object</a></li>
 					</ul>
@@ -235,15 +235,15 @@ jsonoutput <- toJSON(result)
 	    	<h1>Calls and Sessions</h1>
 	    </div>
 
-	    <p>The stateless functions are convenient for applications with a single R function call and a single output (either a plot or the function return value). However, other applications might require more sophisticated interaction with the R session. This section section talks about stateful applications. In these applications, calling a function is decoupled from retrieving output.</p>
+	    <p>The stateless functions are convenient for applications with a single R function call and a single output (either a plot or the function return value). However, other applications might require more sophisticated interaction with the R session. This section section talks about stateful applications; i.e. the client creates and manipulates objects on the server. Therefore, the difference with before is that calling functions (POST) is decoupled from retrieving output (GET).</p>
 
 	    <div class="panel panel-default" id="lib-sessions">
 			<!-- Default panel contents -->
 			<div class="panel-heading"><h4>State in OpenCPU<small><em>  — managing sessions</em></small></h4></div>
 			<div class="panel-body">
-				<p>The way that state and sessions are managed in OpenCPU is quite different from what R users are used to, which can be confusing at first. In OpenCPU, the client does <strong>not</strong> have a single private R process on the server which handles all incoming requests, such as in e.g. Shiny or in an R terminal session. Instead, OpenCPU is plain HTTP, and therefore each requests is anonymous and <em>stateless</em>. After every function call, OpenCPU cleans (or kills) the R process that was used to handle the request. </p>
+				<p>Management of state in OpenCPU is quite different from what R users are used to, which can be confusing at first. In OpenCPU, the client does <strong>not</strong> have a single private R process on the server which handles all incoming requests, such as in e.g. Shiny or in an R terminal session. Instead, OpenCPU is plain HTTP, and therefore each requests is anonymous and <em>stateless</em>. After every function call, OpenCPU cleans (or kills) the R process that was used to handle the request. </p>
 
-				<p> However, after every function call, all outputs (return value, stdout, graphics, files in working directory) are stored on the server, and a <strong>session ID</strong> is returned to the client. These session IDs can be used to control these outputs on the server in future requests. For example, a client can retrieve outputs in various formats, share them with others, or use stored R objects as arguments in subsequent function calls. Hence to build a <em>statefull</em> application, there is no point in assigning objects to the global environment. Instead, we need to design R functions to return the value of interest. This way the client can call the function, and use its return value in subsequent function calls. </p>
+				<p> However, all outputs of every function call, such as return value, graphics, stdout or files in working directory, are stored on the server, and a <strong>session ID</strong> is returned to the client. These session IDs can be used to control these outputs on the server in future requests. For example, a client can retrieve outputs in various formats, share them with others, or use stored R objects as arguments in subsequent function calls. Hence to build a <em>statefull</em> application, there is no point in assigning objects to the global environment. Instead, we need to design R functions to return the value of interest. This way the client can call the function, and use its return value in subsequent function calls. </p>
 
 				<p>This design has several advantages that are important for scalable applications:</p>
 				<ul>
@@ -307,14 +307,49 @@ var req1 = ocpu.call("rnorm", {n: 100}, function(session1){
 });
 {% endhighlight %}				
 
-
-
 			</div>
 		</div>
 
 
-	    two step process: calling a function is decoulped from getting output.
-	    pass the output of one r function call on as an argument to another r function call.
+	    <div class="panel panel-default" id="lib-arguments">
+			<!-- Default panel contents -->
+			<div class="panel-heading"><h4>Argument Types <small><em>  — passing data to opencpu</em></small></h4></div>
+			<div class="panel-body">
+				<p>In <code>opencpu.js</code> there are 4 types of arguments: a basic JavaScript value/object (automatically converted to R via JSON), a session object (represents an R value from a previous function call), a file and a code snippet. We have already seen examples the first two argument types earlier. Below is an example of using a file as an argument. The file will automatically be uploaded and used to call the R function. See it in action using <a href="http://jsfiddle.net/r8Yfs/">this jsfiddle</a>.</p>
+
+{% highlight js %}
+//This must be HTML5 <input type="file"> 
+var myfile = $("#csvfile")[0].files[0];
+var header = true;
+
+//call read.csv in R. File is automatically uploaded
+var req = ocpu.call("read.csv", {
+    "file" : myfile,
+    "header" : myheader
+}, function(session){
+    //use output here
+});
+{% endhighlight %}
+
+				<p>The final type of argument is a code snippet. This injects raw R code into the function call. It is usually recommended to use this type only when really needed, because it requires the client to understand R code, which kills interoperability. But this argument type is useful for example in applications that explicitly let the user do some R coding. See <a href="http://jsfiddle.net/g8mc3/">here</a> for a basic example: </p>
+
+{% highlight js %}
+//create snippet argument
+var x = new ocpu.Snippet($("#input").val());
+
+//perform the request
+var req = ocpu.call("mean", {
+    "x" : x
+}, function(session){
+    //use output here
+});
+{% endhighlight %}
+
+
+				<p>One interesting special case is using a code Snippet when calling the <code>identity</code> function in R. This comes down to executing a raw block of code in a session. Try <a href="http://jsfiddle.net/8vLJz/">this jsfiddle</a> to see this in action.</p>
+	    
+	    	</div>
+	   	</div>
 
 
 	 	<br><br><br><br><br><br><br>
