@@ -299,7 +299,7 @@ var req = ocpu.call("rnorm", {n: 100}, function(session){
 })
 {% endhighlight %}
 
-				<p>We can also use the Session object to pass the R value returned by the function call as an argument to a subsequent function call, without ever retrieving the object. All state in OpenCPU is managed by controlling R objects in sessions on the server. This <a href="http://jsfiddle.net/77MYJ/">jsfiddle example</a> continues on the previous example, and calculates the variance of the vector generated before, by passing the session object as an argument. A more simple example <a href="http://jsfiddle.net/r27GR/">here</a></p>
+				<p>We can also use the Session object to pass the R value returned by the function call as an argument to a subsequent function call, without ever retrieving the object. All state in OpenCPU is managed by controlling R objects in sessions on the server. This <a href="http://jsfiddle.net/77MYJ/">jsfiddle example</a> continues on the previous example, and calculates the variance of the vector generated before, by passing the session object as an argument. A more simple example <a href="http://jsfiddle.net/77MYJ/">here</a></p>
 
 {% highlight js%}
 var req1 = ocpu.call("rnorm", {n: 100}, function(session1){
