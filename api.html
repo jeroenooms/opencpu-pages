@@ -8,101 +8,107 @@ description: The official OpenCPU API documentation.
 	<div class="col-md-3">
 		<div id="docmenu" class="bs-sidebar hidden-print" data-spy="affix" data-offset-top="150" role="complementary">
 			<ul class="nav bs-sidenav">
-					
-        <li><a class="active" href="#api-root">HTTP</a>
-          <ul class="nav">
-            <li><a href="#api-root">Root path</a></li>
-            <li><a href="#api-methods">Methods</a></li>
-            <li><a href="#api-status">Status Codes</a></li>
-          </ul></li>    		
-          				
+
+				<li><a class="active" href="#api-root">HTTP</a>
+					<ul class="nav">
+						<li><a href="#api-root">Root path</a></li>
+						<li><a href="#api-methods">Methods</a></li>
+						<li><a href="#api-status">Status Codes</a></li>
+					</ul>
+				</li>
+
 				<li><a href="#api-libraries">API paths</a>
 					<ul class="nav">
 						<li><a href="#api-libraries">Libraries</a></li>
 						<li><a href="#api-package">R package API</a></li>
 						<li><a href="#api-object">R object API</a></li>
 						<li><a href="#api-session">R session API</a></li>
-					</ul></li>
+					</ul>
+				</li>
 
-        <li><a href="#api-formats">I/O Formats</a>
-          <ul class="nav">
-            <li><a href="#api-formats">Output Formats</a></li>
-            <li><a href="#api-arguments">Argument Formats</a></li>
-            <li><a href="#api-json">JSON RPC</a></li>
-          </ul></li>					
+				<li><a href="#api-formats">I/O Formats</a>
+					<ul class="nav">
+						<li><a href="#api-formats">Output Formats</a></li>
+						<li><a href="#api-arguments">Argument Formats</a></li>
+						<li><a href="#api-scripts">Running Scripts</a></li>
+						<li><a href="#api-json">JSON RPC</a></li>
+					</ul>
+				</li>
 
-        <li><a href="#api-scripts">Files and Scripts</a>
-          <ul class="nav">
-            <li><a href="#api-scripts">Running Scripts</a></li>
-            <li><a href="#api-apps">OpenCPU Apps</a></li>
-          </ul></li>      
+				<li><a href="#api-apps">Miscellaneous functionality</a>
+					<ul class="nav">
+						<li><a href="#api-apps">OpenCPU Apps</a></li>
+						<li><a href="#api-ci">Github CI Hook</a></li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 	</div>
+
 	<div class="col-md-9" role="main">
 	
-	    <div class="alert alert-success">
-	      <a href="#" class="close" data-dismiss="alert">&times;</a>
-	      <strong>About this page</strong> Many of the sections below contain <code>curl</code> examples. Note that curl is used for illustration only, any HTTP client will do. Also note that on Windows, the <code>-d</code> argument in curl might need to be quoted in double quotes instead of single quotes. Alternatively, the <a href="/ocpu/test"><code>/ocpu/test</code></a> page can be used to explore the API.
-	    </div> 
+		<div class="alert alert-success">
+			<a href="#" class="close" data-dismiss="alert">&times;</a>
+			<strong>About this page</strong> Many of the sections below contain <code>curl</code> examples. Note that curl is used for illustration only, any HTTP client will do. Also note that on Windows, the <code>-d</code> argument in curl might need to be quoted in double quotes instead of single quotes. Alternatively, the <a href="/ocpu/test"><code>/ocpu/test</code></a> page can be used to explore the API.
+		</div> 
 
-     <div class="panel panel-primary" id="api-root">
-      <div class="panel-heading"><h4>The OpenCPU root path</h4></div>
-      <div class="panel-body">
-        <p>The root of the OpenCPU API is dynamic. It usually defaults to <code>/ocpu/</code>, however system administrators can change this.
-        Clients should make the OpenCPU server address and root path configurable. In the examples below we assume the default <code>/ocpu/</code>.</p>
-      </div>
-    </div>
-    
-    <div class="panel panel-primary" id="api-methods">
-      <div class="panel-heading"><h4>HTTP Methods</h4></div>
-      <div class="panel-body">
-      
-        <p>OpenCPU currently only uses HTTP methods <code>GET</code> and <code>POST</code>. GET is used to read a resource, and POST is to
-        execute/call/run the resource. POST is only valid on scripts, reproducible documents and R functions.</p>
-    
-		    <table class="table table-bordered">
-		      <thead>
-		        <tr>
-		          <th>Method</th>
-		          <th>Target</th>
-		          <th>Action</th>
-		          <th>Arguments</th>          
-		          <th>Example</th>
-		        </tr>
-		      </thead>
-		      <tbody>
-		        <tr>
-		          <td><code>GET</code></td>
-		          <td>object</td>
-		          <td>read object</td>
-		          <td>control output format</td>          
-		          <td><code>GET /ocpu/library/datasets/R/mtcars/json</code></td>
-		        </tr>
-		        <tr>
-		          <td><code>POST</code></td>
-		          <td>object</td>
-		          <td>call function</td>
-		          <td>function arguments</td>
-		          <td><code>POST /ocpu/library/stats/R/rnorm</code></td>
-		        </tr>
-            <tr>
-              <td><code>GET</code></td>
-              <td>file</td>
-              <td>read file</td>
-              <td>-</td>
-              <td><code>GET /ocpu/library/MASS/NEWS</code> <br /> <code>GET /ocpu/library/MASS/scripts/</code></td>
-            </tr>  		         
-		        <tr>
-		          <td><code>POST</code></td>
-		          <td>file</td>
-		          <td>run script</td>
-		          <td>control interpreter </td>
-		          <td><code>POST /ocpu/library/MASS/scripts/ch01.R</code> <br /><code>POST /ocpu/library/knitr/examples/knitr-minimal.Rmd</code></td>
-		        </tr>                         
-		      </tbody>
-		    </table>
-		    
+		<div class="panel panel-primary" id="api-root">
+			<div class="panel-heading"><h4>The OpenCPU root path</h4></div>
+			<div class="panel-body">
+				<p>The root of the OpenCPU API is dynamic. It usually defaults to <code>/ocpu/</code>, however system administrators can change this.
+					Clients should make the OpenCPU server address and root path configurable. In the examples below we assume the default <code>/ocpu/</code>.</p>
+			</div>
+		</div>
+	
+		<div class="panel panel-primary" id="api-methods">
+			<div class="panel-heading"><h4>HTTP Methods</h4></div>
+			<div class="panel-body">
+
+				<p>OpenCPU currently only uses HTTP methods <code>GET</code> and <code>POST</code>. GET is used to read a resource, and POST is to
+					execute/call/run the resource. POST is only valid on scripts, reproducible documents and R functions.</p>
+
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Method</th>
+							<th>Target</th>
+							<th>Action</th>
+							<th>Arguments</th>		  
+							<th>Example</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>GET</code></td>
+							<td>object</td>
+							<td>read object</td>
+							<td>control output format</td>		  
+							<td><code>GET /ocpu/library/datasets/R/mtcars/json</code></td>
+						</tr>
+						<tr>
+							<td><code>POST</code></td>
+							<td>object</td>
+							<td>call function</td>
+							<td>function arguments</td>
+							<td><code>POST /ocpu/library/stats/R/rnorm</code></td>
+						</tr>
+						<tr>
+							<td><code>GET</code></td>
+							<td>file</td>
+							<td>read file</td>
+							<td>-</td>
+							<td><code>GET /ocpu/library/MASS/NEWS</code> <br /> <code>GET /ocpu/library/MASS/scripts/</code></td>
+						</tr>  				 
+						<tr>
+							<td><code>POST</code></td>
+							<td>file</td>
+							<td>run script</td>
+							<td>control interpreter </td>
+							<td><code>POST /ocpu/library/MASS/scripts/ch01.R</code> <br /><code>POST /ocpu/library/knitr/examples/knitr-minimal.Rmd</code></td>
+						</tr>						 
+					</tbody>
+				</table>
+
 {% highlight bash %}
 #curl uses http get method by default
 curl https://public.opencpu.org/ocpu/library/datasets/R/mtcars/json
@@ -112,91 +118,90 @@ curl https://public.opencpu.org/ocpu/library/MASS/scripts/
 #curl uses http post method for -X POST or -d 'arg=postdata'
 curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
 curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d 'n=10&mean=5'
-{% endhighlight %}		    
-		    
-		  </div>
+{% endhighlight %}			
+
+			</div>
 		</div>
-    
-    <div class="panel panel-primary" id="api-status">
-      <div class="panel-heading"><h4>HTTP Status Codes</h4></div>
-      <div class="panel-body">
-      
-        <p>These are common statuscodes returned by OpenCPU that the client should be able to interpret</p>
-    
-		    <table class="table table-bordered">
-		      <thead>
-		        <tr>
-		          <th>HTTP Code</th>
-		          <th>When</th>
-		          <th>Returns</th>
-		        </tr>
-		      </thead>
-		      <tbody>
-		        <tr>
-		          <td><code>200 OK</code></td>
-		          <td>On successful GET request</td>
-		          <td>Resource content</td>
-		        </tr>
-		         <tr>
-		          <td><code>201 Created</code></td>
-		          <td>On successful POST request</td>
-		          <td>Output location</td>
-		        </tr>
-		        <tr>
-		          <td><code>302 Found</code></td>
-		          <td>Redirect</td>
-		          <td>Redirect Location</td>
-		        </tr>
-		        <tr>
-		          <td><code>400 Bad Request</code></td>
-		          <td>R raised an error.</td>
-		          <td>Error message in <code>text/plain</code></td>
-		        </tr>  
-		        <tr>
-		          <td><code>502 Bad Gateway</code></td>
-		          <td>Nginx (opencpu-cache) can't connect to OpenCPU server.</td>
-		          <td>(admin needs to look in error logs)</td>
-		        </tr>   
-		        <tr>
-		          <td><code>503 Bad Request</code></td>
-		          <td>Serious problem with the server</td>
-		          <td>(admin needs to look in error logs)</td>
-		        </tr>                                                    
-		      </tbody>
-		    </table>
-		  </div>
+		
+		<div class="panel panel-primary" id="api-status">
+			<div class="panel-heading"><h4>HTTP Status Codes</h4></div>
+			<div class="panel-body">
+
+				<p>These are common statuscodes returned by OpenCPU that the client should be able to interpret</p>
+
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>HTTP Code</th>
+							<th>When</th>
+							<th>Returns</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>200 OK</code></td>
+							<td>On successful GET request</td>
+							<td>Resource content</td>
+						</tr>
+						<tr>
+							<td><code>201 Created</code></td>
+							<td>On successful POST request</td>
+							<td>Output location</td>
+						</tr>
+						<tr>
+							<td><code>302 Found</code></td>
+							<td>Redirect</td>
+							<td>Redirect Location</td>
+						</tr>
+						<tr>
+							<td><code>400 Bad Request</code></td>
+							<td>R raised an error.</td>
+							<td>Error message in <code>text/plain</code></td>
+						</tr>  
+						<tr>
+							<td><code>502 Bad Gateway</code></td>
+							<td>Nginx (opencpu-cache) can't connect to OpenCPU server.</td>
+							<td>(admin needs to look in error logs)</td>
+						</tr>   
+						<tr>
+							<td><code>503 Bad Request</code></td>
+							<td>Serious problem with the server</td>
+							<td>(admin needs to look in error logs)</td>
+						</tr>													
+					</tbody>
+				</table>
+			</div>
 		</div>
- 
- 
-    <div class="panel panel-primary" id="api-libraries">
-      <div class="panel-heading"><h4>The API Libraries</h4></div>
-       <div class="panel-body">
-       
-        <p>The following libraries hold packages and sessions that are available on the server</p>
-    
-		    <table class="table table-bordered">
-		      <thead>
-		        <tr>
-		          <th>Path</th>
-		          <th>What</th>
-		        </tr>
-		      </thead>
-		      <tbody>
-		        <tr>
-		          <td><code>/ocpu/library/:pkgname/</code></td>
-		          <td>Interfaces to R packages installed in one of the global libraries on the server.</td>
-		        </tr>
-		        <tr>
-		          <td><code>/ocpu/user/:username/library/:pkgname/</code></td>
-		          <td>Interfaces to R packages installed in the home library of <code>:username</code>.</td>
-		        </tr>   
-		        <tr>
-		          <td><code>/ocpu/tmp/:sessionid/</code></td>
-		          <td>Interfaces temporary sessions, usually the result of function/script executions.</td>
-		        </tr>                                                                                             
-		      </tbody>
-		    </table>   
-		    
+
+		<div class="panel panel-primary" id="api-libraries">
+			<div class="panel-heading"><h4>The API Libraries</h4></div>
+			<div class="panel-body">
+
+				<p>The following libraries hold packages and sessions that are available on the server</p>
+
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Path</th>
+							<th>What</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>/ocpu/library/:pkgname/</code></td>
+							<td>Interfaces to R packages installed in one of the global libraries on the server.</td>
+						</tr>
+						<tr>
+							<td><code>/ocpu/user/:username/library/:pkgname/</code></td>
+							<td>Interfaces to R packages installed in the home library of <code>:username</code>.</td>
+						</tr>   
+						<tr>
+							<td><code>/ocpu/tmp/:sessionid/</code></td>
+							<td>Interfaces temporary sessions, usually the result of function/script executions.</td>
+						</tr>
+					</tbody>
+				</table>
+
 {% highlight bash %}
 #read packages
 curl https://public.opencpu.org/ocpu/library/MASS
@@ -204,37 +209,37 @@ curl https://public.opencpu.org/ocpu/user/jeroen/somepackage
 
 #read session
 curl https://public.opencpu.org/ocpu/tmp/x2c5ab8d4
-{% endhighlight %}  		    
-		    
-		    <p>In addition, a server might have support for the following remote API's enabled:</p>
-		    
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Path</th>
-              <th>What</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>/ocpu/cran/:pkgname/</code></td>
-              <td>Interfaces to the R package <code>:pkgname</code> that is <i>current</i> on CRAN.</td>
-            </tr>   
-            <tr>
-              <td><code>/ocpu/bioc/:pkgname/</code></td>
-              <td>Interfaces to the R package <code>:pkgname</code> that is <i>current</i> on BioConductor.</td>
-            </tr>  
-            <tr>
-              <td><code>/ocpu/github/:gituser/:pkgname/</code></td>
-              <td>Interfaces to R package <code>:pkgname</code> in the <i>master branch</i> of the identically named repository from github user <code>:gituser</code>.</td>
-            </tr>
-            <tr>
-              <td><code>/ocpu/gist/:gituser/:path</code></td>
-              <td>Static files and directories located in the gist repository from github user <code>gituser</code>. This API does not support packages, just files (scripts, html, etc)</td>
-            </tr>                                                                                           
-          </tbody>
-        </table> 		
-        
+{% endhighlight %}  			
+
+				<p>In addition, a server might have support for the following remote API's enabled:</p>
+
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Path</th>
+							<th>What</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>/ocpu/cran/:pkgname/</code></td>
+							<td>Interfaces to the R package <code>:pkgname</code> that is <i>current</i> on CRAN.</td>
+						</tr>   
+						<tr>
+							<td><code>/ocpu/bioc/:pkgname/</code></td>
+							<td>Interfaces to the R package <code>:pkgname</code> that is <i>current</i> on BioConductor.</td>
+						</tr>  
+						<tr>
+							<td><code>/ocpu/github/:gituser/:pkgname/</code></td>
+							<td>Interfaces to R package <code>:pkgname</code> in the <i>master branch</i> of the identically named repository from github user <code>:gituser</code>.</td>
+						</tr>
+						<tr>
+							<td><code>/ocpu/gist/:gituser/:path</code></td>
+							<td>Static files and directories located in the gist repository from github user <code>gituser</code>. This API does not support packages, just files (scripts, html, etc)</td>
+						</tr>																						   
+					</tbody>
+				</table> 		
+
 {% highlight bash %}
 #read packages
 curl https://public.opencpu.org/ocpu/cran/plyr/
@@ -243,53 +248,53 @@ curl https://public.opencpu.org/ocpu/github/hadley/plyr/
 
 #read files
 curl https://public.opencpu.org/ocpu/gist/hadley/
-{% endhighlight %}         
-            
-		  </div>
+{% endhighlight %}		 
+
+			</div>
 		</div> 
-    
-        
-    <div class="panel panel-primary" id="api-package">
-      <div class="panel-heading"><h4>The R package API</h4></div>
-       <div class="panel-body">
-		    
-		    <p>Any of the libraries above that supports the <code>/:package/</code> API can call the following endpoints:</p>
-		    
-		    <table class="table table-bordered">
-		      <thead>
-		        <tr>
-		          <th>Path</th>
-		          <th>What</th>
-		        </tr>
-		      </thead>
-		      <tbody>
-		        <tr>
-		          <td><code>../:pkgname/</code></td>
-		          <td>Show information about this package.</td>
-		        </tr>      
-		        <tr>
-		          <td><code>../:pkgname/R/</code></td>
-		          <td>List R objects exported by this package. See R object API.</td>
-		        </tr>
-		        <tr>
-		          <td><code>../:pkgname/man/</code></td>
-		          <td>List manuals (help pages) available in this package.</td>
-		        </tr>   
-		        <tr>
-		          <td><code>../:pkgname/man/:topic/:manformat</code></td>
-		          <td>Get help page about <code>topic</code> in output format <code>manformat</code>. Manual format must be one of <code>text</code>, <code>html</code>, <code>pdf</code></td>
-		        </tr> 
-            <tr>
-              <td><code>../:pkgname/html</code></td>
-              <td>Simulates the R-base html help pages (for backward compatibility).</td>
-            </tr> 		        
-		        <tr>
-		          <td><code>../:pkgname/:path</code></td>
-		          <td>For anything else, interfaces to the file at <code>:path</code> in the package installation directory.</td>
-		        </tr>                                                                                                     
-		      </tbody>
-		    </table>    
-		    
+		
+			
+		<div class="panel panel-primary" id="api-package">
+			<div class="panel-heading"><h4>The R package API</h4></div>
+			<div class="panel-body">
+
+				<p>Any of the libraries above that supports the <code>/:package/</code> API can call the following endpoints:</p>
+
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Path</th>
+							<th>What</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>../:pkgname/</code></td>
+							<td>Show information about this package.</td>
+						</tr>	  
+						<tr>
+							<td><code>../:pkgname/R/</code></td>
+							<td>List R objects exported by this package. See R object API.</td>
+						</tr>
+						<tr>
+							<td><code>../:pkgname/man/</code></td>
+							<td>List manuals (help pages) available in this package.</td>
+						</tr>   
+						<tr>
+							<td><code>../:pkgname/man/:topic/:manformat</code></td>
+							<td>Get help page about <code>topic</code> in output format <code>manformat</code>. Manual format must be one of <code>text</code>, <code>html</code>, <code>pdf</code></td>
+						</tr> 
+						<tr>
+							<td><code>../:pkgname/html</code></td>
+							<td>Simulates the R-base html help pages (for backward compatibility).</td>
+						</tr> 				
+						<tr>
+							<td><code>../:pkgname/:path</code></td>
+							<td>For anything else, interfaces to the file at <code>:path</code> in the package installation directory.</td>
+						</tr>																									 
+					</tbody>
+				</table>	
+
 {% highlight bash %}
 #read package resources
 curl https://public.opencpu.org/ocpu/library/MASS/
@@ -313,101 +318,101 @@ curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
 
 #read output (replace with returned sessionid)
 curl https://public.opencpu.org/ocpu/tmp/x0648ec6b/R/.val/print
-{% endhighlight %}    		    
-		        
-      </div>
-    </div>
-    
-    
-    <div class="panel panel-primary" id="api-object">
-      <div class="panel-heading"><h4>The R object API</h4></div>
-       <div class="panel-body">
-    
-		    <p>The <code>/R</code> API is used to read R objects, or call R functions.</p>
-		    
-		    <table class="table table-bordered">
-		      <thead>
-		        <tr>
-		          <th>Path</th>
-		          <th>What</th>
-		        </tr>
-		      </thead>
-		      <tbody>
-		        <tr>
-		          <td><code>../R/</code></td>
-		          <td>List R objects in this package or session.</td>
-		        </tr>  
-		        <tr>
-		          <td><code>../R/:object</code></td>
-		          <td>Read R object in default format. If <code>object</code> is a function, it can be called using HTTP POST.</td>
-		        </tr>            
-		        <tr>
-		          <td><code>../R/:object/:format</code></td>
-		          <td>Retrieve an R object in a particular output format (see section on output formats).</td>
-		        </tr>                                                                                    
-		      </tbody>
-		    </table>          
-		  </div>
+{% endhighlight %}
+
+			</div>
+		</div>
+
+
+		<div class="panel panel-primary" id="api-object">
+			<div class="panel-heading"><h4>The R object API</h4></div>
+			<div class="panel-body">
+
+				<p>The <code>/R</code> API is used to read R objects, or call R functions.</p>
+
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Path</th>
+							<th>What</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>../R/</code></td>
+							<td>List R objects in this package or session.</td>
+						</tr>  
+						<tr>
+							<td><code>../R/:object</code></td>
+							<td>Read R object in default format. If <code>object</code> is a function, it can be called using HTTP POST.</td>
+						</tr>			
+						<tr>
+							<td><code>../R/:object/:format</code></td>
+							<td>Retrieve an R object in a particular output format (see section on output formats).</td>
+						</tr>																					
+					</tbody>
+				</table>		  
+			</div>
 		</div> 
-    
-    <div class="panel panel-primary" id="api-session">
-      <div class="panel-heading"><h4>The R session API</h4></div>
-       <div class="panel-body"> 
-    
-		    <p>Sessions are currently only used to store the output of a function/script call.</p>
-		    
-		    <table class="table table-bordered">
-		      <thead>
-		        <tr>
-		          <th>Path</th>
-		          <th>What</th>
-		        </tr>
-		      </thead>
-		      <tbody>
-		        <tr>
-		          <td><code>/ocpu/tmp/:sessionid/</code></td>
-		          <td>List available output for this session.</td>
-		        </tr>  
-		        <tr>
-		          <td><code>/ocpu/tmp/:sessionid/R</code></td>
-		          <td>Interfaces to the R API for R objects stored in this session.</td>
-		        </tr>
-		        <tr>
-		          <td><code>/ocpu/tmp/:sessionid/graphics/</code></td>
-		          <td>List graphics (plots) stored in this session.</td>
-		        </tr>  
-		        <tr>
-		          <td><code>/ocpu/tmp/:sessionid/graphics/:n/:format</code></td>
-		          <td>Retrieve plot number <code>:n</code> in output format <code>:format</code>. Format is usually one of <code>png</code>, <code>pdf</code> or <code>svg</code>. The <code>:n</code> is an integer or "last".</td>
-		        </tr>    
-		        <tr>
-		          <td><code>/ocpu/tmp/:sessionid/source</code></td>
-		          <td>Reads the input source code for this session.</td>
-		        </tr>      
-		        <tr>
-		          <td><code>/ocpu/tmp/:sessionid/stdout</code></td>
-		          <td>Shows text printed to STDOUT in this session.</td>
-		        </tr>  
-		        <tr>
-		          <td><code>/ocpu/tmp/:sessionid/console</code></td>
-		          <td>Shows the console input/output for this session (combines source and stdout)</td>
-		        </tr>                       
-		        <tr>
-		          <td><code>/ocpu/tmp/:sessionid/zip</code></td>
-		          <td>Download the entire session as a zip archive.</td>
-		        </tr>
-		        <tr>
-		          <td><code>/ocpu/tmp/:sessionid/tar</code></td>
-		          <td>Download the entire session as a gzipped tarball.</td>
-		        </tr>
-		        <tr>
-		          <td><code>/ocpu/tmp/:sessionid/files/:path</code></td>
-		          <td>Interfaces to the file API in the working dir of the session.</td>
-		        </tr>                                         
-		                                                                                   
-		      </tbody>
-		    </table> 
-		    
+
+		<div class="panel panel-primary" id="api-session">
+			<div class="panel-heading"><h4>The R session API</h4></div>
+			<div class="panel-body"> 
+
+				<p>Sessions are currently only used to store the output of a function/script call.</p>
+				
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Path</th>
+							<th>What</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>/ocpu/tmp/:sessionid/</code></td>
+							<td>List available output for this session.</td>
+						</tr>  
+						<tr>
+							<td><code>/ocpu/tmp/:sessionid/R</code></td>
+							<td>Interfaces to the R API for R objects stored in this session.</td>
+						</tr>
+						<tr>
+							<td><code>/ocpu/tmp/:sessionid/graphics/</code></td>
+							<td>List graphics (plots) stored in this session.</td>
+						</tr>  
+						<tr>
+							<td><code>/ocpu/tmp/:sessionid/graphics/:n/:format</code></td>
+							<td>Retrieve plot number <code>:n</code> in output format <code>:format</code>. Format is usually one of <code>png</code>, <code>pdf</code> or <code>svg</code>. The <code>:n</code> is an integer or "last".</td>
+						</tr>	
+						<tr>
+							<td><code>/ocpu/tmp/:sessionid/source</code></td>
+							<td>Reads the input source code for this session.</td>
+						</tr>	  
+						<tr>
+							<td><code>/ocpu/tmp/:sessionid/stdout</code></td>
+							<td>Shows text printed to STDOUT in this session.</td>
+						</tr>  
+						<tr>
+							<td><code>/ocpu/tmp/:sessionid/console</code></td>
+							<td>Shows the console input/output for this session (combines source and stdout)</td>
+						</tr>					   
+						<tr>
+							<td><code>/ocpu/tmp/:sessionid/zip</code></td>
+							<td>Download the entire session as a zip archive.</td>
+						</tr>
+						<tr>
+							<td><code>/ocpu/tmp/:sessionid/tar</code></td>
+							<td>Download the entire session as a gzipped tarball.</td>
+						</tr>
+						<tr>
+							<td><code>/ocpu/tmp/:sessionid/files/:path</code></td>
+							<td>Interfaces to the file API in the working dir of the session.</td>
+						</tr>										 
+
+					</tbody>
+				</table> 
+				
 {% highlight bash %}
 #A POST will create a temporary session
 #Use the returned sessionid for the subsequent calls below
@@ -432,142 +437,142 @@ curl https://public.opencpu.org/ocpu/tmp/x05b85461/files/ch01.pdf
 curl https://public.opencpu.org/ocpu/tmp/x05b85461/info/print
 {% endhighlight %}
 
-		  </div>
-		</div>       
-    
-    <div class="panel panel-primary" id="api-formats">
-      <div class="panel-heading"><h4>Output formats for R objects</h4></div>
-       <div class="panel-body"> 
-    
-		    <p>Any R object (including recorded graphics) can be retrieved in various output formats, indicated by <code>:format</code> in the API tables.</p>
-		    
-		    <table class="table table-bordered">
-		      <thead>
-		        <tr>
-		          <th>Format</th>
-		          <th>Content-type</th>
-		          <th>Encoder (+args)</th>
-		          <th>Data Frame</th>
-		          <th>Matrix</th>
-		          <th>List</th>
-		          <th>Graphics</th>
-		          <th>Other (function, S4)</th>
-		        </tr>
-		      </thead>
-		      <tbody>
-		        <tr>
-		          <td><code>print</code></td>
-		          <td>text/plain</td>
-		          <td>base::print</td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		        </tr>   
-		        
-		        <tr>
-		          <td><code>json</code></td>
-		          <td>application/json</td>
-		          <td>RJSONIO::toJSON</td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		        </tr>      
-		        
-		        <tr>
-		          <td><code>csv</code></td>
-		          <td>text/csv</td>
-		          <td>utils::write.csv</td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		        </tr>  
-		        
-		        <tr>
-		          <td><code>tab</code></td>
-		          <td>text/plain</td>
-		          <td>utils::write.table</td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		        </tr>
-		        
-            <tr>
-              <td><code>md</code></td>
-              <td>text/markdown</td>
-              <td>pander::pander</td>
-              <td class="success"><i class="icon icon-check"></i></td>
-              <td class="success"><i class="icon icon-check"></i></td>
-              <td class="danger"><i class="icon icon-minus-sign"></i></td>
-              <td class="danger"><i class="icon icon-minus-sign"></i></td>
-              <td class="danger"><i class="icon icon-minus-sign"></i></td>
-            </tr>   		            
-		        
-		        <tr>
-		          <td><code>rda</code></td>
-		          <td>application/octet-stream</td>
-		          <td>base::save</td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		        </tr>   
-		        
-		        <tr>
-		          <td><code>rds</code></td>
-		          <td>application/octet-stream</td>
-		          <td>base::saveRDS</td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		        </tr>   
-		        
-		        <tr>
-		          <td><code>png</code></td>
-		          <td>image/png</td>
-		          <td>grDevices::png</td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		        </tr>    
-		        
-		        <tr>
-		          <td><code>pdf</code></td>
-		          <td>application/pdf</td>
-		          <td>grDevices::pdf</td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		        </tr>  
-		        
-		        <tr>
-		          <td><code>svg</code></td>
-		          <td>image/svg+xml</td>
-		          <td>grDevices::svg</td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		        </tr>                                                                                            
-		                                                                                   
-		      </tbody>
-		    </table>  
-		    
+			</div>
+		</div>	   
+		
+		<div class="panel panel-primary" id="api-formats">
+			<div class="panel-heading"><h4>Output formats for R objects</h4></div>
+			<div class="panel-body"> 
+
+				<p>Any R object (including recorded graphics) can be retrieved in various output formats, indicated by <code>:format</code> in the API tables.</p>
+				
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Format</th>
+							<th>Content-type</th>
+							<th>Encoder (+args)</th>
+							<th>Data Frame</th>
+							<th>Matrix</th>
+							<th>List</th>
+							<th>Graphics</th>
+							<th>Other (function, S4)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>print</code></td>
+							<td>text/plain</td>
+							<td>base::print</td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+						</tr>   
+
+						<tr>
+							<td><code>json</code></td>
+							<td>application/json</td>
+							<td>jsonlite::toJSON</td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+						</tr>	  
+
+						<tr>
+							<td><code>csv</code></td>
+							<td>text/csv</td>
+							<td>utils::write.csv</td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+						</tr>  
+
+						<tr>
+							<td><code>tab</code></td>
+							<td>text/plain</td>
+							<td>utils::write.table</td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+						</tr>
+
+						<tr>
+							<td><code>md</code></td>
+							<td>text/markdown</td>
+							<td>pander::pander</td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+						</tr>   					
+
+						<tr>
+							<td><code>rda</code></td>
+							<td>application/octet-stream</td>
+							<td>base::save</td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+						</tr>   
+
+						<tr>
+							<td><code>rds</code></td>
+							<td>application/octet-stream</td>
+							<td>base::saveRDS</td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+						</tr>   
+
+						<tr>
+							<td><code>png</code></td>
+							<td>image/png</td>
+							<td>grDevices::png</td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+						</tr>	
+
+						<tr>
+							<td><code>pdf</code></td>
+							<td>application/pdf</td>
+							<td>grDevices::pdf</td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+						</tr>  
+
+						<tr>
+							<td><code>svg</code></td>
+							<td>image/svg+xml</td>
+							<td>grDevices::svg</td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+						</tr>																							
+
+					</tbody>
+				</table>  
+				
 {% highlight bash %}
 #read R objects from packages.
 curl https://public.opencpu.org/ocpu/library/datasets/R/mtcars/json?digits=0
@@ -579,116 +584,118 @@ curl https://public.opencpu.org/ocpu/library/MASS/R/loglm/print
 {% highlight bash %}
 #create a simple plot
 curl https://public.opencpu.org/ocpu/library/graphics/R/plot -d 'x=cars'
- 
+
 #replace session id with returned one
 curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/png
 curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/1/png?width=1000
 curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/svg
 curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/pdf?width=8
-{% endhighlight %}         		    
-		    
-		  </div>
-		</div>  
-    
-    
-    <div class="panel panel-primary" id="api-arguments">
-      <div class="panel-heading"><h4>Argument formats for R function calls (HTTP POST only)</h4></div>
-       <div class="panel-body">
-		    <p>When calling a function, we need to pass arguments. OpenCPU accepts the following types of arguments</p>
-		    
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>What</th>
-              <th>Examples</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Primitives</td>
-              <td>Numbers, strings, booleans</td>
-              <td><code>3.1415</code>, <code>false</code>, <code>"mytitle"</code></td>
-            </tr>   
+{% endhighlight %}
+				
+			</div>
+		</div>
+		
+		
+		<div class="panel panel-primary" id="api-arguments">
+			<div class="panel-heading"><h4>Argument formats for R function calls (HTTP POST only)</h4></div>
+			<div class="panel-body">
+				<p>When calling a function, we need to pass arguments. OpenCPU accepts the following types of arguments</p>
+				
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Type</th>
+							<th>What</th>
+							<th>Examples</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Primitives</td>
+							<td>Numbers, strings, booleans</td>
+							<td><code>3.1415</code>, <code>false</code>, <code>"mytitle"</code></td>
+						</tr>   
 
-            <tr>
-              <td>JSON object</td>
-              <td>An array or object</td>
-              <td><code>{"foo" : [1,2,3], "bar" : {"name" : "jerry"}}</code></td>
-            </tr>  
-            
-            <tr>
-              <td>R code</td>
-              <td>plain R code</td>
-              <td><code>paste("useR", "2013")</code>, <code>mtcars</code></td>
-            </tr>  
-            
-            <tr>
-              <td>File upload</td>
-              <td>File argument will be temporary file path.</td>
-              <td>(multipart only)</td>
-            </tr>                                    
- 
-            <tr>
-              <td>Chained Object</td>
-              <td>Session ID from previous function call.</td>
-              <td><code>x2ac58d69</code></td>
-            </tr>                                                                                         
-                                                                                       
-          </tbody>
-        </table> 		   
-        
-        <p>When performing a fucntion call, the POST data (request body) can be formated using either <code>multipart/form-data</code>, 
-        <code>application/x-www-form-urlencoded</code> or <code>application/json</code>. Not every content-type supports any argument format:</p>
-		    
-		    <table class="table table-bordered">
-		      <thead>
-		        <tr>
-		          <th>Content-type</th>
-		          <th>Primitives</th>
-		          <th>JSON object</th>
-		          <th>R code</th>
-		          <th>File upload</th>
-		          <th>Chained object</th>
-		        </tr>
-		      </thead>
-		      <tbody>
-		        <tr>
-		          <td><code>application/x-www-form-urlencoded</code></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		        </tr>   
-		        
-		         <tr>
-		          <td><code>multipart/form-data</code></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		        </tr>    
-		        
-		         <tr>
-		          <td><code>application/json</code></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="success"><i class="icon icon-check"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		          <td class="danger"><i class="icon icon-minus-sign"></i></td>
-		        </tr>                                                                                               
-		                                                                                   
-		      </tbody>
-		    </table>               
+						<tr>
+							<td>JSON object</td>
+							<td>An array or object</td>
+							<td><code>{"foo" : [1,2,3], "bar" : {"name" : "jerry"}}</code></td>
+						</tr>  
+
+						<tr>
+							<td>R code</td>
+							<td>plain R code</td>
+							<td><code>paste("useR", "2013")</code>, <code>mtcars</code></td>
+						</tr>  
+
+						<tr>
+							<td>File upload</td>
+							<td>File argument will be temporary file path.</td>
+							<td>(multipart only)</td>
+						</tr>									
+
+						<tr>
+							<td>Chained Object</td>
+							<td>Session ID from previous function call.</td>
+							<td><code>x2ac58d69</code></td>
+						</tr>																						 
+
+					</tbody>
+				</table> 		   
+
+				<p>When performing a fucntion call, the POST data (request body) can be formated using either <code>multipart/form-data</code>, 
+					<code>application/x-www-form-urlencoded</code> or <code>application/json</code>. Not every content-type supports any argument format:
+				</p>
+
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Content-type</th>
+							<th>Primitives</th>
+							<th>JSON object</th>
+							<th>R code</th>
+							<th>File upload</th>
+							<th>Chained object</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>application/x-www-form-urlencoded</code></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+						</tr>   
+
+						<tr>
+							<td><code>multipart/form-data</code></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+						</tr>	
+
+						<tr>
+							<td><code>application/json</code></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							</tr>
+
+					</tbody>
+				</table>		
+
 {% highlight bash %}
 #call some functions
 curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d 'n=10&mean=5' 
 curl https://public.opencpu.org/ocpu/library/graphics/R/hist -d 'x=[2,3,2,3,4,3,3]&breaks=10'
 curl https://public.opencpu.org/ocpu/library/graphics/R/plot -d 'x=cars&main="test"'
 curl https://public.opencpu.org/ocpu/library/base/R/identity -d 'x=coef(lm(speed~dist, data=cars))'
-{% endhighlight %} 
+{% endhighlight %}
 
 {% highlight bash %}
 #upload local file mydata.csv
@@ -697,124 +704,79 @@ curl https://public.opencpu.org/ocpu/library/utils/R/read.csv -F "file=@mydata.c
 #replace session id with returned one above
 curl https://public.opencpu.org/ocpu/tmp/x067b4172/R/.val/print
 curl https://public.opencpu.org/ocpu/library/base/R/summary -d 'object=x067b4172'
-{% endhighlight %} 
+{% endhighlight %}
 
 {% highlight bash %}
 #post arguments in json
 curl http://your.server.com/ocpu/library/stats/R/rnorm \
-  -H "Content-Type: application/json" -d '{"n":10, "mean": 10, "sd":10}'
-{% endhighlight %} 
-
-
-      </div>        
-    </div>
-    
-     <div class="panel panel-primary" id="api-json">
-      <div class="panel-heading"><h4>JSON I/O RPC (a.k.a. Data Processing Units)</h4></div>
-      <div class="panel-body">
-      <p>For the common special case where a client is only interested in the output data from a function call in JSON format, 
-      the HTTP POST request url can be post-fixed with <code>/json</code>. In this case, a successfull call will return status 200
-      (instead of 201), and the response body directly contains the returned object in JSON; no need for an additional GET request.</p>
-
-{% highlight bash %}
-curl http://your.server.com/ocpu/library/stats/R/rnorm/json -d n=2
- [
-  -1.2804,
-  -0.75013
- ]
+-H "Content-Type: application/json" -d '{"n":10, "mean": 10, "sd":10}'
 {% endhighlight %}
 
-      <p>We can combine this with the <code>application/json</code> request content type for full JSON RPC on R functions</p>
-      
-{% highlight bash %}
-curl http://your.server.com/ocpu/library/stats/R/rnorm/json \
-  -H "Content-Type: application/json" -d '{"n":3, "mean": 10, "sd":10}'
- [
-  4.9829,
-  6.3104,
-  11.411
- ]  
-{% endhighlight %}
-		
-		<p> The above request invokes the following R function call:</p>
+			</div>
+		</div>
 
-{% highlight r %}
-library(RJSONIO)
-args <- fromJSON('{"n":3, "mean": 10, "sd":10}', simplifyWithNames = FALSE)
-do.call(stats::rnorm, args)
-{% endhighlight r%}
 
-		<p>Which in this case is equivalent to:<p>
+		<div class="panel panel-primary" id="api-scripts">
+			<div class="panel-heading"><h4>Running scripts and reproducible documents</h4></div>
+			<div class="panel-body">
 
-{% highlight r %}
-rnorm(n=3, mean=10, sd=10)
-{% endhighlight %}
-     
-      </div>
-    </div>      
-    
-    <div class="panel panel-primary" id="api-scripts">
-      <div class="panel-heading"><h4>Running scripts and reproducible documents</h4></div>
-       <div class="panel-body">
-    
-        <p>We can run a script by performing HTTP POST on a file. The script is interpreted according to its (case insensitive) file extension. 
-        Any HTTP POST arguments are passed on to the interpreting function. The following types are supported:</p>
-        
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>File extension</th>
-              <th>Type</th>
-              <th>Interpreter</th>
-              <th>Arguments</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>file.r</code></td>
-              <td>R script</td>
-              <td>evaluate::evaluate</td>
-              <td>-</td>
-            </tr>  
-            
-            <tr>
-              <td><code>file.tex</code></td>
-              <td>latex</td>
-              <td>tools::texi2pdf</td>
-              <td>-</td>
-            </tr>            
-            
-            <tr>
-              <td><code>file.rnw</code></td>
-              <td>knitr/sweave</td>
-              <td>knitr::knit + tools::texi2pdf</td>
-              <td>-</td>
-            </tr>
-            
-            <tr>
-              <td><code>file.md</code></td>
-              <td>markdown</td>
-              <td>knitr::pandoc</td>
-              <td><code>format</code> (see ?pandoc) </td>
-            </tr>             
-            
-            <tr>
-              <td><code>file.rmd</code></td>
-              <td>knitr/markdown</td>
-              <td>knitr::knit + knitr::pandoc</td>
-              <td><code>format</code> (see ?pandoc) </td>
-            </tr>    
-            
-            <tr>
-              <td><code>file.brew</code></td>
-              <td>brew</td>
-              <td>brew::brew</td>
-              <td><code>output</code> (see ?brew)</td>
-            </tr>                                    
-                                                                               
-          </tbody>
-        </table>
-        
+				<p>We can run a script by performing HTTP POST on a file. The script is interpreted according to its (case insensitive) file extension. Any HTTP POST arguments are passed on to the interpreting function. The following types are supported:</p>
+
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>File extension</th>
+							<th>Type</th>
+							<th>Interpreter</th>
+							<th>Arguments</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>file.r</code></td>
+							<td>R script</td>
+							<td>evaluate::evaluate</td>
+							<td>-</td>
+						</tr>  
+
+						<tr>
+							<td><code>file.tex</code></td>
+							<td>latex</td>
+							<td>tools::texi2pdf</td>
+							<td>-</td>
+						</tr>			
+
+						<tr>
+							<td><code>file.rnw</code></td>
+							<td>knitr/sweave</td>
+							<td>knitr::knit + tools::texi2pdf</td>
+							<td>-</td>
+						</tr>
+
+						<tr>
+							<td><code>file.md</code></td>
+							<td>markdown</td>
+							<td>knitr::pandoc</td>
+							<td><code>format</code> (see ?pandoc) </td>
+						</tr>			 
+
+						<tr>
+							<td><code>file.rmd</code></td>
+							<td>knitr/markdown</td>
+							<td>knitr::knit + knitr::pandoc</td>
+							<td><code>format</code> (see ?pandoc) </td>
+						</tr>	
+
+						<tr>
+							<td><code>file.brew</code></td>
+							<td>brew</td>
+							<td>brew::brew</td>
+							<td><code>output</code> (see ?brew)</td>
+						</tr>									
+
+					</tbody>
+				</table>
+
 {% highlight bash %}
 #run scripts which exist in packages
 curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
@@ -828,29 +790,90 @@ curl https://public.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rnw
 #run scripts from gist
 curl https://public.opencpu.org/ocpu/gist/hadley/6195660/r-is-like.md -X POST
 curl https://public.opencpu.org/ocpu/gist/hadley/5721744/html.r -X POST
-{% endhighlight %}         
-                  
-      </div>
-    </div> 
-    
-    
-    <div class="panel panel-primary" id="api-apps">
-      <div class="panel-heading"><h4>OpenCPU Apps</h4></div>
-      <div class="panel-body">
-        <p>OpenCPU apps are static web pages (html, css, js) which are included in an R package. 
-        They interface the R functions in this package through the OpenCPU API's.
-        By convention, these apps are placed in the <code>/inst/www/</code> directory of the R source package.</p>       
-        
-        <p>See for more information the <a href="apps.html">apps page</a>.</p>
+{% endhighlight %}
+
+			</div>
+		</div> 
+
+
+		<div class="panel panel-primary" id="api-json">
+			<div class="panel-heading"><h4>JSON I/O RPC (a.k.a. Data Processing Units)</h4></div>
+			<div class="panel-body">
+				<p>For the common special case where a client is only interested in the output data from a function call in JSON format, the HTTP POST request url can be post-fixed with <code>/json</code>. In this case, a successfull call will return status 200 (instead of 201), and the response body directly contains the returned object in JSON; no need for an additional GET request.</p>
+
 {% highlight bash %}
-#Some example apps. Should really be opened in the browser instead of curl of course.
-curl https://public.opencpu.org/ocpu/library/stocks/www/
-curl https://public.opencpu.org/ocpu/library/nabel/www/
-curl https://public.opencpu.org/ocpu/library/gitstats/www/
-{% endhighlight %}       
-      </div>
-    </div>   
-     
+curl http://your.server.com/ocpu/library/stats/R/rnorm/json -d n=2
+[
+-1.2804,
+-0.75013
+]
+{% endhighlight %}
+
+				<p>We can combine this with the <code>application/json</code> request content type for full JSON RPC on R functions</p>
+
+{% highlight bash %}
+curl http://your.server.com/ocpu/library/stats/R/rnorm/json \
+-H "Content-Type: application/json" -d '{"n":3, "mean": 10, "sd":10}'
+[
+4.9829,
+6.3104,
+11.411
+]  
+{% endhighlight %}
+
+				<p> The above request invokes the following R function call:</p>
+
+{% highlight r %}
+library(jsonlite)
+args <- fromJSON('{"n":3, "mean": 10, "sd":10}')
+output <- do.call(stats::rnorm, args)
+toJSON(output)
+{% endhighlight r%}
+
+				<p>Which in this case is equivalent to:<p>
+
+{% highlight r %}
+rnorm(n=3, mean=10, sd=10)
+{% endhighlight %}
+
+			</div>
+		</div>
+
+		
+		<div class="panel panel-primary" id="api-apps">
+			<div class="panel-heading"><h4>OpenCPU Apps</h4></div>
+			<div class="panel-body">
+				<p>OpenCPU apps are static web pages (html, css, js) which are included in an R package. They interface the R functions in this package through the OpenCPU API's. By convention, these apps are placed in the <code>/inst/www/</code> directory of the R source package. See for more information the <a href="apps.html">apps page</a>.</p>	   
+			</div>
+		</div>
+
+		<div class="panel panel-primary" id="api-ci">
+			<div class="panel-heading"><h4>Github CI Hook</h4></div>
+			<div class="panel-body">
+			<p>Starting version 1.0.7, the OpenCPU cloud server adds support for continuous integration (CI). This means that Github repositories can be configured to automatically install your package on an OpenCPU server, every time a commit is pushed to the master branch. To take advantage of this feature, it is required that:</p>
+
+			<ol>
+				<li>Your R source package is hosted on Github.</li>
+				<li>The name of the Github repository is identical to the name of the R package</li>
+				<li>Your Github user account has a public email address</li>
+			</ol>
+
+			<p>To setup CI, add the <code>/ocpu/webhook</code> URL for your server as a 'WebHook' in your Github repository. For example, to use the public demo server, add a webhook with:</p>
+
+{% highlight html %}
+https://public.opencpu.org/ocpu/webhook
+{% endhighlight %}
+
+			<p>For instructions how to add webhooks, see <a href="https://help.github.com/articles/post-receive-hooks">here</a>. To trigger a build, either push a commit to the master branch, or select the box with the URL and press the <code>Test Hook</code> button. You should receive an email that reports if the installation was successful. If it was, the package will directly be available for remote use through the OpenCPU API.</p>
+
+			<img class="img-thumbnail img-responsive" src="./images/githook.png" alt="git hook screenshot"> 
+
+			</div>
+		</div> 		
+
+	   	<!--spacer-->
+		<div style="height:500px;"></div>		
+
 	</div>
 </div>
 
