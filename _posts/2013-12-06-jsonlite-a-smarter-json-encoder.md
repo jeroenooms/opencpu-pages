@@ -31,7 +31,7 @@ The `jsonlite` package implements functions `toJSON` and `fromJSON` similar to t
  - Simple dataset: <a href="https://api.github.com/users/hadley/orgs" target="_blank">https://api.github.com/users/hadley/orgs</a>
  - Nested dataset: <a href="https://api.github.com/users/hadley/repos" target="_blank">https://api.github.com/users/hadley/repos</a>
 
-These JSON structures obviously represent data tables, or in R terminology: data frames. The first structure represents a single table; the second structure represents a relational structure with two tables: the `owner` property in the main table was generated from a foreign key that points to a record in a second table (owners). However, as we can see, these tables are structured **by row**, wereas R likes data frames **by column**. This is one example where `jsonlite` goes beyond other packages, and actually returns a data frame:
+These JSON structures obviously represent data tables, or in R terminology: data frames. The first structure is a single table; the second structure has a relational structure with two tables: the `owner` property in the main table was generated from a foreign key that points to a record in a second table (owners). However, in their JSON representation these tables are structured **by row**, wereas R likes data frames **by column**. This is one example where `jsonlite` goes beyond other packages, and actually returns a data frame:
 
 {% highlight r%}
 library(jsonlite)
