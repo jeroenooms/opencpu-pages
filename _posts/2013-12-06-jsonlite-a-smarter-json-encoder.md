@@ -58,13 +58,11 @@ data2$name
 names(data2$owner)
 data2$owner$login
 
-#subsetting is easy
-data2[1,]
-data2[1,]$login
-
 #these are equivalent :)
-data2[1,]$owner
-data2$owner[1,]
+data2[1,]$owner$login
+data2[1,"owner"]$login
+data2$owner[1,"login"]
+data2$owner[1,]$login
 {% endhighlight %}
 
 The [package vignette](http://cran.r-project.org/web/packages/jsonlite/vignettes/json-mapping.pdf) gives many more examples of how various structures map to R objects.
