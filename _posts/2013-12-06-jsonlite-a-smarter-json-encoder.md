@@ -2,7 +2,7 @@
 layout: post
 title: "New package: jsonlite. A smart(er) JSON encoder/decoder."
 category: posts
-description: "The jsonlite package: A smart(er) JSON encoder/decoder"
+description: "This week we released a new package on CRAN: jsonlite. This package is a fork of RJSONIO by Duncan Temple Lang and builds on the same parser, but uses a different mapping between R objects and JSON data."
 cover: "containers.jpg"
 ---
 
