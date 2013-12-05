@@ -214,10 +214,10 @@ req.fail(function(){
 });
 {% endhighlight %}
 
-				<p>See it in action here: <a href="http://jsfiddle.net/rY3gr/">http://jsfiddle.net/rY3gr/</a>. When calling <code>ocpu.rpc</code>, the arguments as well as return value are transferred using JSON. On the R side, <code>RJSONIO</code> is used to convert between JSON and R objects. Hence, the above code is equivalent to the R code below. The <code>output</code> object is a JSON string which is sent back to the client and parsed by JavaScript.</p>
+				<p>See it in action here: <a href="http://jsfiddle.net/rY3gr/">http://jsfiddle.net/rY3gr/</a>. When calling <code>ocpu.rpc</code>, the arguments as well as return value are transferred using JSON. On the R side, the <code>jsonlite</code> package is used to convert between JSON and R objects. Hence, the above code is equivalent to the R code below. The <code>output</code> object is a JSON string which is sent back to the client and parsed by JavaScript.</p>
 
 {% highlight r%}
-library(RJSONIO)
+library(jsonlite)
 
 #parse input from JSON into R
 jsoninput <- '{"x" : [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]}'
