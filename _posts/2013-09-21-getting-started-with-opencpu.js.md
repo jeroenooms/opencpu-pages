@@ -33,14 +33,14 @@ The [hello.html](https://public.opencpu.org/ocpu/library/appdemo/www/hello.html)
 var myname = $("#namefield").val();
 
 //perform the request
-var req = opencpu.r_fun_json("hello", {
+var req = ocpu.rpc("hello", {
   myname : myname
 }, function(output){
   $("#output").text(output.message);
 });
 {% endhighlight %}
 
-The first line is basic jQuery syntax and reads the value from the page element with id `namefield` down in the html. In the next line we use `opencpu.r_fun_json` to call the R function [hello](https://public.opencpu.org/ocpu/library/appdemo/R/hello) (included in the app package) and pass the value to the `myname` argument of the R function. The final argument is the callback handler: a function to (asynchronously) processes the output once the request has returned from the server. In this case our callback handler writes `output$message` value returned by our R function to the html field with id `output`. 
+The first line is basic jQuery syntax and reads the value from the page element with id `namefield` down in the html. In the next line we use `ocpu.rpc` to call the R function [hello](https://public.opencpu.org/ocpu/library/appdemo/R/hello) (included in the app package) and pass the value to the `myname` argument of the R function. The final argument is the callback handler: a function to (asynchronously) processes the output once the request has returned from the server. In this case our callback handler writes `output$message` value returned by our R function to the html field with id `output`. 
 
 The above is all that is needed to call R from Javascript in the browser. The remaining lines form this example:
 
@@ -65,7 +65,7 @@ The opencpu.js library also makes it easy to embed your R plots in a website. Th
 
 {% highlight javascript %}
 //create the plot area on the plotdiv element
-var req = $("#plotdiv").r_fun_plot("randomplot", {
+var req = $("#plotdiv").rplot("randomplot", {
   n : nfield,
   dist : distfield
 })
@@ -86,7 +86,7 @@ var myheader = $("#header").val() == "true";
 var myfile = $("#csvfile")[0].files[0];
 
 //perform the request
-var req = opencpu.r_fun_call("readcsvnew", {
+var req = ocpu.rpc("readcsvnew", {
   file : myfile,
   header : myheader
 }, function(session){
@@ -106,7 +106,7 @@ A simple example of this concept which builds on the previous example is illustr
 
 {% highlight javascript %}
 //perform the request
-var req = opencpu.r_fun_call("readcsvnew", {
+var req = ocpu.call("readcsvnew", {
   file : file,
   header : header
 }, function(session){
@@ -115,12 +115,12 @@ var req = opencpu.r_fun_call("readcsvnew", {
 });
 {% endhighlight %}
 
-This look very similar as before: `r_fun_call` is used to call the R function [readcsvnew](https://public.opencpu.org/ocpu/library/appdemo/R/readcsvnew). However this time the callback function calls another function by passing on the reference to the object returned by `readcsvnew` (which we called `session` in this example) The `printsummary` javascript function then uses this object for the argument `mydata` when calling the R function [printsummary](https://public.opencpu.org/ocpu/library/appdemo/R/printsummary):
+This look very similar as before: `ocpu.call` is used to call the R function [readcsvnew](https://public.opencpu.org/ocpu/library/appdemo/R/readcsvnew). However this time the callback function calls another function by passing on the reference to the object returned by `readcsvnew` (which we called `session` in this example) The `printsummary` javascript function then uses this object for the argument `mydata` when calling the R function [printsummary](https://public.opencpu.org/ocpu/library/appdemo/R/printsummary):
 
 {% highlight javascript %}
 function printsummary(mydata){
   //perform the request
-  var req = opencpu.r_fun_call("printsummary", {
+  var req = ocpu.call("printsummary", {
     mydata : mydata
   }, function(session){
     var url = session.getLoc() +  "console/text";
