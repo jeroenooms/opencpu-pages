@@ -277,6 +277,10 @@ curl https://public.opencpu.org/ocpu/gist/hadley/
 							<td>List R objects exported by this package. See R object API.</td>
 						</tr>
 						<tr>
+							<td><code>../:pkgname/data/</code></td>
+							<td>List datasets included with this package. Datasets are objects, see R object API.</td>
+						</tr>						
+						<tr>
 							<td><code>../:pkgname/man/</code></td>
 							<td>List manuals (help pages) available in this package.</td>
 						</tr>   
@@ -296,10 +300,18 @@ curl https://public.opencpu.org/ocpu/gist/hadley/
 				</table>	
 
 {% highlight bash %}
-#read package resources
+#package info
 curl https://public.opencpu.org/ocpu/library/MASS/
+
+#package objects (mostly functions)
 curl https://public.opencpu.org/ocpu/library/MASS/R/
 curl https://public.opencpu.org/ocpu/library/MASS/R/rlm/print
+
+#package data objects
+curl https://public.opencpu.org/ocpu/library/MASS/data/
+curl https://public.opencpu.org/ocpu/library/MASS/data/housing/json
+
+#read manuals pages
 curl https://public.opencpu.org/ocpu/library/MASS/man/
 curl https://public.opencpu.org/ocpu/library/MASS/man/rlm/text
 curl https://public.opencpu.org/ocpu/library/MASS/man/rlm/html
@@ -310,7 +322,7 @@ curl https://public.opencpu.org/ocpu/library/MASS/scripts/
 curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R
 curl https://public.opencpu.org/ocpu/library/MASS/NEWS
 
-#call a function from rlm manual
+#call a function (example from 'rlm' help page)
 curl https://public.opencpu.org/ocpu/library/MASS/R/rlm -d 'formula=stack.loss ~ .&data=stackloss&psi=psi.bisquare'
 
 #run R script
@@ -343,11 +355,15 @@ curl https://public.opencpu.org/ocpu/tmp/x0648ec6b/R/.val/print
 							<td>List R objects in this package or session.</td>
 						</tr>  
 						<tr>
-							<td><code>../R/:object</code></td>
-							<td>Read R object in default format. If <code>object</code> is a function, it can be called using HTTP POST.</td>
+							<td><code>../data/</code></td>
+							<td>List data objects in a package.</td>
+						</tr>  						
+						<tr>
+							<td><code>../{R|data}/:object</code></td>
+							<td>Read object in default format. If <code>object</code> is a function, it can be called using HTTP POST.</td>
 						</tr>			
 						<tr>
-							<td><code>../R/:object/:format</code></td>
+							<td><code>../{R|data}/:object/:format</code></td>
 							<td>Retrieve an R object in a particular output format (see section on output formats).</td>
 						</tr>																					
 					</tbody>
