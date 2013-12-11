@@ -9,24 +9,24 @@ description: The official OpenCPU API documentation.
 		<div id="docmenu" class="bs-sidebar hidden-print" data-spy="affix" data-offset-top="150" role="complementary">
 			<ul class="nav bs-sidenav">
 
-				<li><a class="active" href="#api-root">HTTP</a>
+				<li><a class="active" href="#api-http">HTTP</a>
 					<ul class="nav">
-						<li><a href="#api-root">Root path</a></li>
+						<li><a href="#api-root">Root Path</a></li>
 						<li><a href="#api-methods">Methods</a></li>
 						<li><a href="#api-status">Status Codes</a></li>
 					</ul>
 				</li>
 
-				<li><a href="#api-libraries">API paths</a>
+				<li><a href="#api-endpoints">API Endpoints</a>
 					<ul class="nav">
 						<li><a href="#api-libraries">Libraries</a></li>
-						<li><a href="#api-package">R package API</a></li>
-						<li><a href="#api-object">R object API</a></li>
-						<li><a href="#api-session">R session API</a></li>
+						<li><a href="#api-package">R Package API</a></li>
+						<li><a href="#api-object">R Object API</a></li>
+						<li><a href="#api-session">R Session API</a></li>
 					</ul>
 				</li>
 
-				<li><a href="#api-formats">I/O Formats</a>
+				<li><a href="#api-ioformats">I/O Formats</a>
 					<ul class="nav">
 						<li><a href="#api-formats">Output Formats</a></li>
 						<li><a href="#api-arguments">Argument Formats</a></li>
@@ -35,7 +35,7 @@ description: The official OpenCPU API documentation.
 					</ul>
 				</li>
 
-				<li><a href="#api-apps">Miscellaneous functionality</a>
+				<li><a href="#api-misc">Miscellaneous</a>
 					<ul class="nav">
 						<li><a href="#api-apps">OpenCPU Apps</a></li>
 						<li><a href="#api-ci">Github CI Hook</a></li>
@@ -51,6 +51,10 @@ description: The official OpenCPU API documentation.
 			<a href="#" class="close" data-dismiss="alert">&times;</a>
 			<strong>About this page</strong> Many of the sections below contain <code>curl</code> examples. Note that curl is used for illustration only, any HTTP client will do. Also note that on Windows, the <code>-d</code> argument in curl might need to be quoted in double quotes instead of single quotes. Alternatively, the <a href="/ocpu/test"><code>/ocpu/test</code></a> page can be used to explore the API.
 		</div> 
+
+	    <div class="page-header" id="api-http">
+	    	<h1>HTTP in OpenCPU</h1>
+	    </div>		
 
 		<div class="panel panel-primary" id="api-root">
 			<div class="panel-heading"><h4>The OpenCPU root path</h4></div>
@@ -172,6 +176,10 @@ curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d 'n=10&mean=5'
 				</table>
 			</div>
 		</div>
+
+	    <div class="page-header" id="api-endpoints">
+	    	<h1>API Endpoints</h1>
+	    </div>				
 
 		<div class="panel panel-primary" id="api-libraries">
 			<div class="panel-heading"><h4>The API Libraries</h4></div>
@@ -455,6 +463,10 @@ curl https://public.opencpu.org/ocpu/tmp/x05b85461/info/print
 
 			</div>
 		</div>	   
+
+	    <div class="page-header" id="api-ioformats">
+	    	<h1>Input, Output: Data and Formats</h1>
+	    </div>				
 		
 		<div class="panel panel-primary" id="api-formats">
 			<div class="panel-heading"><h4>Output formats for R objects</h4></div>
@@ -855,7 +867,10 @@ rnorm(n=3, mean=10, sd=10)
 			</div>
 		</div>
 
-		
+	    <div class="page-header" id="api-misc">
+	    	<h1>Miscellaneous functionality</h1>
+	    </div>	
+
 		<div class="panel panel-primary" id="api-apps">
 			<div class="panel-heading"><h4>OpenCPU Apps</h4></div>
 			<div class="panel-body">
