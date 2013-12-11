@@ -73,7 +73,7 @@ var req = $("#plotdiv").rplot("randomplot", {
 
 The syntax for is slightly different than when calling a function before: the plotting widget is implemented as a jQuery plugin and hence called on a dom element, usually an empty `<div>`. In this case we call the R function [randomplot](https://public.opencpu.org/ocpu/library/appdemo/R/randomplot) (included with the appdemo package) and pass arguments `n` and `dist`. Once completed, a png image of the plot is displayed in `#plotdiv` and links to pdf and svg images. 
 
-Real world examples of apps using `r_fun_plot` are [nabel](https://public.opencpu.org/ocpu/library/nabel/www/), [gitstats](https://public.opencpu.org/ocpu/library/gitstats/www/) and [stocks](https://public.opencpu.org/ocpu/library/stocks/www/).
+Real world examples of apps using `$.rplot` are [nabel](https://public.opencpu.org/ocpu/library/nabel/www/), [gitstats](https://public.opencpu.org/ocpu/library/gitstats/www/) and [stocks](https://public.opencpu.org/ocpu/library/stocks/www/).
 
 ## Uploading a File
 
