@@ -37,6 +37,7 @@ description: The official OpenCPU API documentation.
 
 				<li><a href="#api-misc">Miscellaneous</a>
 					<ul class="nav">
+						<li><a href="#api-info">Session Info</a></li>
 						<li><a href="#api-apps">OpenCPU Apps</a></li>
 						<li><a href="#api-ci">Github CI Hook</a></li>
 					</ul>
@@ -870,6 +871,13 @@ rnorm(n=3, mean=10, sd=10)
 	    <div class="page-header" id="api-misc">
 	    	<h1>Miscellaneous functionality</h1>
 	    </div>	
+
+		<div class="panel panel-primary" id="api-info">
+			<div class="panel-heading"><h4>Session Info</h4></div>
+			<div class="panel-body">
+				<p>The <code>/ocpu/info</code> endpoint shows the output of <code>sessionInfo()</code> from the main (webserver) process. This can be helpful for debugging. However do note that unsafe requests are evaluated in a parallel process.</p>	   
+			</div>
+		</div>	    
 
 		<div class="panel panel-primary" id="api-apps">
 			<div class="panel-heading"><h4>OpenCPU Apps</h4></div>
