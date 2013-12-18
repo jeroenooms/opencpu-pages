@@ -48,7 +48,7 @@ curl https://public.opencpu.org/ocpu/library/reshape2/R/melt/json \
 
 Note that if you use Windows, the <code>curl</code> examples might need to be modified to properly escape the quotes in the windows terminal. This is just a limitation of using the windows command line; it won't be a problem for actual clients (e.g. a browser). If you don't like curl, the same request can be performed using the <a href="https://public.opencpu.org/ocpu/test">ocpu test page</a>.
 
-The above RPC request is equivalent to the R code below. By using this as a template, you can write functions in R and test how they would work when called remotely over OpenCPU.
+The above RPC request is equivalent to the R code below. You can use this code as a template to see how your R functions would behave when called remotely over OpenCPU.
 
 {% highlight r%}
 # Load required packages
