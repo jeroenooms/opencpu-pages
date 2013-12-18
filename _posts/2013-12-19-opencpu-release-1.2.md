@@ -10,7 +10,7 @@ Earlier this week, OpenCPU 1.2 was released. This release uses the new <a href="
 
 From here, no major changes in the OpenCPU API are planned for quite a while, so that we can shift focus towards optimizing performance, implementing client-libraries and developing applications.
 
-## JSON and OpenCPU
+## HTTPS, JSON and OpenCPU
 
 Let's first explain why this piece is important. The OpenCPU API defines a mapping between HTTP request and R function calls. This is easy for simple input and output, such as numbers or vectors:
 
@@ -18,7 +18,7 @@ Let's first explain why this piece is important. The OpenCPU API defines a mappi
 curl https://public.opencpu.org/ocpu/library/stats/R/rnorm/json -d 'n=10&mean=5'
 {% endhighlight %}
 
-But what if the R function has a return value or arguments which require more advanced objects, such as a matrix or data frame? This is where <code>jsonlite</code> comes in. The <a href="http://cran.r-project.org/web/packages/jsonlite/vignettes/json-mapping.pdf">jsonlite vignette</a> defines <i><b>a practical and consistent mapping between JSON data and R Objects</i></b>. This allows OpenCPU to automatically convert incoming JSON arguments into R objects using <code>jsonlite::fromJSON</code>, and convert output values back into JSON using <code>jsonlite::toJSON</code>. This completes the cycle and makes it possible to call advanced R functions over http(s)+json, without requiring clients to understand R.
+But what if the R function has a return value or arguments which require more advanced objects, such as a matrix or data frame? This is where <code>jsonlite</code> comes in. The <a href="http://cran.r-project.org/web/packages/jsonlite/vignettes/json-mapping.pdf">jsonlite vignette</a> defines <i><b>a practical and consistent mapping between JSON data and R Objects</i></b>. This allows OpenCPU to automatically convert incoming JSON arguments into R objects using <code>jsonlite::fromJSON</code>, and convert output values back into JSON using <code>jsonlite::toJSON</code>. Thereby the cycle is complete, and we can call advanced R functions over http(s)+json without requiring clients to have any understanding of R.
 
 ## An example: melting data frames
 
@@ -79,7 +79,7 @@ cat(output)
 
 It is recommended to update your servers  and applications to version 1.2 rather sooner than later. The 1.0 branch will keep working, but it won't get any new fixes or updates. We plan to stay on the 1.2 branch for quite a while.
 
-The introduction of <code>jsonlite</code> does not affect the HTTP API itself, but existing applications that rely heavily on JSON to get data in and out of R might need some modification. For this reason we decided to bump the version to 1.2 series. Make sure to read the <a href="../jsonlite-a-smarter-json-encoder/">post about jsonlite</a> to get a better understanding for how JSON data map to R objects and vice versa. Installing or upgrading the single-user is business as usual:
+The introduction of <code>jsonlite</code> does not affect the HTTP API itself, but existing applications that rely heavily on JSON to get data in and out of R might need some modification. For this reason we decided to bump the version to the <tt>1.2</tt> series. If you have existing OpenCPU clients/applications that use JSON, have a look at the <a href="../jsonlite-a-smarter-json-encoder/">post about jsonlite</a> to get a better understanding of how JSON data map to R objects and vice versa. Installing or upgrading the single-user is business as usual:
 
 {% highlight r %}
 update.packages(ask = FALSE)
