@@ -2,7 +2,7 @@
 layout: post
 title: "OpenCPU 1.2: Flexible and reliable R function RPC over HTTPS + JSON"
 category: posts
-description: "Earlier this week, OpenCPU version 1.2 was released. This release uses the new R package 'jsonlite' to get data in and out of R using the JSON format."
+description: "Earlier this week, OpenCPU 1.2 was released. This release uses the new jsonlite package for JSON conversion, which puts in place the final fundamental piece of the OpenCPU framework. This post describes what has changed, why this is important, and how to upgrade."
 cover: "containers.jpg"
 ---
 
@@ -22,7 +22,7 @@ But what if the R function has a return value or arguments which require more ad
 
 ## An example: melting data frames
 
-Examples with curl get a bit verbose with a large payload, but to get an idea, let's melt some data using the <code>melt</code> function in the <code>reshape2</code> package. This function has an argument <tt>data</tt> (data frame) and an argument <tt>id</tt> (character vector). It returns another data frame. In this example, we pass it the first three rows of the AirQuaility dataset, very similar to the example in the <a href="https://public.opencpu.org/ocpu/library/reshape2/man/melt.data.frame/text">melt manual page</a>. The API docs explain that the JSON objects can either be posted as HTTP parameters in a standard HTTP POST formats (i.e. multipart or www-url-encoded):
+Examples with curl get a bit verbose with a large payload, but to get an idea, let's melt some data using the <code>melt</code> function in the <code>reshape2</code> package. This function has an argument <tt>data</tt> (data frame) and an argument <tt>id</tt> (character vector). It returns another data frame. In this example, we pass it the first three rows of the AirQuaility dataset, very similar to the example in the <a href="https://public.opencpu.org/ocpu/library/reshape2/man/melt.data.frame/text">melt manual page</a>. The API docs explain that the JSON objects can either be posted as HTTP parameters in a standard HTTP POST formats (i.e. multipart or x-www-form-urlencoded):
 
 {% highlight bash %}
 curl https://public.opencpu.org/ocpu/library/reshape2/R/melt/json \
@@ -74,14 +74,12 @@ output <- toJSON(result, pretty=TRUE)
 cat(output)
 {% endhighlight %}
 
-Make sure to read the <a href="../jsonlite-a-smarter-json-encoder/">post about jsonlite</a> to get a better understanding for how JSON data map to R objects and vice versa.
-
 
 ## Upgrading to OpenCPU 1.2
 
 It is recommended to update your servers  and applications to version 1.2 rather sooner than later. The 1.0 branch will keep working, but it won't get any new fixes or updates. We plan to stay on the 1.2 branch for quite a while.
 
-The introduction of <code>jsonlite</code> does not affect the HTTP API itself, but existing applications that rely heavily on JSON to get data in and out of R might need some modification. For this reason we decided to bump the version to 1.2 series. Installing or upgrading the single-user is business as usual:
+The introduction of <code>jsonlite</code> does not affect the HTTP API itself, but existing applications that rely heavily on JSON to get data in and out of R might need some modification. For this reason we decided to bump the version to 1.2 series. Make sure to read the <a href="../jsonlite-a-smarter-json-encoder/">post about jsonlite</a> to get a better understanding for how JSON data map to R objects and vice versa. Installing or upgrading the single-user is business as usual:
 
 {% highlight r %}
 update.packages(ask = FALSE)
