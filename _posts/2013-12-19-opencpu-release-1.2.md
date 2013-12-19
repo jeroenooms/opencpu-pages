@@ -79,7 +79,7 @@ cat(output)
 
 It is recommended to update your servers  and applications to version 1.2 rather sooner than later. The 1.0 branch will keep working, but it won't get any new fixes or updates. We plan to stay on the 1.2 branch for quite a while.
 
-The introduction of <code>jsonlite</code> does not affect the HTTP API itself, but existing applications that rely heavily on JSON to get data in and out of R might need some modification. For this reason we decided to bump the version to the <tt>1.2</tt> series. If you have existing OpenCPU clients/applications that use JSON, have a look at the <a href="../jsonlite-a-smarter-json-encoder/">post about jsonlite</a> to get a better understanding of how JSON data map to R objects and vice versa. Installing or upgrading the single-user is business as usual:
+The introduction of <code>jsonlite</code> does not affect the HTTP API itself, but existing applications that rely heavily on JSON to get data in and out of R might need some modification. For this reason we decided to bump the version to the <tt>1.2</tt> series. If you have existing OpenCPU clients/applications that use JSON, have a look at the <a href="../jsonlite-a-smarter-json-encoder/">post about jsonlite</a> to get a better understanding of how JSON data map to R objects and vice versa. Installing or upgrading the OpenCPU single-user development server is business as usual:
 
 {% highlight r %}
 update.packages(ask = FALSE)
