@@ -123,7 +123,7 @@ opencpu$browse("/library/nabel/www")
 ocpu.seturl("//public.opencpu.org/ocpu/library/mypackage/R")
 {% endhighlight %}	
 
-				<p>Cross domain requests are convenient for development and illustrative examples, e.g: <a href="http://jsfiddle.net/opencpu/R7ztn/">http://jsfiddle.net/opencpu/R7ztn/</a>. However, when possible it is still recommended to include a copy of your web pages in the R package for every release of your app. That way you get a nice redistributable app and there is no ambiguity over version compatibility of the front-end (web pages) and back-end (R functions). </p>
+				<p>Cross domain requests are convenient for development and illustrative examples, see e.g: <a href="http://jsfiddle.net/user/opencpu/fiddles/">jsfiddle examples</a>. However, when possible it is still recommended to include a copy of your web pages in the R package for every release of your app. That way you get a nice redistributable app and there is no ambiguity over version compatibility of the front-end (web pages) and back-end (R functions). </p>
 
 				<p>Also note that even when using CORS, the <code>opencpu.js</code> library still requires that all R functions used by a certain application are contained in a single R package. This is on purpose, to force you to keep things organized. If you would like to use functionality from various R packages, you need to create an R package that includes some wrapper functions and formally declares its dependencies on the other packages. Writing an R package is really easy these days, so this should be no problem. </p>
 			</div>
@@ -217,7 +217,7 @@ req.fail(function(){
 });
 {% endhighlight %}
 
-				<p>See it in action here: <a href="http://jsfiddle.net/opencpu/T3cqH/">http://jsfiddle.net/opencpu/T3cqH/</a>. When calling <code>ocpu.rpc</code>, the arguments as well as return value are transferred using JSON. On the R side, the <code>jsonlite</code> package is used to convert between JSON and R objects. Hence, the above code is equivalent to the R code below. The <code>output</code> object is a JSON string which is sent back to the client and parsed by JavaScript.</p>
+				<p>See it in action <a href="http://jsfiddle.net/opencpu/T3cqH/">here</a>. When calling <code>ocpu.rpc</code>, the arguments as well as return value are transferred using JSON. On the R side, the <code>jsonlite</code> package is used to convert between JSON and R objects. Hence, the above code is equivalent to the R code below. The <code>output</code> object is a JSON string which is sent back to the client and parsed by JavaScript.</p>
 
 {% highlight r%}
 library(jsonlite)
