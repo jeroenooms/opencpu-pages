@@ -14,6 +14,7 @@ description: The opencpu.js JavaScript Client Library documentation.
 						<li><a href="#lib-apps">OpenCPU Apps</a></li>
 						<li><a href="#lib-jquery">OpenCPU and jQuery</a></li>
 						<li><a href="#lib-cors">Cross Domain (CORS)</a></li>
+						<li><a href="#lib-jsfiddle">JSfiddle Examples</a></li>
 					</ul>
 				</li>    	
 
@@ -52,9 +53,9 @@ description: The opencpu.js JavaScript Client Library documentation.
 	    	<h1>About the Library</h1>
 	    </div>
 
-	    <div class="alert alert-warning">
+	    <div class="alert alert-info">
 	      <a href="#" class="close" data-dismiss="alert">&times;</a>
-	      <strong>Important</strong> The JavaScript client is still in initial development (version 0.x). When building an application with opencpu.js, please include a copy of the library with your app; don't hotlink it from our servers. That way your application does not break when we change the library.
+	      <strong>Important</strong> The OpenCPU API is stable, but the JavaScript client is still in initial development (version 0.x). When building an application with opencpu.js, it is wise to include a copy of the library with your app; don't hotlink it from our servers. That way your application does not break when we change the library.
 	    </div> 		    
 
 	    <p>The <a href="https://github.com/jeroenooms/opencpu.js">opencpu.js</a> JavaScript client library builds on <a target="_blank" href="http://jquery.com">jQuery</a> to provide Ajax wrappers for calling R from within a web page. The library works on all modern browsers, and lays the foundations for building scalable R web applications.</p>
@@ -123,12 +124,18 @@ opencpu$browse("/library/nabel/www")
 ocpu.seturl("//public.opencpu.org/ocpu/library/mypackage/R")
 {% endhighlight %}	
 
-				<p>Cross domain requests are convenient for development and illustrative examples, e.g: <a href="http://jsfiddle.net/Ks56A/">http://jsfiddle.net/Ks56A/</a>. However, when possible it is still recommended to include a copy of your web pages in the R package for every release of your app. That way you get a nice redistributable app and there is no ambiguity over version compatibility of the front-end (web pages) and back-end (R functions). </p>
+				<p>Cross domain requests are convenient for development and illustrative examples, see e.g: <a href="http://jsfiddle.net/user/opencpu/fiddles/">jsfiddle examples</a>. However, when possible it is still recommended to include a copy of your web pages in the R package for every release of your app. That way you get a nice redistributable app and there is no ambiguity over version compatibility of the front-end (web pages) and back-end (R functions). </p>
 
 				<p>Also note that even when using CORS, the <code>opencpu.js</code> library still requires that all R functions used by a certain application are contained in a single R package. This is on purpose, to force you to keep things organized. If you would like to use functionality from various R packages, you need to create an R package that includes some wrapper functions and formally declares its dependencies on the other packages. Writing an R package is really easy these days, so this should be no problem. </p>
 			</div>
 		</div>
 
+		<div class="panel panel-default" id="lib-jsfiddle">
+			<div class="panel-heading"><h4>JSfiddle<small><em>  — fiddle around with some examples</em></small></h4></div>
+			<div class="panel-body">
+			Since OpenCPU now supports CORS, and so do all major browsers, we started using JSfiddle to illustrate how to use the library. The <a href="http://jsfiddle.net/user/opencpu/fiddles/">opencpu jsfiddle</a> homepage lists all our fiddles, and we will keep adding new examples. Many of these examples are actually referenced and explained in this manual page. But if this is all tl;dr, just <a href="http://jsfiddle.net/user/opencpu/fiddles/">start playing</a>.</p>
+			</div>
+		</div>
 
 	    <div class="page-header" id="lib-stateless">
 	    	<h1>Stateless functions</h1>
@@ -177,7 +184,7 @@ req.fail(function(){
 });
 {% endhighlight %}
 
-				<p>This creates a plot widget in the <code>#plotdiv</code> element (a div in your html). It calls the R function <code>smoothplot</code> and passes argument values as specified, and displays the generated plot including PNG, PDF, and SVG export links. The final lines specify an error handler, which is optional but recommended. Have a look at the <a href="http://jsfiddle.net/g9qg9/">jsfiddle</a>, or the full <a href="https://public.opencpu.org/ocpu/library/stocks/www/">stocks app</a> to see all of this in action!</p>
+				<p>This creates a plot widget in the <code>#plotdiv</code> element (a div in your html). It calls the R function <code>smoothplot</code> and passes argument values as specified, and displays the generated plot including PNG, PDF, and SVG export links. The final lines specify an error handler, which is optional but recommended. Have a look at the <a href="http://jsfiddle.net/opencpu/MkAVF/">jsfiddle</a>, or the full <a href="https://public.opencpu.org/ocpu/library/stocks/www/">stocks app</a> to see all of this in action!</p>
 			</div>
 		</div>
 
@@ -217,7 +224,7 @@ req.fail(function(){
 });
 {% endhighlight %}
 
-				<p>See it in action here: <a href="http://jsfiddle.net/rY3gr/">http://jsfiddle.net/rY3gr/</a>. When calling <code>ocpu.rpc</code>, the arguments as well as return value are transferred using JSON. On the R side, the <code>jsonlite</code> package is used to convert between JSON and R objects. Hence, the above code is equivalent to the R code below. The <code>output</code> object is a JSON string which is sent back to the client and parsed by JavaScript.</p>
+				<p>See it in action <a href="http://jsfiddle.net/opencpu/T3cqH/">here</a>. When calling <code>ocpu.rpc</code>, the arguments as well as return value are transferred using JSON. On the R side, the <code>jsonlite</code> package is used to convert between JSON and R objects. Hence, the above code is equivalent to the R code below. The <code>output</code> object is a JSON string which is sent back to the client and parsed by JavaScript.</p>
 
 {% highlight r%}
 library(jsonlite)
@@ -233,7 +240,7 @@ result <- do.call(stats::sd, fnargs)
 jsonoutput <- toJSON(result)
 {% endhighlight %}
 
-				<p>Another example is available here: <a href="http://jsfiddle.net/Ts8eS/">http://jsfiddle.net/Ts8eS/</a>. This example calls the <code>lowess</code> function in R, to smooth a bunch of values. This can be useful to remove outliers from noisy data. One difference with the previous example, is that <code>lowess</code> does not return a single value, but a list with two vectors: <code>x</code> and <code>y</code>. See the lowess help page for more detail.</p>
+				<p>Another example is available here: <a href="http://jsfiddle.net/opencpu/9nVd5/">http://jsfiddle.net/opencpu/9nVd5/</a>. This example calls the <code>lowess</code> function in R, to smooth a bunch of values. This can be useful to remove outliers from noisy data. One difference with the previous example, is that <code>lowess</code> does not return a single value, but a list with two vectors: <code>x</code> and <code>y</code>. See the lowess help page for more detail.</p>
 			</div>
 		</div>
 
@@ -279,7 +286,7 @@ jsonoutput <- toJSON(result)
 				  </div>
 				</div>	
 
-				<p>The <code>ocpu.call</code> function is the stateful equivalent of <code>ocpu.rpc</code>. It has the same arguments, but the difference is in the callback function. The <code>ocpu.rpc</code> callback argument is a JSON object containing the data returned by the R function. The <code>ocpu.call</code> callback argument is a <em>Session object</em>. The session object is a javascript class that stores the session ID; it does not contain any actual data. However, from the session object, we can asynchronously retrieve data, plots, files, stdout, etc. See <a href="http://jsfiddle.net/ms9zL/">this jsfiddle</a> in action.</p>
+				<p>The <code>ocpu.call</code> function is the stateful equivalent of <code>ocpu.rpc</code>. It has the same arguments, but the difference is in the callback function. The <code>ocpu.rpc</code> callback argument is a JSON object containing the data returned by the R function. The <code>ocpu.call</code> callback argument is a <em>Session object</em>. The session object is a javascript class that stores the session ID; it does not contain any actual data. However, from the session object, we can asynchronously retrieve data, plots, files, stdout, etc. See <a href="http://jsfiddle.net/opencpu/tmqab/">this jsfiddle</a> in action.</p>
 
 {% highlight js%}
 //toy example
@@ -302,7 +309,7 @@ var req = ocpu.call("rnorm", {n: 100}, function(session){
 })
 {% endhighlight %}
 
-				<p>We can also use the Session object to pass the R value returned by the function call as an argument to a subsequent function call, without ever retrieving the object. All state in OpenCPU is managed by controlling R objects in sessions on the server. This <a href="http://jsfiddle.net/77MYJ/">jsfiddle example</a> continues on the previous example, and calculates the variance of the vector generated before, by passing the session object as an argument. A more simple example <a href="http://jsfiddle.net/77MYJ/">here</a></p>
+				<p>We can also use the Session object to pass the R value returned by the function call as an argument to a subsequent function call, without ever retrieving the object. All state in OpenCPU is managed by controlling R objects in sessions on the server. This <a href="http://jsfiddle.net/opencpu/ecwbd/">jsfiddle example</a> continues on the previous example, and calculates the variance of the vector generated before, by passing the session object as an argument. A more simple example <a href="http://jsfiddle.net/opencpu/mH52T/">here</a></p>
 
 {% highlight js%}
 var req1 = ocpu.call("rnorm", {n: 100}, function(session1){
@@ -322,7 +329,7 @@ var req1 = ocpu.call("rnorm", {n: 100}, function(session1){
 			<!-- Default panel contents -->
 			<div class="panel-heading"><h4>Argument Types <small><em>  — passing data to opencpu</em></small></h4></div>
 			<div class="panel-body">
-				<p>In <code>opencpu.js</code> there are 4 types of arguments: a basic JavaScript value/object (automatically converted to R via JSON), a session object (represents an R value from a previous function call), a file and a code snippet. We have already seen examples the first two argument types earlier. Below is an example of using a file as an argument. The file will automatically be uploaded and used to call the R function. See it in action using <a href="http://jsfiddle.net/jVqDU/">this jsfiddle</a>.</p>
+				<p>In <code>opencpu.js</code> there are 4 types of arguments: a basic JavaScript value/object (automatically converted to R via JSON), a session object (represents an R value from a previous function call), a file and a code snippet. We have already seen examples the first two argument types earlier. Below is an example of using a file as an argument. The file will automatically be uploaded and used to call the R function. See it in action using <a href="http://jsfiddle.net/opencpu/5Rqcm/">this jsfiddle</a>.</p>
 
 {% highlight js %}
 //This must be HTML5 <input type="file"> 
@@ -338,7 +345,7 @@ var req = ocpu.call("read.csv", {
 });
 {% endhighlight %}
 
-				<p>The final type of argument is a code snippet. This injects raw R code into the function call. It is usually recommended to use this type only when really needed, because it requires the client to understand R code, which kills interoperability. But this argument type is useful for example in applications that explicitly let the user do some R coding. See <a href="http://jsfiddle.net/g8mc3/">here</a> for a basic example: </p>
+				<p>The final type of argument is a code snippet. This injects raw R code into the function call. It is usually recommended to use this type only when really needed, because it requires the client to understand R code, which kills interoperability. But this argument type is useful for example in applications that explicitly let the user do some R coding. See <a href="http://jsfiddle.net/opencpu/4dgdM/">here</a> for a basic example: </p>
 
 {% highlight js %}
 //create snippet argument
@@ -353,7 +360,7 @@ var req = ocpu.call("mean", {
 {% endhighlight %}
 
 
-				<p>One interesting special case is using a code Snippet when calling the <code>identity</code> function in R. This comes down to executing a raw block of code in a session. Try <a href="http://jsfiddle.net/UXajB/">this jsfiddle</a> to see this in action.</p>
+				<p>One interesting special case is using a code Snippet when calling the <code>identity</code> function in R. This comes down to executing a raw block of code in a session. Try <a href="http://jsfiddle.net/opencpu/v42v3/">this jsfiddle</a> to see this in action.</p>
 	    
 	    	</div>
 	   	</div>
