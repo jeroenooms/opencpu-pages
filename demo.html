@@ -1,31 +1,18 @@
 ---
 layout: page
-title: "Demo Server"
+title: "Public Server"
 ---
 <div class="row">
-  
-  <div class="col-md-6">
-    <div class="alert alert-success">
-      <a href="#" class="close" data-dismiss="alert">&times;</a>
-      A public demo server is provided for anyone to get started with OpenCPU, and play around with apps and packages.
-      It has a standard OpenCPU cloud server installation with approx <a href="https://public.opencpu.org/ocpu/library">2000 popular CRAN packages</a>
-      in the <code>/ocpu/library/</code>. In addition you can try the <code>/ocpu/cran</code> API to install 
-      <a href="https://public.opencpu.org/ocpu/cran/">other CRAN packages</a>. 
-     </div>
-  </div>
- 
-  
-  <div class="col-md-6">
-    <div class="alert alert-warning">
-      <a href="#" class="close" data-dismiss="alert">&times;</a>
-      The server is mostly here to demo the API. Performance will vary (depending on how busy it is) and it might go down
-      or be upgraded without warnings. To host important OpenCPU apps, please <a href="download.html">install 
-      your own OpenCPU cloud server</a>.
-    </div>
-  </div> 
+	<div class="col-md-8 col-md-offset-2">
+		<div class="alert alert-success">
+			<!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
+			The public server runs a standard OpenCPU cloud installation. Anyone can use it to play around with the API, or publish packages, apps, data or code. However note that performance can vary and the server might go down or be upgraded without warnings. For hosting production code please <a href="download.html">install your own OpenCPU cloud server</a>.
+		</div>
+	</div>
 </div>  
 
-<br />
+
+<h2>Public server</h2>  
 
 <div class="row"> 
 	<div class="col-lg-12">
@@ -53,47 +40,177 @@ title: "Demo Server"
 </div>
 
 <br />
- 
-<div class="row">  
-  <div class="col-lg-12">
-    <h2>Custom code</h2>   
-	  <p>The easiest way to share your scripts, documents, packages or apps on OpenCPU is by putting them on github/gist. Use the <a href="https://public.opencpu.org/posts/continuous-integration-of-R-packages/">continuous integration</a> webhook to automatically install your R package/app on the public server, every time you push an update!</p>
-	  
+
+<h2>Packages on ocpu.io</h2>  
+
+<p>All <code>ocpu.io</code> URLs interface to the <a href="api.html#api-package">OpenCPU Package API</a>. To publish your packages and apps on <a href="https://hadley.ocpu.io">yourname.ocpu.io</a>, simply put them on github. Use the <a href="https://public.opencpu.org/posts/continuous-integration-of-R-packages/">continuous integration</a> webhook to automatically install the R package/app on the public server, every time you push an update to Github!</p>
+
+<div class="row"> 
+	<div class="col-lg-12">
 	  <table class="table table-hover table-bordered">
 	    <thead>
 	      <tr>
-	        <th>API</th>
-	        <th>Supports</th>
-	        <th>Example</th>
+	        <th>URL at ocpu.io</th>
+	        <th>Alias (Long URL)</th>
+	        <th>Repository</th>
 	      </tr>
 	    </thead>
-	    <tbody>      
+	    <tbody>
 	      <tr>
-	        <td><code>/ocpu/github/:user/</code></td>
-	        <td>List user repositories</td>
-	        <td><a href="https://public.opencpu.org/ocpu/github/hadley/">https://public.opencpu.org/ocpu/github/hadley/</a> <br>
-	        Shorthand: <a href="https://hadley.ocpu.io/">https://hadley.ocpu.io/</a></td>
-	      </tr>      
-	
+	        <td><a href="https://demo.ocpu.io/stocks/www/">https://demo.ocpu.io/</a></td>
+	        <td><code>https://public.opencpu.org/ocpu/library/</code></td>
+	        <td>demo packages</a></td>
+	      </tr>	    
 	      <tr>
-	        <td><code>/ocpu/github/:user/:package/</code></td>
-	        <td>Packages / Apps</td>
-	        <td><a href="https://public.opencpu.org/ocpu/github/hadley/plyr/">https://public.opencpu.org/ocpu/github/hadley/plyr/</a> <br>
-	        Shorthand: <a href="https://hadley.ocpu.io/plyr/">https://hadley.ocpu.io/plyr/</a></td>
-	        </td>
+	        <td><a href="https://cran.ocpu.io/MASS">https://cran.ocpu.io/</a></td>
+	        <td><code>https://public.opencpu.org/ocpu/cran/</code></td>
+	        <td><a href="http://cran.r-project.org/web/packages/available_packages_by_name.html">CRAN</a></td>
 	      </tr>
 	      <tr>
-	        <td><code>/ocpu/gist/:user/</code></td>
-	        <td>List user gists</td>
-	        <td><a href="https://public.opencpu.org/ocpu/gist/hadley/">https://public.opencpu.org/ocpu/gist/hadley/</a></td>
-	      </tr>  
-	      
+	        <td><a href="https://bioc.ocpu.io/">https://bioc.ocpu.io/</a></td>
+	        <td><code>https://public.opencpu.org/ocpu/bioc/</code></td>
+	        <td><a href="http://www.bioconductor.org/packages/release/bioc/">BioConductor</a></td>
+	      </tr>
 	      <tr>
-	        <td><code>/ocpu/gist/:user/:id/</code></td>
-	        <td>Files / Scripts</td>
-	        <td><a href="https://public.opencpu.org/ocpu/gist/hadley/5721744/html.r">https://public.opencpu.org/ocpu/gist/hadley/5721744/html.r</a></td>
-	      </tr>            
+	        <td><a href="https://hadley.ocpu.io/">https://&lt;github-user&gt;.ocpu.io/</a></td>
+	        <td><code>https://public.opencpu.org/ocpu/github/&lt;github-user&gt;/</code></td>
+	        <td><a href="https://github.com/hadley/">Github</td>
+	      </tr>		      		      
 	    </tbody>
 	  </table>  
+	</div>
+</div>
+
+<br />
+ 
+<div class="row">  
+ 	<div class="col-lg-12">
+    	<h2>Examples</h2>    
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>Action</th>
+					<th>URL (short)</th>
+					<th>URL (long)</th>
+				</tr>
+			</thead>
+			<tbody>      
+				<tr>
+					<td>List packages on CRAN</td>
+					<td><code>cran.ocpu.io</code></td>
+					<td><code>public.opencpu.org/ocpu/cran/</code></td>
+				</tr>
+				<tr>
+					<td>List packages on BioConductor</td>
+					<td><code>bioc.ocpu.io</code></td>
+					<td><code>public.opencpu.org/ocpu/bioc/</code></td>
+				</tr>
+				<tr>
+					<td>List repositories from <a href="http://github.com/hadley">Hadley</a></td>
+					<td><code>hadley.ocpu.io</code></td>
+					<td><code>public.opencpu.org/ocpu/github/hadley/</code></td>
+				</tr>   
+				<tr><th colspan="3" class="text-center">Package Info</th></tr>    
+				<tr>
+					<td>MASS from CRAN</td>
+					<td><code>cran.ocpu.io/MASS/</code></td>
+					<td><code>public.opencpu.org/ocpu/cran/MASS/</code></td>
+				</tr>
+				<tr>
+					<td>plyr from CRAN</td>
+					<td><code>cran.ocpu.io/plyr/</code></td>
+					<td><code>public.opencpu.org/ocpu/cran/plyr/</code></td>
+				</tr> 
+				<tr>
+					<td>plyr from Github</td>
+					<td><code>hadley.ocpu.io/plyr/</code></td>
+					<td><code>public.opencpu.org/ocpu/github/hadley/plyr/</code></td>
+				</tr>
+				<tr><th colspan="3" class="text-center">Package Contents</th></tr>
+				<tr>
+					<td>MASS datasets</td>
+					<td><code>cran.ocpu.io/MASS/data/</code></td>
+					<td><code>public.opencpu.org/ocpu/cran/MASS/data/</code></td>
+				</tr>
+				<tr>
+					<td>plyr datasets</td>
+					<td><code>hadley.ocpu.io/plyr/data/</code></td>
+					<td><code>public.opencpu.org/ocpu/github/hadley/plyr/data/</code></td>
+				</tr> 
+				<tr>
+					<td>plyr R objects</td>
+					<td><code>hadley.ocpu.io/plyr/R/</code></td>
+					<td><code>public.opencpu.org/ocpu/github/hadley/plyr/R/</code></td>
+				</tr>
+				<tr>
+					<td>plyr help pages</td>
+					<td><code>hadley.ocpu.io/plyr/man/</code></td>
+					<td><code>public.opencpu.org/ocpu/github/hadley/plyr/man/</code></td>
+				</tr> 	
+				<tr>
+					<td>plyr files</td>
+					<td><code>hadley.ocpu.io/plyr/DESCRIPTION</code></td>
+					<td><code>public.opencpu.org/ocpu/github/hadley/plyr/DESCRIPTION</code></td>
+				</tr>
+				<tr><th colspan="3" class="text-center">Datasets</th></tr>	
+				<tr>
+					<td>mammals sleep data (print)</td>
+					<td><code>hadley.ocpu.io/ggplot2/data/msleep/print</code></td>
+					<td><code>public.opencpu.org/ocpu/github/hadley/data/msleep/print</code></td>
+				</tr>
+				<tr>
+					<td>mammals sleep data (csv)</td>
+					<td><code>hadley.ocpu.io/ggplot2/data/msleep/csv</code></td>
+					<td><code>public.opencpu.org/ocpu/github/hadley/data/msleep/csv</code></td>
+				</tr>
+				<tr>
+					<td>mammals sleep data (json)</td>
+					<td><code>hadley.ocpu.io/ggplot2/data/msleep/json</code></td>
+					<td><code>public.opencpu.org/ocpu/github/hadley/data/msleep/json</code></td>
+				</tr>
+				<tr><th colspan="3" class="text-center">Manual pages</th></tr>	
+				<tr>
+					<td>msleep help (text) </td>
+					<td><code>hadley.ocpu.io/ggplot2/man/msleep/text</code></td>
+					<td><code>public.opencpu.org/ocpu/github/hadley/man/msleep/text</code></td>
+				</tr>
+				<tr>
+					<td>msleep help (html) </td>
+					<td><code>hadley.ocpu.io/ggplot2/man/msleep/html</code></td>
+					<td><code>public.opencpu.org/ocpu/github/hadley/man/msleep/html</code></td>
+				</tr>
+				<tr>
+					<td>msleep help (pdf) </td>
+					<td><code>hadley.ocpu.io/ggplot2/man/msleep/pdf</code></td>
+					<td><code>public.opencpu.org/ocpu/github/hadley/man/msleep/pdf</code></td>
+				</tr>
+				<tr><th colspan="3" class="text-center">Example Apps</th></tr>	
+				<tr>
+					<td>appdemo <a href="http://github.com/opencpu/appdemo">(src)</a></td>
+					<td><code>opencpu.ocpu.io/appdemo/www</code></td>
+					<td><code>public.opencpu.org/ocpu/github/opencpu/appdemo/www</code></td>
+				</tr>
+				<tr>
+					<td>stocks <a href="http://github.com/opencpu/stocks">(src)</a></td>
+					<td><code>opencpu.ocpu.io/stocks/www</code></td>
+					<td><code>public.opencpu.org/ocpu/github/opencpu/stocks/www</code></td>
+				</tr>
+				<tr>
+					<td>nabel <a href="http://github.com/opencpu/nabel">(src)</a></td>
+					<td><code>opencpu.ocpu.io/nabel/www</code></td>
+					<td><code>public.opencpu.org/ocpu/github/opencpu/nabel/www</code></td>
+				</tr>
+				<tr>
+					<td>markdownapp <a href="http://github.com/opencpu/markdownapp">(src)</a></td>
+					<td><code>opencpu.ocpu.io/markdownapp/www</code></td>
+					<td><code>public.opencpu.org/ocpu/github/opencpu/markdownapp/www</code></td>
+				</tr>
+				<tr>
+					<td>mapapp <a href="http://github.com/opencpu/mapapp">(src)</a></td>
+					<td><code>opencpu.ocpu.io/mapapp/www</code></td>
+					<td><code>public.opencpu.org/ocpu/github/opencpu/mapapp/www</code></td>
+				</tr>			
+			</tbody>
+		</table>
 	</div>
 </div>
