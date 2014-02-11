@@ -20,11 +20,11 @@ $(function(){
         var appurl;
        
         $.ajax({
-          url: "/ocpu/library/" + value.name
+          url: "//demo.ocpu.io/" + value.name
         }).done(function(){
-          appurl = "/ocpu/library/" + value.name;
+          appurl = "https://demo.ocpu.io/" + value.name;
         }).error(function(){
-          appurl = "/ocpu/github/opencpu/" + value.name;       
+          appurl = "https://opencpu.ocpu.io/" + value.name;       
         }).always(function(){
            var myul = $('<ul class="dropdown-menu" role="menu">').appendTo(btngrp);
            myul.append('<li><a target="_blank" href="' + appurl + '/"><i class="icon icon-info-sign"> Package Info </a></li>');
