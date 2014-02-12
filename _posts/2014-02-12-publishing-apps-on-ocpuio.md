@@ -27,7 +27,7 @@ cover: "containers.jpg"
       <td><a href="https://bioc.ocpu.io"><code>bioc.ocpu.io</code></a></td>
     </tr>
     <tr>
-      <td>List repositories from <a href="http://github.com/hadley">Hadley</a></td>
+      <td>Github repositories from: <a href="http://github.com/hadley">Hadley</a></td>
       <td><a href="https://hadley.ocpu.io"><code>hadley.ocpu.io</code></a></td>
     </tr>   
     <tr><th colspan="3" class="text-center">Package Info</th></tr>    
