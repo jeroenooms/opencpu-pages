@@ -75,11 +75,11 @@ cover: "containers.jpg"
     </tr>
     <tr>
       <td>mammals sleep data (json)</td>
-      <td><a href="https://hadley.ocpu.io/ggplot2/data/msleep/json"><code>hadley.ocpu.io/ggplot2/data/msleep/json?digits=4</code></a></td>
+      <td><a href="https://hadley.ocpu.io/ggplot2/data/msleep/json?digits=4"><code>hadley.ocpu.io/ggplot2/data/msleep/json</code></a></td>
     </tr>
     <tr>
       <td>mammals sleep data (json columns)</td>
-      <td><a href="https://hadley.ocpu.io/ggplot2/data/msleep/json"><code>hadley.ocpu.io/ggplot2/data/msleep/json?dataframe=column</code></a></td>
+      <td><a href="https://hadley.ocpu.io/ggplot2/data/msleep/json?dataframe=column&digits=4"><code>hadley.ocpu.io/ggplot2/data/msleep/json?dataframe=column</code></a></td>
     </tr>    
     <tr><th colspan="3" class="text-center">Manual pages</th></tr>  
     <tr>
