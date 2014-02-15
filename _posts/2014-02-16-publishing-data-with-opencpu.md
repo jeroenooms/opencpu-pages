@@ -89,15 +89,17 @@ The client can also control formatting options by passing HTTP parameters. These
       <td><a href="https://cran.ocpu.io/MASS/data/bacteria/csv?row.names=true"><code>cran.ocpu.io/MASS/data/bacteria/csv?row.names=true</code></a></td>
     </tr>
     <tr>
-    <tr>
       <td><code>jsonlite::asJSON(Boston, digits=4)</code></td>
       <td><a href="https://cran.ocpu.io/MASS/data/Boston/json?digits=4"><code>cran.ocpu.io/MASS/data/Boston/json?digits=4</code></a></td>
     </tr>
     <tr>
-   <tr>
       <td><code>jsonlite::asJSON(Boston, dataframe="columns")</code></td>
       <td><a href="https://cran.ocpu.io/MASS/data/Boston/json?dataframe=columns&digits=4"><code>cran.ocpu.io/MASS/data/Boston/json?dataframe=columns</code></a></td>
     </tr> 
+    <tr>
+      <td><code>jsonlite::asJSON(Boston, pretty=FALSE)</code></td>
+      <td><a href="https://cran.ocpu.io/MASS/data/Boston/json?pretty=false"><code>cran.ocpu.io/MASS/data/Boston/json?pretty=false</code></a></td>
+    </tr>    
   </tbody>
 </table>
 
