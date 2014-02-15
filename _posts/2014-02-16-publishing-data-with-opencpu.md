@@ -12,7 +12,15 @@ There are many alternative data interchange formats, each with their own benefit
 
 ## Retrieving dynamic data
 
-What we really need is a method to publish the data itself rather than some representation of the data in a particular format. With OpenCPU you can publish R <emph>objects</emph> (including datasets) in a way that lets the clients select the format and formatting options for retrieving the dataset. This is implemented using native R functionality to include arbitrary data/objects in packages, and standard R functions for exporting these data. For example, the CRAN package <code>MASS</code> includes a dataset called <code>bacteria</code>. It can be retrieved it in many formats:
+What we really need is a method to publish the data itself rather than some representation of the data in a particular format. With OpenCPU you can publish R <emph>objects</emph> (including datasets) in a way that lets the clients select the format and formatting options for retrieving the dataset. This is implemented using native R functionality to include arbitrary data/objects in packages, and standard R functions for exporting these data. For example, the CRAN package <code>MASS</code> includes a dataset called <code>bacteria</code>:
+
+{% highlight r %}
+library(MASS)
+data(bacteria)
+print(bacteria)
+{% endhighlight %} 
+
+Via OpenCPU, the dataset can downloaded by anyone, using one of many formats:
 
 <table class="table table-hover table-bordered">
   <thead>
@@ -118,7 +126,7 @@ If this succeeds you're good to go. Navigate to <code>username.ocpu.io/pkgname/d
 
 ## Publishing dynamic data on your own server
 
-OpenCPU does not lock you into some commercial hosting service. Your data is stored on Github in a standard format under your control. The <code>ocpu.io</code> public server is there for your convenience. You can also <a href="download.html">install your own OpenCPU cloud server</a> to publish data at e.g. <code>http://opencpu.yourserver.com/ocpu/library/pkgname/data/myobject</code>. No need to put anything on Github, just install the package in R on the server.
+OpenCPU does not lock you into some commercial hosting service. Your data is stored on Github in a standard format under your control. The <code>ocpu.io</code> public server is there for your convenience. You can also <a href="../../download.html">install your own OpenCPU cloud server</a> to publish data at e.g. <code>http://opencpu.yourserver.com/ocpu/library/pkgname/data/myobject</code>. No need to put anything on Github, just install the package in R on the server.
 
 
 
