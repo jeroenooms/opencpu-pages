@@ -6,7 +6,7 @@ description: "The jsonlite package is a fork of RJSONIO. It uses a more recent v
 cover: "containers.jpg"
 ---
 
-A new version of the <a href="http://cran.r-project.org/web/packages/jsonlite">jsonlite package</a> was released to CRAN. In addition to adding small new features, this release cleans up code and documentation. Some compiler warnings from <code>RJSONIO</code> are fixed and the <a href="http://cran.r-project.org/web/packages/jsonlite/jsonlite.pdf">reference manual</a> is a bit more concise. Also some new examples of public JSON APIs were added to the <a href="http://cran.r-project.org/web/packages/jsonlite/vignettes/json-mapping.pdf">package vignette</a>. These are great to see the power of <code>jsonlite</code> in action when working with real world JSON structures. 
+A new version of the <a href="http://cran.r-project.org/web/packages/jsonlite">jsonlite package</a> was released to CRAN. In addition to adding small new features, this release cleans up code and documentation. Some annoying compiler warnings inherited from <code>RJSONIO</code> are fixed and the <a href="http://cran.r-project.org/web/packages/jsonlite/jsonlite.pdf">reference manual</a> is a bit more concise. Also some new examples of public JSON APIs were added to the <a href="http://cran.r-project.org/web/packages/jsonlite/vignettes/json-mapping.pdf">package vignette</a>. These are great to see the power of <code>jsonlite</code> in action when working with real world JSON structures. 
 
 ## What is jsonlite again?
 
@@ -16,7 +16,7 @@ The <code>jsonlite</code> package is a fork of <code>RJSONIO</code>. It builds o
 
 Two new functions were introduced in this release. The <code>minify</code> function is the opposite of <code>prettify</code>, and  reduces the size of a <code>JSON</code> blob by removing all redundant whitespace. 
 
-The new <code>unbox</code> function was requested several users. It can be used to force atomic vectors of length 1 to be encoded as a <code>JSON</code> scalar rather than an array. To understand why this should not be default behavior, read the <a href="http://cran.r-project.org/web/packages/jsonlite/vignettes/json-mapping.pdf">vignette</a> or this <a href="https://github.com/jeroenooms/jsonlite/issues/6">github issue</a>. However it can be useful to do this for individual object elements:
+The new <code>unbox</code> function was requested several users. It can be used to force atomic vectors of length 1 to be encoded as a <code>JSON</code> <b>scalar</b> rather than an <b>array</b>. To understand why this should not be default behavior, see the <a href="http://cran.r-project.org/web/packages/jsonlite/vignettes/json-mapping.pdf">vignette</a> or this <a href="https://github.com/jeroenooms/jsonlite/issues/6">github issue</a>. However it can be useful to do this for individual object elements:
 
 {% highlight r %}
 > cat(toJSON(list(foo=123)))
