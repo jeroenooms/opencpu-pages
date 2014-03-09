@@ -48,7 +48,7 @@ Via OpenCPU, the dataset can downloaded by anyone, using one of many formats:
     </tr>
     <tr>
       <td>JSON</td>
-      <td><code>jsonlite::asJSON</code></td>
+      <td><code>jsonlite::toJSON</code></td>
       <td><a href="https://cran.ocpu.io/MASS/data/bacteria/json"><code>cran.ocpu.io/MASS/data/bacteria/json</code></a></td>
     </tr> 
     <tr>
@@ -89,15 +89,15 @@ The client can also control formatting options by passing HTTP parameters. These
       <td><a href="https://cran.ocpu.io/MASS/data/bacteria/csv?row.names=true"><code>cran.ocpu.io/MASS/data/bacteria/csv?row.names=true</code></a></td>
     </tr>
     <tr>
-      <td><code>jsonlite::asJSON(Boston, digits=4)</code></td>
+      <td><code>jsonlite::toJSON(Boston, digits=4)</code></td>
       <td><a href="https://cran.ocpu.io/MASS/data/Boston/json?digits=4"><code>cran.ocpu.io/MASS/data/Boston/json?digits=4</code></a></td>
     </tr>
     <tr>
-      <td><code>jsonlite::asJSON(Boston, dataframe="columns")</code></td>
+      <td><code>jsonlite::toJSON(Boston, dataframe="columns")</code></td>
       <td><a href="https://cran.ocpu.io/MASS/data/Boston/json?dataframe=columns&digits=4"><code>cran.ocpu.io/MASS/data/Boston/json?dataframe=columns</code></a></td>
     </tr> 
     <tr>
-      <td><code>jsonlite::asJSON(Boston, pretty=FALSE)</code></td>
+      <td><code>jsonlite::toJSON(Boston, pretty=FALSE)</code></td>
       <td><a href="https://cran.ocpu.io/MASS/data/Boston/json?pretty=false"><code>cran.ocpu.io/MASS/data/Boston/json?pretty=false</code></a></td>
     </tr>    
   </tbody>
