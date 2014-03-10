@@ -376,7 +376,24 @@ curl https://public.opencpu.org/ocpu/tmp/x0648ec6b/R/.val/print
 							<td>Retrieve an R object in a particular output format (see section on output formats).</td>
 						</tr>																					
 					</tbody>
-				</table>		  
+				</table>
+
+{% highlight bash %}
+#list objects and datasets from MASS
+curl https://public.opencpu.org/ocpu/library/MASS/R/
+curl https://public.opencpu.org/ocpu/library/MASS/data/
+
+#retrieve objects
+curl https://public.opencpu.org/ocpu/library/MASS/R/truehist/print
+curl https://public.opencpu.org/ocpu/library/MASS/data/bacteria/print
+curl https://public.opencpu.org/ocpu/library/MASS/data/bacteria/json
+curl https://public.opencpu.org/ocpu/library/MASS/data/bacteria/csv
+curl https://public.opencpu.org/ocpu/library/MASS/data/bacteria/rda
+
+#call a function 
+curl https://public.opencpu.org/ocpu/library/MASS/R/truehist -d 'data=[1,3,7,4,2,4,2,6]'
+{% endhighlight %}
+
 			</div>
 		</div> 
 
