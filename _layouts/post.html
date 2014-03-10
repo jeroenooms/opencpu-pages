@@ -4,17 +4,6 @@ prefix: "../../"
 ---
 <div class="post">
 	<header class="subhead hidden-xs" id="topheader" style="background-image: url('{{ page.prefix }}covers/{{page.cover}}');">
-	  <div class="container">
-	    <h1>{{page.title}}</h1>
-	    <p class="lead">
-	      {{ page.date | date: "%B %e, %Y" }}
-	    </p>
-	  </div>
-	</header>
-	
-	<header class="container pageheader visible-xs">
-	  <h1>{{page.title}}</h1> 
-	  <hr>
 	</header>
 	
 	<div class="container">
@@ -24,7 +13,10 @@ prefix: "../../"
 	      {% include social.html %}
 	    </div>
 	    <div class="col-md-9">
-	      {{ content }}
+	    	<h1>{{page.title}}</h1> 
+	 		<p class="lead">{{ page.date | date: "%B %e, %Y" }}</p>
+			<hr>
+	    	{{ content }}
 	    </div>
 	    <div class="col-md-offset-3 col-md-9 mydisqus">
 	      {% include disqus.html %}
