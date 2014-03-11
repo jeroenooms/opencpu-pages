@@ -6,7 +6,7 @@ description: "OpenCPU is a system for embedded scientific computing and reproduc
 cover: "containers.jpg"
 ---
 
-A new version of the <a href="http://cran.r-project.org/web/packages/opencpu">opencpu package</a> was released to CRAN and Launchpad. Besides some minor bugfixes, the single-user has better support for configuration. By default, the single-user server will now load configuration from the following file:
+A new version of <a href="http://www.opencpu.org/">OpenCPU</a> was released to <a href="http://cran.r-project.org/web/packages/opencpu">CRAN</a> and <a href="https://launchpad.net/~opencpu/+archive/opencpu-1.2">Launchpad</a>. Besides some minor bugfixes, the single-user has better support for configuration. By default, the single-user server will now load configuration from the following file:
 
 {% highlight r %}
 path.expand("~/.opencpu.conf")
