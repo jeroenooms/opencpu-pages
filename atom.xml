@@ -12,7 +12,7 @@ layout: nil
  <author>
    <name>{{ site.author.name }}</name>
  </author>
- <logo>{{ site.production_url }}/images/cat1.jpg</logo>
+ <logo>{{ site.production_url }}/images/hamster1.jpg</logo>
  <icon>{{ site.production_url }}/favicon.ico</icon>
 
  {% for post in site.posts %}
@@ -22,7 +22,7 @@ layout: nil
    <updated>{{ post.date | date_to_xmlschema }}</updated>
    <id>{{ site.production_url }}{{ post.id }}</id>
    <content type="html">
-   &lt;a href=&quot;{{ site.production_url | xml_escape }}{{ post.id | xml_escape }}&quot;&gt;&lt;img alt=&quot;opencpu logo&quot; src=&quot;{{ site.production_url }}/images/cat1.jpg&quot;&gt;&lt;/a&gt;
+   &lt;a href=&quot;{{ site.production_url | xml_escape }}{{ post.id | xml_escape }}&quot;&gt;&lt;img alt=&quot;opencpu logo&quot; src=&quot;{{ site.production_url }}/images/hamster1.jpg&quot;&gt;&lt;/a&gt;
    {{ post.content | xml_escape }}
    </content>
  </entry>
