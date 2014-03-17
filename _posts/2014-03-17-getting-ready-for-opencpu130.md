@@ -10,7 +10,7 @@ The OpenCPU <a href="../../demo.html">public demo server</a> and <a href="https:
 
 ## New in OpenCPU 1.3
 
-The improvements in this release are mostly internal. However there will be one subtle change: starting this version, all <a href="../../api.html">HTTP API</a> responses with status code <code>201</code>, <code>301</code> or <code>302</code> will use an <b>absolute url</b> in the <code>Location</code> response header. For example, the response headers of a request could contain:
+The improvements in this release are mostly internal. However there will be one subtle change: starting version 1.3, all <a href="../../api.html">HTTP API</a> responses with status code <code>201</code>, <code>301</code> or <code>302</code> will use an <b>absolute url</b> in the <code>Location</code> response header. For example, the response headers of a request could contain:
 
 	...
 	Date: Mon, 17 Mar 2014 06:59:26 GMT
