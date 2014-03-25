@@ -774,7 +774,7 @@ curl https://public.opencpu.org/ocpu/library/base/R/summary -d 'object=x067b4172
 
 {% highlight bash %}
 #post arguments in json
-curl http://your.server.com/ocpu/library/stats/R/rnorm \
+curl http://public.opencpu.org/ocpu/library/stats/R/rnorm \
 -H "Content-Type: application/json" -d '{"n":10, "mean": 10, "sd":10}'
 {% endhighlight %}
 
@@ -868,7 +868,7 @@ curl https://public.opencpu.org/ocpu/gist/hadley/5721744/html.r -X POST
 				<p>For the common special case where a client is only interested in the output data from a function call in JSON format, the HTTP POST request url can be post-fixed with <code>/json</code>. In this case, a successfull call will return status 200 (instead of 201), and the response body directly contains the returned object in JSON; no need for an additional GET request.</p>
 
 {% highlight bash %}
-curl http://your.server.com/ocpu/library/stats/R/rnorm/json -d n=2
+curl http://public.opencpu.org/ocpu/library/stats/R/rnorm/json -d n=2
 [
 -1.2804,
 -0.75013
@@ -878,7 +878,7 @@ curl http://your.server.com/ocpu/library/stats/R/rnorm/json -d n=2
 				<p>We can combine this with the <code>application/json</code> request content type for full JSON RPC on R functions</p>
 
 {% highlight bash %}
-curl http://your.server.com/ocpu/library/stats/R/rnorm/json \
+curl http://public.opencpu.org/ocpu/library/stats/R/rnorm/json \
 -H "Content-Type: application/json" -d '{"n":3, "mean": 10, "sd":10}'
 [
 4.9829,
