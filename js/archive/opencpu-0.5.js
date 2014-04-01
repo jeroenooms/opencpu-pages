@@ -275,7 +275,7 @@ if(!window.jQuery) {
       
       var spinner = $('<span />').attr({
         style : "position: absolute; top: 20px; left: 20px; z-index:1000; font-family: monospace;" 
-      }).text("loading...").appendTo(plotdiv);
+      }).text("loading...").appendTo(plotdiv).hide();
 
       var pdf = $('<a />').attr({
         target: "_blank",        
