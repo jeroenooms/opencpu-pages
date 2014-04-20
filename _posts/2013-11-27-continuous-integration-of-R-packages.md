@@ -18,7 +18,7 @@ To setup CI, add the following URL as a 'WebHook' in your Github repository:
 
     https://public.opencpu.org/ocpu/webhook
 
-For instructions how to add webhooks, see [here](https://help.github.com/articles/post-receive-hooks). To trigger a build, either push a commit to the master branch, or select the box with the URL and press the <code>Test Hook</code> button. You should receive an email that reports if the installation was successful. If it was, the package will directly be available for remote use through the OpenCPU API.
+Make sure to select payload version <code>application/vnd.github.v3+form</code>. To trigger a build push a commit to the master branch. The build will show up under <i>Recent Deliveries</i> in your github project page and if you should receive an email reporting if the installation was successful. If it was, the package will directly be available for remote use through the OpenCPU API.
 
 <img class="img-thumbnail img-responsive" src="../../images/githook.png" alt="git hook screenshot">
 
