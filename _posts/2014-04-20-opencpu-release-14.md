@@ -2,7 +2,7 @@
 layout: post
 title: "OpenCPU release 1.3 and 1.4"
 category: posts
-description: "After a few months of testing we present OpenCPU versions 1.3 and 1.4. These releases do not introduce any major changes in the OpenCPU HTTP API but focuses entirely on performance, reliability and security to support long running servers."
+description: "After a few months of testing we present OpenCPU versions 1.3 and 1.4. These releases do not introduce any major changes in the OpenCPU HTTP API but focus entirely on performance, reliability and security to support long running servers."
 cover: "containers.jpg"
 ---
 
