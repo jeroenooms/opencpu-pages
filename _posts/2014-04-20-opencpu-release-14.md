@@ -54,7 +54,7 @@ Appendix B of the <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-s
 
 ## Questions
 
-If you have any problems, questions, feedback or suggestions feel free to send an email on the <a href="../../faq.html">mailing list</a> or open an issue on github. As is the case for many open source projects, good software comes with terrible documentation. But if anything is not working or unclear please do let me know.
+If you have any problems, questions, feedback or suggestions feel free to send an email on the <a href="../../faq.html">mailing list</a> or open an issue on github. As is the case for many open source projects, good software comes with terrible documentation. But if anything is not working or unclear please do let me know; it is probably something small.
 
 
  
