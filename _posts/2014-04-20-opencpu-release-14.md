@@ -2,11 +2,11 @@
 layout: post
 title: "OpenCPU release 1.3 and 1.4"
 category: posts
-description: "OpenCPU is a system for embedded scientific computing and reproducible research. The OpenCPU HTTP API provides a middle layer interface to R. Either use the public servers or host your own."
+description: "After a few months of testing we present OpenCPU versions 1.3 and 1.4. These releases do not introduce any major changes in the OpenCPU HTTP API but focuses entirely on performance, reliability and security to support long running servers."
 cover: "containers.jpg"
 ---
 
-After a few months of testing we present OpenCPU versions 1.3 and 1.4. These releases do not introduce any major changes in the <a href="../../api.html">OpenCPU HTTP API</a> but focus entirely on performance, reliability and security to support long running servers. The only minor API change in the <a href="../getting-ready-for-opencpu130/">switch to absolute URLs</a> in the location header. Upgrading from OpenCPU 1.2 should be painless and is recommended.
+After a few months of testing we present OpenCPU versions 1.3 and 1.4. These releases do not introduce any major changes in the <a href="../../api.html">OpenCPU HTTP API</a> but focuses entirely on performance, reliability and security to support long running servers. The only minor API change in the <a href="../getting-ready-for-opencpu130/">switch to absolute URLs</a> in the location header. Upgrading from OpenCPU 1.2 should be painless and is recommended.
 
 These and future releases of the OpenCPU cloud server will target <code>Ubuntu 14.04</code> in order to take advantage of recent features in <code>R</code>, <code>Apache2</code>, <code>AppArmor</code> and <code>nginx</code>. Because this is a Long Term Support (LTS) Ubuntu release it includes 5 years of updates. Hence your OpenCPU server can run safely until April 2019 (or until you decide to upgrade). 
 
