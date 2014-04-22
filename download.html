@@ -5,13 +5,6 @@ title: "Download & Install"
 
 
 <div class="row">
-  <div class="col-md-6">
-    <h3>Local Single-User Server</h3>
-{% highlight r %}
-install.packages("opencpu")
-library(opencpu)
-{% endhighlight %}
-  </div>
   
   <div class="col-md-6">
     <h3>Ubuntu 14.04 Cloud Server</h3>
@@ -22,11 +15,30 @@ sudo apt-get update
 sudo apt-get install opencpu   
 {% endhighlight %} 
   </div>
+
+  <div class="col-md-6">
+    <h3>Local Single-User Server</h3>
+{% highlight r %}
+install.packages("opencpu")
+library(opencpu)
+{% endhighlight %}
+  </div>
+
 </div>
 
 <br />
 
 <div class="row">  
+
+  <div class="col-md-6">
+    <h3>Server Manual PDF</h3>
+    <div class="well">
+      <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-server.pdf">
+        <i class="icon-file-text icon-2x pull-left icon-border"></i>
+      </a>
+      <p>The OpenCPU server manual PDF is the primary reference for installing and managing OpenCPU servers.</p>
+    </div>
+  </div>
 
   <div class="col-md-6">
     <h3>Installing OpenCPU Apps</h3>
@@ -39,17 +51,6 @@ install_github("gitstats", "opencpu")
 library(opencpu)
 opencpu$browse("/library/gitstats/www")
 {% endhighlight %}
-  </div>  
-
-  <div class="col-md-6">
-    <h3>Server Manual PDF</h3>
-    <div class="well">
-      <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-server.pdf">
-        <i class="icon-file-text icon-2x pull-left icon-border"></i>
-      </a>
-      <p>The OpenCPU server manual PDF is the primary reference for installing and managing OpenCPU servers.</p>
-    </div>
-  </div>
-  
+  </div>    
   
 </div>
