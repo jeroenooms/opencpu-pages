@@ -254,8 +254,8 @@ $(function(){
   if(el.length){
     $('html, body').animate({
         scrollTop: el.offset().top
-    }, 300, function(){
-        el.trigger("click");
+    }, function(){
+      el.trigger("click")
     });
   }
 })
