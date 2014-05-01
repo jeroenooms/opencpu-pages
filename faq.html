@@ -251,10 +251,12 @@ $(function(){
 
   //on page load
   var el = $('a[href="' + window.location.hash + '"]');
-  $('html, body').animate({
-      scrollTop: el.offset().top
-  }, 1000, function(){
-      el.trigger("click");
-  });  
+  if(el){
+    $('html, body').animate({
+        scrollTop: el.offset().top
+    }, 500, function(){
+        el.trigger("click");
+    });
+  ] 
 })
 </script>
