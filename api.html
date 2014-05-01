@@ -961,7 +961,7 @@ $(function(){
 });
 
 //fancy scrolling animation	
-if((/iPhone|iPod|iPad|Android|BlackBerry/).test(navigator.userAgent)){
+if(!(/iPhone|iPod|iPad|Android|BlackBerry/).test(navigator.userAgent)){
 	$("#docmenu li a").on('click', function(e) {
 		// prevent default anchor click behavior
 		e.preventDefault();
