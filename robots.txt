@@ -1,5 +1,1 @@
-# These web pages are documenation for an obsolete version of
-# OpenCPU. Users should only see these pages when specifically
-# directed here.
-User-agent: *
-Disallow: /ocpu/
+#cleaned up 
