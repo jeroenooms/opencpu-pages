@@ -960,6 +960,27 @@ $(function(){
   $('body').scrollspy({ target: '#docmenu', offset:80 })
 });
 
+//fancy scrolling animation	
+if((/iPhone|iPod|iPad|Android|BlackBerry/).test(navigator.userAgent)){
+	$("#docmenu li a").on('click', function(e) {
+		// prevent default anchor click behavior
+		e.preventDefault();
+
+	 	// store hash
+	 	var hash = this.hash;
+
+		// animate
+		$('html, body').animate({
+			scrollTop: $(this.hash).offset().top - 65
+		}, 500, function(){
+			// when done, add hash to url
+			// (default click behaviour)
+			window.location.hash = hash;
+		});
+	});
+}
+
+/*
 $("#docmenu li a").on('click', function(e) {
 	if((/iPhone|iPod|iPad|Android|BlackBerry/).test(navigator.userAgent)){
 		//device default scroll
@@ -968,5 +989,6 @@ $("#docmenu li a").on('click', function(e) {
 		$.scrollTo(this.hash, 500, {offset: -65});
 		$(this).blur();			
 	}
-});  
+});
+*/  
 </script>
