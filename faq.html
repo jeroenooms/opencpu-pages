@@ -251,7 +251,7 @@ $(function(){
 
   //on page load
   var el = $('a[href="' + window.location.hash + '"]');
-  if(el){
+  if(el.length){
     $('html, body').animate({
         scrollTop: el.offset().top
     }, 300, function(){
