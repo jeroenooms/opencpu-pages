@@ -241,3 +241,20 @@ title: "FAQ"
  
   </div>
 </div>
+
+<script>
+$(function(){
+  //this should happen by default
+  $("a.accordion-toggle").on("click", function(){
+    window.location.hash = this.hash;
+  })
+
+  //on page load
+  var el = $('a[href="' + window.location.hash + '"]');
+  $('html, body').animate({
+      scrollTop: el.offset().top
+  }, 1000, function(){
+      el.trigger("click");
+  });  
+})
+</script>
