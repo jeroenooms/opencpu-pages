@@ -68,8 +68,7 @@ description: The official OpenCPU API documentation.
 			<div class="panel-heading"><h4>HTTP Methods</h4></div>
 			<div class="panel-body">
 
-				<p>OpenCPU currently only uses HTTP methods <code>GET</code> and <code>POST</code>. GET is used to read a resource, and POST is to
-					execute/call/run the resource. POST is only valid on scripts, reproducible documents and R functions.</p>
+				<p>OpenCPU currently only uses HTTP methods <code>GET</code> and <code>POST</code>. GET is used to retrieve a resource, and POST is used for RPC. A POST request is only valid targeting a script or function URL.</p>
 
 				<table class="table table-bordered">
 					<thead>
@@ -197,15 +196,15 @@ curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d "n=10&mean=5"
 					<tbody>
 						<tr>
 							<td><code>/ocpu/library/{pkgname}/</code></td>
-							<td>Interfaces to R packages installed in one of the global libraries on the server.</td>
+							<td>R packages installed in one of the global libraries on the server.</td>
 						</tr>
 						<tr>
 							<td><code>/ocpu/user/{username}/library/{pkgname}/</code></td>
-							<td>Interfaces to R packages installed in the home library of <code>:username</code>.</td>
+							<td>R packages installed in the home library of Linux user <code>{username}</code>.</td>
 						</tr>   
 						<tr>
 							<td><code>/ocpu/tmp/{key}/</code></td>
-							<td>Interfaces temporary sessions, usually the result of function/script executions.</td>
+							<td>Temporary sessions, which hold outputs from a function/script RPC.</td>
 						</tr>
 					</tbody>
 				</table>
@@ -219,7 +218,7 @@ curl https://public.opencpu.org/ocpu/user/jeroen/library/
 curl https://public.opencpu.org/ocpu/tmp/x2c5ab8d4d6
 {% endhighlight %}  			
 
-				<p>In addition, we can call packages from remote libraries such as CRAN or Github:</p>
+				<p>In addition, we can call packages from remote libraries such as CRAN or Github. Administrators can choose to disable these remote libraries so not all servers support this.</p>
 
 				<table class="table table-bordered">
 					<thead>
@@ -239,7 +238,7 @@ curl https://public.opencpu.org/ocpu/tmp/x2c5ab8d4d6
 						</tr>  
 						<tr>
 							<td><code>/ocpu/github/{gituser}/{pkgname}/</code></td>
-							<td>Interfaces to R package <code>{pkgname}</code> in the <i>master branch</i> of the identically named repository from github user <code>:gituser</code>.</td>
+							<td>Interfaces to R package <code>{pkgname}</code> in the <i>master branch</i> of the identically named repository from github user <code>{gituser}</code>.</td>
 						</tr>
 						<tr>
 							<td><code>/ocpu/gist/{gituser}/{path}</code></td>
@@ -266,7 +265,7 @@ curl https://public.opencpu.org/ocpu/gist/hadley/
 			<div class="panel-heading"><h4>The R package API</h4></div>
 			<div class="panel-body">
 
-				<p>Any of the libraries above that supports the <code>package</code> API can call the following endpoints:</p>
+				<p>Any of the above <code>/{package}/</code> libraries support the following endpoints:</p>
 
 				<table class="table table-bordered">
 					<thead>
@@ -282,19 +281,19 @@ curl https://public.opencpu.org/ocpu/gist/hadley/
 						</tr>	  
 						<tr>
 							<td><code>../{pkgname}/R/</code></td>
-							<td>List R objects exported by this package. See R object API.</td>
+							<td>R objects exported by this package. See R object API.</td>
 						</tr>
 						<tr>
 							<td><code>../{pkgname}/data/</code></td>
-							<td>List datasets included with this package. Datasets are objects, see R object API.</td>
+							<td>Data included with this package. Datasets are objects, see R object API.</td>
 						</tr>						
 						<tr>
 							<td><code>../{pkgname}/man/</code></td>
-							<td>List manuals (help pages) available in this package.</td>
+							<td>Manuals (help pages) included in this package.</td>
 						</tr>   
 						<tr>
 							<td><code>../{pkgname}/man/{topic}/{format}</code></td>
-							<td>Get help page about <code>topic</code> in output format <code>manformat</code>. Manual format must be one of <code>text</code>, <code>html</code>, <code>pdf</code></td>
+							<td>Retrieve help page about <code>topic</code> in output format <code>format</code>. Manual format must be one of <code>text</code>, <code>html</code>, <code>pdf</code></td>
 						</tr> 
 						<tr>
 							<td><code>../{pkgname}/html</code></td>
@@ -400,7 +399,7 @@ curl https://public.opencpu.org/ocpu/library/MASS/R/truehist -d "data=[1,3,7,4,2
 			<div class="panel-heading"><h4>The R session API</h4></div>
 			<div class="panel-body"> 
 
-				<p>A session is a container that holds outputs of a function/script call.</p>
+				<p>A session is a container that holds resources created from a remote function/script call (RPC).</p>
 				
 				<table class="table table-bordered">
 					<thead>
@@ -416,15 +415,15 @@ curl https://public.opencpu.org/ocpu/library/MASS/R/truehist -d "data=[1,3,7,4,2
 						</tr>  
 						<tr>
 							<td><code>/ocpu/tmp/{key}/R</code></td>
-							<td>Interfaces to the R API for R objects stored in this session.</td>
+							<td>R objects stored in this session. Interface using <a href="#api-object">R object API</a>, same as objects in packages.</td>
 						</tr>
 						<tr>
 							<td><code>/ocpu/tmp/{key}/graphics/</code></td>
-							<td>List graphics (plots) stored in this session.</td>
+							<td>Graphics (plots) stored in this session.</td>
 						</tr>  
 						<tr>
 							<td><code>/ocpu/tmp/{key}/graphics/{n}/{format}</code></td>
-							<td>Retrieve plot number <code>:n</code> in output format <code>:format</code>. Format is usually one of <code>png</code>, <code>pdf</code> or <code>svg</code>. The <code>:n</code> is an integer or "last".</td>
+							<td>Retrieve plot number <code>{n}</code> in output format <code>{format}</code>. Format is usually one of <code>png</code>, <code>pdf</code> or <code>svg</code>. The <code>{n}</code> is an integer or "last".</td>
 						</tr>	
 						<tr>
 							<td><code>/ocpu/tmp/{key}/source</code></td>
