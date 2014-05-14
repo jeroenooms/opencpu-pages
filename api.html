@@ -50,7 +50,7 @@ description: The official OpenCPU API documentation.
 	
 		<div class="alert alert-success">
 			<a href="#" class="close" data-dismiss="alert">&times;</a>
-			<strong>About this page</strong> Many of the sections below contain <code>curl</code> examples. Note that curl is used for illustration only, any HTTP client will do. Also note that on Windows, the <code>-d</code> argument in curl might need to be quoted in double quotes instead of single quotes. Alternatively, the <a href="https://public.opencpu.org/ocpu/test"><code>/ocpu/test</code></a> page can be used to explore the API.
+			<strong>About this page</strong> Many of the sections below contain <code>curl</code> examples. Note that curl is used for illustration only, any HTTP client will do. Alternatively, the <a href="https://public.opencpu.org/ocpu/test"><code>/ocpu/test</code></a> page can be used to explore the API.
 		</div> 
 
 	    <div class="page-header" id="api-http">
@@ -330,7 +330,7 @@ curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R
 curl https://public.opencpu.org/ocpu/library/MASS/NEWS
 
 #call a function (example from 'rlm' help page)
-curl https://public.opencpu.org/ocpu/library/MASS/R/rlm -d 'formula=stack.loss ~ .&data=stackloss&psi=psi.bisquare'
+curl https://public.opencpu.org/ocpu/library/MASS/R/rlm -d "formula=stack.loss ~ .&data=stackloss&psi=psi.bisquare"
 
 #run R script
 curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
