@@ -2,11 +2,11 @@
 layout: post
 title: "OpenCPU Gem for Ruby"
 category: posts
-description: "Roqua wrapper for the OpenCPU API"
+description: "Wrapper Gem for the OpenCPU API"
 cover: "containers.jpg"
 ---
 
-The guys from [roqua.nl](http://roqua.nl/) are working on a [OpenCPU API Gem](https://github.com/roqua/opencpu/). This API wrapper provides a pretty nice basis for building R web applications with Ruby. A minimal example from the readme:
+The guys from [roqua.nl](http://roqua.nl/) are working on a [OpenCPU wrapper Gem](https://github.com/roqua/opencpu/). This simple API client provides a pretty nice basis for building R web applications with Ruby. A minimal example from the readme:
 
 {% highlight ruby %}
 client.execute :digest, :hmac, { key: 'foo', object: 'bar', algo: 'md5' }
