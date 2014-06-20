@@ -12,5 +12,5 @@ The article deliberately does not describe any software specifics. Instead, it t
 
 This paper is an accumulation of many experiences with building statistical web applications in academic and industry organizations over the past years. I hope it will be a good read for anyone who wishes to build stacks, applications, and pipelines with integrated analysis/visualization components, with or without OpenCPU. 
 
-Go and grab the (open access) [pdf](http://arxiv.org/abs/1406.4806) from arXiv! 
+Go and grab the (open access) [pdf](http://arxiv.org/pdf/1406.4806v1.pdf) from arXiv! 
 
