@@ -8,7 +8,7 @@ cover: "containers.jpg"
 
 **TLDR/abstract:** See the [tvscore demo app](https://demo.ocpu.io/tvscore/www/) or [this jsfiddle](http://jsfiddle.net/opencpu/WVWCR/) for all of this in action. 
 
-This post explains how we can use OpenCPU to design scoring engine for calculating real time predictions. In our example we use the [predict.gam](http://stat.ethz.ch/R-manual/R-patched/library/mgcv/html/predict.gam.html) function from the `mgcv` package to make predictions based on a generalized additive model. The entire process consists of four steps: 
+This post explains how to use the OpenCPU system to setup a scoring engine for calculating real time predictions. In our example we use the [predict.gam](http://stat.ethz.ch/R-manual/R-patched/library/mgcv/html/predict.gam.html) function from the `mgcv` package to make predictions based on a generalized additive model. The entire process consists of four steps: 
 
 1. Building a model
 2. Create an R package containing the model and a scoring function
@@ -61,7 +61,7 @@ qplot(age, predict(tv_model), color=marital, geom="line", data=mydata) +
 
 <img src="https://raw.githubusercontent.com/opencpu/tvscore/master/inst/tv/viz.png" class="img-responsive">
 
-Seems like people that get married start watching less TV, who would have thought :-) In a real study we should probably throw parenting in the mix here (also in the data), but for simplicity we'll stick with this model for now.  
+Seems like people that get married start watching less TV, who would have thought :-) In a real study we should probably tune the smoothing a bit and add parenting as predictor (also in the data), but for simplicity we'll stick with this model for now.  
 
 
 ## Step 2: creating a package
@@ -77,7 +77,7 @@ save(tv_model, file="data/tv_model.rda")
 
 To load the model with the package, we can either set `LazyData=true` in the package [DESCRIPTION](https://github.com/opencpu/tvscore/blob/master/DESCRIPTION), or manually load it using the `data()` function in R. For details on including data in R packages, see [section 1.1.6 of writing R extensions](http://cran.r-project.org/doc/manuals/R-exts.html#Data-in-packages).
 
-Finally the package contains a scoring function called [`tv`](https://github.com/opencpu/tvscore/blob/master/R/tv.R), which calls out to `predict.gam`. The scoring function is what clients will call remotely through the OpenCPU API. We created a smart function that supports both data frames as well as CSV files as input data.
+Finally the package contains a scoring function called [`tv`](https://github.com/opencpu/tvscore/blob/master/R/tv.R), which calls out to `predict.gam`. The scoring function is what clients will call remotely through the OpenCPU API. Below a smart function that supports both data frames as well as CSV files for input:
 
 {% highlight r %}
 tv <- function(input){
@@ -154,7 +154,7 @@ library(opencpu)
 opencpu$browse()
 {% endhighlight %}
 
-To verify that the installation succeeded, open your browser and navigate to the [<code>/ocpu/library/tvscore</code>](http://public.opencpu.org/ocpu/library/tvscore/) path on the OpenCPU server. Also have a look at [<code>/ocpu/library/tvscore/R/tv</code>](http://public.opencpu.org/ocpu/library/tvscore/R/tv) and [<code>/ocpu/library/tvscore/man/tv</code>](http://public.opencpu.org/ocpu/library/tvscore/man/tv).
+To verify that the installation succeeded, open your browser and navigate to the [<code>/ocpu/library/tvscore</code>](https://public.opencpu.org/ocpu/library/tvscore/) path on the OpenCPU server. Also have a look at [<code>/ocpu/library/tvscore/R/tv</code>](https://public.opencpu.org/ocpu/library/tvscore/R/tv) and [<code>/ocpu/library/tvscore/man/tv</code>](https://public.opencpu.org/ocpu/library/tvscore/man/tv).
 
 ## Step 4: Scoring through the API
 
@@ -166,13 +166,13 @@ curl https://public.opencpu.org/ocpu/library/tvscore/R/tv/json \
  -d '{"input" : [ {"age":26, "marital" : "MARRIED"}, {"age":41, "marital":"DIVORCED"}, {"age":53, "marital":"NEVER MARRIED"} ]}'
 {% endhighlight %}
 
-Note how the OpenCPU server automatically converts input and output data from/to JSON using [`jsonlite`](http://arxiv.org/pdf/1403.2805v1.pdf). See the [API docs](https://www.opencpu.org/api.html#api-json) for more details on this process. Alternatively we can batch score by uploading a CSV file ([example data](https://public.opencpu.org/ocpu/library/tvscore/tv/testdata.csv))
+Note how the OpenCPU server automatically converts input and output data from/to JSON using [`jsonlite`](http://arxiv.org/pdf/1403.2805v1.pdf). See the [API docs](https://www.opencpu.org/api.html#api-json) for more details on this process. Alternatively we can batch score by posting a CSV file ([example data](https://public.opencpu.org/ocpu/library/tvscore/tv/testdata.csv))
 
 {% highlight bash %}
 curl https://public.opencpu.org/ocpu/library/tvscore/R/tv -F "input=@testdata.csv"
 {% endhighlight %}
 
-The response to this call will contain the location of the output object. For example if the call returned a HTTP 201 with `Location` header `/ocpu/tmp/x036bf30e82`, then we can retrieve the output data in various formats using a simple HTTP GET request:
+The response to a successful HTTP POST request contains the location of the output data in the `Location` header. For example if the call returned a HTTP 201 with `Location` header `/ocpu/tmp/x036bf30e82`, the client can retrieve the output data in various formats using a subsequent HTTP GET request:
 
 {% highlight bash %}
 curl https://public.opencpu.org/ocpu/tmp/x036bf30e82/R/.val/csv
@@ -186,13 +186,13 @@ This completes our scoring engine. Using these steps, clients from any language 
 
 When using a scoring engine based on OpenCPU in production, it is worthwile configuring your server to optimize performance. In particular, we can add our package to the `preload` field in the `/etc/opencpu/server.conf` file on the OpenCPU cloud server. This will automatically load (but not attach) the package when the OpenCPU server starts, which eliminates package loading time from the individual scoring requests.
 
-Note that R does *not* load LazyData objects when the package loads. Hence, `preload` in combination with lazy loading of data might not have the desired effect. When using `preload`, make design your package to load all data when the package loads [(example)](https://github.com/opencpu/tvscore/blob/master/R/onLoad.R).
+Note that R does *not* load LazyData objects when the package loads. Hence, `preload` in combination with lazy loading of data might not have the desired effect. When using `preload`, make sure to design your package such that all data gets loaded when the package loads [(example)](https://github.com/opencpu/tvscore/blob/master/R/onLoad.R).
 
-Finally in production you might want to tweak the `timelimit.post` (timeout), `rlimit.as` (mem limit), `rlimit.fsize` (disk limit) and `rlimit.nproc` (parallel process limit) options in `/etc/opencpu/server.conf` to fit your needs.
+Finally in production you might want to tweak the `timelimit.post` (timeout), `rlimit.as` (mem limit), `rlimit.fsize` (disk limit) and `rlimit.nproc` (parallel process limit) options in `/etc/opencpu/server.conf` to fit your needs. Also see the [server manual](http://jeroenooms.github.com/opencpu-manual/opencpu-server.pdf) on this topic.
 
 ## Bonus: creating an OpenCPU app
 
-By including web pages in the [`/inst/www`](https://github.com/opencpu/tvscore/tree/master/inst/www) directory of the source package, we can turn our scoring engine into a full OpenCPU app. The [`tvscore`](https://github.com/opencpu/tvscore) example package contains a simple web interface that makes use of the [opencpu.js](https://www.opencpu.org/jslib.html) JavaScript client to interact with R via OpenCPU in the browser. Navigate to [/ocpu/library/tvscore/www/](https://public.opencpu.org/ocpu/library/tvscore/www) on the public demo server to see it in action!
+By including web pages in the [`/inst/www/`](https://github.com/opencpu/tvscore/tree/master/inst/www) directory of the source package, we can turn our scoring engine into a standalone web application. The [`tvscore`](https://github.com/opencpu/tvscore) example package contains a simple web interface that makes use of the [opencpu.js](https://www.opencpu.org/jslib.html) JavaScript client to interact with R via OpenCPU in the browser. Navigate to [/ocpu/library/tvscore/www/](https://public.opencpu.org/ocpu/library/tvscore/www) on the public demo server to see it in action!
 
 To install and run the same app in your local R session, use:
 
