@@ -184,7 +184,7 @@ This completes our scoring engine. Using these steps, clients from any language 
 
 ## Extra credit: performance optimization
 
-When using a scoring engine based on OpenCPU in production, it is worthwile configuring your server to optimize performance. In particular, we can add our package to the `preload` field in the `/etc/opencpu/server.conf` file on the OpenCPU cloud server. This will automatically load (but not attach) the package when the OpenCPU server starts, which eliminates package loading time from the individual scoring requests.
+When using a scoring engine based on OpenCPU in production, it is worthwile configuring your server to optimize performance. In particular, we can add our package to the `preload` field in the `/etc/opencpu/server.conf` file on the OpenCPU cloud server. This will automatically load (but not attach) the package when the OpenCPU server starts, which eliminates package loading time from the individual scoring requests. In our example this is important because `tvscore` depends on the `mgcv` package, which takes about 2 seconds to load. 
 
 Note that R does *not* load LazyData objects when the package loads. Hence, `preload` in combination with lazy loading of data might not have the desired effect. When using `preload`, make sure to design your package such that all data gets loaded when the package loads [(example)](https://github.com/opencpu/tvscore/blob/master/R/onLoad.R).
 
