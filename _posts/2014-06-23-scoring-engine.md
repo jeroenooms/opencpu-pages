@@ -2,13 +2,13 @@
 layout: post
 title: "Deploying a scoring engine for predictive analytics with OpenCPU"
 category: posts
-description: "This post illustrates how we can use OpenCPU to design scoring engine for calculating real time predictions."
+description: "This post explains how we can use OpenCPU to design scoring engine for calculating real time predictions."
 cover: "containers.jpg"
 ---
 
 **TLDR/abstract:** See the [tvscore demo app](https://demo.ocpu.io/tvscore/www/) or [this jsfiddle](http://jsfiddle.net/opencpu/WVWCR/) for all of this in action. 
 
-This post illustrates how we can use OpenCPU to design scoring engine for calculating real time predictions. In our example we use the [predict.gam](http://stat.ethz.ch/R-manual/R-patched/library/mgcv/html/predict.gam.html) function from the `mgcv` package to make predictions based on a generalized additive model. The entire process consists of four steps: 
+This post explains how we can use OpenCPU to design scoring engine for calculating real time predictions. In our example we use the [predict.gam](http://stat.ethz.ch/R-manual/R-patched/library/mgcv/html/predict.gam.html) function from the `mgcv` package to make predictions based on a generalized additive model. The entire process consists of four steps: 
 
 1. Building a model
 2. Create an R package containing the model and a scoring function
