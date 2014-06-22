@@ -13,7 +13,7 @@ This post explains how we can use OpenCPU to design scoring engine for calculati
 1. Building a model
 2. Create an R package containing the model and a scoring function
 3. Install the package on your OpenCPU server
-4. Remotely call the wrapper through the OpenCPU API
+4. Remotely call the scoring function through the OpenCPU API
 
 Let's get started!
 
@@ -28,7 +28,7 @@ unzip("2012_spss.zip")
 GSS <- foreign::read.spss("GSS2012.sav", to.data.frame=TRUE)
 {% endhighlight %}
 
-The GSS data has 1974 rows for 816 variables, but to keep our example simple, we create a model with just 2 predictor variables. The code below fits a GAM which predicts the average number of hours per day that a person watches TV, based on their age and marital status. In these data `tvhours` and `age` are numeric variables, whereas `marital` is categorical (factor) variable with levels `MARRIED`, `SEPARATED`,`DIVORCED`, `WIDOWED` and `NEVER MARRIED`. 
+The GSS data has 1974 rows for 816 variables. To keep our example simple, we create a model with only 2 predictor variables. The code below fits a GAM which predicts the average number of hours per day that a person watches TV, based on their age and marital status. In these data `tvhours` and `age` are numeric variables, whereas `marital` is categorical (factor) variable with levels `MARRIED`, `SEPARATED`,`DIVORCED`, `WIDOWED` and `NEVER MARRIED`. 
 
 {% highlight r %}
 #Variable info: http://www3.norc.org/GSS+Website/Browse+GSS+Variables/Mnemonic+Index/
@@ -50,7 +50,7 @@ predict(tv_model, newdata = newdata)
 3.022650 3.693640 1.556342 3.665077 
 {% endhighlight %}
 
-This completes step 1. But just to get a sense of what our example model actually looks like before we start scoring, a simple viz:
+All seems good, this completes step 1. But just to get a sense of what our example model actually looks like before we start scoring, a simple viz:
 
 {% highlight r %}
 library(ggplot2)
@@ -61,7 +61,7 @@ qplot(age, predict(tv_model), color=marital, geom="line", data=mydata) +
 
 <img src="https://raw.githubusercontent.com/opencpu/tvscore/master/inst/tv/viz.png" class="img-responsive">
 
-
+Seems like people that get married start watching less TV, who would have thought :-) In a real study we should probably throw parenting in the mix here (also in the data), but for simplicity we'll stick with this model for now.  
 
 
 ## Step 2: creating a package
@@ -77,7 +77,7 @@ save(tv_model, file="data/tv_model.rda")
 
 To load the model with the package, we can either set `LazyData=true` in the package [DESCRIPTION](https://github.com/opencpu/tvscore/blob/master/DESCRIPTION), or manually load it using the `data()` function in R. For details on including data in R packages, see [section 1.1.6 of writing R extensions](http://cran.r-project.org/doc/manuals/R-exts.html#Data-in-packages).
 
-Finally the package contains a wrapper called [`tv`](https://github.com/opencpu/tvscore/blob/master/R/tv.R), which is the function that we will call remotely through the OpenCPU API. We created a smart wrapper that supports both data frames as well as CSV files as input data.
+Finally the package contains a scoring function called [`tv`](https://github.com/opencpu/tvscore/blob/master/R/tv.R), which calls out to `predict.gam`. The scoring function is what clients will call remotely through the OpenCPU API. We created a smart function that supports both data frames as well as CSV files as input data.
 
 {% highlight r %}
 tv <- function(input){
@@ -93,7 +93,7 @@ tv <- function(input){
   newdata$age <- as.numeric(newdata$age)
 
   #tv_model is included with the package
-  newdata$tv <- predict(tv_model, newdata = newdata)
+  newdata$tv <- predict.gam(tv_model, newdata = newdata)
   return(newdata)
 }
 {% endhighlight %}
