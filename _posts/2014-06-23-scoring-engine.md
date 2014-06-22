@@ -77,7 +77,7 @@ save(tv_model, file="data/tv_model.rda")
 
 To load the model with the package, we can either set `LazyData=true` in the package [DESCRIPTION](https://github.com/opencpu/tvscore/blob/master/DESCRIPTION), or manually load it using the `data()` function in R. For details on including data in R packages, see [section 1.1.6 of writing R extensions](http://cran.r-project.org/doc/manuals/R-exts.html#Data-in-packages).
 
-Finally the package contains a scoring function called [`tv`](https://github.com/opencpu/tvscore/blob/master/R/tv.R), which calls out to `predict.gam`. The scoring function is what clients will call remotely through the OpenCPU API. Below a smart function that supports both data frames as well as CSV files for input:
+Finally the package contains a scoring function called [`tv`](https://github.com/opencpu/tvscore/blob/master/R/tv.R), which calls out to `predict.gam`. The scoring function is what clients will call remotely through the OpenCPU API. We use a smart function that supports both data frames as well as CSV files for input:
 
 {% highlight r %}
 tv <- function(input){
