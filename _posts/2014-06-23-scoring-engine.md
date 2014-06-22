@@ -8,10 +8,10 @@ cover: "containers.jpg"
 
 **TLDR/abstract:** See the [tvscore demo app](https://demo.ocpu.io/tvscore/www/) or [this jsfiddle](http://jsfiddle.net/opencpu/WVWCR/) for all of this in action. 
 
-This post illustrates how we can use OpenCPU to design scoring engine for calculating real time predictions. In our example we use the [predict.glm](http://stat.ethz.ch/R-manual/R-patched/library/stats/html/predict.glm.html) function included with base R, to make predictions based on a generalized linear model. The entire process consists of four steps: 
+This post illustrates how we can use OpenCPU to design scoring engine for calculating real time predictions. In our example we use the [predict.gam](http://stat.ethz.ch/R-manual/R-patched/library/mgcv/html/predict.gam.html) function from the `mgcv` package to make predictions based on a generalized additive model. The entire process consists of four steps: 
 
-1. Create a model
-2. Create an R package containing the model and a wrapper function
+1. Building a model
+2. Create an R package containing the model and a scoring function
 3. Install the package on your OpenCPU server
 4. Remotely call the wrapper through the OpenCPU API
 
@@ -19,7 +19,7 @@ Let's get started!
 
 ## Step 1: creating a model
 
-For this example, we use data from the [General Social Survey](http://www3.norc.org/GSS+Website/), which is a very rich dataset on demographic characteristics and attitudes of residents of the United States. To download the data:
+For this example, we use data from the [General Social Survey](http://www3.norc.org/GSS+Website/), which is a very rich dataset on demographic characteristics and attitudes of United States residents. To load the data in R:
 
 {% highlight r %}
 #Data info: http://www3.norc.org/GSS+Website/Download/SPSS+Format/
@@ -28,36 +28,40 @@ unzip("2012_spss.zip")
 GSS <- foreign::read.spss("GSS2012.sav", to.data.frame=TRUE)
 {% endhighlight %}
 
-The GSS data has 1974 rows for 816 variables, but to keep our example simple, we create a model with just 2 predictor variables. The code below fits a glm which predicts the average number of hours per day that a person watches TV, based on their age and marital status. In these data `tvhours` and `age` are numeric variables, whereas `marital` is categorical (factor) variable with levels `MARRIED`, `SEPARATED`,`DIVORCED`, `WIDOWED` and `NEVER MARRIED`. 
+The GSS data has 1974 rows for 816 variables, but to keep our example simple, we create a model with just 2 predictor variables. The code below fits a GAM which predicts the average number of hours per day that a person watches TV, based on their age and marital status. In these data `tvhours` and `age` are numeric variables, whereas `marital` is categorical (factor) variable with levels `MARRIED`, `SEPARATED`,`DIVORCED`, `WIDOWED` and `NEVER MARRIED`. 
 
 {% highlight r %}
 #Variable info: http://www3.norc.org/GSS+Website/Browse+GSS+Variables/Mnemonic+Index/
-library(splines)
+library(mgcv)
 mydata <- na.omit(GSS[c("age", "tvhours", "marital")])
-tv_model <- glm(tvhours ~ bs(age, 3) * marital , data = mydata)
+tv_model <- gam(tvhours ~ s(age, by=marital), data = mydata)
 {% endhighlight %}
 
-Note that we use a bspline smoother for the `age` predictor. This completes step 1, but just to get a sense of what this model actually looks like before we start scoring, we can vizualize it.
-
-{% highlight r %}
-library(ggplot2)
-qplot(age, predict(tv_model), color=marital, geom="line", data=mydata, main="example model") +
-  ylab("Average hours of TV per day")
-{% endhighlight %}
-
-<img src="https://raw.githubusercontent.com/opencpu/tvscore/master/inst/tv/viz.png" class="img-responsive">
-
-The `predict` function can be used to test predicting from this model:
+The `predict` function is used to score data against the model. We test with some random cases:
 
 {% highlight r %}
 newdata <- data.frame(
   age = c(24, 54, 32, 75),
   marital = c("MARRIED", "DIVORCED", "WIDOWED", "NEVER MARRIED")
 )
+
 predict(tv_model, newdata = newdata)
        1        2        3        4 
 3.022650 3.693640 1.556342 3.665077 
 {% endhighlight %}
+
+This completes step 1. But just to get a sense of what our example model actually looks like before we start scoring, a simple viz:
+
+{% highlight r %}
+library(ggplot2)
+qplot(age, predict(tv_model), color=marital, geom="line", data=mydata) +
+  ggtitle("gam(tvhours ~ s(age, by=marital))") +
+  ylab("Average hours of TV per day")
+{% endhighlight %}
+
+<img src="https://raw.githubusercontent.com/opencpu/tvscore/master/inst/tv/viz.png" class="img-responsive">
+
+
 
 
 ## Step 2: creating a package
@@ -71,17 +75,17 @@ The [`tvscore`](https://github.com/opencpu/tvscore) package that is available fr
 save(tv_model, file="data/tv_model.rda")
 {% endhighlight %}
 
-When we set `LazyData=true` in the package [DESCRIPTION](https://github.com/opencpu/tvscore/blob/master/DESCRIPTION), the `tv_model` object automatically becomes available to all functions in our package. For details on including data in R packages, see [section 1.1.6 of writing R extensions](http://cran.r-project.org/doc/manuals/R-exts.html#Data-in-packages).
+To load the model with the package, we can either set `LazyData=true` in the package [DESCRIPTION](https://github.com/opencpu/tvscore/blob/master/DESCRIPTION), or manually load it using the `data()` function in R. For details on including data in R packages, see [section 1.1.6 of writing R extensions](http://cran.r-project.org/doc/manuals/R-exts.html#Data-in-packages).
 
 Finally the package contains a wrapper called [`tv`](https://github.com/opencpu/tvscore/blob/master/R/tv.R), which is the function that we will call remotely through the OpenCPU API. We created a smart wrapper that supports both data frames as well as CSV files as input data.
 
 {% highlight r %}
 tv <- function(input){
   #input can either be csv file or data	
-  if(is.character(input) && file.exists(input)){
-  	newdata <- read.csv(input)
+  newdata <- if(is.character(input) && file.exists(input)){
+  	read.csv(input)
   } else {
-  	newdata <- as.data.frame(input)
+  	as.data.frame(input)
   }
   stopifnot("age" %in% names(newdata))
   stopifnot("marital" %in% names(newdata))
@@ -162,7 +166,7 @@ curl https://public.opencpu.org/ocpu/library/tvscore/R/tv/json \
  -d '{"input" : [ {"age":26, "marital" : "MARRIED"}, {"age":41, "marital":"DIVORCED"}, {"age":53, "marital":"NEVER MARRIED"} ]}'
 {% endhighlight %}
 
-Note how the OpenCPU server automatically converts input and output data from/to JSON. See the [API docs](https://www.opencpu.org/api.html#api-json) for more details on this process. Alternatively we can batch score by uploading a CSV file ([example data](https://public.opencpu.org/ocpu/library/tvscore/tv/testdata.csv))
+Note how the OpenCPU server automatically converts input and output data from/to JSON using [`jsonlite`](http://arxiv.org/pdf/1403.2805v1.pdf). See the [API docs](https://www.opencpu.org/api.html#api-json) for more details on this process. Alternatively we can batch score by uploading a CSV file ([example data](https://public.opencpu.org/ocpu/library/tvscore/tv/testdata.csv))
 
 {% highlight bash %}
 curl https://public.opencpu.org/ocpu/library/tvscore/R/tv -F "input=@testdata.csv"
@@ -178,12 +182,29 @@ curl https://public.opencpu.org/ocpu/tmp/x036bf30e82/R/.val/tab
 
 This completes our scoring engine. Using these steps, clients from any language can remotely score cases by calling the `tv` function using standard `HTTP` and `JSON` libraries.
 
+## Extra credit: performance optimization
+
+When using a scoring engine based on OpenCPU in production, it is worthwile configuring your server to optimize performance. In particular, we can add our package to the `preload` field in the `/etc/opencpu/server.conf` file on the OpenCPU cloud server. This will automatically load (but not attach) the package when the OpenCPU server starts, which eliminates package loading time from the individual scoring requests.
+
+Note that R does *not* load LazyData objects when the package loads. Hence, `preload` in combination with lazy loading of data might not have the desired effect. When using `preload`, make design your package to load all data when the package loads [(example)](https://github.com/opencpu/tvscore/blob/master/R/onLoad.R).
+
+Finally in production you might want to tweak the `timelimit.post` (timeout), `rlimit.as` (mem limit), `rlimit.fsize` (disk limit) and `rlimit.nproc` (parallel process limit) options in `/etc/opencpu/server.conf` to fit your needs.
+
 ## Bonus: creating an OpenCPU app
 
-By including web pages in the [`/inst/www`](https://github.com/opencpu/tvscore/tree/master/inst/www) directory of the source package, we can turn our scoring engine into a full OpenCPU app. Our [`tvscore`](https://github.com/opencpu/tvscore) example package contains a simple web interface that makes use of the [opencpu.js](https://www.opencpu.org/jslib.html) JavaScript client to interact with R via OpenCPU in the browser. Navigate to [/ocpu/library/tvscore/www/](https://public.opencpu.org/ocpu/library/tvscore/www) to see it in action.
+By including web pages in the [`/inst/www`](https://github.com/opencpu/tvscore/tree/master/inst/www) directory of the source package, we can turn our scoring engine into a full OpenCPU app. The [`tvscore`](https://github.com/opencpu/tvscore) example package contains a simple web interface that makes use of the [opencpu.js](https://www.opencpu.org/jslib.html) JavaScript client to interact with R via OpenCPU in the browser. Navigate to [/ocpu/library/tvscore/www/](https://public.opencpu.org/ocpu/library/tvscore/www) on the public demo server to see it in action!
 
-We can also call the OpenCPU server from an external website using cross domain ajax (CORS). See [this jsfiddle](http://jsfiddle.net/opencpu/WVWCR/) for a simple example that calls the public server using the `ocpu.rpc` function from `opencpu.js`.
+To install and run the same app in your local R session, use:
 
+{% highlight r %}
+#Install the app
+library(devtools)
+install_github("opencpu/tvscore")
 
+#Load the app
+library(opencpu)
+opencpu$browse("/library/tvscore/www")
+{% endhighlight %}
 
+We can also call the OpenCPU server from an external website using cross domain ajax requests (CORS). See [this jsfiddle](http://jsfiddle.net/opencpu/WVWCR/) for a simple example that calls the public server using the `ocpu.rpc` function from `opencpu.js`.
 
