@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "OpenCPU paper published on arXiv"
+title: "OpenCPU whitepaper published on arXiv"
 category: posts
 description: "This paper takes a high-level and discusses some of the relevant domain logic of scientific computing, the benefits of using a standardized application protocol to interface statistical software, and the importance of clearly separating statistical computing from application and implementation logic"
 cover: "containers.jpg"
