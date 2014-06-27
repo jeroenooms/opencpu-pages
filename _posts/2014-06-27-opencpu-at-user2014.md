@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The future of R on the web at useR! 2014"
+title: "The future of R on the web at #user2014"
 category: posts
 description: "The OpenCPU system will be presented at useR! 2014 in Los Angeles. The abstract and slides have been posted on the website."
 cover: "containers.jpg"
