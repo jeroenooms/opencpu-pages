@@ -938,12 +938,12 @@ rnorm(n=3, mean=10, sd=10)
 https://public.opencpu.org/ocpu/webhook
 {% endhighlight %}
 
-			<p>Make sure to select payload version <code>application/vnd.github.v3+form</code>. To trigger a build push a commit to the master branch. The build will show up under <i>Recent Deliveries</i> in your github project page and if you should receive an email reporting if the installation was successful. If it was, the package will directly be available for remote use through the OpenCPU API.</p>
+			<p>Select Content-type <code>application/x-www-form-urlencoded</code>. Leave the "Secret" field empty. To trigger a build, push a commit to the master branch. The build will show up under <i>Recent Deliveries</i> in your github webhook page, and you should receive an email reporting if the installation was successful. If it was, the package will directly be available for remote use at <code>/ocpu/github/{username}/{package}/</code> on your server.</p>
 
 			<img class="img-thumbnail img-responsive" src="./images/githook.png" alt="git hook screenshot">
 
 			<p><br>
-			Note that if you are running your own OpenCPU cloud server, an SMTP server must be configured for the email notifictions to work. Also depending on your ISP, your server must configure a proper reverse DNS to prevent email notifications from ending up in spam filters.</p>
+			If you are using the public server, the package will also be available via <a href="https://jeroenooms.ocpu.io/jsonlite/"><code>https://{yourname}.ocpu.io/{package}/</code></a>. If on the other hand you are running your own OpenCPU cloud server, note that an SMTP server must be configured for the email notifictions to work. Also depending on your ISP, your server must have a proper reverse DNS to prevent email notifications from ending up in spam filters.</p>
 
 			</div>
 		</div> 		
