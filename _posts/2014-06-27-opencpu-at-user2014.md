@@ -11,5 +11,5 @@ The schedule and abstracts for [useR! 2014](http://user2014.stat.ucla.edu/) have
 The presentation about `OpenCPU` will be a high level introduction and go over some of the concepts from the recent [whitepaper](http://arxiv.org/abs/1406.4806). The [abstract](http://user2014.stat.ucla.edu/abstracts/talks/209_Ooms.pdf) and [slides](http://jeroenooms.github.io/opencpu-slides/) are available from the website. Update: a recording of the presentation is available below.
 
 <div class="videoWrapper">
-    <iframe src="//www.youtube.com/embed/jQlz6RB2n_M" frameborder="0" allowfullscreen></iframe>
+    <iframe src="//www.youtube.com/embed/z5zmtk6c1B8" frameborder="0" allowfullscreen></iframe>
 </div>
