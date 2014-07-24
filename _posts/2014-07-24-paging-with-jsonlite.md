@@ -65,7 +65,7 @@ library(jsonlite)
 baseurl <- "http://projects.propublica.org/nonprofits/api/v1/search.json?order=revenue&sort_order=desc"
 pages <- list()
 for(i in 0:20){
-  mydata <- fromJSON(paste0(baseurl, "page=", i), flatten=TRUE)
+  mydata <- fromJSON(paste0(baseurl, "&page=", i), flatten=TRUE)
   message("Retrieving page ", i)
   pages[[i+1]] <- mydata$filings
 }
