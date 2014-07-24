@@ -2,7 +2,7 @@
 layout: post
 title: "Combining pages of JSON data with jsonlite and plyr"
 category: posts
-description: "The jsonlite package is a JSON parser/generator for R which is optimized for pipelines and web APIs. A question that comes up frequently is how to combine pages of data."
+description: "The jsonlite package is a JSON parser/generator for R which is optimized for pipelines and web APIs. This posts explains how to combine multiple pages of JSON data using the jsonlite and plyr packages."
 cover: "containers.jpg"
 ---
 
