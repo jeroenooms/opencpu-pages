@@ -2,7 +2,7 @@
 layout: post
 title: "Combining pages of JSON data with jsonlite and plyr"
 category: posts
-description: "A recording of the useR! 2014 talk about OpenCPU is now available on Youtube. This talk gives a brief (20 minute) motivation and introduction to some of the high level concepts of the OpenCPU system."
+description: "The jsonlite package is a JSON parser/generator for R which is optimized for pipelines and web APIs. A question that comes up frequently is how to combine pages of data."
 cover: "containers.jpg"
 ---
 
