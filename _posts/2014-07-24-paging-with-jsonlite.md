@@ -10,7 +10,7 @@ The [jsonlite](http://cran.r-project.org/web/packages/jsonlite/index.html) packa
 
 ## A bidirectional mapping
 
-One of the main strenghts of `jsonlite` is that it implements a bidirectional [mapping](http://arxiv.org/abs/1403.2805) between data frames and `JSON`. Thereby it converts nested `JSON` records, as they often appear on the web, immediately into the appropriate R data structure. For example, if a journalist wants to grab some data from the ProPublica API, she can use something like:
+One of the main strenghts of `jsonlite` is that it implements a bidirectional [mapping](http://arxiv.org/abs/1403.2805) between data frames and `JSON`. Thereby it can convert nested collections of `JSON` records, as they often appear on the web, immediately into the appropriate R structures, without complicated manual data munging by the user. For example, if a journalist wants to grab some data from ProPublica, she can simply use something like:
 
 {% highlight r %}
 library(jsonlite)
@@ -18,7 +18,7 @@ mydata <- fromJSON("http://projects.propublica.org/forensics/geos.json")
 View(mydata$geo)
 {% endhighlight %}
 
-The `mydata$geo` object is a data frame which can be used directly for modeling or visualization, without the need for advanced data minipulation skills.
+Here, the `mydata$geo` object is a data frame which can be used directly for modeling or visualization, without the need for advanced data minipulation skills.
 
 ## Paging with jsonlite and plyr
 
