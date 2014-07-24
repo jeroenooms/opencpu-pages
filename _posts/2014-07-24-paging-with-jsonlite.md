@@ -35,7 +35,7 @@ print(mydata0$filings)
 print(mydata0$filings$organization)
 {% endhighlight %}
 
-To analyze or visualize these data, we need to combine the pages into a single dataset. This is best done using `rbind.fill` from the `plyr` package. However because `rbind.fill` does not support nested data frames, we need to flatten the `JSON` data by passing the `flatten` argument to `toJSON`.
+To analyze or visualize these data, we need to combine the pages into a single dataset. This is best done using `rbind.fill` from the `plyr` package. However because `rbind.fill` does not support nested data frames, we need to flatten the `JSON` data by passing the `flatten = TRUE` argument to `toJSON`.
 
 {% highlight r %}
 #Note flatten=TRUE requires jsonlite => 0.9.9
