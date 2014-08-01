@@ -27,7 +27,7 @@ $(function(){
           appurl = "https://opencpu.ocpu.io/" + value.name;       
         }).always(function(){
            var myul = $('<ul class="dropdown-menu" role="menu">').appendTo(btngrp);
-           myul.append('<li><a target="_blank" href="' + appurl + '/"><i class="icon icon-info-sign"> Package Info </a></li>');
+           myul.append('<li><a target="_blank" href="' + appurl + '/info"><i class="icon icon-info-sign"> Package Info </a></li>');
            myul.append('<li><a target="_blank" href="' + appurl + '/www/"><i class="icon icon-play"> Live App Demo </a></li>'); 
            myul.append('<li class="divider"></li>');
            myul.append('<li><a target="_blank" href="http://www.github.com/opencpu/' + value.name + '"><i class="icon icon-github"> Source Code </a></li>');           
