@@ -13,26 +13,26 @@ $(function(){
            .appendTo(mydiv).on("error", function(){
               myimg.attr("src", value.owner.avatar_url);
            });
-        
+
         var mybr = $("<br />").appendTo(mydiv);
         var btngrp = $('<div class="btn-group">').appendTo(mydiv);
         var appbtn = $('<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">').text(value.name + " ").appendTo(btngrp);
         var appurl;
-       
+
         $.ajax({
           url: "//demo.ocpu.io/" + value.name
         }).done(function(){
           appurl = "https://demo.ocpu.io/" + value.name;
         }).error(function(){
-          appurl = "https://opencpu.ocpu.io/" + value.name;       
+          appurl = "https://opencpu.ocpu.io/" + value.name;
         }).always(function(){
            var myul = $('<ul class="dropdown-menu" role="menu">').appendTo(btngrp);
            myul.append('<li><a target="_blank" href="' + appurl + '/info"><i class="icon icon-info-sign"> Package Info </a></li>');
-           myul.append('<li><a target="_blank" href="' + appurl + '/www/"><i class="icon icon-play"> Live App Demo </a></li>'); 
+           myul.append('<li><a target="_blank" href="' + appurl + '/www/"><i class="icon icon-play"> Live App Demo </a></li>');
            myul.append('<li class="divider"></li>');
-           myul.append('<li><a target="_blank" href="http://www.github.com/opencpu/' + value.name + '"><i class="icon icon-github"> Source Code </a></li>');           
+           myul.append('<li><a target="_blank" href="http://www.github.com/opencpu/' + value.name + '"><i class="icon icon-github"> Source Code </a></li>');
            appbtn.append($('<span class="caret"></span>'))
-        });          
+        });
       });
     } else {
       res.data.message && alert(res.data.message)
@@ -40,7 +40,7 @@ $(function(){
   }).fail(function(){
     $("#appsrow").append('<div class="alert alert-danger"> <a href="#" class="close" data-dismiss="alert">&times;</a><strong>Github API Error</strong> Could not load apps list from repository. Might be a problem with Github. Have a look at <a href="https://status.github.com/">status.github.com</a> and try again later.</div>');
   });
-  
+
   function li(title, url){
     var myli = $("li");
     $("<a>").attr("href", url).attr("target", "_blank").text(title).appendTo(myli);
