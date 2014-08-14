@@ -2,7 +2,7 @@
 layout: post
 title: "Running OpenCPU server on Fedora and Enterprise Linux"
 category: posts
-description: ""
+description: "Starting version 1.4.4, the OpenCPU cloud server can run on Redhat distributions, i.e. Fedora and Enterprise Linux (CentOS/RHEL)."
 cover: "containers.jpg"
 ---
 
