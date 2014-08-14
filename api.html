@@ -47,15 +47,15 @@ description: The official OpenCPU API documentation.
 	</div>
 
 	<div class="col-md-9" role="main">
-	
+
 		<div class="alert alert-success">
 			<a href="#" class="close" data-dismiss="alert">&times;</a>
 			<strong>About this page</strong> Many of the sections below contain <code>curl</code> examples. Note that curl is used for illustration only, any HTTP client will do. Alternatively, the <a href="https://public.opencpu.org/ocpu/test"><code>/ocpu/test</code></a> page can be used to explore the API.
-		</div> 
+		</div>
 
 	    <div class="page-header" id="api-http">
 	    	<h1>HTTP in OpenCPU</h1>
-	    </div>		
+	    </div>
 
 		<div class="panel panel-primary" id="api-root">
 			<div class="panel-heading"><h4>The OpenCPU root path</h4></div>
@@ -63,7 +63,7 @@ description: The official OpenCPU API documentation.
 				<p>The root of the API is dynamic. It defaults to <code>/ocpu/</code>, however system administrators can change this. Clients should make the OpenCPU server address and root path configurable. In the examples below we assume the default <code>/ocpu/</code>.</p>
 			</div>
 		</div>
-	
+
 		<div class="panel panel-primary" id="api-methods">
 			<div class="panel-heading"><h4>HTTP Methods</h4></div>
 			<div class="panel-body">
@@ -76,7 +76,7 @@ description: The official OpenCPU API documentation.
 							<th>Method</th>
 							<th>Target</th>
 							<th>Action</th>
-							<th>Arguments</th>		  
+							<th>Arguments</th>
 							<th>Example</th>
 						</tr>
 					</thead>
@@ -85,7 +85,7 @@ description: The official OpenCPU API documentation.
 							<td><code>GET</code></td>
 							<td>object</td>
 							<td>read object</td>
-							<td>control output format</td>		  
+							<td>control output format</td>
 							<td><code>GET /ocpu/library/MASS/R/cats/json</code></td>
 						</tr>
 						<tr>
@@ -101,14 +101,14 @@ description: The official OpenCPU API documentation.
 							<td>read file</td>
 							<td>-</td>
 							<td><code>GET /ocpu/library/MASS/NEWS</code> <br /> <code>GET /ocpu/library/MASS/scripts/</code></td>
-						</tr>  				 
+						</tr>
 						<tr>
 							<td><code>POST</code></td>
 							<td>file</td>
 							<td>run script</td>
 							<td>control interpreter </td>
 							<td><code>POST /ocpu/library/MASS/scripts/ch01.R</code> <br /><code>POST /ocpu/library/knitr/examples/knitr-minimal.Rmd</code></td>
-						</tr>						 
+						</tr>
 					</tbody>
 				</table>
 
@@ -121,11 +121,11 @@ curl https://public.opencpu.org/ocpu/library/MASS/scripts/
 #curl uses http post method for -X POST or -d "arg=value"
 curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
 curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d "n=10&mean=5"
-{% endhighlight %}			
+{% endhighlight %}
 
 			</div>
 		</div>
-		
+
 		<div class="panel panel-primary" id="api-status">
 			<div class="panel-heading"><h4>HTTP Status Codes</h4></div>
 			<div class="panel-body">
@@ -160,17 +160,17 @@ curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d "n=10&mean=5"
 							<td><code>400 Bad Request</code></td>
 							<td>R raised an error.</td>
 							<td>Error message in <code>text/plain</code></td>
-						</tr>  
+						</tr>
 						<tr>
 							<td><code>502 Bad Gateway</code></td>
 							<td>Nginx (opencpu-cache) can't connect to OpenCPU server.</td>
 							<td>(admin needs to look in error logs)</td>
-						</tr>   
+						</tr>
 						<tr>
 							<td><code>503 Bad Request</code></td>
 							<td>Serious problem with the server</td>
 							<td>(admin needs to look in error logs)</td>
-						</tr>													
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -178,7 +178,7 @@ curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d "n=10&mean=5"
 
 	    <div class="page-header" id="api-endpoints">
 	    	<h1>API Endpoints</h1>
-	    </div>				
+	    </div>
 
 		<div class="panel panel-primary" id="api-libraries">
 			<div class="panel-heading"><h4>The API Libraries</h4></div>
@@ -201,7 +201,7 @@ curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d "n=10&mean=5"
 						<tr>
 							<td><code>/ocpu/user/{username}/library/{pkgname}/</code></td>
 							<td>R packages installed in the home library of Linux user <code>{username}</code>.</td>
-						</tr>   
+						</tr>
 						<tr>
 							<td><code>/ocpu/tmp/{key}/</code></td>
 							<td>Temporary sessions, which hold outputs from a function/script RPC.</td>
@@ -216,7 +216,7 @@ curl https://public.opencpu.org/ocpu/user/jeroen/library/
 
 #read session
 curl https://public.opencpu.org/ocpu/tmp/x2c5ab8d4d6
-{% endhighlight %}  			
+{% endhighlight %}
 
 				<p>In addition, we can call packages from remote libraries such as CRAN or Github. Administrators can choose to disable these remote libraries so not all servers support this.</p>
 
@@ -231,11 +231,11 @@ curl https://public.opencpu.org/ocpu/tmp/x2c5ab8d4d6
 						<tr>
 							<td><code>/ocpu/cran/{pkgname}/</code></td>
 							<td>Interfaces to the R package <code>{pkgname}</code> that is <i>current</i> on CRAN.</td>
-						</tr>   
+						</tr>
 						<tr>
 							<td><code>/ocpu/bioc/{pkgname}/</code></td>
 							<td>Interfaces to the R package <code>{pkgname}</code> that is <i>current</i> on BioConductor.</td>
-						</tr>  
+						</tr>
 						<tr>
 							<td><code>/ocpu/github/{gituser}/{pkgname}/</code></td>
 							<td>Interfaces to R package <code>{pkgname}</code> in the <i>master branch</i> of the identically named repository from github user <code>{gituser}</code>.</td>
@@ -243,9 +243,9 @@ curl https://public.opencpu.org/ocpu/tmp/x2c5ab8d4d6
 						<tr>
 							<td><code>/ocpu/gist/{gituser}/{path}</code></td>
 							<td>Static files and directories located in the gist repository from github user <code>gituser</code>. This API does not support packages, just files (scripts, html, etc)</td>
-						</tr>																						   
+						</tr>
 					</tbody>
-				</table> 		
+				</table>
 
 {% highlight bash %}
 #read packages
@@ -255,12 +255,12 @@ curl https://public.opencpu.org/ocpu/github/hadley/plyr/
 
 #read files
 curl https://public.opencpu.org/ocpu/gist/hadley/
-{% endhighlight %}		 
+{% endhighlight %}
 
 			</div>
-		</div> 
-		
-			
+		</div>
+
+
 		<div class="panel panel-primary" id="api-package">
 			<div class="panel-heading"><h4>The R package API</h4></div>
 			<div class="panel-body">
@@ -276,9 +276,9 @@ curl https://public.opencpu.org/ocpu/gist/hadley/
 					</thead>
 					<tbody>
 						<tr>
-							<td><code>../{pkgname}/</code></td>
+							<td><code>../{pkgname}/info</code></td>
 							<td>Show information about this package.</td>
-						</tr>	  
+						</tr>
 						<tr>
 							<td><code>../{pkgname}/R/</code></td>
 							<td>R objects exported by this package. See R object API.</td>
@@ -286,25 +286,25 @@ curl https://public.opencpu.org/ocpu/gist/hadley/
 						<tr>
 							<td><code>../{pkgname}/data/</code></td>
 							<td>Data included with this package. Datasets are objects, see R object API.</td>
-						</tr>						
+						</tr>
 						<tr>
 							<td><code>../{pkgname}/man/</code></td>
 							<td>Manuals (help pages) included in this package.</td>
-						</tr>   
+						</tr>
 						<tr>
 							<td><code>../{pkgname}/man/{topic}/{format}</code></td>
 							<td>Retrieve help page about <code>topic</code> in output format <code>format</code>. Manual format must be one of <code>text</code>, <code>html</code>, <code>pdf</code></td>
-						</tr> 
+						</tr>
 						<tr>
 							<td><code>../{pkgname}/html</code></td>
 							<td>Simulates the R-base html help pages (for backward compatibility).</td>
-						</tr> 				
+						</tr>
 						<tr>
 							<td><code>../{pkgname}/*</code></td>
 							<td>For all else, interfaces to the files in the package installation directory.</td>
-						</tr>																									 
+						</tr>
 					</tbody>
-				</table>	
+				</table>
 
 {% highlight bash %}
 #package info
@@ -360,19 +360,19 @@ curl https://public.opencpu.org/ocpu/tmp/x0648ec526b/R/.val/print
 						<tr>
 							<td><code>../R/</code></td>
 							<td>List R objects in this package or session.</td>
-						</tr>  
+						</tr>
 						<tr>
 							<td><code>../data/</code></td>
 							<td>List data objects in a package.</td>
-						</tr>  						
+						</tr>
 						<tr>
 							<td><code>../{R|data}/{object}</code></td>
 							<td>Read object in default format. If <code>object</code> is a function, it can be called using HTTP POST.</td>
-						</tr>			
+						</tr>
 						<tr>
 							<td><code>../{R|data}/{object}/{format}</code></td>
 							<td>Retrieve an R object in a particular output format (see section on output formats).</td>
-						</tr>																					
+						</tr>
 					</tbody>
 				</table>
 
@@ -388,19 +388,19 @@ curl https://public.opencpu.org/ocpu/library/MASS/data/bacteria/json
 curl https://public.opencpu.org/ocpu/library/MASS/data/bacteria/csv
 curl https://public.opencpu.org/ocpu/library/MASS/data/bacteria/rda
 
-#call a function 
+#call a function
 curl https://public.opencpu.org/ocpu/library/MASS/R/truehist -d "data=[1,3,7,4,2,4,2,6,23,13,5,2]"
 {% endhighlight %}
 
 			</div>
-		</div> 
+		</div>
 
 		<div class="panel panel-primary" id="api-session">
 			<div class="panel-heading"><h4>The R session API</h4></div>
-			<div class="panel-body"> 
+			<div class="panel-body">
 
 				<p>A session is a container that holds resources created from a remote function/script call (RPC).</p>
-				
+
 				<table class="table table-bordered">
 					<thead>
 						<tr>
@@ -412,7 +412,7 @@ curl https://public.opencpu.org/ocpu/library/MASS/R/truehist -d "data=[1,3,7,4,2
 						<tr>
 							<td><code>/ocpu/tmp/{key}/</code></td>
 							<td>List available output for this session.</td>
-						</tr>  
+						</tr>
 						<tr>
 							<td><code>/ocpu/tmp/{key}/R</code></td>
 							<td>R objects stored in this session. Interface using <a href="#api-object">R object API</a>, same as objects in packages.</td>
@@ -420,23 +420,23 @@ curl https://public.opencpu.org/ocpu/library/MASS/R/truehist -d "data=[1,3,7,4,2
 						<tr>
 							<td><code>/ocpu/tmp/{key}/graphics/</code></td>
 							<td>Graphics (plots) stored in this session.</td>
-						</tr>  
+						</tr>
 						<tr>
 							<td><code>/ocpu/tmp/{key}/graphics/{n}/{format}</code></td>
 							<td>Retrieve plot number <code>{n}</code> in output format <code>{format}</code>. Format is usually one of <code>png</code>, <code>pdf</code> or <code>svg</code>. The <code>{n}</code> is an integer or "last".</td>
-						</tr>	
+						</tr>
 						<tr>
 							<td><code>/ocpu/tmp/{key}/source</code></td>
 							<td>Reads the input source code for this session.</td>
-						</tr>	  
+						</tr>
 						<tr>
 							<td><code>/ocpu/tmp/{key}/stdout</code></td>
 							<td>Shows text printed to STDOUT in this session.</td>
-						</tr>  
+						</tr>
 						<tr>
 							<td><code>/ocpu/tmp/{key}/console</code></td>
 							<td>Shows the console input/output for this session (combines source and stdout)</td>
-						</tr>					   
+						</tr>
 						<tr>
 							<td><code>/ocpu/tmp/{key}/zip</code></td>
 							<td>Download the entire session as a zip archive.</td>
@@ -448,11 +448,11 @@ curl https://public.opencpu.org/ocpu/library/MASS/R/truehist -d "data=[1,3,7,4,2
 						<tr>
 							<td><code>/ocpu/tmp/{key}/files/*</code></td>
 							<td>Interfaces to the file API in the working dir of the session.</td>
-						</tr>										 
+						</tr>
 
 					</tbody>
-				</table> 
-				
+				</table>
+
 {% highlight bash %}
 #A POST will create a temporary session
 #Use the returned key for the subsequent calls below
@@ -478,18 +478,18 @@ curl https://public.opencpu.org/ocpu/tmp/x05b85461/info/print
 {% endhighlight %}
 
 			</div>
-		</div>	   
+		</div>
 
 	    <div class="page-header" id="api-ioformats">
 	    	<h1>Input, Output: Data and Formats</h1>
-	    </div>				
-		
+	    </div>
+
 		<div class="panel panel-primary" id="api-formats">
 			<div class="panel-heading"><h4>Output formats for R objects</h4></div>
-			<div class="panel-body"> 
+			<div class="panel-body">
 
 				<p>Any R object (including recorded graphics) can be retrieved in various output formats, indicated by <code>:format</code> in the API tables.</p>
-				
+
 				<table class="table table-bordered">
 					<thead>
 						<tr>
@@ -513,7 +513,7 @@ curl https://public.opencpu.org/ocpu/tmp/x05b85461/info/print
 							<td class="success"><i class="icon icon-check"></i></td>
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
 							<td class="success"><i class="icon icon-check"></i></td>
-						</tr>   
+						</tr>
 
 						<tr>
 							<td><code>json</code></td>
@@ -524,7 +524,7 @@ curl https://public.opencpu.org/ocpu/tmp/x05b85461/info/print
 							<td class="success"><i class="icon icon-check"></i></td>
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
-						</tr>	  
+						</tr>
 
 						<tr>
 							<td><code>csv</code></td>
@@ -535,7 +535,7 @@ curl https://public.opencpu.org/ocpu/tmp/x05b85461/info/print
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
-						</tr>  
+						</tr>
 
 						<tr>
 							<td><code>tab</code></td>
@@ -557,7 +557,7 @@ curl https://public.opencpu.org/ocpu/tmp/x05b85461/info/print
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
-						</tr>   					
+						</tr>
 
 						<tr>
 							<td><code>rda</code></td>
@@ -568,7 +568,7 @@ curl https://public.opencpu.org/ocpu/tmp/x05b85461/info/print
 							<td class="success"><i class="icon icon-check"></i></td>
 							<td class="success"><i class="icon icon-check"></i></td>
 							<td class="success"><i class="icon icon-check"></i></td>
-						</tr>   
+						</tr>
 
 						<tr>
 							<td><code>rds</code></td>
@@ -579,7 +579,7 @@ curl https://public.opencpu.org/ocpu/tmp/x05b85461/info/print
 							<td class="success"><i class="icon icon-check"></i></td>
 							<td class="success"><i class="icon icon-check"></i></td>
 							<td class="success"><i class="icon icon-check"></i></td>
-						</tr>  
+						</tr>
 
 						<tr>
 							<td><code>pb</code></td>
@@ -590,7 +590,7 @@ curl https://public.opencpu.org/ocpu/tmp/x05b85461/info/print
 							<td class="success"><i class="icon icon-check"></i></td>
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
-						</tr> 						 
+						</tr>
 
 						<tr>
 							<td><code>png</code></td>
@@ -601,7 +601,7 @@ curl https://public.opencpu.org/ocpu/tmp/x05b85461/info/print
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
 							<td class="success"><i class="icon icon-check"></i></td>
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
-						</tr>	
+						</tr>
 
 						<tr>
 							<td><code>pdf</code></td>
@@ -612,7 +612,7 @@ curl https://public.opencpu.org/ocpu/tmp/x05b85461/info/print
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
 							<td class="success"><i class="icon icon-check"></i></td>
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
-						</tr>  
+						</tr>
 
 						<tr>
 							<td><code>svg</code></td>
@@ -623,11 +623,11 @@ curl https://public.opencpu.org/ocpu/tmp/x05b85461/info/print
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
 							<td class="success"><i class="icon icon-check"></i></td>
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
-						</tr>																							
+						</tr>
 
 					</tbody>
-				</table>  
-				
+				</table>
+
 {% highlight bash %}
 #read R objects from packages.
 curl https://public.opencpu.org/ocpu/library/datasets/R/mtcars/json?digits=0
@@ -646,16 +646,16 @@ curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/1/png?width=1000
 curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/svg
 curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/pdf?width=8
 {% endhighlight %}
-				
+
 			</div>
 		</div>
-		
-		
+
+
 		<div class="panel panel-primary" id="api-arguments">
 			<div class="panel-heading"><h4>Argument formats for R function calls (HTTP POST only)</h4></div>
 			<div class="panel-body">
 				<p>When calling a function, we need to pass arguments. OpenCPU accepts the following types of arguments</p>
-				
+
 				<table class="table table-bordered">
 					<thead>
 						<tr>
@@ -669,36 +669,36 @@ curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/pdf?width=8
 							<td>Primitives</td>
 							<td>Numbers, strings, booleans</td>
 							<td><code>3.1415</code>, <code>false</code>, <code>"mytitle"</code></td>
-						</tr>   
+						</tr>
 
 						<tr>
 							<td>JSON object</td>
 							<td>An array or object</td>
 							<td><code>{"foo" : [1,2,3], "bar" : {"name" : "jerry"}}</code></td>
-						</tr>  
+						</tr>
 
 						<tr>
 							<td>R code</td>
 							<td>plain R code</td>
 							<td><code>paste("useR", "2013")</code>, <code>mtcars</code></td>
-						</tr>  
+						</tr>
 
 						<tr>
 							<td>File upload</td>
 							<td>File argument will be temporary file path.</td>
 							<td>(multipart only)</td>
-						</tr>									
+						</tr>
 
 						<tr>
 							<td>Temp key (session)</td>
 							<td>Session ID from previous function call.</td>
 							<td><code>x2ac58d69</code></td>
-						</tr>																						 
+						</tr>
 
 					</tbody>
-				</table> 		   
+				</table>
 
-				<p>When performing a function call, the POST data (request body) can be formated using either <code>multipart/form-data</code>, 
+				<p>When performing a function call, the POST data (request body) can be formated using either <code>multipart/form-data</code>,
 					<code>application/x-www-form-urlencoded</code>, <code>application/json</code> or <code>application/x-protobuf</code>. Not every content-type supports any argument format:
 				</p>
 
@@ -721,7 +721,7 @@ curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/pdf?width=8
 							<td class="success"><i class="icon icon-check"></i></td>
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
 							<td class="success"><i class="icon icon-check"></i></td>
-						</tr>   
+						</tr>
 
 						<tr>
 							<td><code>multipart/form-data</code></td>
@@ -730,7 +730,7 @@ curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/pdf?width=8
 							<td class="success"><i class="icon icon-check"></i></td>
 							<td class="success"><i class="icon icon-check"></i></td>
 							<td class="success"><i class="icon icon-check"></i></td>
-						</tr>	
+						</tr>
 
 						<tr>
 							<td><code>application/json</code></td>
@@ -748,14 +748,14 @@ curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/pdf?width=8
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
-						</tr>						
+						</tr>
 
 					</tbody>
-				</table>		
+				</table>
 
 {% highlight bash %}
 #call some functions
-curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d "n=10&mean=5" 
+curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d "n=10&mean=5"
 curl https://public.opencpu.org/ocpu/library/graphics/R/hist -d "x=[2,3,2,3,4,3,3]&breaks=10"
 curl https://public.opencpu.org/ocpu/library/graphics/R/plot -d "x=cars&main='test'"
 curl https://public.opencpu.org/ocpu/library/base/R/identity -d "x=coef(lm(speed~dist, data=cars))"
@@ -801,14 +801,14 @@ curl http://public.opencpu.org/ocpu/library/stats/R/rnorm \
 							<td>R script</td>
 							<td>evaluate::evaluate</td>
 							<td>-</td>
-						</tr>  
+						</tr>
 
 						<tr>
 							<td><code>file.tex</code></td>
 							<td>latex</td>
 							<td>tools::texi2pdf</td>
 							<td>-</td>
-						</tr>			
+						</tr>
 
 						<tr>
 							<td><code>file.rnw</code></td>
@@ -822,21 +822,21 @@ curl http://public.opencpu.org/ocpu/library/stats/R/rnorm \
 							<td>markdown</td>
 							<td>knitr::pandoc</td>
 							<td><code>format</code> (see ?pandoc) </td>
-						</tr>			 
+						</tr>
 
 						<tr>
 							<td><code>file.rmd</code></td>
 							<td>knitr/markdown</td>
 							<td>knitr::knit + knitr::pandoc</td>
 							<td><code>format</code> (see ?pandoc) </td>
-						</tr>	
+						</tr>
 
 						<tr>
 							<td><code>file.brew</code></td>
 							<td>brew</td>
 							<td>brew::brew</td>
 							<td><code>output</code> (see ?brew)</td>
-						</tr>									
+						</tr>
 
 					</tbody>
 				</table>
@@ -849,7 +849,7 @@ curl https://public.opencpu.org/ocpu/library/brew/brew-test-2.brew -d "output=ou
 curl https://public.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rmd -X POST
 curl https://public.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rmd -d "format=docx"
 curl https://public.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rmd -d "format=html"
-curl https://public.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rnw 
+curl https://public.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rnw
 
 #run scripts from gist
 curl https://public.opencpu.org/ocpu/gist/hadley/6195660/r-is-like.md -X POST
@@ -857,7 +857,7 @@ curl https://public.opencpu.org/ocpu/gist/hadley/5721744/html.r -X POST
 {% endhighlight %}
 
 			</div>
-		</div> 
+		</div>
 
 
 		<div class="panel panel-primary" id="api-json">
@@ -882,7 +882,7 @@ curl http://public.opencpu.org/ocpu/library/stats/R/rnorm/json \
 4.9829,
 6.3104,
 11.411
-]  
+]
 {% endhighlight %}
 
 				<p> The above request invokes the following R function call:</p>
@@ -905,19 +905,19 @@ rnorm(n=3, mean=10, sd=10)
 
 	    <div class="page-header" id="api-misc">
 	    	<h1>Miscellaneous functionality</h1>
-	    </div>	
+	    </div>
 
 		<div class="panel panel-primary" id="api-info">
 			<div class="panel-heading"><h4>Server Info</h4></div>
 			<div class="panel-body">
-				<p>The <code>/ocpu/info</code> endpoint shows the output of <code>sessionInfo()</code> from the main (webserver) process. This can be helpful for debugging. However do note that unsafe requests are evaluated in a parallel process.</p>	   
+				<p>The <code>/ocpu/info</code> endpoint shows the output of <code>sessionInfo()</code> from the main (webserver) process. This can be helpful for debugging. However do note that unsafe requests are evaluated in a parallel process.</p>
 			</div>
-		</div>	    
+		</div>
 
 		<div class="panel panel-primary" id="api-apps">
 			<div class="panel-heading"><h4>OpenCPU Apps</h4></div>
 			<div class="panel-body">
-				<p>OpenCPU apps are static web pages (html, css, js) which are included in an R package. They interface the R functions in this package through the OpenCPU API's. By convention, these apps are placed in the <code>/inst/www/</code> directory of the R source package. See for more information the <a href="apps.html">apps page</a>.</p>	   
+				<p>OpenCPU apps are static web pages (html, css, js) which are included in an R package. They interface the R functions in this package through the OpenCPU API's. By convention, these apps are placed in the <code>/inst/www/</code> directory of the R source package. See for more information the <a href="apps.html">apps page</a>.</p>
 			</div>
 		</div>
 
@@ -946,10 +946,10 @@ https://public.opencpu.org/ocpu/webhook
 			If you are using the public server, the package will also be available via <a href="https://jeroenooms.ocpu.io/jsonlite/"><code>https://{yourname}.ocpu.io/{package}/</code></a>. If on the other hand you are running your own OpenCPU cloud server, note that an SMTP server must be configured for the email notifictions to work. Also depending on your ISP, your server must have a proper reverse DNS to prevent email notifications from ending up in spam filters.</p>
 
 			</div>
-		</div> 		
+		</div>
 
 	   	<!--spacer-->
-		<div style="height:500px;"></div>		
+		<div style="height:500px;"></div>
 
 	</div>
 </div>
@@ -959,7 +959,7 @@ $(function(){
   $('body').scrollspy({ target: '#docmenu', offset:80 })
 });
 
-//fancy scrolling animation	
+//fancy scrolling animation
 if(!(/iPhone|iPod|iPad|Android|BlackBerry/).test(navigator.userAgent)){
 	$("#docmenu li a").on('click', function(e) {
 		// prevent default anchor click behavior

@@ -5,7 +5,7 @@ title: "FAQ"
 
 <div class="row">
   <div class="col-md-8">
-  
+
 		<div class="panel-group">
 		  <div class="panel panel-default">
 		    <div class="panel-heading">
@@ -17,7 +17,7 @@ title: "FAQ"
 		    </div>
 		    <div id="faq0" class="panel-collapse collapse">
 		      <div class="panel-body">
-		            OpenCPU is a software system for embedded statistical computation and reproducible research. The server exposes a web API interfacing R, Latex and Pandoc. This API is used for example to integrate statistical functionality into systems, share and execute scripts or reports on centralized servers, and build R based "apps". The OpenCPU server can run either as a single-user server inside the interactive R session (for local use and development), or as a cloud server that builds on Linux and rApache. 
+		            OpenCPU is a software system for embedded statistical computation and reproducible research. The server exposes a web API interfacing R, Latex and Pandoc. This API is used for example to integrate statistical functionality into systems, share and execute scripts or reports on centralized servers, and build R based "apps". The OpenCPU server can run either as a single-user server inside the interactive R session (for local use and development), or as a cloud server that builds on Linux and rApache.
 		      </div>
 		    </div>
 		  </div>
@@ -63,7 +63,7 @@ title: "FAQ"
 		    </div>
 		    <div id="faq3" class="panel-collapse collapse">
 		      <div class="panel-body">
-		            The OpenCPU cloud server is designed to run on a remote server in the cloud or virtual machine. Once installed, any HTTP client on any operating system can interacting with OpenCPU through the API. To run the OpenCPU cloud server on your local machine, use virtualization software such as VMWare (Windows), Parallels (Mac) or KVM (Linux) to run a virtual Ubuntu Server on top of your existing system. This way R does not interfere with other software on the system, and you can turn of the OpenCPU server simply by shutting down the virtual machine.  
+		            The OpenCPU cloud server is designed to run on a remote server in the cloud or virtual machine. Once installed, any HTTP client on any operating system can interacting with OpenCPU through the API. To run the OpenCPU cloud server on your local machine, use virtualization software such as VMWare (Windows), Parallels (Mac) or KVM (Linux) to run a virtual Ubuntu Server on top of your existing system. This way R does not interfere with other software on the system, and you can turn of the OpenCPU server simply by shutting down the virtual machine.
 		      </div>
 		    </div>
 		  </div>
@@ -80,23 +80,23 @@ title: "FAQ"
             Security in the cloud server is enforced using AppArmor. AppArmor is a security module for the linux kernel and enforces mandatory access control policies on a by-process basis. These policies can easily be customized by modifying the AppArmor profiles that ship with the OpenCPU cloud server. See the <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-server.pdf">server manual</a> for more information.
           </div>
         </div>
-      </div>	
-      
+      </div>
+
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq5">
-              Can I use OpenCPU with RStudio? 
+              Can I use OpenCPU with RStudio?
             </a>
           </h4>
         </div>
         <div id="faq5" class="panel-collapse collapse">
           <div class="panel-body">
-            Yes! Both the OpenCPU single-user server and OpenCPU cloud server have been tested to work with <a href="http://www.rstudio.com/ide/download/">RStudio 0.98</a> and above. See also the appendix in the <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-server.pdf">server manual</a> on this topic.   
+            Yes! Both the OpenCPU single-user server and OpenCPU cloud server have been tested to work with <a href="http://www.rstudio.com/ide/download/">RStudio 0.98</a> and above. See also the appendix in the <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-server.pdf">server manual</a> on this topic.
           </div>
         </div>
-      </div>      
-      
+      </div>
+
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -110,9 +110,9 @@ title: "FAQ"
             Absolutely. The current open-source OpenCPU implementation is released under the Apache2 License. You are allowed to use and modify it as you wish (open source or not).
           </div>
         </div>
-      </div>          	  
+      </div>
 
-	  
+
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -126,8 +126,8 @@ title: "FAQ"
             Yes, EC2 is great to get started with OpenCPU. The Ubuntu team provides daily <a href="http://cloud-images.ubuntu.com/">cloud images</a> for EC2, which contain a pre-installed, up-to-date, ready-to-go Ubuntu Server. Usually you pick the "current" image of the latest stable release of Ubuntu Server, e.g: <a href="http://cloud-images.ubuntu.com/trusty/current/">http://cloud-images.ubuntu.com/trusty/current/</a>. Both R and Latex require CPU more than anything else so it is recommended to pick one of the <i>C3 generation compute optimized</i> instance types, for example <code>c3.large</code>. The C3 instance types run on a Ivy Bridge Processors and SSD which will make OpenCPU very happy. The <code>small</code> and <code>micro</code> EC2 instance types have only half a CPU or less, which will seriously test your patience :-)
           </div>
         </div>
-      </div> 
-      
+      </div>
+
 
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -139,12 +139,12 @@ title: "FAQ"
         </div>
         <div id="faq8" class="panel-collapse collapse">
           <div class="panel-body">
-            Finding a good provider can be a bit difficult because most providers focus on traffic, disk space and support, 
+            Finding a good provider can be a bit difficult because most providers focus on traffic, disk space and support,
             but OpenCPU really only needs fast CPU (and some memory). Get a server that has a couple of fast, uncapped, preferably private, processors. Ask the provider how many and how fast the processors are and whether or not they are shared with many other users on the same machine. Pick a provider that offers a clean, unmanaged Ubuntu Server. Avoid anything with pre-configured control panels and all that stuff, it will only slow things down. Many providers offer a trial period if you ask for it. Try running some quick <a href="http://r.research.att.com/benchmarks/">R benchmarks</a> to test performance. If you really have no idea where to start looking, in the US <a href="http://www.rackspace.com/cloud/servers/">Rackspace</a> and <a href="http://aws.amazon.com/ec2/pricing/">Amazon EC2</a> are popular, and for Europe <a href="http://www.transip.eu/">TransIP</a> seems pretty good.
           </div>
         </div>
-      </div>   
-      
+      </div>
+
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -155,10 +155,10 @@ title: "FAQ"
         </div>
         <div id="faq9" class="panel-collapse collapse">
           <div class="panel-body">
-            Yes! To publish an app in the <a href="https://github.com/opencpu">official repository</a>, first put it in your own github repository. It should then be accessible via e.g. <code>https://public.opencpu.org/ocpu/github/:yourname/:yourpkg/www</code>. Let us know by twitter or email that you would like it published, and if it meets the minimum requirements, we'll fork it into the OpenCPU github organization. 
+            Yes! To publish an app in the <a href="https://github.com/opencpu">official repository</a>, first put it in your own github repository. It should then be accessible via e.g. <code>https://public.opencpu.org/ocpu/github/:yourname/:yourpkg/www</code>. Let us know by twitter or email that you would like it published, and if it meets the minimum requirements, we'll fork it into the OpenCPU github organization.
          </div>
         </div>
-      </div>       
+      </div>
 
 
       <div class="panel panel-default">
@@ -174,7 +174,7 @@ title: "FAQ"
             When using unconventional locations for files or packages, these locations need to be added to the security profile. Have a look at <code>/var/log/kern.log</code> on your system and search for lines containing "APPARMOR" and "DENIED" to diagnose if this is the problem. The section on <i>Customizing the security profile</i> in the <a href="https://public.opencpu.org/download.html">PDF server manual</a> contains more information.
          </div>
         </div>
-      </div>   
+      </div>
 
 
       <div class="panel panel-default">
@@ -187,10 +187,10 @@ title: "FAQ"
         </div>
         <div id="faq11" class="panel-collapse collapse">
           <div class="panel-body">
-            The purpose of the <a href="https://public.opencpu.org/api.html">OpenCPU API</a> is to define a unified, exensible interface to R that allows for developing portable applications and scalable servers. The API is deliberately quite minimal and describes only <i>what</i> it does, not </i>how</i>. The current open-source implementation is written completely in R. It used by several organizations, has undergone lots of testing, and has proven to be stable. However, if it any point you would like to implement an OpenCPU server in e.g. a Java/C++/Node stack (open source or not), you are more than welcome to do so, and we will help out where ever we can. It would be fantastic if the same apps could be hosted on various server implementations.  
+            The purpose of the <a href="https://public.opencpu.org/api.html">OpenCPU API</a> is to define a unified, exensible interface to R that allows for developing portable applications and scalable servers. The API is deliberately quite minimal and describes only <i>what</i> it does, not </i>how</i>. The current open-source implementation is written completely in R. It used by several organizations, has undergone lots of testing, and has proven to be stable. However, if it any point you would like to implement an OpenCPU server in e.g. a Java/C++/Node stack (open source or not), you are more than welcome to do so, and we will help out where ever we can. It would be fantastic if the same apps could be hosted on various server implementations.
          </div>
         </div>
-      </div>    
+      </div>
 
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -205,7 +205,7 @@ title: "FAQ"
             In most cases, the overhead of the OpenCPU server (especially the cloud server) should be neglectable. The time it takes to call an R function or run a script through OpenCPU is equal to the time it takes to call the same function or script in R, plus the latency of the connection (ping client to server). When using HTTPS there might be a bit of additional SSL handshaking, but if you're using a smart client (e.g. a browser) this is only required for the first request. If you experience slowness, then probably the R code that you are calling is just slow (welcome to R). If there is a big time difference between calling a function locally and calling it through OpenCPU, please report is as a bug. One exception: if you're using the local single-user server on Windows, there is some additional overhead due to the absense of forking in Windows. Rest assured that your application will run faster once it is deployed on the cloud server.
          </div>
         </div>
-      </div>                           
+      </div>
 
 
       <div class="panel panel-default">
@@ -240,10 +240,10 @@ title: "FAQ"
       </div>
 
       <br>
-      
-                   
-    </div>	  
-  
+
+
+    </div>
+
   </div>
   <div class="col-md-4 fancy">
     <h2>Mailing List</h2>
@@ -251,10 +251,10 @@ title: "FAQ"
 
     <h2>Technical Questions</h2>
     <p>Technical questions about OpenCPU, R, HTTP, JavaScript, etc, can also be asked on <a href="http://stackoverflow.com/">Stack Overflow</a>. Tag your questions with both <a href="http://stackoverflow.com/questions/tagged/opencpu"><code>#opencpu</code></a> and <a href="http://stackoverflow.com/questions/tagged/r"><code>#r</code></a> to maximize the likelihood of an answer.</p>
-     
+
     <h2>Short Questions</h2>
-    <p>For (short) questions, you can also <a href="http://twitter.com/home?status=%23rstats%20%40opencpu%20">ask <code>@OpenCPU</code></a> on twitter.</p>     
- 
+    <p>For (short) questions, you can also <a href="http://twitter.com/home?status=%23rstats%20%40opencpu%20">ask <code>@OpenCPU</code></a> on twitter.</p>
+
   </div>
 </div>
 
