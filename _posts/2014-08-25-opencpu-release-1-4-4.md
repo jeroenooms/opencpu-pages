@@ -28,7 +28,7 @@ A new feature in this version is support for session namespaces. Clients can now
 	/ocpu/tmp/x05af9fe89a/info
 	/ocpu/tmp/x05af9fe89a/files/ch01.pdf
 
-The `x05af9fe89a` is the temporary session ID, which will be different for every execution. From the output we can see that this script stored 7 objects in the session namespace. For example to retrieve the `z` object in `json` format:
+The `x05af9fe89a` is the temporary session ID, which will be different for every execution. From the output we can see that this script stored 7 objects in the session namespace. To retrieve the `z` object in `json` format, use:
 
     https://public.opencpu.org/ocpu/tmp/x05af9fe89a/R/z/json?pretty=FALSE
 
