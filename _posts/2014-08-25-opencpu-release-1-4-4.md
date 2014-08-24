@@ -12,7 +12,7 @@ This week version 1.4.4 was released on [Launchpad](https://launchpad.net/~openc
 
 ## New: session namespaces
 
-A new feature in this version is support for `session namespaces. Clients can now refer to objects within a temporary session using `sessionid::name`. This makes it easier to reuse objects that were created from a script. For example let's execute the [ch01.R](https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R) script which is included with the [MASS](https://public.opencpu.org/ocpu/library/MASS/scripts) package:
+A new feature in this version is support for session namespaces. Clients can now refer to objects within a temporary session using `sessionid::name`. This makes it easier to reuse objects that were created from a script. For example let's execute the [ch01.R](https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R) script which is included with the [MASS](https://public.opencpu.org/ocpu/library/MASS/scripts) package:
 
 	>> curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
 	/ocpu/tmp/x05af9fe89a/R/dd
