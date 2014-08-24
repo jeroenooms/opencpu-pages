@@ -42,7 +42,7 @@ title: "Public Server"
 
 <h2>Packages on ocpu.io</h2>
 
-<p>All <code>ocpu.io</code> URLs interface to the <a href="api.html#api-package">OpenCPU Package API</a>. To publish your packages and apps on <a href="https://hadley.ocpu.io">yourname.ocpu.io</a>, simply put them on github. Use the <a href="https://public.opencpu.org/posts/continuous-integration-of-R-packages/">continuous integration</a> webhook to automatically install the R package/app on the public server, every time you push an update to Github!</p>
+<p>All <code>ocpu.io</code> URLs interface to the <a href="api.html#api-package">OpenCPU Package API</a>. To publish your packages and apps on <a href="https://hadley.ocpu.io">yourname.ocpu.io</a>, simply put them on github and use the <a href="https://public.opencpu.org/api.html#api-ci">Webhook API</a> to automatically install the R package on the public server, every time you push a commit to Github!</p>
 
 <div class="row">
 	<div class="col-lg-12">
@@ -56,11 +56,11 @@ title: "Public Server"
 	    </thead>
 	    <tbody>
 	      <tr>
-	        <td><a href="https://demo.ocpu.io/stocks/www/">https://demo.ocpu.io/</a></td>
-	        <td><code>https://public.opencpu.org/ocpu/library/</code></td>
-	        <td>demo packages</a></td>
+	        <td><a href="https://demo.ocpu.io/stocks/www/"><code>https://demo.ocpu.io/</code></a></td>
+	        <td><a href="https://public.opencpu.org/ocpu/library/"><code>https://public.opencpu.org/ocpu/library/</code></a></td>
+	        <td>CRAN/Bioc Packages</a></td>
 	      </tr>
-	      <tr>
+<!--	      <tr>
 	        <td><a href="https://cran.ocpu.io/MASS">https://cran.ocpu.io/</a></td>
 	        <td><code>https://public.opencpu.org/ocpu/cran/</code></td>
 	        <td><a href="http://cran.r-project.org/web/packages/available_packages_by_name.html">CRAN</a></td>
@@ -70,9 +70,9 @@ title: "Public Server"
 	        <td><code>https://public.opencpu.org/ocpu/bioc/</code></td>
 	        <td><a href="http://www.bioconductor.org/packages/release/bioc/">BioConductor</a></td>
 	      </tr>
-	      <tr>
-	        <td><a href="https://hadley.ocpu.io/">https://&lt;github-user&gt;.ocpu.io/</a></td>
-	        <td><code>https://public.opencpu.org/ocpu/github/&lt;github-user&gt;/</code></td>
+-->	      <tr>
+	        <td><a href="https://hadley.ocpu.io/"><code>https://&lt;github-user&gt;.ocpu.io/</code></a></td>
+	        <td><a href="https://public.opencpu.org/ocpu/github/hadley/"><code>https://public.opencpu.org/ocpu/github/&lt;github-user&gt;/</code></a></td>
 	        <td><a href="https://github.com/hadley/">Github</td>
 	      </tr>
 	    </tbody>
@@ -95,14 +95,9 @@ title: "Public Server"
 			</thead>
 			<tbody>
 				<tr>
-					<td>List packages on CRAN</td>
-					<td><code>cran.ocpu.io</code></td>
-					<td><code>public.opencpu.org/ocpu/cran/</code></td>
-				</tr>
-				<tr>
-					<td>List packages on BioConductor</td>
-					<td><code>bioc.ocpu.io</code></td>
-					<td><code>public.opencpu.org/ocpu/bioc/</code></td>
+					<td>List installed packages on demo server</td>
+					<td><code>demo.ocpu.io</code></td>
+					<td><code>public.opencpu.org/ocpu/library/</code></td>
 				</tr>
 				<tr>
 					<td>List repositories from <a href="http://github.com/hadley">Hadley</a></td>
@@ -112,13 +107,13 @@ title: "Public Server"
 				<tr><th colspan="3" class="text-center">Package Info</th></tr>
 				<tr>
 					<td>MASS from CRAN</td>
-					<td><code>cran.ocpu.io/MASS/</code></td>
-					<td><code>public.opencpu.org/ocpu/cran/MASS/</code></td>
+					<td><code>demo.ocpu.io/MASS/</code></td>
+					<td><code>public.opencpu.org/ocpu/library/MASS/</code></td>
 				</tr>
 				<tr>
 					<td>plyr from CRAN</td>
-					<td><code>cran.ocpu.io/plyr/</code></td>
-					<td><code>public.opencpu.org/ocpu/cran/plyr/</code></td>
+					<td><code>demo.ocpu.io/plyr/</code></td>
+					<td><code>public.opencpu.org/ocpu/library/plyr/</code></td>
 				</tr>
 				<tr>
 					<td>plyr from Github</td>
