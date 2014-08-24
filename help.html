@@ -64,7 +64,7 @@ title: "Help"
 		    </div>
 		    <div id="faq3" class="panel-collapse collapse">
 		      <div class="panel-body">
-		            The OpenCPU server is designed to run on a remote host, accessed through the OpenCPU API, and perhaps RStudio server. The operating system of the host should be irrelevant to users and clients. That said, best support for R and OpenCPU is available on Ubuntu Linux, but this [readme on github](https://github.com/jeroenooms/opencpu-server#readme) has some instructions for building and running OpenCPU on various other Linux distributions. You can also use virtualization software such as VMWare (Windows), Parallels (Mac) or KVM (Linux) to run a virtual Ubuntu Server within your local machine. This way R does not interfere with other software on the system, and you can turn of the OpenCPU server simply by shutting down the virtual machine.
+		            The OpenCPU server is designed to run on a remote host, accessed through the OpenCPU API, and perhaps RStudio server. The operating system of the host should be irrelevant to users and clients. That said, best support for R and OpenCPU is available on Ubuntu Linux, but this <a href="https://github.com/jeroenooms/opencpu-server#readme">readme on github</a> has some instructions for building and running OpenCPU on various other Linux distributions. Alternatively, you can use virtualization software such as VMWare (Windows), Parallels (Mac) or KVM (Linux) to run a virtual Ubuntu Server within your local machine.
 		      </div>
 		    </div>
 		  </div>
@@ -78,7 +78,7 @@ title: "Help"
         </div>
         <div id="faq4" class="panel-collapse collapse">
           <div class="panel-body">
-            Security in the cloud server is enforced using AppArmor. AppArmor is a security module for the linux kernel and enforces mandatory access control policies on a by-process basis. These policies can easily be customized by modifying the AppArmor profiles that ship with the OpenCPU cloud server. See the <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-server.pdf">server manual</a> for more information.
+            OpenCPU has no notion of users or privileges. The implementation relies on Mandatory Access Control to implement security policies. On Debian and Ubuntu, AppArmor (a security module for the linux kernel) is used to enforce access control policies on a by-process basis. These policies can easily be customized by modifying the AppArmor profiles that ship with the OpenCPU cloud server. See the <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-server.pdf">server manual</a> for more information.
           </div>
         </div>
       </div>
@@ -141,7 +141,7 @@ title: "Help"
         <div id="faq8" class="panel-collapse collapse">
           <div class="panel-body">
             Finding a good provider can be a bit difficult because most providers focus on traffic, disk space and support,
-            but OpenCPU really only needs fast CPU (and some memory). Get a server that has a couple of fast, uncapped, preferably private, processors. Ask the provider how many and how fast the processors are and whether or not they are shared with many other users on the same machine. Pick a provider that offers a clean, unmanaged Ubuntu Server. Avoid anything with pre-configured control panels and all that stuff, it will only slow things down. Many providers offer a trial period if you ask for it. Try running some quick <a href="http://r.research.att.com/benchmarks/">R benchmarks</a> to test performance. If you really have no idea where to start looking, in the US <a href="http://www.rackspace.com/cloud/servers/">Rackspace</a> and <a href="http://aws.amazon.com/ec2/pricing/">Amazon EC2</a> are popular, and for Europe <a href="http://www.transip.eu/">TransIP</a> seems pretty good.
+            but OpenCPU really only needs fast CPU (and some memory). Get a server that has a couple of fast, uncapped, preferably private, processors. Ask the provider how many and how fast the processors are and whether or not they are shared with many other users on the same machine. Pick a provider that offers a clean, unmanaged Ubuntu Server. Avoid anything with pre-configured control panels and all that stuff, it will only slow things down. Many providers offer a trial period if you ask for it. Try running some quick <a href="http://r.research.att.com/benchmarks/">R benchmarks</a> to test performance. If you really have no idea where to start looking, in the US <a href="http://www.rackspace.com/cloud/servers/">Rackspace</a>, <a href="https://www.linode.com/">Linode</a> and <a href="http://aws.amazon.com/ec2/pricing/">Amazon EC2</a> are popular, and for Europe <a href="http://www.transip.eu/">TransIP</a> seems pretty good.
           </div>
         </div>
       </div>
@@ -235,7 +235,7 @@ title: "Help"
         </div>
         <div id="faq14" class="panel-collapse collapse">
           <div class="panel-body">
-            The source package of the OpenCPU cloud server is available form the <a href="https://github.com/jeroenooms/opencpu-deb">opencpu-deb</a> repository. The <a href="https://github.com/jeroenooms/opencpu-deb/blob/master/README.md">readme</a> file contains basic instructions how to build on Ubuntu. Experimental support for building on Debian 7 (Wheezy) is described in <a href="https://github.com/jeroenooms/opencpu-deb/blob/master/build-on-debian.md">here</a>.
+            The source package of the OpenCPU cloud server is available form the <a href="https://github.com/jeroenooms/opencpu-server">opencpu-server</a> repository. The <a href="https://github.com/jeroenooms/opencpu-server#readme">readme</a> contains more information.
          </div>
         </div>
       </div>
