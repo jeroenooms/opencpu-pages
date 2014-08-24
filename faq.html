@@ -57,13 +57,13 @@ title: "FAQ"
 		    <div class="panel-heading">
 		      <h4 class="panel-title">
 			      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#faq3">
-			         Does the OpenCPU cloud server support { Windows | OSX | RHEL | etc } ?
+			         Does the OpenCPU cloud server support { Fedora | RHEL | Windows | OSX | etc } ?
 			      </a>
 			    </h4>
 		    </div>
 		    <div id="faq3" class="panel-collapse collapse">
 		      <div class="panel-body">
-		            The OpenCPU cloud server is designed to run on a remote server in the cloud or virtual machine. Once installed, any HTTP client on any operating system can interacting with OpenCPU through the API. To run the OpenCPU cloud server on your local machine, use virtualization software such as VMWare (Windows), Parallels (Mac) or KVM (Linux) to run a virtual Ubuntu Server on top of your existing system. This way R does not interfere with other software on the system, and you can turn of the OpenCPU server simply by shutting down the virtual machine.
+		            The OpenCPU server is designed to run on a remote host, accessed through the OpenCPU API, and perhaps RStudio server. The operating system of the host should be irrelevant to users and clients. That said, best support for R and OpenCPU is available on Ubuntu Linux, but this [readme on github](https://github.com/jeroenooms/opencpu-server#readme) has some instructions for building and running OpenCPU on various other Linux distributions. You can also use virtualization software such as VMWare (Windows), Parallels (Mac) or KVM (Linux) to run a virtual Ubuntu Server within your local machine. This way R does not interfere with other software on the system, and you can turn of the OpenCPU server simply by shutting down the virtual machine.
 		      </div>
 		    </div>
 		  </div>
