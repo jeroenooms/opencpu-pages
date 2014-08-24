@@ -8,11 +8,11 @@ cover: "containers.jpg"
 
 After a few months of testing we present OpenCPU versions 1.3 and 1.4. These releases do not introduce any major changes in the <a href="../../api.html">OpenCPU HTTP API</a> but focus entirely on performance, reliability and security to support long running servers. The only minor API change in the <a href="../getting-ready-for-opencpu130/">switch to absolute URLs</a> in the location header. Upgrading from OpenCPU 1.2 should be painless and is recommended.
 
-These and future releases of the OpenCPU cloud server will target <code>Ubuntu 14.04</code> in order to take advantage of recent features in <code>R</code>, <code>Apache2</code>, <code>AppArmor</code> and <code>nginx</code>. Because this is a Long Term Support (LTS) Ubuntu release it includes 5 years of updates. Hence your OpenCPU server can run safely until April 2019 (or until you decide to upgrade). 
+These and future releases of the OpenCPU cloud server will target <code>Ubuntu 14.04</code> in order to take advantage of recent features in <code>R</code>, <code>Apache2</code>, <code>AppArmor</code> and <code>nginx</code>. Because this is a Long Term Support (LTS) Ubuntu release it includes 5 years of updates. Hence your OpenCPU server can run safely until April 2019 (or until you decide to upgrade).
 
 ## Version 1.3 versus 1.4
 
-OpenCPU versions 1.3 and 1.4 build on exactly the same version of the HTTP API and server code. The only difference is the version of R that is used in the cloud server. OpenCPU version 1.3 uses <code>R 3.0.2</code> included with Ubuntu, whereas OpenCPU version 1.4 uses the current version: <code>R 3.1.0</code>. 
+OpenCPU versions 1.3 and 1.4 build on exactly the same version of the HTTP API and server code. The only difference is the version of R that is used in the cloud server. OpenCPU version 1.3 uses <code>R 3.0.2</code> included with Ubuntu, whereas OpenCPU version 1.4 uses the current version: <code>R 3.1.0</code>.
 
 If you have no preference, OpenCPU 1.4 is recommended because many of the packages on <code>CRAN</code> require the <i>current</i> version of <code>R</code> and will therefore only work with OpenCPU 1.4.
 
@@ -50,11 +50,10 @@ Both apache and nginx are preconfigured to proxy the <code>/rstudio/</code> path
     https://your.server.com/ocpu/
     https://your.server.com/rstudio/
 
-Appendix B of the <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-server.pdf">OpenCPU Server Manual</a> has some more details. 
+Appendix B of the <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-server.pdf">OpenCPU Server Manual</a> has some more details.
 
 ## Questions
 
-If you have any problems, questions, feedback or suggestions feel free to send an email on the <a href="../../faq.html">mailing list</a> or open an issue on github. As is the case for many open source projects, good software comes with terrible documentation. But if anything is not working or unclear please do let me know; it is probably something small.
+If you have any problems, questions, feedback or suggestions feel free to send an email on the <a href="../../help.html">mailing list</a> or open an issue on github. As is the case for many open source projects, good software comes with terrible documentation. But if anything is not working or unclear please do let me know; it is probably something small.
 
 
- 
