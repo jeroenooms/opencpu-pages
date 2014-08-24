@@ -7,15 +7,15 @@
   <meta name="author" content="{{ site.author.name }}" />
   <meta name="description" content="{{ site.description }}" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- for social media preview stuff -->
-  <link rel="image_src" href="{{ page.prefix }}images/mediumlogo.jpg"/>  
+  <link rel="image_src" href="{{ page.prefix }}images/mediumlogo.jpg"/>
   <meta name="title" content="{{ page.title }}" />
 {% if page.description != null %}
   <meta name="description" content="{{ page.description }}" />
 {% else %}
-  <meta name="description" content="OpenCPU is a framework for embedded scientific computing and reproducible research. It provides the foundations for integrating statistical functionality into the next generation of systems and applications." />  
-{% endif %}  
+  <meta name="description" content="OpenCPU is a framework for embedded scientific computing and reproducible research. It provides the foundations for integrating statistical functionality into the next generation of systems and applications." />
+{% endif %}
 
   <!-- for RSS readers and aggregators -->
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ page.prefix }}atom.xml" />
@@ -44,10 +44,10 @@
   <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png">
-  
+
   <!-- used for inline javascript -->
   <script src="{{ page.prefix }}js/jquery.min.js"></script>
- 
+
 </head>
 
 <body>
@@ -70,26 +70,26 @@
          <ul class="nav navbar-nav">
             <li><a title="Blog" href="{{ page.prefix }}blog.html">Blog</a></li>
             <li><a title="API" href="{{ page.prefix }}api.html">API</a></li>
-            <li><a title="Papers" href="{{ page.prefix }}papers.html">Papers</a></li>            
+            <li><a title="Papers" href="{{ page.prefix }}papers.html">Papers</a></li>
             <li><a title="Download" href="{{ page.prefix }}download.html">Download</a></li>
             <li><a title="Apps" href="{{ page.prefix }}apps.html">Apps</a></li>
             <li><a title="JS library" href="{{ page.prefix }}jslib.html">JS lib</a></li>
-            <li><a title="FAQ" href="{{ page.prefix }}faq.html">FAQ</a></li>
+            <li><a title="Help" href="{{ page.prefix }}help.html">Help</a></li>
             <li><a title="Demo server" href="{{ page.prefix }}demo.html">Demo</a></li>
          </ul>
          <ul class="nav navbar-nav pull-right">
            <li><a title="Atom Feed" href="{{ page.prefix }}atom.xml"><i class="icon icon-rss-sign"></i></a></li>
-         </ul>            
+         </ul>
          </div>
       </div>
     </div>
 
-    
-    
-    
-    
+
+
+
+
     {{ content }}
-    
+
     <div id="push"></div>
   </div>
 
@@ -97,13 +97,13 @@
     <section class="meta">
       <div class="container">
         <div class="row">
-        
+
           <div class="col-lg-2 col-lg-offset-2 col-sm-3 col-xs-6">
             <a href="http://www.opencpu.org">
               <i class="icon icon-home icon-4x"></i>OpenCPU Home
             </a>
-          </div>        
-        
+          </div>
+
           <div class="col-lg-2 col-sm-3 col-xs-6">
             <a href="https://twitter.com/opencpu">
               <i class="icon icon-twitter icon-4x"></i>OpenCPU on Twitter
@@ -115,13 +115,13 @@
               <i class="icon icon-github icon-4x"></i>Github Development
             </a>
           </div>
-          
+
           <div class="col-lg-2 col-sm-3 col-xs-6">
             <a href="https://github.com/opencpu">
               <i class="icon icon-archive icon-4x"></i>OpenCPU Apps
             </a>
           </div>
-                              
+
         </div>
       </div>
     </section>
