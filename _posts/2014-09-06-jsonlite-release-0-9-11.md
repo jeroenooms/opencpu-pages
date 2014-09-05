@@ -62,7 +62,7 @@ microbenchmark(fromJSON(json_columns), times=10)
 #  fromJSON(json_columns) 1.17289 1.252284 1.253999 1.265763 1.306357    10
 {% endhighlight %}
 
-For comparison, we can also disable simplification alltogether in which case it takes respectively 0.70 and 0.39 seconds to parse these JSON, however we end up with a big nested list of lists which is often not very useful:
+For comparison, we can also disable simplification in which case parsing takes respectively 0.70 and 0.39 seconds for these data. However without simplification we end up with a big nested list of lists which is often not very useful.
 
 {% highlight r %}
 microbenchmark(fromJSON(json_rows, simplifyVector=F), times=10)
