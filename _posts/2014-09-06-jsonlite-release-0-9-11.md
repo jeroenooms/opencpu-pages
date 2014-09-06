@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "jsonlite gets a triple mushroom boost!"
+title: "New jsonlite gets a major speed boost!"
 category: posts
 description: "The jsonlite package is a JSON parser/generator optimized for the web. It implements a bidirectional mapping between JSON data and the most important R data types, which allows for converting objects to JSON and back without the need for any manual data restructuring."
 cover: "containers.jpg"
