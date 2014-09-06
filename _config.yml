@@ -4,11 +4,12 @@ permalink: /posts/:title
 rdiscount:
   extensions: [smart]
 title : OpenCPU
-description: "OpenCPU: producing and reproducing results."
+description: "OpenCPU is a framework for embedded scientific computing and reproducible research."
 disqus_shortname: opencpu
 analytics: UA-701288-6
 production_url: https://www.opencpu.org
 url: https://www.opencpu.org
+thumb : mediumlogo.jpg
 author :
   name : Jeroen Ooms
   github : opencpu

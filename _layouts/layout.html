@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+
+{% if page.thumb %} {% assign thumb = page.thumb %} {% else %} {% assign thumb = site.thumb %} {% endif %}
+{% if page.description %} {% assign description = page.description %} {% else %} {% assign description = site.description %} {% endif %}
+
 <html lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -9,13 +13,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- for social media preview stuff -->
-  <link rel="image_src" href="{{ page.prefix }}images/mediumlogo.jpg"/>
+  <link rel="image_src" href="{{ page.prefix }}images/{{ thumb }}"/>
   <meta name="title" content="{{ page.title }}" />
-{% if page.description != null %}
-  <meta name="description" content="{{ page.description }}" />
-{% else %}
-  <meta name="description" content="OpenCPU is a framework for embedded scientific computing and reproducible research. It provides the foundations for integrating statistical functionality into the next generation of systems and applications." />
-{% endif %}
+  <meta name="description" content="{{ description }}" />
 
   <!-- for RSS readers and aggregators -->
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ page.prefix }}atom.xml" />

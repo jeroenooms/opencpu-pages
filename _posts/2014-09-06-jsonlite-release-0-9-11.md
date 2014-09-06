@@ -4,6 +4,7 @@ title: "New jsonlite gets a major speed boost!"
 category: posts
 description: "The jsonlite package is a JSON parser/generator optimized for the web. It implements a bidirectional mapping between JSON data and the most important R data types, which allows for converting objects to JSON and back without the need for any manual data restructuring."
 cover: "containers.jpg"
+thumb: "mariokart.jpg"
 ---
 
 The [jsonlite](http://cran.r-project.org/web/packages/jsonlite/) package is a JSON parser/generator optimized for the web. It implements a bidirectional mapping between JSON data and the most important R data types, which allows for converting objects to JSON and back without manual data restructuring. This is ideal for interacting with web APIs, or to build pipelines where data seamlessly flow in and out of R through JSON. The [quickstart vignette](http://cran.r-project.org/web/packages/jsonlite/vignettes/json-aaquickstart.html) gives a brief introduction, or just try:
