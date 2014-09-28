@@ -30,7 +30,7 @@ fromJSON('[1,2,3,4] {}')
 #                     (right here) ------^
 ```
 
-This makes debugging much easier, especially when dealing with dynamic data that might not be easy reproduce.
+This makes debugging much easier, especially when dealing fast changing dynamic data from the web.
 
 ### Unicode parsing
 
@@ -78,7 +78,7 @@ microbenchmark(
 #                  fromJSON(json_columns) 188.5764 201.8463 238.1272 279.7607  293.1195    10
 ```
 
-If we compare this to the [previous blog post](https://www.opencpu.org/posts/jsonlite-release-0-9-11/) we can see that generating JSON to row-based data frames (the default) is approx 2x faster than the previous version. Parsing row-based json is about 2.5x faster, and parsing column-based json is about 5x faster!
+If we compare this to the [previous blog post](https://www.opencpu.org/posts/jsonlite-release-0-9-11/) we can see that generating JSON to row-based data frames (the default) is approx 2x faster than the previous version. Parsing row-based json is about 2.5x faster, and parsing column-based json is almost 5x faster!
 
 ### Streaming JSON
 
