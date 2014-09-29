@@ -13,7 +13,7 @@ The [jsonlite](http://cran.rstudio.org/web/packages/jsonlite/index.html) package
 
 My favorite feature of yajl is that it gives helpful error messages when parsing invalid JSON, for example:
 
-```{r}
+{% highlight r %}
 fromJSON('[1,2,falsse,4]')
 # Error in parseJSON(txt) : lexical error: invalid string in json text.
 #                               [1,2,falsse,4]
@@ -28,7 +28,7 @@ fromJSON('[1,2,3,4] {}')
 # Error in parseJSON(txt) : parse error: trailing garbage
 #                             [1,2,3,4] {}
 #                     (right here) ------^
-```
+{% endhighlight %}
 
 This makes debugging much easier, especially when dealing fast changing dynamic data from the web.
 
@@ -36,10 +36,10 @@ This makes debugging much easier, especially when dealing fast changing dynamic 
 
 The yajl parser always correctly converts escaped unicode sequences into UTF-8 characters:
 
-```{r}
+{% highlight r %}
 fromJSON('["\\u5bff\u53f8","Z\\u00fcrich"]')
 # [1] "寿司"   "Zürich"
-````
+{% endhighlight %}
 
 Escaped unicode was already supported in the previous version of jsonlite, however it was expensive and not enabled by default. With yajl we get this for free :-)
 
@@ -48,16 +48,16 @@ Escaped unicode was already supported in the previous version of jsonlite, howev
 
 Another cool feature is that yajl parses numbers into integers when possible:
 
-```{r}
+{% highlight r %}
 class(fromJSON('[13,14,15]'))
 # [1] "integer"
-```
+{% endhighlight %}
 
 ### Performance
 
 Performance of both parsing and generating JSON has again tremendously improved in this version. Some benchmarks:
 
-```{r}
+{% highlight r %}
 library(jsonlite)
 library(microbenchmark)
 data(diamonds, package="ggplot2")
@@ -76,7 +76,7 @@ microbenchmark(
 # toJSON(diamonds, dataframe = "columns") 317.6793 325.3809 330.6444 339.9898  343.7466    10
 #                     fromJSON(json_rows) 890.9832 899.3334 939.3230 979.6338 1059.9770    10
 #                  fromJSON(json_columns) 188.5764 201.8463 238.1272 279.7607  293.1195    10
-```
+{% endhighlight %}
 
 If we compare this to the [previous blog post](https://www.opencpu.org/posts/jsonlite-release-0-9-11/) we can see that generating JSON to row-based data frames (the default) is approx 2x faster than the previous version. Parsing row-based json is about 2.5x faster, and parsing column-based json is almost 5x faster!
 
