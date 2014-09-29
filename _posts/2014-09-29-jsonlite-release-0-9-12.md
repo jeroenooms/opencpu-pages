@@ -64,10 +64,10 @@ data(diamonds, package="ggplot2")
 json_rows <- toJSON(diamonds)
 json_columns <- toJSON(diamonds, dataframe = "columns")
 microbenchmark(
-   toJSON(diamonds), #0.60
-   toJSON(diamonds, dataframe = "columns"), #0.32
-   fromJSON(json_rows), #1.15
-   fromJSON(json_columns), # 0.41
+   toJSON(diamonds),
+   toJSON(diamonds, dataframe = "columns"),
+   fromJSON(json_rows),
+   fromJSON(json_columns),
    times=10
 )
 # Unit: milliseconds
