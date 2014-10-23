@@ -11,7 +11,7 @@ I started working on a new R package with bindings for OpenSSL. The initial rele
 
 ## Secure random numbers
 
-The initial release of openssl implements bindings to the OpenSSL random number generator, which will be used to generate session keys in the upcoming version of the OpenCPU system. This feature was requested by Ruben Arslan who noted that the default RNG in R is not suitable for this because they are predictable and lack of entropy can lead to collisions. I'm not a crypto expert but it seems like OpenSSL is frequently recommended for secure RNG, hence this new package. For implementation details, see the respective [OpenSSL documentation](https://www.openssl.org/docs/crypto/RAND_bytes.html) pages.
+The initial release of openssl implements bindings to the OpenSSL random number generator, which will be used to generate session keys in the upcoming version of the OpenCPU system. This feature was requested by Ruben Arslan who noted that the default RNG in R is not suitable for this because it is predictable and lack of entropy can lead to collisions. I'm not a crypto expert but it seems like everyone uses OpenSSL for secure RNG, hence this new package. For implementation details, see the respective [OpenSSL documentation](https://www.openssl.org/docs/crypto/RAND_bytes.html) pages.
 
 The `rand_bytes` and `rand_pseudo_bytes` functions return a raw vector with random bytes:
 
@@ -43,7 +43,7 @@ Mapping random bytes to a continuous distribution requires a bit of math. For ex
 {% highlight r %}
 rand_unif <- function(n){
   x <- matrix(as.numeric(openssl::rand_bytes(n*4)), ncol = 4)
-  as.numeric(x %*% 256^-(1:4));
+  as.numeric(x %*% 256^-(1:4))
 }
 rand_unif(5)
 # [1] 0.8094907 0.8180394 0.0743821 0.6031131 0.8488938
