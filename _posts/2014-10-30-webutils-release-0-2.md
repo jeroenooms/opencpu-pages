@@ -9,7 +9,7 @@ thumb: "rabbit1.jpg"
 
 As part of a larger effort to clean up and rewrite the opencpu package, some of the more general utilities will be moved into a new, separate package called [webutils](http://cran.r-project.org/web/packages/webutils/). The first release of webutils is now on CRAN.
 
-The package contains a simple http request body parser that supports `application/x-www-form-urlencoded`, `multipart/form-data`, and `application/json`. The multipart parser is written in pure R but surprisingly fast. Two demo functions are included that illustrate how to host and parse simple HTML forms (with file uploads) using either rhttpd or httpuv.
+The package contains a simple http request body parser that supports `application/x-www-form-urlencoded`, `multipart/form-data`, and `application/json`. The multipart parser is written in pure R but surprisingly fast. Furthermore, two demo functions are included that illustrate how to host and parse simple HTML forms (with file uploads) using either rhttpd or httpuv.
 
 {% highlight r %}
 library(webutils)
