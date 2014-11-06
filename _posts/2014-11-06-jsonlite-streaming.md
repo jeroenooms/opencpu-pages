@@ -7,7 +7,7 @@ cover: "containers.jpg"
 thumb: "rabbit1.jpg"
 ---
 
-The jsonlite [stream_in](http://demo.ocpu.io/jsonlite/man/stream_in/html) and [stream_out](http://demo.ocpu.io/jsonlite/man/stream_in/html) functions implement line-by-line processing of JSON data over a connection, such as a socket, url, file or pipe. This allows for processing unlimited amounts of data with limited memory. This post will walk through some examples from the [help pages](http://demo.ocpu.io/jsonlite/man/stream_in/html).
+The jsonlite [stream_in](http://demo.ocpu.io/jsonlite/man/stream_in/html) and [stream_out](http://demo.ocpu.io/jsonlite/man/stream_in/html) functions implement line-by-line processing of JSON data over a connection, such as a socket, url, file or pipe. Thereby we can construct a data processing pipeline, in order to handle large (or unlimited) amounts of data with limited memory. This post will walk through some examples from the [help pages](http://demo.ocpu.io/jsonlite/man/stream_in/html).
 
 ## The json streaming format
 
