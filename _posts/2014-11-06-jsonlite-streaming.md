@@ -4,7 +4,7 @@ title: "High performance JSON streaming in R: Part 1"
 category: posts
 description: "The jsonlite stream_in and stream_out functions implement line-by-line processing of JSON data over a connection, such as a socket, url, file or pipe. This allows for processing unlimited amounts of data with limited memory. "
 cover: "containers.jpg"
-thumb: "rabbit1.jpg"
+thumb: "mariokart.jpg"
 ---
 
 The jsonlite [stream_in](http://demo.ocpu.io/jsonlite/man/stream_in/html) and [stream_out](http://demo.ocpu.io/jsonlite/man/stream_in/html) functions implement line-by-line processing of JSON data over a connection, such as a socket, url, file or pipe. Thereby we can construct a data processing pipeline that can handle large (or unlimited) amounts of data with limited memory. This post will walk through some examples from the [help pages](http://demo.ocpu.io/jsonlite/man/stream_in/html).
