@@ -7,7 +7,7 @@ cover: "containers.jpg"
 thumb: "rabbit1.jpg"
 ---
 
-The jsonlite [stream_in](http://demo.ocpu.io/jsonlite/man/stream_in/html) and [stream_out](http://demo.ocpu.io/jsonlite/man/stream_in/html) functions implement line-by-line processing of JSON data over a connection, such as a socket, url, file or pipe. Thereby we can construct a data processing pipeline, in order to handle large (or unlimited) amounts of data with limited memory. This post will walk through some examples from the [help pages](http://demo.ocpu.io/jsonlite/man/stream_in/html).
+The jsonlite [stream_in](http://demo.ocpu.io/jsonlite/man/stream_in/html) and [stream_out](http://demo.ocpu.io/jsonlite/man/stream_in/html) functions implement line-by-line processing of JSON data over a connection, such as a socket, url, file or pipe. Thereby we can construct a data processing pipeline that can handle large (or unlimited) amounts of data with limited memory. This post will walk through some examples from the [help pages](http://demo.ocpu.io/jsonlite/man/stream_in/html).
 
 ## The json streaming format
 
@@ -71,7 +71,7 @@ For this to work, the `curl` executable needs to be installed and available in t
 
 ## Next up
 
-These examples illustrate basic line-by-line json streaming of data frames from/to a connection. Thereby we can deal with larger datasets than would be doable using just `fromJSON` or `toJSON`.
+These examples illustrate basic line-by-line json streaming of data frames from/to a connection, which allows for importing/exporting large json datasets.
 
-In the next blog post we will actually make the step to full JSON IO streaming by defining a custom `handler` function. Thereby we can construct a json data processing pipeline in R that can handle an infinite data stream. The impatient reader can have a look at the examples in the [stream_in](http://demo.ocpu.io/jsonlite/man/stream_in/html) help page.
+In the next blog post we will make the step to full JSON IO streaming by defining a custom `handler` function. This allows for constructing a json data processing pipeline in R that can handle an infinite data stream. Impatient readers can have a look at the examples in the [stream_in](http://demo.ocpu.io/jsonlite/man/stream_in/html) help page.
 
