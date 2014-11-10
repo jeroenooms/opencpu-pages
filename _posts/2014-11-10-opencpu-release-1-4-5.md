@@ -2,12 +2,12 @@
 layout: post
 title: "OpenCPU release 1.4.5: configurable webhooks"
 category: posts
-description: "OpenCPU 1.4.5 is a patch release that improves performance by taking advantage of latest versions of jsonlite, devtools, knitr, openssl, etc. Also new in this release is the option to pass build parameters for deploying to ocpu.io using the github webhook."
+description: "OpenCPU 1.4.5 is a patch release that improves performance by taking advantage of latest versions of jsonlite, devtools, knitr, openssl, etc. Also new in this release is the option to pass build parameters for deploying to ocpu.io (or your own opencpu server) using the github webhook."
 cover: "containers.jpg"
 thumb: "struisvogel.jpg"
 ---
 
-OpenCPU 1.4.5 is a patch release that improves performance by taking advantage of latest versions of jsonlite, devtools, knitr, openssl, etc. Also new in this release is the option to pass build parameters for deploying on ocpu.io using the github webhook.
+OpenCPU 1.4.5 is a patch release that improves performance by taking advantage of latest versions of jsonlite, devtools, knitr, openssl, etc. Also new in this release is the option to pass build parameters for deploying on ocpu.io (or your own opencpu server) using the github webhook.
 
 As usual, server binaries for Ubuntu, Fedora and Suse are available from [Launchpad](https://www.opencpu.org/download.html) and [Build Service](http://software.opensuse.org/download.html?project=home:jeroenooms:opencpu-1.4&package=opencpu). There should not be any breaking changes, but perhaps double check that all is OK next time you run `apt-get upgrade` on your server. If you are in production and do *not* want to upgrade, make sure to comment-out the `opencpu-1.4` ppa in the `/etc/apt/sources.list.d/` conf files.
 
