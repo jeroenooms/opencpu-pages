@@ -6,14 +6,16 @@
 <html lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="title" content="{{ page.title }}" />
+  <meta name="description" content="{{ description }}" />
+  <meta name="author" content="{{ site.author.name }}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
   <title>OpenCPU - {{ page.title }}</title>
 
   <!-- for social media preview stuff -->
-  <meta name="author" content="{{ site.author.name }}" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="image_src" href="{{ page.prefix }}images/{{ thumb }}"/>
-  <meta name="title" content="{{ page.title }}" />
-  <meta name="description" content="{{ description }}" />
 
   <!-- for RSS readers and aggregators -->
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ page.prefix }}atom.xml" />
