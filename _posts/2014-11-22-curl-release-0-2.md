@@ -69,7 +69,3 @@ install_github("jeroenooms/curl")
 {% endhighlight %}
 
 For some more fun examples, see the curl [manual page](http://demo.ocpu.io/curl/man/curl/html).
-
-
-
-
