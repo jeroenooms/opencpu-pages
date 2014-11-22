@@ -59,7 +59,7 @@ I'm not quite sure why this is. Maybe the base R version does some additional ch
 
 ## Compare to RCurl, httr
 
-The `curl` package is not intended as an alternative for [RCurl](http://cran.r-project.org/package=RCurl) or [httr](http://cran.r-project.org/package=httr). The latter packages also use libcurl, but provide a more flexible client for performing http requests in R. The purpose of the `curl` package is mainly to reimplement functionality already found in r-base, in a way that (in a parallel universe) would allow r-core to adopt these changes to start supporting https in `url` and `donwload.file`, etc.
+The `curl` package is not intended as an alternative for [RCurl](http://cran.r-project.org/package=RCurl) or [httr](http://cran.r-project.org/package=httr). The latter packages also use libcurl, but provide a more flexible client for performing http requests in R. The purpose of the `curl` package is mainly to reimplement functionality already found in base R, in a way that (in a parallel universe) would allow r-core to adopt these changes to start supporting https in `url` and `donwload.file`, etc.
 
 Do note that this is an initial release and the [RConnection API](https://github.com/wch/r-source/blob/trunk/src/include/R_ext/Connections.h) is a bit experimental, so there might be bugs :-) In fact I've already made quite some changes since the CRAN release. If you report a bug, please make sure to replicated it with the latest dev version from github:
 
