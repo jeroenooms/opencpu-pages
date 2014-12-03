@@ -11,14 +11,14 @@ The [jsonlite](http://cran.rstudio.org/web/packages/jsonlite/index.html) package
 
 ## Significant Digits
 
-A feature requested by Winston Chang was to control precision of number formatting. By default, the `digits` argument in `toJSON` specifies the number of decimal digits to print:
+By default, the `digits` argument in `toJSON` specifies the number of decimal digits to print:
 
 {% highlight r %}
 toJSON(pi, digits=3)
 # [3.142]
 {% endhighlight %}
 
-Alternatively you can now specify the number of significant digits, analogous to the `signif` function in base R. You can either set `signif = TRUE` or specify the `digits` argument using `I()`:
+A feature requested by Winston Chang was to control precision of number formatting. You can now specify the number of significant digits, analogous to the `signif` function in base R. Either set `signif = TRUE` or specify the `digits` argument using `I()`:
 
 {% highlight r %}
 > toJSON(pi, digits = 3, use_signif = TRUE)
