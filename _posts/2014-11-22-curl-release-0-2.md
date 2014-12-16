@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "New package: curl. High performance http(s) streaming in R."
+title: "New package: curl. High performance http(s) streaming in R"
 category: posts
 description: "The curl() function provides a drop-in replacement for base url() with better performance and support for http 2.0, ssl (https, ftps), gzip, deflate and other libcurl goodies. This interface is implemented using the RConnection API in order to support incremental processing of both binary and text streams."
 cover: "containers.jpg"
