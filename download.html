@@ -24,19 +24,24 @@ sudo yum install opencpu
     <h3>Debian / CentOS / etc </h3>
     <p> See the <a href="https://github.com/jeroenooms/opencpu-server/tree/master#readme">readme</a> on building <a href="https://github.com/jeroenooms/opencpu-server/tree/master/debian#readme">deb</a> or <a href="https://github.com/jeroenooms/opencpu-server/tree/master/rpm#readme">rpm</a> packages from source on various platforms.</p>
 
+    <h3>Docker</h3>
+    <p>Docker containers with various platforms are published via <a href="https://registry.hub.docker.com/repos/opencpu/">dockerhub</a>. If you are not sure which one to pick, use the <a href="https://registry.hub.docker.com/u/opencpu/stable/"><b>opencpu/stable</b></a>.
+{% highlight r %}
+# Run as executable
+docker run -t -p 80:80 -p 443:443 opencpu/stable
 
-<h3>Server Manual PDF</h3>
-<div class="well">
-  <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-server.pdf">
-    <i class="icon-file-text icon-2x pull-left icon-border"></i>
-  </a>
-  <p>The OpenCPU server manual PDF is the primary reference for installing and managing OpenCPU servers.</p>
-</div>
+# Run in background
+docker run -t -d -p 80:80 -p 443:443 opencpu/stable
+
+# With shell
+docker run -t -i -p 80:80 -p 443:443 opencpu/stable sh -c 'service opencpu restart && /bin/bash'
+{% endhighlight %}
 
   </div>
 
   <div class="col-md-6">
-    <h3>Local Single-User Server</h3>
+
+<h3>Local Single-User Server</h3>
 {% highlight r %}
 install.packages("opencpu")
 library(opencpu)
@@ -54,6 +59,15 @@ install_github("opencpu/stocks")
 library(opencpu)
 opencpu$browse("/library/gitstats/www")
 {% endhighlight %}
+
+<h3>Server Manual PDF</h3>
+<div class="well">
+  <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-server.pdf">
+    <i class="icon-file-text icon-2x pull-left icon-border"></i>
+  </a>
+  <p>The OpenCPU server manual PDF is the primary reference for installing and managing OpenCPU servers.</p>
+</div>
+
   </div>
 
 </div>
