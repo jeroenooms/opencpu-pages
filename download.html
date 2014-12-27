@@ -26,16 +26,13 @@ sudo yum install opencpu
     <p> See the <a href="https://github.com/jeroenooms/opencpu-server/tree/master#readme">readme</a> on building <a href="https://github.com/jeroenooms/opencpu-server/tree/master/debian#readme"><b>deb</b></a> or <a href="https://github.com/jeroenooms/opencpu-server/tree/master/rpm#readme"><b>rpm</b></a> packages from source.</p>
 
     <h3>Docker</h3>
-    <p>Docker containers based on various platforms are published via <a href="https://registry.hub.docker.com/repos/opencpu/">dockerhub:opencpu</a>. If you are not sure which one to pick, use <a href="https://registry.hub.docker.com/u/opencpu/stable/"><b>opencpu/stable</b></a>. Also see this <a href="https://github.com/jeroenooms/opencpu-server/tree/master/docker#readme">readme</a>.
+    <p>Docker containers based on various platforms are published via <a href="https://registry.hub.docker.com/repos/opencpu/">dockerhub:opencpu</a>. Use <a href="https://registry.hub.docker.com/u/opencpu/base/"><b>opencpu/base</b> or <a href="https://registry.hub.docker.com/u/opencpu/rstudio/"><b>opencpu/rstudio</b></a> (ocpu + rstudio server). See this <a href="https://github.com/jeroenooms/opencpu-server/tree/master/docker#readme">readme</a> for more details.
 {% highlight r %}
 # Run as executable
-docker run -t -p 80:80 -p 443:443 opencpu/stable
+docker run -t -p 80:80 opencpu/base
 
 # Run in background
-docker run -t -d -p 80:80 -p 443:443 opencpu/stable
-
-# With shell
-docker run -t -i -p 80:80 -p 443:443 opencpu/stable sh -c 'service opencpu restart && /bin/bash'
+docker run -t -d -p 80:80 opencpu/base
 {% endhighlight %}
 
   </div>
