@@ -34,7 +34,7 @@ As usual, I also updated the library of R packages included with the server, inc
 
 Apart from enabling compression and updating the R package library, this release has some internal changes to support systemd on Debian 8 (Jessie), on which the r-base docker images are based.
 
-The introduction of systemd has been quite [controversial](http://linux.slashdot.org/story/14/11/19/043259/debian-votes-against-mandating-non-systemd-compatibility) in the Debian community, to say the least, which is perhaps why things are not working as smoothly yet in Jessie at in Fedora. My current init scripts definitely did not work out of the box with systemd (as advertised) and getting them fixed was quite painful.
+The introduction of systemd has been quite [controversial](http://linux.slashdot.org/story/14/11/19/043259/debian-votes-against-mandating-non-systemd-compatibility) in the Debian community, to say the least, which is perhaps why things are not working as smoothly yet as in Fedora. My current init scripts definitely did not work out of the box with systemd (as advertised) and getting them fixed was quite painful.
 
 However I did figure everything out eventually, and learned a lot about systemd while debugging it. I can see it being a very powerful system, definitely a big improvement over the old style init scripts. The way services are specified has a lot in common with how docker does it, which I'm sure is not a conicidence. I look forward to taking full advantage of it once it has landed in all major distributions.
 
