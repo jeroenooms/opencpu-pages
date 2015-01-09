@@ -2,9 +2,9 @@
 layout: post
 title: "New in openssl 0.3: hash functions"
 category: posts
-description: "This release enables gzip compression in the default apache2 configuration for ocpu, which was suggested by several smart users. When gzipped, json payloads are often comparable to binary formats, giving you the best of both worlds."
+description: "This week version 0.3 of the openssl package appeared on CRAN. New in this release are bindings to the cryptographic hashning functions in OpenSSL."
 cover: "containers.jpg"
-thumb: "systemd.jpg"
+thumb: "cat1.jpg"
 ---
 
 This week version 0.3 of the [openssl](http://cran.r-project.org/web/packages/openssl/index.html) package appeared on CRAN. New in this release are bindings to the cryptographic hashning functions in OpenSSL. Not exactly ground breaking (hashing functions have long been available from digest) but nice to have anyway. An overview from the new [vignette](http://cran.r-project.org/web/packages/openssl/vignettes/crypto_hashing.html):
