@@ -33,8 +33,8 @@ diamonds2 <- stream_in(curl("https://jeroenooms.github.io/data/diamonds.json"))
 That was easy. Switching to curl has other benefits as well. For example it automatically recognizes and decompresses gzipped or deflated connections from the `Accept-Encoding` header:
 
 {% highlight r %}
-readLines(curl("http://httpbin.org/gzip"), warn = FALSE)
-readLines(curl("http://httpbin.org/deflate"), warn = FALSE)
+readLines(curl("http://httpbin.org/gzip"))
+readLines(curl("http://httpbin.org/deflate"))
 {% endhighlight %}
 
 Support for compression can make a huge difference when streaming large data. Text based formats such as json are popular because they are human readable, but the main downside of plain-text is inefficiency for storing numbers. However when gzipped, json payloads are often [comparable to binary formats](https://news.ycombinator.com/item?id=2571729), giving you the best of both worlds.
