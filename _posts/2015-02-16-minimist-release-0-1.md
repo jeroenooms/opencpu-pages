@@ -2,9 +2,9 @@
 layout: post
 title: "Minimist: an example of writing native JavaScript bindings in R"
 category: posts
-description: "V8 version 0.5 has appeared on CRAN. This version introduces several new console functions (console.log, console.warn, console.error) and two vignettes."
+description: "The new minimist package exemplifies how to write an R package with bindings to a JavaScript library using V8."
 cover: "containers.jpg"
-thumb: "v8engine.jpg"
+thumb: "substack.jpg"
 ---
 
 A new package has appeared on CRAN called [minimist](http://cran.r-project.org/web/packages/minimist/), which implements an interface to the popular [JavaScript library](https://www.npmjs.com/package/minimist). This package has only one function, used for argument parsing. For example in RGui on OSX, the output of `commandArgs()` looks like this:
@@ -50,4 +50,4 @@ That's it. To install this package from source **no compiler is required**. It w
   0.001   0.000   0.001
 {% endhighlight %}
 
-I'm working on several other packages to implement bindings to cool JavaScript libraries (see also [yesterdays post](https://www.opencpu.org/posts/v8-release-0-5/)). If you have some suggetions for other JavaScript libraries that might be useful in R [get in touch](http://twitter.com/home?status=%23rstats%20%40opencpu%20). 
+I'm working on several other packages to implement bindings to cool JavaScript libraries (see also [yesterdays post](https://www.opencpu.org/posts/v8-release-0-5/)). If you have some suggetions for other JavaScript libraries that might be useful in R, [get in touch](http://twitter.com/home?status=%23rstats%20%40opencpu%20). 
