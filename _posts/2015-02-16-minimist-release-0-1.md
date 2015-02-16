@@ -11,7 +11,7 @@ A new package has appeared on CRAN called [minimist](http://cran.r-project.org/w
 
 {% highlight r %}
 > commandArgs()
-[1] "R"                 "--no-save"         "--no-restore-data" "--gui=aqua" 
+[1] "R" "--no-save" "--no-restore-data" "--gui=aqua" 
 {% endhighlight %}
 
 Minimist turns that into this:
