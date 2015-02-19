@@ -7,7 +7,7 @@ cover: "containers.jpg"
 thumb: "jade.png"
 ---
 
-Jade is a high performance template engine heavily influenced by Haml. It is designed for writing HTML pages using a concise, modern syntax without the verbosity of old fasioned XML like tags that we all want to forget about. The new [rjade](http://cran.r-project.org/web/packages/rjade/) package implements convenient bindings from R to this popular JavaScript library.
+Jade is a high performance template engine heavily influenced by Haml. It is designed for writing HTML pages using a concise, modern syntax without the verbosity of old fasioned XML-like tags that we all want to forget about. The new [rjade](http://cran.r-project.org/web/packages/rjade/) package implements convenient bindings from R to this popular JavaScript library.
 
 ## An example template
 
