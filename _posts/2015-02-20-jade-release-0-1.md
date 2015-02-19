@@ -11,7 +11,7 @@ Jade is a high performance template engine heavily influenced by Haml. It is des
 
 ## An example template
 
-Below an example of a Jade template, taken from the [jade homepage](http://jade-lang.com/). Notice how tags, classes and id's are defined in a syntax that much resembles CSS selectors. The example template also includes one variable called `youAreUsingJade`, which we can use to control the rendering output.
+Below an example of a Jade template, taken from the [jade homepage](http://jade-lang.com/). Notice that the notation of tags, classes and id's much resembles CSS selectors. The template also includes one variable called `youAreUsingJade`, which we can use to control the rendering output.
 
 {% highlight html %}
 doctype html
