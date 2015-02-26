@@ -19,7 +19,7 @@ RMySQL is a very [old](http://cran.r-project.org/src/contrib/Archive/RMySQL/) pa
 install.packages("RMySQL")
 {% endhighlight %}
 
-On Linux the package still links against the system libmysqlclient. On most deb systems (Debian/Ubuntu) you need to install `libmysqlclient-dev` and on rpm systems such as Fedora/CentOS/RHEL you need `mariadb-devel`. It should also work with less known variants of MySQL such as [Percona](https://github.com/rstats-db/RMySQL/issues/38) but this doesn't get a lot of testing coverage.
+On Linux the package still links against the system libmysqlclient. On most deb systems (Debian/Ubuntu) you need to install either `libmysqlclient-dev` or `libmariadbclient-dev`, and on rpm systems such as Fedora/CentOS/RHEL you need `mariadb-devel`. It should also work with less known variants of MySQL such as [Percona](https://github.com/rstats-db/RMySQL/issues/38) but this doesn't get a lot of testing coverage.
 
 ## Using SSL with MySQL
 
