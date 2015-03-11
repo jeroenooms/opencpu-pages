@@ -50,4 +50,4 @@ That's it. To install this package from source **no compiler is required**. It w
   0.001   0.000   0.001
 {% endhighlight %}
 
-I'm working on several other packages to implement bindings to cool JavaScript libraries (see also [yesterdays post](https://www.opencpu.org/posts/v8-release-0-5/)). If you have some suggetions for other JavaScript libraries that might be useful in R, [get in touch](http://twitter.com/home?status=%23rstats%20%40opencpu%20). 
+I'm working on several other packages to implement bindings to cool JavaScript libraries (see also [yesterdays post](https://www.opencpu.org/posts/v8-release-0-5/)). If you have some suggestions for other JavaScript libraries that might be useful in R, [get in touch](http://twitter.com/home?status=%23rstats%20%40opencpu%20). 
