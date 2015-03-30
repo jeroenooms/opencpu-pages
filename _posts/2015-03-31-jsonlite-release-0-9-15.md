@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Better memory usage and RJSONIO compatibility in jsonlite 0.9.15"
+title: "Improved memory usage and RJSONIO compatibility in jsonlite 0.9.15"
 category: posts
 description: "The jsonlite package implements a robust, high performance JSON parser and generator for R, optimized for statistical data and the web. Last week version 0.9.15 appeared on CRAN which improves memory usage and compatibility with other packages."
 cover: "containers.jpg"
