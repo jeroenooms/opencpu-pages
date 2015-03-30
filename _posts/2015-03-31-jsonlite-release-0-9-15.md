@@ -26,7 +26,7 @@ However be aware that the RJSONIO defaults can sometimes result in unexpected be
 
 ## Memory usage
 
-The new version should use less memory when parsing JSON, especially from a file or URL. This is mostly due to a new push-parser implementation that can incrementally parse JSON in little pieces, which eliminates memory overhead of copying around gigantic JSON strings. In addition, jsonlite now uses the new [curl](http://cran.r-project.org/web/packages/curl/index.html) package for retrieving data via a connection interface. 
+The new version should use less memory when parsing JSON, especially from a file or URL. This is mostly due to a new push-parser implementation that can incrementally parse JSON in little pieces, which eliminates overhead of copying gigantic JSON strings. In addition, jsonlite now uses the new [curl](http://cran.r-project.org/web/packages/curl/index.html) package for retrieving data via a connection interface. 
 
 {% highlight r %}
 mydata1 <- jsonlite::fromJSON("https://jeroenooms.github.io/data/dmd.json")
