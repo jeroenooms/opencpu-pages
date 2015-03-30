@@ -22,7 +22,7 @@ toJSON_legacy <- function(x, ...) {
 }
 {% endhighlight %}
 
-However be aware that the RJSONIO defaults can sometimes result in unexpected behavior and odd edge cases (which is why jsonlite was created in the first place). Therefore it is still highly recommend to switch to the jsonlite defaults when possible (see jsonlite [paper](http://arxiv.org/abs/1403.2805). One exception is perhaps the `auto_unbox` argument, which many people seem to prefer to `TRUE` for encoding relatively simple static data structures. 
+However be aware that the RJSONIO defaults can sometimes result in unexpected behavior and odd edge cases (which is why jsonlite was created in the first place). Therefore it is still recommended to switch to the jsonlite defaults when possible (see jsonlite [paper](http://arxiv.org/abs/1403.2805) for a discussion on the mapping). One exception is perhaps the `auto_unbox` argument, which many people seem to prefer to `TRUE` for encoding relatively simple static data structures. 
 
 ## Memory usage
 
