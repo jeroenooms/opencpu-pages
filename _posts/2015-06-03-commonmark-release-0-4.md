@@ -37,6 +37,8 @@ cat(markdown_html(md))
 </ul>
 {% endhighlight %}
 
+Obviously the dynamic content rendered from markdown is not a full HTML document in itself. To create a full HTML page you would insert this in a HTML template with static header and footer content, and possibly some css/js to make the page more exciting.
+
 The `markdown_xml` function gives the parse tree in xml format:
 
 {% highlight r %}
