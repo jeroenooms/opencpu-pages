@@ -2,9 +2,9 @@
 layout: post
 title: "New package commonmark: yet another markdown parser?"
 category: posts
-description: "The first stable version of the new mongolite package has appeared on CRAN. Mongolite builds on jsonlite to provide a simple, high-performance MongoDB client for R, which makes storing and accessing small or large data as easy as converting it to/from JSON."
+description: "Last week the commonmark package was released on CRAN. The package implements some very thin R bindings to John Macfarlane’s (author of pandoc) cmark library, which provides functions for parsing CommonMark documents to an abstract syntax tree (AST), manipulating the AST, and rendering the document to HTML, groff man, CommonMark, or an XML representation of the AST"
 cover: "containers.jpg"
-thumb: "nosql.jpg"
+thumb: "markdown-everywhere/jpg"
 ---
 
 Last week the [commonmark](http://cran.r-project.org/web/packages/commonmark/index.html) package was released on CRAN. The package implements some very thin R bindings to John Macfarlane's (author of pandoc) `cmark` library. From the cmark [readme](https://github.com/jgm/cmark#readme):
