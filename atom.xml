@@ -23,6 +23,7 @@
    <updated>{{ post.date | date_to_xmlschema }}</updated>
    <id>{{ site.production_url }}{{ post.id }}</id>
    <content type="html">
+   {% if post.abstract %} {{ post.abstract | markdownify | xml_escape }} {% endif %}
    &lt;a href=&quot;{{ site.production_url | xml_escape }}{{ post.id | xml_escape }}&quot;&gt;&lt;img alt=&quot;opencpu logo&quot; src=&quot;{{ site.production_url }}/images/{{ thumb }}&quot;&gt;&lt;/a&gt;
    {{ post.content | xml_escape }}
    </content>
