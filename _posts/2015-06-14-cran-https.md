@@ -7,9 +7,9 @@ cover: "containers.jpg"
 thumb: "securitycat.jpg"
 ---
 
-R gained some limited support for https in version 3.2.0 (see [NEWS](http://cran.r-project.org/doc/manuals/r-release/NEWS.html)) via the `method = "libcurl"` argument in base functions `download.file` and `url`. The global option `download.file.method` is used to make this the default. 
+R gained some basic support for https in version 3.2.0 (see [NEWS](http://cran.r-project.org/doc/manuals/r-release/NEWS.html)) via the `method = "libcurl"` argument in base functions `download.file` and `url`. The global option `download.file.method` is used to make this the default. 
 
-Unfortunately the implementation has a few shortcomings: there is no way to set request options (authentication, proxy, headers, TLS options, etc) and the functions do not expose an http status code or response headers. Because they also do not raise an error when the request fails with an http error (as do the other download methods), this leaves you to guess if the retrieved content is what you were expecting or an error page. 
+Unfortunately the implementation has a few limitations: there is no way to set request options (authentication, proxy, headers, TLS options, etc) and the functions do not expose an http status code or response headers. Because they also do not raise an error when the request fails with an http error (as do the other download methods), this leaves you to guess if the retrieved content is what you were expecting or an error page. 
 
 {% highlight r %}
 # Raises an error
