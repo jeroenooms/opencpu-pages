@@ -23,7 +23,7 @@ library(curl)
 curl_download("http://httpbin.org/status/418", tempfile())
 {% endhighlight %}
 
-Anyway it's better than nothing :-)
+Anyway in most cases it is good enough to download static files from public https servers.
 
 ### CRAN and libcurl
 
