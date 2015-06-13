@@ -51,11 +51,4 @@ Using https can stop some, but not all, MITM attacks. Encrypting the connection 
 
 Of course this does not fully guarantee the integrity of your download. You are basically putting your faith in the hands of your CRAN mirror (or the owner of the domain to be more specific). If the mirror server gets hacked, or somebody manages to tamper with the mirroring process itself (which is done using rsync without any encryption) packages can still get infected. 
 
-Linux distributions solve this problem by making package authors sign the checksum of the package with a private key. This signature is used to automatically verify the integrity of a download from the author's public key before installation, regardless of how the package was obtained. Simon has implemented some of this for R in [PKI](https://github.com/s-u/PKI) but unfortunately this was never adopted by CRAN. At least we have https now, which solves part of the problem.
-
-
-
-
-
-
-
+Linux distributions solve this problem by making package authors sign the checksum of the package with a private key. This signature is used to automatically verify the integrity of a download from the author's public key before installation, regardless of how the package was obtained. Simon has implemented some of this for R in [PKI](https://github.com/s-u/PKI) but unfortunately this was never adopted by CRAN. But at least with https we can somewhat safely install R packages from within a coffee shop now, which is important.
