@@ -27,14 +27,14 @@ Anyway in most cases it is good enough to download static files from public http
 
 ### CRAN and libcurl
 
-Because `install.packages` and friends wrap around `download.file`, we can use this new feature to download R packages from CRAN via https. None of the currently available CRAN servers seems to support https, so I created a demo server at [https://cran.opencpu.org](https://cran.opencpu.org). This is not a real mirror, it is just a https proxy to the [US mirror](http://cran.us.r-project.org/). To try:
+Because `install.packages` and friends wrap around `download.file`, we can use this new feature to download R packages from CRAN via https. None of the currently available CRAN servers seems to support https, so I created a demo server at [https://cran.opencpu.org](https://cran.opencpu.org). This is not a real mirror, it is just a https proxy to the [US mirror](http://cran.us.r-project.org/).
 
 {% highlight r %}
 # Install a package over https
 install.packages("ggplot2", repos = "https://cran.opencpu.org", method = "libcurl")
 {% endhighlight %}
 
-Or use a script like this to opt-in globally on machines where libcurl is available:
+Use a script like this to opt-in globally on machines where libcurl is available:
 
 {% highlight r %}
 # Enable CRAN https everywhere
