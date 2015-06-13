@@ -43,7 +43,7 @@ if(capabilities("libcurl")){
 }
 {% endhighlight %}
 
-Hopefully the admins in Vienna will at some point enable https for [cran](https://cran.r-project.org/) in the same way they have done for [r-forge](https://r-forge.r-project.org/) (which is literally the neighborhing ip address).
+Hopefully the admins in Vienna will at some point enable https for the main [cran server](https://cran.r-project.org/) in the same way they have done for [r-forge](https://r-forge.r-project.org/) (which is literally the neighborhing ip address).
 
 ### Why CRAN and https?
 
