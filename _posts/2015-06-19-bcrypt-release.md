@@ -4,7 +4,7 @@ title: "Secure password hashing in R with bcrypt"
 category: posts
 description: "The new package bcrypt provides an R interface to the OpenBSD ‘blowfish’ password hashing algorithm, as described in A Future-Adaptable Password Scheme by Niels Provos. The implementation is derived from the py-bcrypt module for Python which is a wrapper for the OpenBSD implementation."
 cover: "containers.jpg"
-thumb: "securitycat.jpg"
+thumb: "openbsd.gif"
 ---
 
 The new package bcrypt provides an R interface to the OpenBSD 'blowfish' password hashing algorithm, as described in [*A Future-Adaptable Password Scheme*](http://www.openbsd.org/papers/bcrypt-paper.pdf) by [Niels Provos](http://research.google.com/pubs/author1.html). The implementation is derived from the [py-bcrypt](https://pypi.python.org/pypi/py-bcrypt/) module for Python which is a wrapper for the OpenBSD implementation.
