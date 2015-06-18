@@ -5,7 +5,7 @@ category: posts
 description: "R gained some limited support for https in version 3.2.0. Because `install.packages` and friends wrap around `download.file`, we can use this new feature to download R packages from CRAN via https. Encrypting the connection with the CRAN server prevents intermediate parties such as your ISP, (anti)virus, or any other user on your network from snooping or tampering with the connection."
 cover: "containers.jpg"
 thumb: "securitycat.jpg"
-abstract: "**Correction (June 18):**  *An earlier version of this post stated that currently no CRAN mirrors support https. Martin has pointed out that this is incorrect. Currently 7 of the official CRAN mirrors already have full https support.*"
+abstract: "**Correction (June 18):**  *An earlier version of this post stated that currently no CRAN mirrors support https. Martin has pointed out that this is incorrect. As of writing, 7 of the official CRAN mirrors already have full https support.*"
 ---
 
 R gained some basic support for https in version 3.2.0 (see [NEWS](http://cran.r-project.org/doc/manuals/r-release/NEWS.html)) via the `method = "libcurl"` argument in base functions `download.file` and `url`. The global option `download.file.method` is used to make this the default. 
