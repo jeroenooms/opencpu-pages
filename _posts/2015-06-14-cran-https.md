@@ -27,7 +27,7 @@ Anyway it is good enough for downloading static files from public servers, which
 
 ### CRAN and libcurl
 
-Because `install.packages` and friends wrap around `download.file`, we can use this new feature to download R packages from CRAN via https. None of the currently available CRAN servers seems to support https, so I created a demo server at [https://cran.opencpu.org](https://cran.opencpu.org). This is not a real mirror, it is just a https proxy to the [US mirror](http://cran.us.r-project.org/).
+Because `install.packages` and friends wrap around `download.file`, we can use this new feature to download R packages from CRAN via https. ~~None of the currently available CRAN servers seems to support https, so~~ I created a demo server at [https://cran.opencpu.org](https://cran.opencpu.org). This is not a real mirror, it is just a https proxy to the [US mirror](http://cran.us.r-project.org/). See below for a list of other CRAN servers that support https.
 
 {% highlight r %}
 # Install a package over https
@@ -52,3 +52,35 @@ Using https can stop some, but not all, MITM attacks. Encrypting the connection 
 Of course this does not fully guarantee the integrity of your download. You are basically putting your faith in the hands of your CRAN mirror (or the owner of the domain to be more specific). If the mirror server gets hacked, or somebody manages to tamper with the mirroring process itself (which is done using rsync without any encryption) packages can still get infected. 
 
 Linux distributions solve this problem by making package authors sign the checksum of the package with a private key. This signature is used to automatically verify the integrity of a download from the author's public key before installation, regardless of how the package was obtained. Simon has implemented some of this for R in [PKI](https://github.com/s-u/PKI) but unfortunately this was never adopted by CRAN. But at least with https we can somewhat safely install R packages from within a coffee shop now, which solves the most urgent problem.
+
+### Update: CRAN servers with https
+
+As Martin has pointed out in his comment, some CRAN mirrors do already support https without advertising it. Below a script that tests each available server from the mirror list for https:
+
+{% highlight r %}
+# Script to list CRAN servers with https
+library(curl)
+h <- new_handle(timeout_ms = 30000, connecttimeout_ms = 5000)
+mirrors <- read.csv(curl("https://svn.r-project.org/R/trunk/doc/CRAN_mirrors.csv"))
+mirrors$SSL <- vapply(mirrors$URL, function(url){
+  https_url <- paste0(sub("^http://", "https://", url), "src/contrib/PACKAGES")
+  cat("Trying", https_url, "\n")
+  identical(200L, try(curl_fetch_memory(https_url, handle = h)$status))
+}, logical(1))
+subset(mirrors, SSL == TRUE, select = c("Name","URL"))
+{% endhighlight %}
+
+It turns out that there are currently 7 servers that have properly setup https:
+
+```
+                Name                                       URL
+22 China (Beijing 4) https://mirrors.tuna.tsinghua.edu.cn/CRAN/
+23     China (Hefei)          https://mirrors.ustc.edu.cn/CRAN/
+26   Colombia (Cali)             https://www.icesi.edu.co/CRAN/
+74       Switzerland                 https://stat.ethz.ch/CRAN/
+79      UK (Bristol)            https://www.stats.bris.ac.uk/R/
+89          USA (KS)            https://rweb.quant.ku.edu/cran/
+99          USA (TN)         https://mirrors.nics.utk.edu/cran/
+```
+
+Hopefully more will follow soon.
