@@ -7,11 +7,11 @@ cover: "containers.jpg"
 thumb: "openbsd.gif"
 ---
 
-The new package bcrypt provides an R interface to the OpenBSD 'blowfish' password hashing algorithm, as described in [*A Future-Adaptable Password Scheme*](http://www.openbsd.org/papers/bcrypt-paper.pdf) by [Niels Provos](http://research.google.com/pubs/author1.html). The implementation is derived from the [py-bcrypt](https://pypi.python.org/pypi/py-bcrypt/) module for Python which is a wrapper for the OpenBSD implementation.
+The new package [bcrypt](http://cran.r-project.org/web/packages/bcrypt/) provides an R interface to the OpenBSD 'blowfish' password hashing algorithm described in [*A Future-Adaptable Password Scheme*](http://www.openbsd.org/papers/bcrypt-paper.pdf) by [Niels Provos](http://research.google.com/pubs/author1.html). The implementation is derived from the [py-bcrypt](https://pypi.python.org/pypi/py-bcrypt/) module for Python which is a wrapper for the OpenBSD implementation.
 
-Bcrypt is used for secure password hashing. The main difference with regular digest algorithms such as MD5 or SHA256 is that the bcrypt algorithm is specifically designed to be cpu intensive in order to protect against brute force attacks. The exact complexity of the algorithm is configurable via the `log_rounds` parameter.
+Bcrypt is used for secure password hashing. The main difference with regular digest algorithms such as md5 / sha256 is that the bcrypt algorithm is specifically designed to be cpu intensive in order to protect against brute force attacks. This means that hasing with bcrypt is terribly slow, which is a feature. The complexity of the algorithm is configurable via the `log_rounds` parameter.
 
-The API is exactly the same as the one from python: the `hashpw` function calculates a hash from a password using a random salt. Validating the hash is done by reshashing the password using the hash as a salt. 
+The API from the R package is exactly the same as [the one from python](http://www.mindrot.org/projects/py-bcrypt/): the `hashpw` function calculates a hash from a password using a random salt. Validating the hash is done by reshashing the password using the hash as a salt. 
 
 {% highlight r %}
 # Secret message as a string
@@ -31,7 +31,7 @@ checkpw(passwd, hash)
 ## TRUE
 {% endhighlight %} 
 
-The `gensalt` function generates a salt for use with `hashpw` and is used to specify the complexity. The first few characters in the salt string hold the bcrypt version number and value for log_rounds. The remainder stores 16 bytes of base64 encoded randomness for seeding the hashing algorithm.
+The `gensalt` function generates a salt for use with `hashpw` and specifies the complexity of the algorithm via the `log_rounds` parameter. The first few characters in the salt string hold the bcrypt version  and value for log_rounds. The remainder stores 16 bytes of base64 encoded randomness for seeding the hashing algorithm.
 
 {% highlight r %}
 # Use varying complexity:
