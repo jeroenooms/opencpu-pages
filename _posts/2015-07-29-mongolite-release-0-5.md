@@ -4,7 +4,7 @@ title: "Mongolite 0.5: authentication and iterators"
 category: posts
 description: "Mongolite builds on jsonlite to provide a simple, high-performance MongoDB client for R, which makes storing small or large data in a database as easy as converting it to/from JSON. This version improves authentication for connecting with secured servers, and introduces iterators to give you more grained control over processing query data."
 cover: "containers.jpg"
-thumb: "nosql.jpg"
+thumb: "mongo.png"
 ---
 
 A new version of the [mongolite](http://cran.r-project.org/web/packages/mongolite/index.html) package has appeared on CRAN. Mongolite builds on [jsonlite](http://cran.r-project.org/web/packages/jsonlite/index.html) to provide a simple, high-performance MongoDB client for R, which makes storing small or large data in a database as easy as converting it to/from JSON. Have a look at the [vignette](http://cran.r-project.org/web/packages/mongolite/vignettes/intro.html) or [useR2015 slides](http://bit.ly/mongo-slides) to get started with inserting, json queries, aggregation and map-reduce. 
