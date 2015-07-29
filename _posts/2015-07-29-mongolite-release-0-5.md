@@ -46,7 +46,7 @@ flights <- mongo("flights", url = "mongodb://readonly:test@ds043942.mongolab.com
 iter <- flights$iterate('{"day":1,"month":1}')
 
 # Iterate over individual records
-while(length(doc <- iter$one())){
+while(!is.null(doc <- iter$one())){
 	# do something with the row here
 	print(doc)
 }
