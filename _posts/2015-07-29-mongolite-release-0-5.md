@@ -15,7 +15,7 @@ This release fixes an issue with the authentication mechanism that was reported 
 
 Try running the code below to grab some flights data from my mongolabs server:
 
-{% highlight bash %}
+{% highlight r %}
 # load the package
 library(mongolite)
 stopifnot(packageVersion("mongolite") >= "0.5")
@@ -38,7 +38,7 @@ Another feature request from some early adopters was to add support for iterator
 
 The new version adds a `mongo$iterate()` method to manually iteratate over the individual records from a query without any automatic simplification. Using the same example query as above:
 
-{% highlight bash %}
+{% highlight r %}
 # Connect to the 'flights' dataset
 flights <- mongo("flights", url = "mongodb://readonly:test@ds043942.mongolab.com:43942/jeroen_test")
 
