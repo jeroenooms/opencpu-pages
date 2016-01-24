@@ -13,14 +13,13 @@ The new [rsvg](https://cran.r-project.org/web/packages/rsvg/index.html) package 
 # create an svg image
 library(svglite)
 library(ggplot2)
-myplot <- "plot.svg"
-svglite(myplot, width = 10, height = 7)
+svglite("plot.svg", width = 10, height = 7)
 qplot(mpg, wt, data = mtcars, colour = factor(cyl))
 dev.off()
 
 # render it into a bitmap array
 library(rsvg)
-bitmap <- rsvg(myplot)
+bitmap <- rsvg("plot.svg")
 dim(bitmap)
 ## [1] 504 720   4
 
@@ -34,7 +33,7 @@ The advantage of storing your plots in svg format is they can be rendered later 
 
 {% highlight r %}
 # render it into a bitmap array
-bitmap <- rsvg(myplot, width = 3840)
+bitmap <- rsvg("plot.svg", width = 3840)
 png::writePNG(bitmap, "plot_4k.png", dpi = 144)
 browseURL("plot_4k.png")
 {% endhighlight %}
@@ -43,11 +42,23 @@ Rather than actually dealing with the bitmap array in R, rsvg also allows you to
 
 {% highlight r %}
 # render straight to output format
-rsvg_pdf(myplot, "out.pdf")
-rsvg_ps(myplot, "out.ps")
-rsvg_svg(myplot, "out.svg")
-rsvg_png(myplot, "out.png")
-rsvg_webp(myplot, "out.svg")
+rsvg_pdf("plot.svg", "out.pdf")
+rsvg_ps("plot.svg", "out.ps")
+rsvg_svg("plot.svg", "out.svg")
+rsvg_png("plot.svg", "out.png")
+rsvg_webp("plot.svg", "out.svg")
+{% endhighlight %}
+
+Added bonus is that librsvg does not only do a really good job rendering, it is also super fast. It would even be fast enough to render the svg [tiger](http://dev.w3.org/SVG/tools/svgweb/samples/svg-files/tiger.svg) on the fly at 10~20fps!
+
+{% highlight r %}
+download.file("http://dev.w3.org/SVG/tools/svgweb/samples/svg-files/tiger.svg", "tiger.svg")
+system.time(bin <- rsvg_raw("tiger.svg"))
+#   user  system elapsed
+#  0.048   0.003   0.057
+system.time(rsvg_webp("tiger.svg", "tiger.webp"))
+#    user  system elapsed
+#  0.097   0.006   0.115
 {% endhighlight %}
 
 Note the `webp` format is the new high-quality image format by Google which I will talk about in [another post](../webp-release).
