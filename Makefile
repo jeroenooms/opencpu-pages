@@ -1,14 +1,13 @@
-# The node/npm deb package changed recently
-#
+# INSTALL ON OSX:
+# See https://pages.github.com/versions/
+# sudo gem install jekyll -v 2.4
+# sudo gem install rdiscount -v 2.1.8
+# sudo gem jekyll-redirect-from rdiscount
+# brew install node
+# npm install -g recess
+
 ### UBUNTU 13.10 or higher:
 # sudo apt-get install npm nodejs nodejs-legacy
-#
-### Ubuntu 13.04 or lower:
-# sudo add-apt-repository ppa:chris-lea/node.js
-# sudo apt-get update
-# sudo apt-get install nodejs
-#
-### Then, on any system:
 # sudo apt-get install ruby-full jekyll discount
 # sudo gem install rdiscount
 # sudo npm install -g recess
