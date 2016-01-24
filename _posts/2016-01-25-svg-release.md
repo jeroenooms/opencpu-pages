@@ -4,7 +4,7 @@ title: "The 'rsvg' Package: High Quality Image Rendering in R"
 category: posts
 description: "The new rsvg package renders (vector based) SVG images into high-quality bitmap arrays. The resulting image can be written to e.g. png, jpeg or webp format."
 cover: "containers.jpg"
-thumb: "brotli1.png"
+thumb: "tiger.png"
 ---
 
 The new [rsvg](https://cran.r-project.org/web/packages/rsvg/index.html) package renders (vector based) SVG images into high-quality bitmap arrays. The resulting image is an array of 3 dimensions: height * width * 4 (RGBA) and can be written to png, jpeg or webp format:
