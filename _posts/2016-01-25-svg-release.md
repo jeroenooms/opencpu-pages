@@ -46,7 +46,7 @@ rsvg_pdf("plot.svg", "out.pdf")
 rsvg_ps("plot.svg", "out.ps")
 rsvg_svg("plot.svg", "out.svg")
 rsvg_png("plot.svg", "out.png")
-rsvg_webp("plot.svg", "out.svg")
+rsvg_webp("plot.svg", "out.webp")
 {% endhighlight %}
 
 Added bonus is that librsvg does not only do a really good job rendering, it is also super fast. It would even be fast enough to render the svg [tiger](http://dev.w3.org/SVG/tools/svgweb/samples/svg-files/tiger.svg) on the fly at 10~20fps!
