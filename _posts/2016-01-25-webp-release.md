@@ -4,7 +4,7 @@ title: "Using webp in R: A New Format for Lossless and Lossy Image Compression"
 category: posts
 description: ""
 cover: "containers.jpg"
-thumb: "pancake.jpg"
+thumb: "pancake.png"
 ---
 
 A while ago I blogged about [brotli](../brotli-benchmarks), a new general purpose compression algorithm promoted by Google as an alternative to gzip. The same company also happens to be working on a new format for images called [webp](https://developers.google.com/speed/webp), which is actually a derivative of the VP8 video format. Google claims webp provides superior compression for both lossless (png) and lossy (jpeg) bitmaps, and even though the format is currently only supported in Google Chrome, it seems indeed promising.
