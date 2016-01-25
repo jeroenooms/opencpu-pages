@@ -7,7 +7,7 @@ cover: "containers.jpg"
 thumb: "pancake.png"
 ---
 
-A while ago I [blogged](../brotli-benchmarks) about the brotli, a new general purpose compression algorithm which Google promotes as an alternative to gzip. The same company also happens to be working on a new format for images called [webp](https://developers.google.com/speed/webp), which is actually a derivative of the VP8 video format. Google claims webp provides superior compression for both lossless (png) and lossy (jpeg) bitmaps, and even though the format is currently only supported in Google Chrome it seems promising.
+A while ago I blogged about [brotli](../brotli-benchmarks), a new general purpose compression algorithm promoted by Google as an alternative to gzip. The same company also happens to be working on a new format for images called [webp](https://developers.google.com/speed/webp), which is actually a derivative of the VP8 video format. Google claims webp provides superior compression for both lossless (png) and lossy (jpeg) bitmaps, and even though the format is currently only supported in Google Chrome, it seems indeed promising.
 
 The [webp](https://cran.rstudio.com/web/packages/webp/) R package allows for reading/writing webp bitmap arrays so that we can convert between other bitmap formats. For example, let's take this photo of a delicious and nutritious [feelgoodbyfood](https://www.instagram.com/feelgoodbyfood/) spelt-pancake with coconut sprinkles and homemade espresso (see [here](https://www.feelgoodbyfood.nl/7x-winters-ontbijt) for 7 other healthy winter breakfasts!)
 
@@ -36,9 +36,9 @@ writePNG(bitmap2, "pancake.png")
 browseURL("pancake.png")
 {% endhighlight %}
 
-## Rendering plots to webp
+## Rendering graphics to webp
 
-The easiest way to write plots in webp format is by using an svg device and render them to webp with the rsvg package (example from [rsvg blog post](../svg-release)):
+The best way to write plots in webp format is using an svg device and then render to bitmap with the [rsvg package](../svg-release):
 
 {% highlight r %}
 # create an svg image
@@ -48,7 +48,7 @@ svglite("plot.svg", width = 10, height = 7)
 qplot(mpg, wt, data = mtcars, colour = factor(cyl))
 dev.off()
 
-# render it into a bitmap array
+# render it into a high definition bitmap image
 library(rsvg)
 rsvg_webp("plot.svg", "plot.webp", width = 1920)
 browseURL("plot.webp")
@@ -65,4 +65,4 @@ write_webp(tiger, "tiger80.webp", quality = 80)
 write_webp(tiger, "tiger50.webp", quality = 50)
 {% endhighlight %}
 
-Unfortunately webp will probably not become mainstream until it gets implemented by all browsers. However it could actually be valuable for scientific applications with large image compression.
+Unfortunately webp will probably not become mainstream until it gets implemented by all browsers. But performance seems pretty good so perhaps it could actually be useful for large image compression in scientific applications.
