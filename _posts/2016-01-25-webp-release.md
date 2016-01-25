@@ -65,5 +65,4 @@ write_webp(tiger, "tiger80.webp", quality = 80)
 write_webp(tiger, "tiger50.webp", quality = 50)
 {% endhighlight %}
 
-
-
+Unfortunately webp will probably not become mainstream until it gets implemented by all browsers. However it could actually be valuable for scientific applications with large image compression.
