@@ -13,7 +13,7 @@ A few months ago I first announced the commonmark R package. Since then there ha
 
 Markdown is used in many places these days, however the original [spec](https://daringfireball.net/projects/markdown/syntax) actually leaves some ambiguity which makes it difficult to optimize and leads to inconsistencies between implementations. 
 Commonmark is an initiative led by John MacFarlane at UC Berkeley (also the author of pandoc) to standardize the markdown syntax. 
-Besides a [specification](http://commonmark.org/help/), the commonmark team provides reference implementations for C ([cmark](https://github.com/jgm/cmark)) and JavaScript ([commonmark.js](https://github.com/jgm/commonmark.js)).
+Besides a [specification](http://spec.commonmark.org), the commonmark team provides reference implementations for C ([cmark](https://github.com/jgm/cmark)) and JavaScript ([commonmark.js](https://github.com/jgm/commonmark.js)).
 
 The [commonmark R package](https://cran.r-project.org/web/packages/commonmark/index.html) wraps around cmark which converts markdown text into various formats, including html, latex and groff man. This makes commonmark very suitable for e.g. writing manual pages which are often stored in exactly these formats. In addition the package exposes the markdown parse tree in xml format to support customized output handling.
 
@@ -34,7 +34,7 @@ xml <- markdown_xml(md)
 cm <- markdown_commonmark(md)
 {% endhighlight %}
 
-Currently, commonmark only specifies the original markdown elements: italic, bold, headings, links, images, quotes, paragraphs, lists, horizontal rule, and code blocks. Various extensions from pandoc that were introduced later on such as tables are not supported.
+Currently, commonmark only specifies the original markdown elements: italic, bold, headings, links, images, quotes, paragraphs, lists, horizontal rule, and code blocks. Extensions from pandoc that were introduced later on such as tables are not supported.
 
 ### CommonMark is fast
 
