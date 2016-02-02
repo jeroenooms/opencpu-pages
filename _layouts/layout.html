@@ -15,14 +15,14 @@
   <title>OpenCPU - {{ page.title }}</title>
 
   <!-- for social media preview stuff -->
-  <link rel="image_src" href="{{ page.prefix }}images/{{ thumb }}"/>
+  <link rel="image_src" href="{{ layout.prefix }}images/{{ thumb }}"/>
 
   <!-- for RSS readers and aggregators -->
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ page.prefix }}atom.xml" />
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ layout.prefix }}atom.xml" />
 
   <!-- styles -->
   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="{{ page.prefix }}css/pages.css" >
+  <link rel="stylesheet" href="{{ layout.prefix }}css/pages.css" >
 
   <!--[if lt IE 9]>
   <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -46,7 +46,7 @@
   <meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png">
 
   <!-- used for inline javascript -->
-  <script src="{{ page.prefix }}js/jquery.min.js"></script>
+  <script src="{{ layout.prefix }}js/jquery.min.js"></script>
 
 </head>
 
@@ -64,21 +64,21 @@
              <span class="icon-bar"></span>
              <span class="icon-bar"></span>
            </button>
-           <a class="navbar-brand" href="{{ page.prefix }}."><img src="{{ page.prefix }}images/opencpulogo.png" alt="logo"/></a>
+           <a class="navbar-brand" href="{{ layout.prefix }}."><img src="{{ layout.prefix }}images/opencpulogo.png" alt="logo"/></a>
          </div>
          <div class="navbar-collapse collapse">
          <ul class="nav navbar-nav">
-            <li><a title="Blog" href="{{ page.prefix }}blog.html">Blog</a></li>
-            <li><a title="API" href="{{ page.prefix }}api.html">API</a></li>
-            <li><a title="Papers" href="{{ page.prefix }}papers.html">Papers</a></li>
-            <li><a title="Download" href="{{ page.prefix }}download.html">Download</a></li>
-            <li><a title="Apps" href="{{ page.prefix }}apps.html">Apps</a></li>
-            <li><a title="JS library" href="{{ page.prefix }}jslib.html">JS lib</a></li>
-            <li><a title="Help" href="{{ page.prefix }}help.html">Help</a></li>
-            <li><a title="Demo server" href="{{ page.prefix }}demo.html">Demo</a></li>
+            <li><a title="Blog" href="{{ layout.prefix }}blog.html">Blog</a></li>
+            <li><a title="API" href="{{ layout.prefix }}api.html">API</a></li>
+            <li><a title="Papers" href="{{ layout.prefix }}papers.html">Papers</a></li>
+            <li><a title="Download" href="{{ layout.prefix }}download.html">Download</a></li>
+            <li><a title="Apps" href="{{ layout.prefix }}apps.html">Apps</a></li>
+            <li><a title="JS library" href="{{ layout.prefix }}jslib.html">JS lib</a></li>
+            <li><a title="Help" href="{{ layout.prefix }}help.html">Help</a></li>
+            <li><a title="Demo server" href="{{ layout.prefix }}demo.html">Demo</a></li>
          </ul>
          <ul class="nav navbar-nav pull-right">
-           <li><a title="Atom Feed" href="{{ page.prefix }}atom.xml"><i class="icon icon-rss-sign"></i></a></li>
+           <li><a title="Atom Feed" href="{{ layout.prefix }}atom.xml"><i class="icon icon-rss-sign"></i></a></li>
          </ul>
          </div>
       </div>
@@ -128,7 +128,7 @@
   </div>
   {% include analytics.html %}
 
-  <script src="{{ page.prefix }}js/bootstrap.min.js"></script>
+  <script src="{{ layout.prefix }}js/bootstrap.min.js"></script>
 
 </body>
 </html>
