@@ -1,4 +1,4 @@
-permalink: /posts/:title
+permalink: /posts/:title/
 title : OpenCPU
 description: "OpenCPU is a framework for embedded scientific computing and reproducible research."
 disqus_shortname: opencpu
@@ -8,7 +8,7 @@ url: https://www.opencpu.org
 thumb : mediumlogo.jpg
 author :
   name : Jeroen Ooms
-  github : opencpu
+  github : jeroenooms
   twitter : opencpu
   email: jeroen.ooms@stat.ucla.edu
 gems:
