@@ -1,7 +1,4 @@
-markdown: rdiscount
 permalink: /posts/:title
-rdiscount:
-  extensions: [smart]
 title : OpenCPU
 description: "OpenCPU is a framework for embedded scientific computing and reproducible research."
 disqus_shortname: opencpu
