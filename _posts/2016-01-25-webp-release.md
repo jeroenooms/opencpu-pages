@@ -2,7 +2,7 @@
 layout: post
 title: "Using webp in R: A New Format for Lossless and Lossy Image Compression"
 category: posts
-description: ""
+description: "Google claims webp provides superior compression for both lossless (png) and lossy (jpeg) bitmaps, and even though the format is currently only supported in Google Chrome, it seems indeed promising"
 cover: "containers.jpg"
 thumb: "pancake.png"
 ---
