@@ -14,5 +14,3 @@ author :
   github : opencpu
   twitter : opencpu
   email: jeroen.ooms@stat.ucla.edu
-gems:
-  - jekyll-redirect-from
