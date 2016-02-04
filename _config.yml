@@ -13,5 +13,4 @@ author :
   email: jeroen.ooms@stat.ucla.edu
 gems:
   - jekyll-redirect-from
-highlighter: pygments
 future: true
