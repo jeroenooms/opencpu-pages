@@ -57,16 +57,16 @@ sort(unique(unlist(words)))
 Base R also has a few filters to extract words from R, Sweave or Rd code, see `RdTextFilter`, `SweaveTeXFilter` in tools. For example to check your R package manual for typos (assuming you are in the pkg source dir)
 
 ```r
-for(list.files("man", full.names = TRUE) in man_files){
+for(file in list.files("man", full.names = TRUE)){
   cat("\nFile", file, ":\n  ")
-  txt <- RdTextFilter(file, keepSpacing = FALSE)
+  txt <- tools::RdTextFilter(file, keepSpacing = FALSE)
   cat(sQuote(sort(unique(unlist(hunspell_find(txt))))), sep =", ")
 }
 ```  
 
 ### Morphological analysis
 
-A cool feature in hunspell is the morphological analysis. The `hunspell_analyze` function will show you how a word breaks down into a valid stem plus affix. Hunspell uses a special dictionary format that defines which stems and affixes are valid in a given language. 
+A cool feature in hunspell is the morphological analysis. The `hunspell_analyze` function will show you how a word breaks down into a valid stem plus affix. Hunspell uses a special dictionary format to determine if a stem+affix combination is valid in a given language. 
 
 For example suppose we take a few variations of the word *love*. To get the possible stems+affix for each word: 
 
