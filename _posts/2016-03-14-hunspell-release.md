@@ -20,10 +20,10 @@ hunspell_check(words)
 ## [1]  TRUE FALSE  TRUE
 ```
 
-The `hunspell_find` function takes a character vector with text (in plain, latex or man format) and returns a list with incorrect words for each line.
+The `hunspell` function takes a character vector with text (in plain, latex or man format) and returns a list with incorrect words for each line.
 
 ```r
-bad_words <- hunspell_find("spell checkers are not neccessairy for langauge ninja's")
+bad_words <- hunspell("spell checkers are not neccessairy for langauge ninja's")
 print(bad_words)
 ## [1] "neccessairy" "langauge"    "ninja's"    
 ```
@@ -44,13 +44,13 @@ hunspell_suggest(bad_words[[1]])
 
 ### Parsing text
 
-The first challenge in spell-checking is extracting individual words from formatted text. The `hunspell_find` function supports three parsers via the `format` parameter: plain text, latex and man. For example to check the [OpenCPU paper](http://arxiv.org/abs/1406.4806) for spelling errors we use the latex source code:
+The first challenge in spell-checking is extracting individual words from formatted text. The `hunspell` function supports three parsers via the `format` parameter: plain text, latex and man. For example to check the [OpenCPU paper](http://arxiv.org/abs/1406.4806) for spelling errors we use the latex source code:
 
 ```r
 download.file("http://arxiv.org/e-print/1406.4806v1", "1406.4806v1.tar.gz",  mode = "wb")
 untar("1406.4806v1.tar.gz")
 text <- readLines("content.tex", warn = FALSE)
-words <- hunspell_find(text, format = "latex")
+words <- hunspell(text, format = "latex")
 sort(unique(unlist(words)))
 ```
 
@@ -60,7 +60,7 @@ Base R also has a few filters to extract words from R, Sweave or Rd code, see `R
 for(file in list.files("man", full.names = TRUE)){
   cat("\nFile", file, ":\n  ")
   txt <- tools::RdTextFilter(file, keepSpacing = FALSE)
-  cat(sQuote(sort(unique(unlist(hunspell_find(txt))))), sep =", ")
+  cat(sQuote(sort(unique(unlist(hunspell(txt))))), sep =", ")
 }
 ```  
 
