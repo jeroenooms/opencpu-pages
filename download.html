@@ -10,8 +10,8 @@ permalink: /download.html
   <div class="col-md-6">
     <h3>Ubuntu 14.04 / 16.04 (recommended)</h3>
 {% highlight bash %}
-#requires ubuntu 14.04 (Trusty)
-sudo add-apt-repository -y ppa:opencpu/opencpu-1.5
+# Requires Ubuntu 14.04 (Trusty) or 16.04 (Xenial)
+sudo add-apt-repository -y ppa:opencpu/opencpu-1.6
 sudo apt-get update 
 sudo apt-get upgrade
 
@@ -23,7 +23,7 @@ sudo apt-get install -y rstudio-server
 {% endhighlight %}
 
     <h3>Fedora </h3>
-    <p>Go <a href="http://software.opensuse.org/download.html?project=home:jeroenooms:opencpu-1.5&package=opencpu">here</a> to add the opencpu repository. Also have look at the <a href="https://github.com/jeroenooms/opencpu-server/tree/master/rpm#readme">readme</a> for rpm packages.</p>
+    <p>Go <a href="http://software.opensuse.org/download.html?project=home:jeroenooms:opencpu-1.6&package=opencpu">here</a> to add the opencpu repository. Also have look at the <a href="https://github.com/jeroenooms/opencpu-server/tree/master/rpm#readme">readme</a> for rpm packages.</p>
 {% highlight r %}
 sudo yum install opencpu
 {% endhighlight %}
