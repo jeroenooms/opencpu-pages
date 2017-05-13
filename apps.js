@@ -1,6 +1,6 @@
 $(function(){
   $.ajax({
-    url: "https://api.github.com/orgs/rwebaps/repos",
+    url: "https://api.github.com/orgs/rwebapps/repos",
     dataType: "jsonp"
   }).done(function(res){
     if(res.meta.status == 200){
@@ -9,7 +9,7 @@ $(function(){
            .css("text-align", "center")
            .appendTo("#appsrow");
         var myimg = $('<img class="appicon img img-rounded">').width(100).height(100)
-           .attr("src", "https://raw.github.com/rwebaps/" + value.name + "/master/inst/icon.png")
+           .attr("src", "https://raw.github.com/rwebapps/" + value.name + "/master/inst/icon.png")
            .appendTo(mydiv).on("error", function(){
               myimg.attr("src", value.owner.avatar_url);
            });
@@ -20,9 +20,9 @@ $(function(){
         var appurl;
 
         $.ajax({
-          url: "//rwebaps.ocpu.io/" + value.name
+          url: "//rwebapps.ocpu.io/" + value.name
         }).done(function(){
-          appurl = "https://rwebaps.ocpu.io/" + value.name;
+          appurl = "https://rwebapps.ocpu.io/" + value.name;
         }).error(function(){
           appurl = "https://cran.ocpu.io/" + value.name;
         }).always(function(){
@@ -30,7 +30,7 @@ $(function(){
            myul.append('<li><a target="_blank" href="' + appurl + '/info"><i class="icon icon-info-sign"> Package Info </a></li>');
            myul.append('<li><a target="_blank" href="' + appurl + '/www/"><i class="icon icon-play"> Live App Demo </a></li>');
            myul.append('<li class="divider"></li>');
-           myul.append('<li><a target="_blank" href="http://www.github.com/rwebaps/' + value.name + '"><i class="icon icon-github"> Source Code </a></li>');
+           myul.append('<li><a target="_blank" href="http://www.github.com/rwebapps/' + value.name + '"><i class="icon icon-github"> Source Code </a></li>');
            appbtn.append($('<span class="caret"></span>'))
         });
       });
