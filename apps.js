@@ -1,10 +1,10 @@
 $(function(){
   $.ajax({
     url: "https://api.github.com/orgs/rwebapps/repos",
-    dataType: "jsonp"
-  }).done(function(res){
-    if(res.meta.status == 200){
-      $.each(res.data, function(index, value) {
+    dataType: "json"
+  }).done(function(data, status){
+    if(status == 200){
+      $.each(data, function(index, value) {
         var mydiv = $('<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">')
            .css("text-align", "center")
            .appendTo("#appsrow");
@@ -35,7 +35,7 @@ $(function(){
         });
       });
     } else {
-      res.data.message && alert(res.data.message)
+      alert(data.message || "http github api error " + status)
     }
   }).fail(function(){
     $("#appsrow").append('<div class="alert alert-danger"> <a href="#" class="close" data-dismiss="alert">&times;</a><strong>Github API Error</strong> Could not load apps list from repository. Might be a problem with Github. Have a look at <a href="https://status.github.com/">status.github.com</a> and try again later.</div>');
