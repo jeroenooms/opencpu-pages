@@ -23,16 +23,6 @@ sudo apt-get install -y opencpu
 sudo apt-get install -y rstudio-server 
 {% endhighlight %}
 
-    <h3>Docker</h3>
-    <p>Docker containers based on various platforms are published via <a href="https://hub.docker.com/u/opencpu">dockerhub:opencpu</a>. Use <a href="https://hub.docker.com/r/opencpu/base"><b>opencpu/base</b></a> for opencpu or <a href="https://hub.docker.com/r/opencpu/rstudio"><b>opencpu/rstudio</b></a> for opencpu + rstudio server. See this <a href="https://github.com/jeroen/opencpu-server/tree/master/docker#readme">readme</a> for more details.
-{% highlight r %}
-# Run as executable
-docker run -t -p 80:80 -p 8004:8004 opencpu/rstudio
-
-# Run in background
-docker run -t -d -p 80:80 -p 8004:8004 opencpu/rstudio
-{% endhighlight %}
-
     <h3>Fedora </h3>
     <p>Go <a href="http://software.opensuse.org/download.html?project=home:jeroenooms:opencpu-2.0&package=opencpu">here</a> to add the opencpu repository. Also have look at the <a href="https://github.com/jeroen/opencpu-server/tree/master/rpm#readme">readme</a> for rpm packages.</p>
 {% highlight r %}
@@ -42,6 +32,15 @@ sudo yum install opencpu
 
     <h3>Debian / CentOS / Suse etc </h3>
     <p> See the <a href="https://github.com/jeroen/opencpu-server/tree/master#readme">readme</a> on building <a href="https://github.com/jeroen/opencpu-server/tree/master/debian#readme"><b>deb</b></a> or <a href="https://github.com/jeroen/opencpu-server/tree/master/rpm#readme"><b>rpm</b></a> packages from source.</p>
+
+  <h3>Server Manual PDF</h3>
+<div class="well">
+  <a href="https://opencpu.github.io/opencpu-manual/opencpu-server.pdf">
+    <i class="icon-file-text icon-2x pull-left icon-border"></i>
+  </a>
+  <p>The OpenCPU server manual PDF is the primary reference for installing and managing OpenCPU servers.</p>
+</div>
+  
 
   </div>
 
@@ -63,13 +62,15 @@ installed_apps()
 remove_apps("rwebapps/stockapp")
 {% endhighlight %}
 
-<h3>Server Manual PDF</h3>
-<div class="well">
-  <a href="https://opencpu.github.io/opencpu-manual/opencpu-server.pdf">
-    <i class="icon-file-text icon-2x pull-left icon-border"></i>
-  </a>
-  <p>The OpenCPU server manual PDF is the primary reference for installing and managing OpenCPU servers.</p>
-</div>
+    <h3>Docker</h3>
+    <p>Docker containers based on various platforms are published via <a href="https://hub.docker.com/u/opencpu">dockerhub:opencpu</a>. Use <a href="https://hub.docker.com/r/opencpu/base"><b>opencpu/base</b></a> for opencpu or <a href="https://hub.docker.com/r/opencpu/rstudio"><b>opencpu/rstudio</b></a> for opencpu + rstudio server. See this <a href="https://github.com/jeroen/opencpu-server/tree/master/docker#readme">readme</a> for more details.
+{% highlight r %}
+# Run as executable
+docker run -t -p 80:80 -p 8004:8004 opencpu/rstudio
+
+# Run in background
+docker run -t -d -p 80:80 -p 8004:8004 opencpu/rstudio
+{% endhighlight %}
 
   </div>
 
