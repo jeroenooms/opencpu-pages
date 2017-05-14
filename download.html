@@ -8,7 +8,7 @@ permalink: /download.html
 <div class="row">
 
   <div class="col-md-6">
-    <h3>Ubuntu 16.04 (recommended)</h3>
+    <h3>Cloud Server: Ubuntu 16.04 (recommended)</h3>
 {% highlight bash %}
 # Requires Ubuntu 16.04 (Xenial)
 sudo add-apt-repository -y ppa:opencpu/opencpu-2.0
@@ -49,16 +49,16 @@ sudo yum install opencpu
 
 <h3>Local Single-User Server</h3>
 {% highlight r %}
-# Install in R
+# Install OpenCPU
 install.packages("opencpu")
 
-# Loads Apps from Github
+# Run Apps directly from Github
 library(opencpu)
 ocpu_start_app("rwebapps/nabel")
 ocpu_start_app("rwebapps/markdownapp")
 ocpu_start_app("rwebapps/stockapp")
 
-# Remove apps
+# Install / remove apps
 installed_apps()
 remove_apps("rwebapps/stockapp")
 {% endhighlight %}
