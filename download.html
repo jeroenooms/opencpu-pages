@@ -8,10 +8,10 @@ permalink: /download.html
 <div class="row">
 
   <div class="col-md-6">
-    <h3>Ubuntu 14.04 / 16.04 (recommended)</h3>
+    <h3>Ubuntu 16.04 (recommended)</h3>
 {% highlight bash %}
-# Requires Ubuntu 14.04 (Trusty) or 16.04 (Xenial)
-sudo add-apt-repository -y ppa:opencpu/opencpu-1.6
+# Requires Ubuntu 16.04 (Xenial)
+sudo add-apt-repository -y ppa:opencpu/opencpu-2.0
 sudo apt-get update 
 sudo apt-get upgrade
 
@@ -24,7 +24,7 @@ sudo apt-get install -y rstudio-server
 {% endhighlight %}
 
     <h3>Fedora </h3>
-    <p>Go <a href="http://software.opensuse.org/download.html?project=home:jeroenooms:opencpu-1.6&package=opencpu">here</a> to add the opencpu repository. Also have look at the <a href="https://github.com/jeroen/opencpu-server/tree/master/rpm#readme">readme</a> for rpm packages.</p>
+    <p>Go <a href="http://software.opensuse.org/download.html?project=home:jeroenooms:opencpu-2.0&package=opencpu">here</a> to add the opencpu repository. Also have look at the <a href="https://github.com/jeroen/opencpu-server/tree/master/rpm#readme">readme</a> for rpm packages.</p>
 {% highlight r %}
 # Need to add repo first! (See link above)
 sudo yum install opencpu
@@ -51,24 +51,15 @@ docker run -t -d -p 80:80 -p 8004:8004 opencpu/rstudio
 {% highlight r %}
 install.packages("opencpu")
 library(opencpu)
-{% endhighlight %}
 
-
-<h3>Installing OpenCPU Apps</h3>
-{% highlight r %}
-#install the "gitstats" or "stocks" app from github
-library(devtools)
-install_github("opencpu/gitstats")
-install_github("opencpu/stocks")
-
-#open in single-user server
-library(opencpu)
-opencpu$browse("/library/gitstats/www")
+# Loads Apps from Github
+ocpu_start_app('rwebapps/nabel')
+ocpu_start_app('rwebapps/markdownapp')
 {% endhighlight %}
 
 <h3>Server Manual PDF</h3>
 <div class="well">
-  <a href="http://jeroen.github.com/opencpu-manual/opencpu-server.pdf">
+  <a href="https://opencpu.github.io/opencpu-manual/opencpu-server.pdf">
     <i class="icon-file-text icon-2x pull-left icon-border"></i>
   </a>
   <p>The OpenCPU server manual PDF is the primary reference for installing and managing OpenCPU servers.</p>
