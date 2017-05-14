@@ -188,7 +188,7 @@ When using a scoring engine based on OpenCPU in production, it is worthwile conf
 
 Note that R does *not* load LazyData objects when the package loads. Hence, `preload` in combination with lazy loading of data might not have the desired effect. When using `preload`, make sure to design your package such that all data gets loaded when the package loads [(example)](https://github.com/opencpu/tvscore/blob/master/R/onLoad.R).
 
-Finally in production you might want to tweak the `timelimit.post` (timeout), `rlimit.as` (mem limit), `rlimit.fsize` (disk limit) and `rlimit.nproc` (parallel process limit) options in `/etc/opencpu/server.conf` to fit your needs. Also see the [server manual](http://jeroenooms.github.com/opencpu-manual/opencpu-server.pdf) on this topic.
+Finally in production you might want to tweak the `timelimit.post` (timeout), `rlimit.as` (mem limit), `rlimit.fsize` (disk limit) and `rlimit.nproc` (parallel process limit) options in `/etc/opencpu/server.conf` to fit your needs. Also see the [server manual](https://opencpu.github.io/server-manual/opencpu-server.pdf) on this topic.
 
 ## Bonus: creating an OpenCPU app
 

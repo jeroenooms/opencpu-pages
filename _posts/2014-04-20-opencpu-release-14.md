@@ -18,7 +18,7 @@ If you have no preference, OpenCPU 1.4 is recommended because many of the packag
 
 ## How to upgrade
 
-Because of some internal cleanup and refactoring of configuration files, it is highly recommended to install the new version of OpenCPU on a clean fresh Ubuntu 14.04 server. Usually installing a new Ubuntu server is safer and quicker than upgrading and old server anyway. See the <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-server.pdf">Server Manual</a> for standard instructions on a clean installation.
+Because of some internal cleanup and refactoring of configuration files, it is highly recommended to install the new version of OpenCPU on a clean fresh Ubuntu 14.04 server. Usually installing a new Ubuntu server is safer and quicker than upgrading and old server anyway. See the <a href="https://opencpu.github.io/server-manual/opencpu-server.pdf">Server Manual</a> for standard instructions on a clean installation.
 
 However if for whatever reason you need to upgrade a previous installation, the safest way is to uninstall previous versions before installing the new one. This ensures that no old files keep lingering around.
 
@@ -50,7 +50,7 @@ Both apache and nginx are preconfigured to proxy the <code>/rstudio/</code> path
     https://your.server.com/ocpu/
     https://your.server.com/rstudio/
 
-Appendix B of the <a href="http://jeroenooms.github.com/opencpu-manual/opencpu-server.pdf">OpenCPU Server Manual</a> has some more details.
+Appendix B of the <a href="https://opencpu.github.io/server-manual/opencpu-server.pdf">OpenCPU Server Manual</a> has some more details.
 
 ## Questions
 

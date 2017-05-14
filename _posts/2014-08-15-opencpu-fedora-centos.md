@@ -20,7 +20,7 @@ If you find any issues with the rpm packages please report them on the [issues p
 
 ## OpenCPU and SELinux
 
-In general, the `opencpu-server` rpm package is very similar to the deb one, and most information in the [server manual](http://jeroenooms.github.com/opencpu-manual/opencpu-server.pdf) applies to Fedora/EL the same way as it does to Ubuntu. However one aspect is completely different: security.
+In general, the `opencpu-server` rpm package is very similar to the deb one, and most information in the [server manual](http://opencpu.github.io/server-manual/opencpu-server.pdf) applies to Fedora/EL the same way as it does to Ubuntu. However one aspect is completely different: security.
 
 Because OpenCPU has no notion of users or privileges, the server relies on Mandatory Access Control (MAC) style security. On Debian and Ubuntu, MAC is available through AppArmor and the opencpu-server package includes customisable apparmor profiles defining policies designed specifically for R and OpenCPU (see also [RAppArmor](http://www.jstatsoft.org/v55/i07/)). Redhat distributions on the other hand use SELinux and do not support AppArmor. The SELinux system is more complex and requires a lot of manual effort from the system administrator to configure and maintain security policies on the server (a popular introduction is [SELinux for Mere Mortals](http://www.redhat.com/resourcelibrary/videos/selinux-for-mere-mortals)). This is perhaps very powerful if you're a bank or government agency with a team of dedicated security experts, but otherwise it can be pretty painful.
 
