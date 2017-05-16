@@ -17,7 +17,7 @@ This release enables gzip compression in the default apache2 configuration for o
 
 The nice thing about http is that compression is handled entirely on the level of the protocol so it works for all content types and you don't have to do anything to take advantage of it. Client and server will automatically negotiate a method of compression that they both support via the `Accept-Encoding` header.
 
-Try playing around with the ocpu [test page](http://public.opencpu.org/ocpu/test/) by looking at the `Content-Encoding` response header, or just use curl with the `--compress` flag (use `-v` to see headers)
+Try playing around with the ocpu [test page](http://cloud.opencpu.org/ocpu/test/) by looking at the `Content-Encoding` response header, or just use curl with the `--compress` flag (use `-v` to see headers)
 
 ```bash
 curl https://demo.ocpu.io/MASS/data/Boston/json -v > /dev/null

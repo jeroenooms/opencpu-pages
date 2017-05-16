@@ -9,7 +9,7 @@
  * var mypackage = new Package("../R")
  *
  * //Use external OpenCPU server:
- * var mypackage = new Package("//public.opencpu.org/ocpu/library/mypackage/R")
+ * var mypackage = new Package("//cloud.opencpu.org/ocpu/library/mypackage/R")
  * 
  * //Exported functions
  * mypackage.call("myfun", {arg: "value"}, mycallback(tmp){})

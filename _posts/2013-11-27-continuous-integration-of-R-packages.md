@@ -16,7 +16,7 @@ Starting version 1.0.7, the OpenCPU cloud server adds support for continuous int
 
 To setup CI, add the following URL as a 'WebHook' in your Github repository: 
 
-    https://public.opencpu.org/ocpu/webhook
+    https://cloud.opencpu.org/ocpu/webhook
 
 Make sure to select payload version <code>application/vnd.github.v3+form</code>. To trigger a build push a commit to the master branch. The build will show up under <i>Recent Deliveries</i> in your github project page and if you should receive an email reporting if the installation was successful. If it was, the package will directly be available for remote use through the OpenCPU API.
 

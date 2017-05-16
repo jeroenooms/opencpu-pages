@@ -11,7 +11,7 @@ It has a fancy pants code editor which automatically updates the output after 3 
 It uses the <a href="http://ace.c9.io/">Ace</a> web editor with <a href="https://github.com/ajaxorg/ace-builds/blob/master/src/mode-r.js"><code>mode-r.js</code></a> (thanks to RStudio for making the latter available).
 
 Like all OpenCPU apps, the source package lives in the <a href="https://github.com/opencpu">opencpu app repo</a> on github.
-You can try it out on the <a href="https://public.opencpu.org/apps.html">public cloud server</a>, or run it locally:
+You can try it out on the <a href="https://cloud.opencpu.org/apps.html">public cloud server</a>, or run it locally:
 
 {% highlight r %}
 #install the package

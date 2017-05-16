@@ -14,7 +14,7 @@ The improvements in this release are mostly internal. However there will be one 
 
 	...
 	Date: Mon, 17 Mar 2014 06:59:26 GMT
-	Location: http://public.opencpu.org/ocpu/tmp/x0e28afb7/
+	Location: http://cloud.opencpu.org/ocpu/tmp/x0e28afb7/
 	Content-Length: 44
 	...
 

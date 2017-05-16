@@ -15,17 +15,17 @@ From here, no major changes in the OpenCPU API are planned for quite a while, so
 Let's first explain why this piece is important. The OpenCPU API defines a mapping between HTTP request and R function calls. This is easy for simple input and output, such as numbers or vectors:
 
 {% highlight bash %}
-curl https://public.opencpu.org/ocpu/library/stats/R/rnorm/json -d 'n=10&mean=5'
+curl https://cloud.opencpu.org/ocpu/library/stats/R/rnorm/json -d 'n=10&mean=5'
 {% endhighlight %}
 
 But what if the R function has a return value or arguments which require more advanced objects, such as a matrix or data frame? This is where <code>jsonlite</code> comes in. The <a href="http://cran.r-project.org/web/packages/jsonlite/vignettes/json-mapping.pdf">jsonlite vignette</a> defines <i><b>a practical and consistent mapping between JSON data and R Objects</i></b>. This allows OpenCPU to automatically convert incoming JSON arguments into R objects using <code>jsonlite::fromJSON</code>, and convert output values back into JSON using <code>jsonlite::toJSON</code>. Thereby the cycle is complete, and we can call advanced R functions over http(s)+json without requiring clients to have any understanding of R.
 
 ## An example: melting data frames
 
-Examples with curl get a bit verbose with a large payload, but to get an idea, let's melt some data using the <code>melt</code> function in the <code>reshape2</code> package. This function has an argument <tt>data</tt> (data frame) and an argument <tt>id</tt> (character vector). It returns another data frame. In this example, we pass it the first three rows of the AirQuaility dataset, very similar to the example in the <a href="https://public.opencpu.org/ocpu/library/reshape2/man/melt.data.frame/text">melt manual page</a>. The API docs explain that the JSON objects can either be posted as HTTP parameters in a standard HTTP POST formats (i.e. multipart or x-www-form-urlencoded):
+Examples with curl get a bit verbose with a large payload, but to get an idea, let's melt some data using the <code>melt</code> function in the <code>reshape2</code> package. This function has an argument <tt>data</tt> (data frame) and an argument <tt>id</tt> (character vector). It returns another data frame. In this example, we pass it the first three rows of the AirQuaility dataset, very similar to the example in the <a href="https://cloud.opencpu.org/ocpu/library/reshape2/man/melt.data.frame/text">melt manual page</a>. The API docs explain that the JSON objects can either be posted as HTTP parameters in a standard HTTP POST formats (i.e. multipart or x-www-form-urlencoded):
 
 {% highlight bash %}
-curl https://public.opencpu.org/ocpu/library/reshape2/R/melt/json \
+curl https://cloud.opencpu.org/ocpu/library/reshape2/R/melt/json \
 -d 'data=[{"Ozone":41, "Solar.R":190, "Wind":7.4, "Temp":67, "Month":5, "Day":1}, 
 {"Ozone":36, "Solar.R":118, "Wind":8, "Temp": 72, "Month":5, "Day":2}, 
 {"Ozone":12, "Solar.R":149, "Wind":12.6, "Temp": 74, "Month":5, "Day":3}]&id=["Month", "Day"]'
@@ -34,7 +34,7 @@ curl https://public.opencpu.org/ocpu/library/reshape2/R/melt/json \
 Alternatively, we can do pure JSON RPC by setting the <code>Content-Type: application/json</code> header:
 
 {% highlight bash %}
-curl https://public.opencpu.org/ocpu/library/reshape2/R/melt/json \
+curl https://cloud.opencpu.org/ocpu/library/reshape2/R/melt/json \
 -H 'Content-Type: application/json' \
 -d '{
   "data": [
@@ -46,7 +46,7 @@ curl https://public.opencpu.org/ocpu/library/reshape2/R/melt/json \
  }'
 {% endhighlight %}
 
-Note that if you use Windows, the <code>curl</code> examples might need to be modified to properly escape the quotes in the windows terminal. This is just a limitation of using the windows command line; it won't be a problem for actual clients (e.g. a browser). If you don't like curl, the same request can be performed using the <a href="https://public.opencpu.org/ocpu/test">ocpu test page</a>.
+Note that if you use Windows, the <code>curl</code> examples might need to be modified to properly escape the quotes in the windows terminal. This is just a limitation of using the windows command line; it won't be a problem for actual clients (e.g. a browser). If you don't like curl, the same request can be performed using the <a href="https://cloud.opencpu.org/ocpu/test">ocpu test page</a>.
 
 The above RPC request is equivalent to the R code below. You can use this code as a template to see how your R functions would behave when called remotely over OpenCPU.
 
@@ -94,4 +94,4 @@ sudo apt-get update
 sudo apt-get upgrade
 {% endhighlight %}
 
-To see if the update was successful, navigate to <a href="https://public.opencpu.org/ocpu/library/opencpu/">/ocpu/library/opencpu</a> on your server to check the currently installed version of the opencpu package. 
+To see if the update was successful, navigate to <a href="https://cloud.opencpu.org/ocpu/library/opencpu/">/ocpu/library/opencpu</a> on your server to check the currently installed version of the opencpu package. 

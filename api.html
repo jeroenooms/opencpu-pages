@@ -51,7 +51,7 @@ permalink: /api.html
 
 		<div class="alert alert-success">
 			<a href="#" class="close" data-dismiss="alert">&times;</a>
-			<strong>About this page</strong> Many of the sections below contain <code>curl</code> examples. Note that curl is used for illustration only, any HTTP client will do. Alternatively, the <a href="https://public.opencpu.org/ocpu/test"><code>/ocpu/test</code></a> page can be used to explore the API.
+			<strong>About this page</strong> Many of the sections below contain <code>curl</code> examples. Note that curl is used for illustration only, any HTTP client will do. Alternatively, the <a href="https://cloud.opencpu.org/ocpu/test"><code>/ocpu/test</code></a> page can be used to explore the API.
 		</div>
 
 	    <div class="page-header" id="api-http">
@@ -115,13 +115,13 @@ permalink: /api.html
 
 {% highlight bash %}
 #curl uses http get method by default
-curl https://public.opencpu.org/ocpu/library/MASS/data/Boston/json
-curl https://public.opencpu.org/ocpu/library/MASS/NEWS
-curl https://public.opencpu.org/ocpu/library/MASS/scripts/
+curl https://cloud.opencpu.org/ocpu/library/MASS/data/Boston/json
+curl https://cloud.opencpu.org/ocpu/library/MASS/NEWS
+curl https://cloud.opencpu.org/ocpu/library/MASS/scripts/
 
 #curl uses http post method for -X POST or -d "arg=value"
-curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
-curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d "n=10&mean=5"
+curl https://cloud.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
+curl https://cloud.opencpu.org/ocpu/library/stats/R/rnorm -d "n=10&mean=5"
 {% endhighlight %}
 
 			</div>
@@ -212,11 +212,11 @@ curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d "n=10&mean=5"
 
 {% highlight bash %}
 #read packages
-curl https://public.opencpu.org/ocpu/library/MASS
-curl https://public.opencpu.org/ocpu/user/jeroen/library/
+curl https://cloud.opencpu.org/ocpu/library/MASS
+curl https://cloud.opencpu.org/ocpu/user/jeroen/library/
 
 #read session
-curl https://public.opencpu.org/ocpu/tmp/x2c5ab8d4d6
+curl https://cloud.opencpu.org/ocpu/tmp/x2c5ab8d4d6
 {% endhighlight %}
 
 				<p>In addition, we can call packages from remote libraries such as CRAN or Github. Administrators can choose to disable these remote libraries so not all servers support this.</p>
@@ -250,12 +250,12 @@ curl https://public.opencpu.org/ocpu/tmp/x2c5ab8d4d6
 
 {% highlight bash %}
 #read packages
-curl https://public.opencpu.org/ocpu/cran/plyr/
-curl https://public.opencpu.org/ocpu/github/hadley/
-curl https://public.opencpu.org/ocpu/github/hadley/plyr/
+curl https://cloud.opencpu.org/ocpu/cran/plyr/
+curl https://cloud.opencpu.org/ocpu/github/hadley/
+curl https://cloud.opencpu.org/ocpu/github/hadley/plyr/
 
 #read files
-curl https://public.opencpu.org/ocpu/gist/hadley/
+curl https://cloud.opencpu.org/ocpu/gist/hadley/
 {% endhighlight %}
 
 			</div>
@@ -309,35 +309,35 @@ curl https://public.opencpu.org/ocpu/gist/hadley/
 
 {% highlight bash %}
 #package info
-curl https://public.opencpu.org/ocpu/library/MASS/
+curl https://cloud.opencpu.org/ocpu/library/MASS/
 
 #package objects (mostly functions)
-curl https://public.opencpu.org/ocpu/library/MASS/R/
-curl https://public.opencpu.org/ocpu/library/MASS/R/rlm/print
+curl https://cloud.opencpu.org/ocpu/library/MASS/R/
+curl https://cloud.opencpu.org/ocpu/library/MASS/R/rlm/print
 
 #package data objects
-curl https://public.opencpu.org/ocpu/library/MASS/data/
-curl https://public.opencpu.org/ocpu/library/MASS/data/housing/json
+curl https://cloud.opencpu.org/ocpu/library/MASS/data/
+curl https://cloud.opencpu.org/ocpu/library/MASS/data/housing/json
 
 #read manuals pages
-curl https://public.opencpu.org/ocpu/library/MASS/man/
-curl https://public.opencpu.org/ocpu/library/MASS/man/rlm/text
-curl https://public.opencpu.org/ocpu/library/MASS/man/rlm/html
-curl https://public.opencpu.org/ocpu/library/MASS/man/rlm/pdf
+curl https://cloud.opencpu.org/ocpu/library/MASS/man/
+curl https://cloud.opencpu.org/ocpu/library/MASS/man/rlm/text
+curl https://cloud.opencpu.org/ocpu/library/MASS/man/rlm/html
+curl https://cloud.opencpu.org/ocpu/library/MASS/man/rlm/pdf
 
 #read files included with this package
-curl https://public.opencpu.org/ocpu/library/MASS/scripts/
-curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R
-curl https://public.opencpu.org/ocpu/library/MASS/NEWS
+curl https://cloud.opencpu.org/ocpu/library/MASS/scripts/
+curl https://cloud.opencpu.org/ocpu/library/MASS/scripts/ch01.R
+curl https://cloud.opencpu.org/ocpu/library/MASS/NEWS
 
 #call a function (example from 'rlm' help page)
-curl https://public.opencpu.org/ocpu/library/MASS/R/rlm -d "formula=stack.loss ~ .&data=stackloss&psi=psi.bisquare"
+curl https://cloud.opencpu.org/ocpu/library/MASS/R/rlm -d "formula=stack.loss ~ .&data=stackloss&psi=psi.bisquare"
 
 #run R script
-curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
+curl https://cloud.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
 
 #read output (replace key with value returned from previous request)
-curl https://public.opencpu.org/ocpu/tmp/x0648ec526b/R/.val/print
+curl https://cloud.opencpu.org/ocpu/tmp/x0648ec526b/R/.val/print
 {% endhighlight %}
 
 			</div>
@@ -379,18 +379,18 @@ curl https://public.opencpu.org/ocpu/tmp/x0648ec526b/R/.val/print
 
 {% highlight bash %}
 #list objects and datasets from MASS
-curl https://public.opencpu.org/ocpu/library/MASS/R/
-curl https://public.opencpu.org/ocpu/library/MASS/data/
+curl https://cloud.opencpu.org/ocpu/library/MASS/R/
+curl https://cloud.opencpu.org/ocpu/library/MASS/data/
 
 #retrieve objects
-curl https://public.opencpu.org/ocpu/library/MASS/R/truehist/print
-curl https://public.opencpu.org/ocpu/library/MASS/data/bacteria/print
-curl https://public.opencpu.org/ocpu/library/MASS/data/bacteria/json
-curl https://public.opencpu.org/ocpu/library/MASS/data/bacteria/csv
-curl https://public.opencpu.org/ocpu/library/MASS/data/bacteria/rda
+curl https://cloud.opencpu.org/ocpu/library/MASS/R/truehist/print
+curl https://cloud.opencpu.org/ocpu/library/MASS/data/bacteria/print
+curl https://cloud.opencpu.org/ocpu/library/MASS/data/bacteria/json
+curl https://cloud.opencpu.org/ocpu/library/MASS/data/bacteria/csv
+curl https://cloud.opencpu.org/ocpu/library/MASS/data/bacteria/rda
 
 #call a function
-curl https://public.opencpu.org/ocpu/library/MASS/R/truehist -d "data=[1,3,7,4,2,4,2,6,23,13,5,2]"
+curl https://cloud.opencpu.org/ocpu/library/MASS/R/truehist -d "data=[1,3,7,4,2,4,2,6,23,13,5,2]"
 {% endhighlight %}
 
 			</div>
@@ -457,25 +457,25 @@ curl https://public.opencpu.org/ocpu/library/MASS/R/truehist -d "data=[1,3,7,4,2
 {% highlight bash %}
 #A POST will create a temporary session
 #Use the returned key for the subsequent calls below
-curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
+curl https://cloud.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
 
 #Look at console input/output
-curl https://public.opencpu.org/ocpu/tmp/x05b85461/console/text
+curl https://cloud.opencpu.org/ocpu/tmp/x05b85461/console/text
 
 #We read session R objects
-curl https://public.opencpu.org/ocpu/tmp/x05b85461/
-curl https://public.opencpu.org/ocpu/tmp/x05b85461/R/
-curl https://public.opencpu.org/ocpu/tmp/x05b85461/R/dd/csv
-curl https://public.opencpu.org/ocpu/tmp/x05b85461/R/t.stat/print
+curl https://cloud.opencpu.org/ocpu/tmp/x05b85461/
+curl https://cloud.opencpu.org/ocpu/tmp/x05b85461/R/
+curl https://cloud.opencpu.org/ocpu/tmp/x05b85461/R/dd/csv
+curl https://cloud.opencpu.org/ocpu/tmp/x05b85461/R/t.stat/print
 
 #Or even call a function
-curl https://public.opencpu.org/ocpu/tmp/x05b85461/R/t.stat -d "x=[1,0,0,1,1,1,0,1,1,0]"
+curl https://cloud.opencpu.org/ocpu/tmp/x05b85461/R/t.stat -d "x=[1,0,0,1,1,1,0,1,1,0]"
 
 #Download file from the working dir
-curl https://public.opencpu.org/ocpu/tmp/x05b85461/files/ch01.pdf
+curl https://cloud.opencpu.org/ocpu/tmp/x05b85461/files/ch01.pdf
 
 #Check sessionInfo
-curl https://public.opencpu.org/ocpu/tmp/x05b85461/info/print
+curl https://cloud.opencpu.org/ocpu/tmp/x05b85461/info/print
 {% endhighlight %}
 
 			</div>
@@ -631,21 +631,21 @@ curl https://public.opencpu.org/ocpu/tmp/x05b85461/info/print
 
 {% highlight bash %}
 #read R objects from packages.
-curl https://public.opencpu.org/ocpu/library/datasets/R/mtcars/json?digits=0
-curl https://public.opencpu.org/ocpu/library/datasets/R/mtcars/csv
-curl https://public.opencpu.org/ocpu/library/datasets/R/mtcars/tab?sep="|"
-curl https://public.opencpu.org/ocpu/library/MASS/R/loglm/print
+curl https://cloud.opencpu.org/ocpu/library/datasets/R/mtcars/json?digits=0
+curl https://cloud.opencpu.org/ocpu/library/datasets/R/mtcars/csv
+curl https://cloud.opencpu.org/ocpu/library/datasets/R/mtcars/tab?sep="|"
+curl https://cloud.opencpu.org/ocpu/library/MASS/R/loglm/print
 {% endhighlight %}
 
 {% highlight bash %}
 #create a simple plot
-curl https://public.opencpu.org/ocpu/library/graphics/R/plot -d "x=cars"
+curl https://cloud.opencpu.org/ocpu/library/graphics/R/plot -d "x=cars"
 
 #replace session id with returned one
-curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/png
-curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/1/png?width=1000
-curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/svg
-curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/pdf?width=8
+curl https://cloud.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/png
+curl https://cloud.opencpu.org/ocpu/tmp/x0468b7ab/graphics/1/png?width=1000
+curl https://cloud.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/svg
+curl https://cloud.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/pdf?width=8
 {% endhighlight %}
 
 			</div>
@@ -756,24 +756,24 @@ curl https://public.opencpu.org/ocpu/tmp/x0468b7ab/graphics/last/pdf?width=8
 
 {% highlight bash %}
 #call some functions
-curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d "n=10&mean=5"
-curl https://public.opencpu.org/ocpu/library/graphics/R/hist -d "x=[2,3,2,3,4,3,3]&breaks=10"
-curl https://public.opencpu.org/ocpu/library/graphics/R/plot -d "x=cars&main='test'"
-curl https://public.opencpu.org/ocpu/library/base/R/identity -d "x=coef(lm(speed~dist, data=cars))"
+curl https://cloud.opencpu.org/ocpu/library/stats/R/rnorm -d "n=10&mean=5"
+curl https://cloud.opencpu.org/ocpu/library/graphics/R/hist -d "x=[2,3,2,3,4,3,3]&breaks=10"
+curl https://cloud.opencpu.org/ocpu/library/graphics/R/plot -d "x=cars&main='test'"
+curl https://cloud.opencpu.org/ocpu/library/base/R/identity -d "x=coef(lm(speed~dist, data=cars))"
 {% endhighlight %}
 
 {% highlight bash %}
 #upload local file mydata.csv
-curl https://public.opencpu.org/ocpu/library/utils/R/read.csv -F "file=@mydata.csv"
+curl https://cloud.opencpu.org/ocpu/library/utils/R/read.csv -F "file=@mydata.csv"
 
 #replace session id with returned one above
-curl https://public.opencpu.org/ocpu/tmp/x067b4172/R/.val/print
-curl https://public.opencpu.org/ocpu/library/base/R/summary -d "object=x067b4172"
+curl https://cloud.opencpu.org/ocpu/tmp/x067b4172/R/.val/print
+curl https://cloud.opencpu.org/ocpu/library/base/R/summary -d "object=x067b4172"
 {% endhighlight %}
 
 {% highlight bash %}
 #post arguments in json
-curl http://public.opencpu.org/ocpu/library/stats/R/rnorm \
+curl http://cloud.opencpu.org/ocpu/library/stats/R/rnorm \
 -H "Content-Type: application/json" -d '{"n":10, "mean": 10, "sd":10}'
 {% endhighlight %}
 
@@ -844,17 +844,17 @@ curl http://public.opencpu.org/ocpu/library/stats/R/rnorm \
 
 {% highlight bash %}
 #run scripts which exist in packages
-curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
-curl https://public.opencpu.org/ocpu/library/brew/featurefull.brew -X POST
-curl https://public.opencpu.org/ocpu/library/brew/brew-test-2.brew -d "output=output.html"
-curl https://public.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rmd -X POST
-curl https://public.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rmd -d "format=docx"
-curl https://public.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rmd -d "format=html"
-curl https://public.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rnw
+curl https://cloud.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
+curl https://cloud.opencpu.org/ocpu/library/brew/featurefull.brew -X POST
+curl https://cloud.opencpu.org/ocpu/library/brew/brew-test-2.brew -d "output=output.html"
+curl https://cloud.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rmd -X POST
+curl https://cloud.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rmd -d "format=docx"
+curl https://cloud.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rmd -d "format=html"
+curl https://cloud.opencpu.org/ocpu/library/knitr/examples/knitr-minimal.Rnw
 
 #run scripts from gist
-curl https://public.opencpu.org/ocpu/gist/hadley/6195660/r-is-like.md -X POST
-curl https://public.opencpu.org/ocpu/gist/hadley/5721744/html.r -X POST
+curl https://cloud.opencpu.org/ocpu/gist/hadley/6195660/r-is-like.md -X POST
+curl https://cloud.opencpu.org/ocpu/gist/hadley/5721744/html.r -X POST
 {% endhighlight %}
 
 			</div>
@@ -867,7 +867,7 @@ curl https://public.opencpu.org/ocpu/gist/hadley/5721744/html.r -X POST
 				<p>For the common special case where a client is only interested in the output data from a function call in JSON format, the HTTP POST request url can be post-fixed with <code>/json</code>. In this case, a successfull call will return status 200 (instead of 201), and the response body directly contains the returned object in JSON; no need for an additional GET request.</p>
 
 {% highlight bash %}
-curl http://public.opencpu.org/ocpu/library/stats/R/rnorm/json -d n=2
+curl http://cloud.opencpu.org/ocpu/library/stats/R/rnorm/json -d n=2
 [
 -1.2804,
 -0.75013
@@ -877,7 +877,7 @@ curl http://public.opencpu.org/ocpu/library/stats/R/rnorm/json -d n=2
 				<p>We can combine this with the <code>application/json</code> request content type for full JSON RPC on R functions</p>
 
 {% highlight bash %}
-curl http://public.opencpu.org/ocpu/library/stats/R/rnorm/json \
+curl http://cloud.opencpu.org/ocpu/library/stats/R/rnorm/json \
 -H "Content-Type: application/json" -d '{"n":3, "mean": 10, "sd":10}'
 [
 4.9829,
@@ -936,7 +936,7 @@ rnorm(n=3, mean=10, sd=10)
 			<p>To setup CI, add the <code>/ocpu/webhook</code> URL for your server as a 'WebHook' in your Github repository. For example, to use the public demo server, add a webhook with:</p>
 
 {% highlight html %}
-https://public.opencpu.org/ocpu/webhook
+https://cloud.opencpu.org/ocpu/webhook
 {% endhighlight %}
 
 			<p>Select Content-type <code>application/x-www-form-urlencoded</code>. Leave the "Secret" field empty. To trigger a build, push a commit to the master branch. The build will show up under <i>Recent Deliveries</i> in your github webhook page, and you should receive an email reporting if the installation was successful. If it was, the package will directly be available for remote use at <code>/ocpu/github/{username}/{package}/</code> on your server.</p>

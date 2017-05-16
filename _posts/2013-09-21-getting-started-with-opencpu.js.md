@@ -6,11 +6,11 @@ description: "The opencpu.js library builds on jQuery to call R functions though
 cover: "containers.jpg"
 ---
 
-The [opencpu.js](https://public.opencpu.org/jslib.html) library builds on jQuery to call R functions through AJAX, straight from the browser. This makes it easy to embed R based computation or graphics in [apps](https://public.opencpu.org/apps.html). Moreover, asynchronous requests (which are native in Javascript) make parallelization a natural part of the application. This post introduces some of the basic features of the library.
+The [opencpu.js](https://cloud.opencpu.org/jslib.html) library builds on jQuery to call R functions through AJAX, straight from the browser. This makes it easy to embed R based computation or graphics in [apps](https://cloud.opencpu.org/apps.html). Moreover, asynchronous requests (which are native in Javascript) make parallelization a natural part of the application. This post introduces some of the basic features of the library.
 
 ## Getting started with opencpu.js
 
-The [readme page](https://github.com/jeroenooms/opencpu.js#readme) for opencpu.js has some brief documentation, but perhaps the easiest way to get started with opencpu.js is by example. The [opencpu apps](https://public.opencpu.org/apps.html) page lists a couple of example apps that you can play around with. The source code for each app is available from the [opencpu github organization](https://github.com/opencpu), and each app is based on opencpu.js. The [appdemo](https://public.opencpu.org/ocpu/library/appdemo/www/) app contains some pages with minimal examples illustrating the basic `opencpu.js` functionality. Like all OpenCPU apps, you can either use it on the public cloud server, or install for local use:
+The [readme page](https://github.com/jeroenooms/opencpu.js#readme) for opencpu.js has some brief documentation, but perhaps the easiest way to get started with opencpu.js is by example. The [opencpu apps](https://cloud.opencpu.org/apps.html) page lists a couple of example apps that you can play around with. The source code for each app is available from the [opencpu github organization](https://github.com/opencpu), and each app is based on opencpu.js. The [appdemo](https://cloud.opencpu.org/ocpu/library/appdemo/www/) app contains some pages with minimal examples illustrating the basic `opencpu.js` functionality. Like all OpenCPU apps, you can either use it on the public cloud server, or install for local use:
 
 {% highlight r %}
 #install the appdemo app
@@ -26,7 +26,7 @@ opencpu$browse("/library/appdemo/www")
 
 ## Hello World: calling a function
 
-The [hello.html](https://public.opencpu.org/ocpu/library/appdemo/www/hello.html) page demonstrates how to call an R function that is included with the R package containing the app. In this example we call the R function named [hello](https://public.opencpu.org/ocpu/library/appdemo/R/hello). Navigate to the [hello.html](https://public.opencpu.org/ocpu/library/appdemo/www/hello.html) page in your favorite browser and look at the html source code to see what is going on. The magic happens in these lines of javascript:
+The [hello.html](https://cloud.opencpu.org/ocpu/library/appdemo/www/hello.html) page demonstrates how to call an R function that is included with the R package containing the app. In this example we call the R function named [hello](https://cloud.opencpu.org/ocpu/library/appdemo/R/hello). Navigate to the [hello.html](https://cloud.opencpu.org/ocpu/library/appdemo/www/hello.html) page in your favorite browser and look at the html source code to see what is going on. The magic happens in these lines of javascript:
 
 {% highlight javascript %}
 //read the value for 'myname'
@@ -40,7 +40,7 @@ var req = ocpu.rpc("hello", {
 });
 {% endhighlight %}
 
-The first line is basic jQuery syntax and reads the value from the page element with id `namefield` down in the html. In the next line we use `ocpu.rpc` to call the R function [hello](https://public.opencpu.org/ocpu/library/appdemo/R/hello) (included in the app package) and pass the value to the `myname` argument of the R function. The final argument is the callback handler: a function to (asynchronously) processes the output once the request has returned from the server. In this case our callback handler writes `output$message` value returned by our R function to the html field with id `output`. 
+The first line is basic jQuery syntax and reads the value from the page element with id `namefield` down in the html. In the next line we use `ocpu.rpc` to call the R function [hello](https://cloud.opencpu.org/ocpu/library/appdemo/R/hello) (included in the app package) and pass the value to the `myname` argument of the R function. The final argument is the callback handler: a function to (asynchronously) processes the output once the request has returned from the server. In this case our callback handler writes `output$message` value returned by our R function to the html field with id `output`. 
 
 The above is all that is needed to call R from Javascript in the browser. The remaining lines form this example:
 
@@ -60,7 +60,7 @@ Web developers will immediately recognize this pattern: all functions in the ope
 
 ## Making a plot
 
-The opencpu.js library also makes it easy to embed your R plots in a website. The [plot.html](https://public.opencpu.org/ocpu/library/appdemo/www/plot.html) page illustrates this with a very simple example. Again, look at the source of the HTML page: 
+The opencpu.js library also makes it easy to embed your R plots in a website. The [plot.html](https://cloud.opencpu.org/ocpu/library/appdemo/www/plot.html) page illustrates this with a very simple example. Again, look at the source of the HTML page: 
 
 
 {% highlight javascript %}
@@ -71,13 +71,13 @@ var req = $("#plotdiv").rplot("randomplot", {
 })
 {% endhighlight %}
 
-The syntax for is slightly different than when calling a function before: the plotting widget is implemented as a jQuery plugin and hence called on a dom element, usually an empty `<div>`. In this case we call the R function [randomplot](https://public.opencpu.org/ocpu/library/appdemo/R/randomplot) (included with the appdemo package) and pass arguments `n` and `dist`. Once completed, a png image of the plot is displayed in `#plotdiv` and links to pdf and svg images. 
+The syntax for is slightly different than when calling a function before: the plotting widget is implemented as a jQuery plugin and hence called on a dom element, usually an empty `<div>`. In this case we call the R function [randomplot](https://cloud.opencpu.org/ocpu/library/appdemo/R/randomplot) (included with the appdemo package) and pass arguments `n` and `dist`. Once completed, a png image of the plot is displayed in `#plotdiv` and links to pdf and svg images. 
 
-Real world examples of apps using `$.rplot` are [nabel](https://public.opencpu.org/ocpu/library/nabel/www/), [gitstats](https://public.opencpu.org/ocpu/library/gitstats/www/) and [stocks](https://public.opencpu.org/ocpu/library/stocks/www/).
+Real world examples of apps using `$.rplot` are [nabel](https://cloud.opencpu.org/ocpu/library/nabel/www/), [gitstats](https://cloud.opencpu.org/ocpu/library/gitstats/www/) and [stocks](https://cloud.opencpu.org/ocpu/library/stocks/www/).
 
 ## Uploading a File
 
-In many statistical applications the user needs to provide some data, often in the form of a file. When using opencpu.js, calling an R function with a file works exactly the same as calling it with any other value. Look at the source code for [upload.html](https://public.opencpu.org/ocpu/library/appdemo/www/upload.html) to see this in action.
+In many statistical applications the user needs to provide some data, often in the form of a file. When using opencpu.js, calling an R function with a file works exactly the same as calling it with any other value. Look at the source code for [upload.html](https://cloud.opencpu.org/ocpu/library/appdemo/www/upload.html) to see this in action.
 
 
 {% highlight javascript %}
@@ -102,7 +102,7 @@ Thus far all examples contained a single R function call and we would either gra
 
 The OpenCPU API is stateless. Clients do not have a private R process and each call to the server is independent of the previous one. Instead, the way you can introduce state is by chaining function calls: the OpenCPU server stores the return object from a function call, and you can pass a reference to such an object as a argument to subsequent function calls. This might sound cumbersome at first, but it results in well organized, scalable applications and makes asynchronous parallel requests a native feature of your application. 
 
-A simple example of this concept which builds on the previous example is illustrated in [chain.html](https://public.opencpu.org/ocpu/library/appdemo/www/chain.html). Because this example is a bit larger, the javascript code was placed in a seperate file called [chain.js](https://public.opencpu.org/ocpu/library/appdemo/www/chain.js). The example starts with:
+A simple example of this concept which builds on the previous example is illustrated in [chain.html](https://cloud.opencpu.org/ocpu/library/appdemo/www/chain.html). Because this example is a bit larger, the javascript code was placed in a seperate file called [chain.js](https://cloud.opencpu.org/ocpu/library/appdemo/www/chain.js). The example starts with:
 
 {% highlight javascript %}
 //perform the request
@@ -115,7 +115,7 @@ var req = ocpu.call("readcsvnew", {
 });
 {% endhighlight %}
 
-This look very similar as before: `ocpu.call` is used to call the R function [readcsvnew](https://public.opencpu.org/ocpu/library/appdemo/R/readcsvnew). However this time the callback function calls another function by passing on the reference to the object returned by `readcsvnew` (which we called `session` in this example) The `printsummary` javascript function then uses this object for the argument `mydata` when calling the R function [printsummary](https://public.opencpu.org/ocpu/library/appdemo/R/printsummary):
+This look very similar as before: `ocpu.call` is used to call the R function [readcsvnew](https://cloud.opencpu.org/ocpu/library/appdemo/R/readcsvnew). However this time the callback function calls another function by passing on the reference to the object returned by `readcsvnew` (which we called `session` in this example) The `printsummary` javascript function then uses this object for the argument `mydata` when calling the R function [printsummary](https://cloud.opencpu.org/ocpu/library/appdemo/R/printsummary):
 
 {% highlight javascript %}
 function printsummary(mydata){
@@ -131,4 +131,4 @@ function printsummary(mydata){
 }
 {% endhighlight %}
 
-This illustrates the concept of function chaining. We can keep going on and keep calling new functions and pass output from previous function calls as the argument. To see a real world example of this, try the [mapapp](https://public.opencpu.org/ocpu/library/mapapp/www/) OpenCPU app.
+This illustrates the concept of function chaining. We can keep going on and keep calling new functions and pass output from previous function calls as the argument. To see a real world example of this, try the [mapapp](https://cloud.opencpu.org/ocpu/library/mapapp/www/) OpenCPU app.

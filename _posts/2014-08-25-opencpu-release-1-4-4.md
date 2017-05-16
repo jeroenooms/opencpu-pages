@@ -12,9 +12,9 @@ This week version 1.4.4 was released on [Launchpad](https://launchpad.net/~openc
 
 ## New: session namespaces
 
-A new feature in this version is support for session namespaces. Clients can now refer to objects within a temporary session using `sessionid::name`. This makes it easier to reuse objects that were created from a script. For example let's execute the [ch01.R](https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R) script which is included with the [MASS](https://public.opencpu.org/ocpu/library/MASS/scripts) package:
+A new feature in this version is support for session namespaces. Clients can now refer to objects within a temporary session using `sessionid::name`. This makes it easier to reuse objects that were created from a script. For example let's execute the [ch01.R](https://cloud.opencpu.org/ocpu/library/MASS/scripts/ch01.R) script which is included with the [MASS](https://cloud.opencpu.org/ocpu/library/MASS/scripts) package:
 
-	>> curl https://public.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
+	>> curl https://cloud.opencpu.org/ocpu/library/MASS/scripts/ch01.R -X POST
 	/ocpu/tmp/x05af9fe89a/R/dd
 	/ocpu/tmp/x05af9fe89a/R/m
 	/ocpu/tmp/x05af9fe89a/R/std.dev
@@ -30,11 +30,11 @@ A new feature in this version is support for session namespaces. Clients can now
 
 The `x05af9fe89a` is the temporary session ID, which will be different for every execution. From the output we can see that this script stored 7 objects in the session namespace. To retrieve the `z` object in `json` format, use:
 
-    https://public.opencpu.org/ocpu/tmp/x05af9fe89a/R/z/json?pretty=FALSE
+    https://cloud.opencpu.org/ocpu/tmp/x05af9fe89a/R/z/json?pretty=FALSE
 
 But what if we want to reuse `z` the object in a subsequent function call? We can now do this using the sesssion namespace. For example, to calculate `stats::sd(x = z)`, we need to refer to `x05af9fe89a::z` as shown below:
 
-	curl https://public.opencpu.org/ocpu/library/stats/R/sd/json -d x=x05af9fe89a::z
+	curl https://cloud.opencpu.org/ocpu/library/stats/R/sd/json -d x=x05af9fe89a::z
 	[
 		1.9368
 	]
@@ -45,7 +45,7 @@ This way, we can chain script executions and function calls by passing output ob
 
 For remote function calls, you can still use the session id alone to refer to the return object of the function call. For example to calculate `stats::rnorm(n = 5)` we do:
 
-	>> curl https://public.opencpu.org/ocpu/library/stats/R/rnorm -d n=5
+	>> curl https://cloud.opencpu.org/ocpu/library/stats/R/rnorm -d n=5
 	/ocpu/tmp/x009f9e7630/R/.val
 	/ocpu/tmp/x009f9e7630/stdout
 	/ocpu/tmp/x009f9e7630/source
@@ -54,8 +54,8 @@ For remote function calls, you can still use the session id alone to refer to th
 
 To calculate the standard deviation of our newly created object, the client can either use `x009f9e7630::.val` or simply `x009f9e7630`:
 
-    curl https://public.opencpu.org/ocpu/library/stats/R/sd -d x=x009f9e7630
-    curl https://public.opencpu.org/ocpu/library/stats/R/sd -d x=x009f9e7630::.val
+    curl https://cloud.opencpu.org/ocpu/library/stats/R/sd -d x=x009f9e7630
+    curl https://cloud.opencpu.org/ocpu/library/stats/R/sd -d x=x009f9e7630::.val
 
 The above two requests are equivalent.
 

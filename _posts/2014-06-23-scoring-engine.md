@@ -154,30 +154,30 @@ library(opencpu)
 opencpu$browse()
 {% endhighlight %}
 
-To verify that the installation succeeded, open your browser and navigate to the [<code>/ocpu/library/tvscore</code>](https://public.opencpu.org/ocpu/library/tvscore/) path on the OpenCPU server. Also have a look at [<code>/ocpu/library/tvscore/R/tv</code>](https://public.opencpu.org/ocpu/library/tvscore/R/tv) and [<code>/ocpu/library/tvscore/man/tv</code>](https://public.opencpu.org/ocpu/library/tvscore/man/tv).
+To verify that the installation succeeded, open your browser and navigate to the [<code>/ocpu/library/tvscore</code>](https://cloud.opencpu.org/ocpu/library/tvscore/) path on the OpenCPU server. Also have a look at [<code>/ocpu/library/tvscore/R/tv</code>](https://cloud.opencpu.org/ocpu/library/tvscore/R/tv) and [<code>/ocpu/library/tvscore/man/tv</code>](https://cloud.opencpu.org/ocpu/library/tvscore/man/tv).
 
 ## Step 4: Scoring through the API
 
-Once the package is installed on the server, we can remotely call the `tv` function via the OpenCPU API. In the examples below we use the public demo server: <code>https://public.opencpu.org/</code>. For example, to call the `tv` function with `curl` using basic [JSON RPC](https://www.opencpu.org/api.html#api-json):
+Once the package is installed on the server, we can remotely call the `tv` function via the OpenCPU API. In the examples below we use the public demo server: <code>https://cloud.opencpu.org/</code>. For example, to call the `tv` function with `curl` using basic [JSON RPC](https://www.opencpu.org/api.html#api-json):
 
 {% highlight bash %}
-curl https://public.opencpu.org/ocpu/library/tvscore/R/tv/json \
+curl https://cloud.opencpu.org/ocpu/library/tvscore/R/tv/json \
  -H "Content-Type: application/json" \
  -d '{"input" : [ {"age":26, "marital" : "MARRIED"}, {"age":41, "marital":"DIVORCED"}, {"age":53, "marital":"NEVER MARRIED"} ]}'
 {% endhighlight %}
 
-Note how the OpenCPU server automatically converts input and output data from/to JSON using [`jsonlite`](http://arxiv.org/pdf/1403.2805v1.pdf). See the [API docs](https://www.opencpu.org/api.html#api-json) for more details on this process. Alternatively we can batch score by posting a CSV file ([example data](https://public.opencpu.org/ocpu/library/tvscore/tv/testdata.csv))
+Note how the OpenCPU server automatically converts input and output data from/to JSON using [`jsonlite`](http://arxiv.org/pdf/1403.2805v1.pdf). See the [API docs](https://www.opencpu.org/api.html#api-json) for more details on this process. Alternatively we can batch score by posting a CSV file ([example data](https://cloud.opencpu.org/ocpu/library/tvscore/tv/testdata.csv))
 
 {% highlight bash %}
-curl https://public.opencpu.org/ocpu/library/tvscore/R/tv -F "input=@testdata.csv"
+curl https://cloud.opencpu.org/ocpu/library/tvscore/R/tv -F "input=@testdata.csv"
 {% endhighlight %}
 
 The response to a successful HTTP POST request contains the location of the output data in the `Location` header. For example if the call returned a HTTP 201 with `Location` header `/ocpu/tmp/x036bf30e82`, the client can retrieve the output data in various formats using a subsequent HTTP GET request:
 
 {% highlight bash %}
-curl https://public.opencpu.org/ocpu/tmp/x036bf30e82/R/.val/csv
-curl https://public.opencpu.org/ocpu/tmp/x036bf30e82/R/.val/json
-curl https://public.opencpu.org/ocpu/tmp/x036bf30e82/R/.val/tab
+curl https://cloud.opencpu.org/ocpu/tmp/x036bf30e82/R/.val/csv
+curl https://cloud.opencpu.org/ocpu/tmp/x036bf30e82/R/.val/json
+curl https://cloud.opencpu.org/ocpu/tmp/x036bf30e82/R/.val/tab
 {% endhighlight %}
 
 This completes our scoring engine. Using these steps, clients from any language can remotely score cases by calling the `tv` function using standard `HTTP` and `JSON` libraries.
@@ -192,7 +192,7 @@ Finally in production you might want to tweak the `timelimit.post` (timeout), `r
 
 ## Bonus: creating an OpenCPU app
 
-By including web pages in the [`/inst/www/`](https://github.com/opencpu/tvscore/tree/master/inst/www) directory of the source package, we can turn our scoring engine into a standalone web application. The [`tvscore`](https://github.com/opencpu/tvscore) example package contains a simple web interface that makes use of the [opencpu.js](https://www.opencpu.org/jslib.html) JavaScript client to interact with R via OpenCPU in the browser. Navigate to [/ocpu/library/tvscore/www/](https://public.opencpu.org/ocpu/library/tvscore/www) on the public demo server to see it in action!
+By including web pages in the [`/inst/www/`](https://github.com/opencpu/tvscore/tree/master/inst/www) directory of the source package, we can turn our scoring engine into a standalone web application. The [`tvscore`](https://github.com/opencpu/tvscore) example package contains a simple web interface that makes use of the [opencpu.js](https://www.opencpu.org/jslib.html) JavaScript client to interact with R via OpenCPU in the browser. Navigate to [/ocpu/library/tvscore/www/](https://cloud.opencpu.org/ocpu/library/tvscore/www) on the public demo server to see it in action!
 
 To install and run the same app in your local R session, use:
 

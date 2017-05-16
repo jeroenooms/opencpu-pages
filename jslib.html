@@ -95,12 +95,12 @@ opencpu$browse("/library/nabel/www")
 				<p>The same apps can be installed and accessed on a cloud server by navigating to <code>/ocpu/library/[pkgname]/www/</code>:</p>
 
 				<ul>
-					<li><a href="https://public.opencpu.org/ocpu/library/stocks/www" target="_blank">https://public.opencpu.org/ocpu/library/stocks/www</a></li>
-					<li><a href="https://public.opencpu.org/ocpu/library/markdownapp/www" target="_blank">https://public.opencpu.org/ocpu/library/markdownapp/www</a></li>
-					<li><a href="https://public.opencpu.org/ocpu/library/nabel/www" target="_blank">https://public.opencpu.org/ocpu/library/nabel/www</a></li>
+					<li><a href="https://cloud.opencpu.org/ocpu/library/stocks/www" target="_blank">https://cloud.opencpu.org/ocpu/library/stocks/www</a></li>
+					<li><a href="https://cloud.opencpu.org/ocpu/library/markdownapp/www" target="_blank">https://cloud.opencpu.org/ocpu/library/markdownapp/www</a></li>
+					<li><a href="https://cloud.opencpu.org/ocpu/library/nabel/www" target="_blank">https://cloud.opencpu.org/ocpu/library/nabel/www</a></li>
 				</ul>
 
-				<p>One app in the public repository is called <a href="https://public.opencpu.org/ocpu/library/appdemo/www">appdemo</a>. This application contains some minimal examples to demonstrate basic functionality and help you get started with building apps using <code>opencpu.js</code>.
+				<p>One app in the public repository is called <a href="https://cloud.opencpu.org/ocpu/library/appdemo/www">appdemo</a>. This application contains some minimal examples to demonstrate basic functionality and help you get started with building apps using <code>opencpu.js</code>.
 			</div>
 		</div>
 
@@ -133,7 +133,7 @@ opencpu$browse("/library/nabel/www")
 
 {% highlight js %}
 //set page to communicate to with "mypackage" on server below
-ocpu.seturl("//public.opencpu.org/ocpu/library/mypackage/R")
+ocpu.seturl("//cloud.opencpu.org/ocpu/library/mypackage/R")
 {% endhighlight %}
 
 				<p>Cross domain requests are convenient for development and illustrative examples, see e.g: <a href="http://jsfiddle.net/user/opencpu/fiddles/">jsfiddle examples</a>. However, when possible it is still recommended to include a copy of your web pages in the R package for every release of your app. That way you get a nice redistributable app and there is no ambiguity over version compatibility of the front-end (web pages) and back-end (R functions). </p>
@@ -170,7 +170,7 @@ ocpu.seturl("//public.opencpu.org/ocpu/library/mypackage/R")
 				  </div>
 				</div>
 
-			    <p>A fun an easy way to get started is by making plots. The <code>opencpu.js</code> library implements a jquery plugin called <code>rplot</code> which makes it easy to embed live plots in your webpage. For example, consider the R function <a href="http://public.opencpu.org/ocpu/library/stocks/R/smoothplot">smoothplot</a> in the <a href="http://github.com/opencpu/stocks">stocks package</a>:</p>
+			    <p>A fun an easy way to get started is by making plots. The <code>opencpu.js</code> library implements a jquery plugin called <code>rplot</code> which makes it easy to embed live plots in your webpage. For example, consider the R function <a href="http://cloud.opencpu.org/ocpu/library/stocks/R/smoothplot">smoothplot</a> in the <a href="http://github.com/opencpu/stocks">stocks package</a>:</p>
 
 {% highlight r%}
 #The R function
@@ -196,7 +196,7 @@ req.fail(function(){
 });
 {% endhighlight %}
 
-				<p>This creates a plot widget in the <code>#plotdiv</code> element (a div in your html). It calls the R function <code>smoothplot</code> and passes argument values as specified, and displays the generated plot including PNG, PDF, and SVG export links. The final lines specify an error handler, which is optional but recommended. Have a look at the <a href="http://jsfiddle.net/opencpu/MkAVF/">jsfiddle</a>, or the full <a href="https://public.opencpu.org/ocpu/library/stocks/www/">stocks app</a> to see all of this in action!</p>
+				<p>This creates a plot widget in the <code>#plotdiv</code> element (a div in your html). It calls the R function <code>smoothplot</code> and passes argument values as specified, and displays the generated plot including PNG, PDF, and SVG export links. The final lines specify an error handler, which is optional but recommended. Have a look at the <a href="http://jsfiddle.net/opencpu/MkAVF/">jsfiddle</a>, or the full <a href="https://cloud.opencpu.org/ocpu/library/stocks/www/">stocks app</a> to see all of this in action!</p>
 			</div>
 		</div>
 

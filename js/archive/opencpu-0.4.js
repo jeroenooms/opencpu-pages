@@ -9,7 +9,7 @@
  * You only need to use ocpu.seturl if this page is hosted outside of the OpenCPU package. For example:
  *
  * ocpu.seturl("../R") //default, use for apps
- * ocpu.seturl("//public.opencpu.org/ocpu/library/mypackage/R") //CORS
+ * ocpu.seturl("//cloud.opencpu.org/ocpu/library/mypackage/R") //CORS
  * ocpu.seturl("/ocpu/library/mypackage/R") //hardcode path
  */
 

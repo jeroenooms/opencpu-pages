@@ -27,10 +27,10 @@ Any R package on Github can automatically be deployed to `https://yourname.ocpu.
 
 New in this release is that http parameters added to the webhook URL will be passed to [install_github](http://demo.ocpu.io/devtools/man/install_github/text). For example if you want to build vignettes of your package, use webhook:
 
-    https://public.opencpu.org/ocpu/webhook?build_vignettes=true
+    https://cloud.opencpu.org/ocpu/webhook?build_vignettes=true
 
 Or if your package is in a subdir in the repo:
 
-    https://public.opencpu.org/ocpu/webhook?build_vignettes=true&subdir=pkgdir
+    https://cloud.opencpu.org/ocpu/webhook?build_vignettes=true&subdir=pkgdir
 
 In addition to parameters for `install_github`, there is currently one extra parameter `sendmail` (true/false) which specifies if the server sends an email with the build status.
