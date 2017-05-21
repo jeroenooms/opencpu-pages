@@ -13,6 +13,7 @@ permalink: /api.html
 				<li><a class="active" href="#api-http">HTTP</a>
 					<ul class="nav">
 						<li><a href="#api-root">Root Path</a></li>
+						<li><a href="#api-info">Server Info</a></li>
 						<li><a href="#api-methods">Methods</a></li>
 						<li><a href="#api-status">Status Codes</a></li>
 					</ul>
@@ -38,7 +39,6 @@ permalink: /api.html
 
 				<li><a href="#api-misc">Miscellaneous</a>
 					<ul class="nav">
-						<li><a href="#api-info">Server Info</a></li>
 						<li><a href="#api-apps">OpenCPU Apps</a></li>
 						<li><a href="#api-ci">Github CI Hook</a></li>
 					</ul>
@@ -62,6 +62,13 @@ permalink: /api.html
 			<div class="panel-heading"><h4>The OpenCPU root path</h4></div>
 			<div class="panel-body">
 				<p>The root of the API is dynamic. It defaults to <code>/ocpu/</code>, however system administrators can change this. Clients should make the OpenCPU server address and root path configurable. In the examples below we assume the default <code>/ocpu/</code>.</p>
+			</div>
+		</div>
+
+		<div class="panel panel-primary" id="api-info">
+			<div class="panel-heading"><h4>Server Info</h4></div>
+			<div class="panel-body">
+				<p>The <code>/ocpu/info</code> endpoint shows the output of <code>sessionInfo()</code> from the main (webserver) process. This can be helpful for debugging. However do note that unsafe requests are evaluated in a parallel process.</p>
 			</div>
 		</div>
 
@@ -200,6 +207,10 @@ curl https://cloud.opencpu.org/ocpu/library/stats/R/rnorm -d "n=10&mean=5"
 							<td>R packages installed in one of the global libraries on the server.</td>
 						</tr>
 						<tr>
+							<td><code>/ocpu/apps/{gituser}/{reponame}/</code></td>
+							<td>Interfaces to R package installed in the root of repository <code>{reponame}</code> from github user <code>{gituser}</code>.</td>
+						</tr>						
+						<tr>
 							<td><code>/ocpu/user/{username}/library/{pkgname}/</code></td>
 							<td>R packages installed in the home library of Linux user <code>{username}</code>.</td>
 						</tr>
@@ -212,50 +223,12 @@ curl https://cloud.opencpu.org/ocpu/library/stats/R/rnorm -d "n=10&mean=5"
 
 {% highlight bash %}
 #read packages
-curl https://cloud.opencpu.org/ocpu/library/MASS
+curl https://cloud.opencpu.org/ocpu/library/
+curl https://cloud.opencpu.org/ocpu/apps/rwebapps/
 curl https://cloud.opencpu.org/ocpu/user/jeroen/library/
 
 #read session
 curl https://cloud.opencpu.org/ocpu/tmp/x2c5ab8d4d6
-{% endhighlight %}
-
-				<p>In addition, we can call packages from remote libraries such as CRAN or Github. Administrators can choose to disable these remote libraries so not all servers support this.</p>
-
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th>Path</th>
-							<th>What</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><code>/ocpu/cran/{pkgname}/</code></td>
-							<td>Interfaces to the R package <code>{pkgname}</code> that is <i>current</i> on CRAN.</td>
-						</tr>
-						<tr>
-							<td><code>/ocpu/bioc/{pkgname}/</code></td>
-							<td>Interfaces to the R package <code>{pkgname}</code> that is <i>current</i> on BioConductor.</td>
-						</tr>
-						<tr>
-							<td><code>/ocpu/github/{gituser}/{pkgname}/</code></td>
-							<td>Interfaces to R package <code>{pkgname}</code> in the <i>master branch</i> of the identically named repository from github user <code>{gituser}</code>.</td>
-						</tr>
-						<tr>
-							<td><code>/ocpu/gist/{gituser}/{path}</code></td>
-							<td>Static files and directories located in the gist repository from github user <code>gituser</code>. This API does not support packages, just files (scripts, html, etc)</td>
-						</tr>
-					</tbody>
-				</table>
-
-{% highlight bash %}
-#read packages
-curl https://cloud.opencpu.org/ocpu/cran/plyr/
-curl https://cloud.opencpu.org/ocpu/github/hadley/
-curl https://cloud.opencpu.org/ocpu/github/hadley/plyr/
-
-#read files
-curl https://cloud.opencpu.org/ocpu/gist/hadley/
 {% endhighlight %}
 
 			</div>
@@ -280,6 +253,10 @@ curl https://cloud.opencpu.org/ocpu/gist/hadley/
 							<td><code>../{pkgname}/info</code></td>
 							<td>Show information about this package.</td>
 						</tr>
+						<tr>
+							<td><code>../{pkgname}/www/</code></td>
+							<td>Apps (if any) included with the package</td>
+						</tr>						
 						<tr>
 							<td><code>../{pkgname}/R/</code></td>
 							<td>R objects exported by this package. See R object API.</td>
@@ -528,6 +505,17 @@ curl https://cloud.opencpu.org/ocpu/tmp/x05b85461/info/print
 						</tr>
 
 						<tr>
+							<td><code>ndjson</code></td>
+							<td>application/ndjson</td>
+							<td>jsonlite::stream_out</td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+						</tr>			
+
+						<tr>
 							<td><code>csv</code></td>
 							<td>text/csv</td>
 							<td>utils::write.csv</td>
@@ -585,13 +573,24 @@ curl https://cloud.opencpu.org/ocpu/tmp/x05b85461/info/print
 						<tr>
 							<td><code>pb</code></td>
 							<td>application/x-protobuf</td>
-							<td>RProtoBuf::serialize_pb</td>
+							<td>protolite::serialize_pb</td>
 							<td class="success"><i class="icon icon-check"></i></td>
 							<td class="success"><i class="icon icon-check"></i></td>
 							<td class="success"><i class="icon icon-check"></i></td>
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
 							<td class="danger"><i class="icon icon-minus-sign"></i></td>
 						</tr>
+
+						<tr>
+							<td><code>feather</code></td>
+							<td>application/feather</td>
+							<td>feather::write_feather</td>
+							<td class="success"><i class="icon icon-check"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+							<td class="danger"><i class="icon icon-minus-sign"></i></td>
+						</tr>	
 
 						<tr>
 							<td><code>png</code></td>
@@ -908,12 +907,7 @@ rnorm(n=3, mean=10, sd=10)
 	    	<h1>Miscellaneous functionality</h1>
 	    </div>
 
-		<div class="panel panel-primary" id="api-info">
-			<div class="panel-heading"><h4>Server Info</h4></div>
-			<div class="panel-body">
-				<p>The <code>/ocpu/info</code> endpoint shows the output of <code>sessionInfo()</code> from the main (webserver) process. This can be helpful for debugging. However do note that unsafe requests are evaluated in a parallel process.</p>
-			</div>
-		</div>
+
 
 		<div class="panel panel-primary" id="api-apps">
 			<div class="panel-heading"><h4>OpenCPU Apps</h4></div>
@@ -925,26 +919,25 @@ rnorm(n=3, mean=10, sd=10)
 		<div class="panel panel-primary" id="api-ci">
 			<div class="panel-heading"><h4>Github CI Hook</h4></div>
 			<div class="panel-body">
-			<p>Starting version 1.0.7, the OpenCPU cloud server adds support for continuous integration (CI). This means that Github repositories can be configured to automatically install your package on an OpenCPU server, every time a commit is pushed to the master branch. To take advantage of this feature, it is required that:</p>
+			<p>The OpenCPU cloud server includes support for continuous integration (CI). Thereby a Github repository can be configured to automatically install your package on an OpenCPU server, every time a commit is pushed to the master branch. To take advantage of this feature, it is required that:</p>
 
 			<ol>
-				<li>Your R source package is in the root directory of your repository. <a href="http://github.com/hadley/plyr">(example)</a></li>
-				<li>The name of the Github repository is identical to the name of the R package</li>
-				<li>Your Github user account has a public email address</li>
+				<li>The R source package is in the root directory of your repository. <a href="https://github.com/rwebapps/appdemo">(example)</a></li>
+				<li>The Github user account has a public email address</li>
 			</ol>
 
-			<p>To setup CI, add the <code>/ocpu/webhook</code> URL for your server as a 'WebHook' in your Github repository. For example, to use the public demo server, add a webhook with:</p>
+			<p>To setup CI, add the <code>/ocpu/webhook</code> URL for your server as a 'WebHook' in your Github repository. For example, to use the public demo server, add a webhook with the URL below (you can leave the <code>Content-type</code> and <code>Secret</code> field unchanged)</p>
 
 {% highlight html %}
 https://cloud.opencpu.org/ocpu/webhook
 {% endhighlight %}
 
-			<p>Select Content-type <code>application/x-www-form-urlencoded</code>. Leave the "Secret" field empty. To trigger a build, push a commit to the master branch. The build will show up under <i>Recent Deliveries</i> in your github webhook page, and you should receive an email reporting if the installation was successful. If it was, the package will directly be available for remote use at <code>/ocpu/github/{username}/{package}/</code> on your server.</p>
+			<p> To trigger a build, push a commit to the master branch. The build will show up under <i>Recent Deliveries</i> in your github webhook page, and you should receive an email (in your spam folder) reporting if the installation was successful. If it was, the package will directly be available for remote use at <code>/ocpu/github/{username}/{package}/</code> on the server.</p>
 
 			<img class="img-thumbnail img-responsive" src="./images/githook.png" alt="git hook screenshot">
 
 			<p><br>
-			If you are using the public server, the package will also be available via <a href="https://jeroenooms.ocpu.io/jsonlite/"><code>https://{yourname}.ocpu.io/{package}/</code></a>. If on the other hand you are running your own OpenCPU cloud server, note that an SMTP server must be configured for the email notifictions to work. Also depending on your ISP, your server must have a proper reverse DNS to prevent email notifications from ending up in spam filters.</p>
+			If you are using the public server, the package will also be available via <a href="https://jeroen.ocpu.io/jsonlite/"><code>https://{yourname}.ocpu.io/{package}/</code></a>. If you are running your own OpenCPU cloud server, an SMTP server must be configured for the email notifictions to work.</p>
 
 			</div>
 		</div>
