@@ -67,16 +67,22 @@ remove_apps("rwebapps/stockapp")
 
 {% highlight r %}
 # Run server as executable
-docker run -t -p 80:80 opencpu/rstudio
+docker run --name mybox -t -p 80:80 opencpu/rstudio
 
 # OR: if port 80 is taken use port 8004
-docker run -t -p 8004:8004 opencpu/rstudio
+docker run --name mybox -t -p 8004:8004 opencpu/rstudio
 
 # OR: to run server in background
-docker run -t -d -p 80:80 opencpu/rstudio
+docker run --name mybox -t -d -p 80:80 opencpu/rstudio
 {% endhighlight %}
 
-    <p>Now simply open <a href="http://localhost/ocpu/">http://localhost/ocpu/</a> and <a href="http://localhost/rstudio/">http://localhost/rstudio/</a> in your browser! You can login via rstudio or shell with user: <code>opencpu</code> (passwd: <code>opencpu</code>).</p>
+    <p>Now simply open <a href="http://localhost/ocpu/">http://localhost/ocpu/</a> and <a href="http://localhost/rstudio/">http://localhost/rstudio/</a> in your browser! Login via rstudio or shell with user: <code>opencpu</code> (passwd: <code>opencpu</code>). To start a shell in a running container:</p>
+
+{% highlight r %}
+# Replace 'mybox' with the container name or id
+docker exec -i -t mybox /bin/bash
+{% endhighlight %}
+
     <p> For docker deployments, use the <a href="https://hub.docker.com/r/opencpu/base"><b>opencpu/base</b></a> image. See the <a href="https://github.com/jeroen/opencpu-server/tree/master/docker#readme">docker readme</a> for more details.</p>
   </div>
 
