@@ -15,3 +15,7 @@ build:
 	@open "file://$(PWD)/_site/blog.html"
 	@bundle exec jekyll build --watch
 	@echo "Done."
+
+serve:
+	rm -Rf _site
+	bundle exec jekyll serve --watch --incremental

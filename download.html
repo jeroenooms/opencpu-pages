@@ -27,7 +27,7 @@ sudo apt-get install -y rstudio-server
     <p>Go <a href="http://software.opensuse.org/download.html?project=home:jeroenooms:opencpu-2.0&package=opencpu">here</a> to add the opencpu repository. Also have look at the <a href="https://github.com/jeroen/opencpu-server/tree/master/rpm#readme">readme</a> for rpm packages.</p>
 {% highlight r %}
 # Need to add repo first! (See link above)
-sudo yum install opencpu
+sudo yum install opencpu-server
 {% endhighlight %}
 
     <h3>Debian / CentOS / Suse etc </h3>
@@ -58,7 +58,6 @@ ocpu_start_app("rwebapps/markdownapp")
 ocpu_start_app("rwebapps/stockapp")
 
 # Install / remove apps
-installed_apps()
 remove_apps("rwebapps/stockapp")
 {% endhighlight %}
 
@@ -71,21 +70,18 @@ docker run --name mybox -t -p 80:80 opencpu/rstudio
 
 # OR: if port 80 is taken use port 8004
 docker run --name mybox -t -p 8004:8004 opencpu/rstudio
-
-# OR: to run server in background
-docker run --name mybox -t -d -p 80:80 opencpu/rstudio
 {% endhighlight %}
 
-    <p>Now simply open <a href="http://localhost/ocpu/">http://localhost/ocpu/</a> and <a href="http://localhost/rstudio/">http://localhost/rstudio/</a> in your browser! Login via rstudio or shell with user: <code>opencpu</code> (passwd: <code>opencpu</code>). </p>
+    <p>Now simply open <a href="http://localhost/ocpu/">http://localhost/ocpu/</a> and <a href="http://localhost/rstudio/">http://localhost/rstudio/</a> in your browser! Login via rstudio with user: <code>opencpu</code> (passwd: <code>opencpu</code>) to build or install apps. </p>
 
-    <p>To start a root shell to connect to a running container:</p>
+    <p>To connect to a running container (e.g. for installing system libraries) get a root shell:</p>
 
 {% highlight r %}
 # Replace 'mybox' with the container name or id
 docker exec -i -t mybox /bin/bash
 {% endhighlight %}
 
-    <p> For docker deployments, use the <a href="https://hub.docker.com/r/opencpu/base"><b>opencpu/base</b></a> image. See the <a href="https://github.com/jeroen/opencpu-server/tree/master/docker#readme">docker readme</a> for more details.</p>
+    <p> Use the <a href="https://hub.docker.com/r/opencpu/base"><b>opencpu/base</b></a> image for deployments. Also see the <a href="https://github.com/jeroen/opencpu-server/tree/master/docker#readme">docker readme</a>.</p>
   </div>
 
 </div>
