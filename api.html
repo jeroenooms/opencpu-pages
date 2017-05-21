@@ -66,9 +66,9 @@ permalink: /api.html
 		</div>
 
 		<div class="panel panel-primary" id="api-info">
-			<div class="panel-heading"><h4>Server Info</h4></div>
+			<div class="panel-heading"><h4>Debugging</h4></div>
 			<div class="panel-body">
-				<p>The <code>/ocpu/info</code> endpoint shows the output of <code>sessionInfo()</code> from the main (webserver) process. This can be helpful for debugging. However do note that unsafe requests are evaluated in a parallel process.</p>
+				<p>The <code>/ocpu/info</code> endpoint shows the output of <code>sessionInfo()</code> from the main (webserver) process. This can be helpful for debugging. The <code>/ocpu/test</code> URL gives you a handy testing web page to perform server requests. </p>
 			</div>
 		</div>
 
@@ -932,7 +932,7 @@ rnorm(n=3, mean=10, sd=10)
 https://cloud.opencpu.org/ocpu/webhook
 {% endhighlight %}
 
-			<p> To trigger a build, push a commit to the master branch. The build will show up under <i>Recent Deliveries</i> in your github webhook page, and you should receive an email (in your spam folder) reporting if the installation was successful. If it was, the package will directly be available for remote use at <code>/ocpu/github/{username}/{package}/</code> on the server.</p>
+			<p> To trigger a build, push a commit to the master branch. The build will show up under <i>Recent Deliveries</i> in your github webhook page, and you should receive an email (in your spam folder) reporting if the installation was successful. If it was, the package will directly be available for remote use at <code>/ocpu/apps/{username}/{package}/</code> on the server.</p>
 
 			<img class="img-thumbnail img-responsive" src="./images/githook.png" alt="git hook screenshot">
 
