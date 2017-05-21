@@ -76,7 +76,9 @@ docker run --name mybox -t -p 8004:8004 opencpu/rstudio
 docker run --name mybox -t -d -p 80:80 opencpu/rstudio
 {% endhighlight %}
 
-    <p>Now simply open <a href="http://localhost/ocpu/">http://localhost/ocpu/</a> and <a href="http://localhost/rstudio/">http://localhost/rstudio/</a> in your browser! Login via rstudio or shell with user: <code>opencpu</code> (passwd: <code>opencpu</code>). To start a shell in a running container:</p>
+    <p>Now simply open <a href="http://localhost/ocpu/">http://localhost/ocpu/</a> and <a href="http://localhost/rstudio/">http://localhost/rstudio/</a> in your browser! Login via rstudio or shell with user: <code>opencpu</code> (passwd: <code>opencpu</code>). </p>
+
+    <p>To start a root shell to connect to a running container:</p>
 
 {% highlight r %}
 # Replace 'mybox' with the container name or id
