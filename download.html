@@ -72,8 +72,8 @@ docker run -t -p 80:80 opencpu/rstudio
 # OR: if port 80 is taken use port 8004
 docker run -t -p 8004:8004 opencpu/rstudio
 
-# OR: run server in background
-docker run -t -d -p 80:80 -p 8004:8004 opencpu/rstudio
+# OR: to run server in background
+docker run -t -d -p 80:80 opencpu/rstudio
 {% endhighlight %}
 
     <p>Now simply open <a href="http://localhost/ocpu/">http://localhost/ocpu/</a> and <a href="http://localhost/rstudio/">http://localhost/rstudio/</a> in your browser! You can login via rstudio or shell with user: <code>opencpu</code> (passwd: <code>opencpu</code>).</p>
