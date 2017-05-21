@@ -64,6 +64,7 @@ remove_apps("rwebapps/stockapp")
 
     <h3>Docker</h3>
     <p>Docker containers based on various platforms are published via <a href="https://hub.docker.com/u/opencpu">dockerhub:opencpu</a>. The <a href="https://hub.docker.com/r/opencpu/rstudio"><b>opencpu/rstudio</b></a> image is great for development: it runs both opencpu-server and rstudio-server.</p>
+
 {% highlight r %}
 # Run as executable
 docker run -t -p 80:80 -p 8004:8004 opencpu/rstudio
@@ -72,9 +73,8 @@ docker run -t -p 80:80 -p 8004:8004 opencpu/rstudio
 docker run -t -d -p 80:80 -p 8004:8004 opencpu/rstudio
 {% endhighlight %}
 
+    <p>After running the command above, simply open <a href="http://localhost/ocpu/">http://localhost/ocpu/</a> and <a href="http://localhost/rstudio/">http://localhost/rstudio/</a> in your browser! You can login rstudio with user: <code>opencpu</code> passwd: <code>opencpu</code>.</p>
+    <p> For docker deployments, use the <a href="https://hub.docker.com/r/opencpu/base"><b>opencpu/base</b></a> image. See the <a href="https://github.com/jeroen/opencpu-server/tree/master/docker#readme">docker readme</a> for more details.</p>
   </div>
-
-  <p>After running the command above you can simply open <a href="https://localhost/ocpu/">https://localhost/ocpu/</a> and <a href="https://localhost/rstudio/">https://localhost/rstudio/</a> on the host machine! Login via rstudio with user <code>opencpu</code> (passwd: opencpu)</p>.
-  <p> For docker deployments you can use <a href="https://hub.docker.com/r/opencpu/base"><b>opencpu/base</b></a> image. See the <a href="https://github.com/jeroen/opencpu-server/tree/master/docker#readme">docker readme</a> for more details.</p>
 
 </div>
