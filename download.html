@@ -66,10 +66,13 @@ remove_apps("rwebapps/stockapp")
     <p>Images based on various platforms are published on <a href="https://hub.docker.com/u/opencpu">dockerhub</a>. The <a href="https://hub.docker.com/r/opencpu/rstudio"><b>opencpu/rstudio</b></a> is great for development: it runs both <code>opencpu-server</code> and <code>rstudio-server</code>:</p>
 
 {% highlight r %}
-# Either run as executable
-docker run -t -p 80:80 -p 8004:8004 opencpu/rstudio
+# Run server as executable
+docker run -t -p 80:80 opencpu/rstudio
 
-# OR: run in background
+# OR: if port 80 is taken use port 8004
+docker run -t -p 8004:8004 opencpu/rstudio
+
+# OR: run server in background
 docker run -t -d -p 80:80 -p 8004:8004 opencpu/rstudio
 {% endhighlight %}
 
