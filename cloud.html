@@ -4,19 +4,12 @@ title: "yourname.ocpu.io"
 redirect_from: "/demo.html"
 permalink: /cloud.html
 ---
-<div class="row">
-	<div class="col-md-8 col-md-offset-2">
-		<div class="alert alert-success">
-			<!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
-			The public server runs a standard OpenCPU cloud installation. Anyone can use it to play around with the API, or publish packages, apps, data or code. However note that performance can vary and the server might go down or be upgraded without warnings. For hosting production code please <a href="download.html">install your own OpenCPU cloud server</a>.
-		</div>
-	</div>
-</div>
 
-<h2>Public server</h2>
+<h2>OpenCPU Cloud Server and ocpu.io</h2>
 
 <div class="row">
 	<div class="col-lg-12">
+		<p> Deploy packages and apps automatically on our cloud server (or on your own!) by configuring the <a href="api.html#api-ci">webhook</a> in your Github repository.</p>
 	  <table class="table table-hover table-bordered">
 	    <thead>
 	      <tr>
@@ -29,7 +22,7 @@ permalink: /cloud.html
 	    </thead>
 	    <tbody>
 	      <tr>
-	        <td><a href="https://cloud.opencpu.org/ocpu/library">https://cloud.opencpu.org/ocpu</a></td>
+	        <td><a href="https://cloud.opencpu.org/ocpu/apps">https://cloud.opencpu.org/ocpu/apps</a></td>
 	        <td>New York</td>
 	        <td>4 × 2.0 G</td>
 	        <td>8GB</td>
@@ -37,17 +30,28 @@ permalink: /cloud.html
 	      </tr>
 	    </tbody>
 	  </table>
+
+
 	</div>
+
+
+
+	<div class="col-md-8 col-md-offset-2">
+		<a href="api.html#api-ci">
+			<img class="img-thumbnail img-rounded img-responsive" src="./images/githook.png" alt="git hook screenshot">
+		</a>
+	</div>
+
 </div>
 
 <br />
 
-<h2>Packages on ocpu.io</h2>
-
-<p>All <code>ocpu.io</code> URLs interface to the <a href="api.html#api-package">OpenCPU Package API</a>. To publish your packages and apps on <a href="https://jeroen.ocpu.io">yourname.ocpu.io</a>, simply put them on github and use the <a href="https://cloud.opencpu.org/api.html#api-ci">Webhook API</a> to automatically install the R package on the public server, every time you push a commit to Github!</p>
 
 <div class="row">
 	<div class="col-lg-12">
+
+<p>The <a href="https://jeroen.ocpu.io">yourname.ocpu.io</a> domain provides a short URL to your personal app library on the cloud server.</p>
+
 	  <table class="table table-hover table-bordered">
 	    <thead>
 	      <tr>
@@ -57,26 +61,26 @@ permalink: /cloud.html
 	      </tr>
 	    </thead>
 	    <tbody>
+
+	     <tr>
+	        <td><a href="https://jeroen.ocpu.io/"><code>https://&lt;github-user&gt;.ocpu.io/</code></a></td>
+	        <td><a href="https://cloud.opencpu.org/ocpu/apps/jeroen/"><code>https://cloud.opencpu.org/ocpu/apps/&lt;github-user&gt;/</code></a></td>
+	        <td><a href="https://github.com/jeroen/">User's Github</td>
+	      </tr>
+
+
 	      <tr>
 	        <td><a href="https://cran.ocpu.io/stocks/www/"><code>https://cran.ocpu.io/</code></a></td>
 	        <td><a href="https://cloud.opencpu.org/ocpu/library/"><code>https://cloud.opencpu.org/ocpu/library/</code></a></td>
-	        <td>CRAN/Bioc Packages</a></td>
+	        <td><a href="https://cloud.r-project.org/web/packages/available_packages_by_name.html">CRAN Packages</a></td>
 	      </tr>
-<!--	      <tr>
-	        <td><a href="https://cran.ocpu.io/MASS">https://cran.ocpu.io/</a></td>
-	        <td><code>https://cloud.opencpu.org/ocpu/cran/</code></td>
-	        <td><a href="http://cran.r-project.org/web/packages/available_packages_by_name.html">CRAN</a></td>
+
+	     <tr>
+	        <td><a href="https://tmp.ocpu.io/"><code>https://tmp.ocpu.io/</code></a></td>
+	        <td><a href="https://cloud.opencpu.org/ocpu/tmp/"><code>https://cloud.opencpu.org/ocpu/tmp/</code></a></td>
+	        <td>Sessions</td>
 	      </tr>
-	      <tr>
-	        <td><a href="https://bioc.ocpu.io/">https://bioc.ocpu.io/</a></td>
-	        <td><code>https://cloud.opencpu.org/ocpu/bioc/</code></td>
-	        <td><a href="http://www.bioconductor.org/packages/release/bioc/">BioConductor</a></td>
-	      </tr>
--->	      <tr>
-	        <td><a href="https://jeroen.ocpu.io/"><code>https://&lt;github-user&gt;.ocpu.io/</code></a></td>
-	        <td><a href="https://cloud.opencpu.org/ocpu/apps/jeroen/"><code>https://cloud.opencpu.org/ocpu/apps/&lt;github-user&gt;/</code></a></td>
-	        <td><a href="https://github.com/jeroen/">Github</td>
-	      </tr>
+
 	    </tbody>
 	  </table>
 	</div>
