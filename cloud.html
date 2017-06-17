@@ -11,7 +11,7 @@ permalink: /cloud.html
 	  <table class="table table-hover table-bordered">
 	    <thead>
 	      <tr>
-	        <th>URL</th>
+	        <th>Webhook</th>
 	        <th>Location</th>
 	        <th>CPU</th>
 	        <th>Mem</th>
@@ -20,7 +20,7 @@ permalink: /cloud.html
 	    </thead>
 	    <tbody>
 	      <tr>
-	        <td><a href="https://cloud.opencpu.org/ocpu/apps">https://cloud.opencpu.org/ocpu/apps</a></td>
+	        <td><a href="https://cloud.opencpu.org/ocpu/webhook">https://cloud.opencpu.org/ocpu/webhook</a></td>
 	        <td>New York</td>
 	        <td>4 × 2.0 G</td>
 	        <td>8GB</td>
@@ -33,14 +33,20 @@ permalink: /cloud.html
 	</div>
 
 
+	<div class="col-md-4">
+		<h2> Deployment </h2>
+		<p> Once the webhook is configured, your R package will be deployed automatically each time you push to master.</p>
+		<p> For each push you will receive an email after a few minutes (in your spam folder) if the build was successful.</p>
+		<p> The <a href="https://cloud.opencpu.org/ocpu/apps/">apps directory</a> shows which apps are currently deployed.</p>
+	</div>
 
-	<div class="col-md-8 col-md-offset-2">
+	<div class="col-md-8">
 		<a href="api.html#api-ci">
 			<img class="img-thumbnail img-rounded img-responsive" src="./images/githook.png" alt="git hook screenshot">
 		</a>
 	</div>
 
-	<p> After configurting the webhook, the package will be deployed automatically each time you deploy to master. After a few minutes you will receive an email (in your spam folder) if the build was successful.</p>
+
 
 </div>
 
