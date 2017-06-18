@@ -34,10 +34,14 @@ permalink: /cloud.html
 
 
 	<div class="col-md-4">
-		<h2> Deployment </h2>
-		<p> Once the webhook is configured, your R package will be deployed automatically each time you push to master.</p>
-		<p> For each push you will receive an email after a few minutes (in your spam folder) if the build was successful.</p>
-		<p> The <a href="https://cloud.opencpu.org/ocpu/apps/">apps directory</a> shows which apps are currently deployed.</p>
+		<h2> Deployment 1,2,3</h2>
+		<ol>
+		<li> Once the webhook is configured, your R package will be deployed automatically each time you push to master.</li>
+		<li> For each push you will receive an email after a few minutes (in your spam folder) if the build was successful.</li>
+		<li> The <a href="https://cloud.opencpu.org/ocpu/apps/">/ocpu/apps</a> directory shows which apps are currently deployed.</li>
+		</ol>
+
+		<p>The <a href="https://ropensci.ocpu.io">yourname.ocpu.io</a> domain is a short URL to your personal app library on the cloud server. The table below shows examples.</p>
 	</div>
 
 	<div class="col-md-8">
@@ -57,7 +61,7 @@ permalink: /cloud.html
 	<div class="col-lg-12">
 
 
-<p>The <a href="https://jeroen.ocpu.io">yourname.ocpu.io</a> domain is a short URL to your personal app library on the cloud server.</p>
+
 
 	  <table class="table table-hover table-bordered">
 	    <thead>
@@ -70,9 +74,9 @@ permalink: /cloud.html
 	    <tbody>
 
 	     <tr>
-	        <td><a href="https://jeroen.ocpu.io/"><code>https://&lt;github-user&gt;.ocpu.io/</code></a></td>
-	        <td><a href="https://cloud.opencpu.org/ocpu/apps/jeroen/"><code>https://cloud.opencpu.org/ocpu/apps/&lt;github-user&gt;/</code></a></td>
-	        <td><a href="https://github.com/jeroen/">User's Github</td>
+	        <td><a href="https://ropensci.ocpu.io/"><code>https://&lt;github-user&gt;.ocpu.io/</code></a></td>
+	        <td><a href="https://cloud.opencpu.org/ocpu/apps/ropensci/"><code>https://cloud.opencpu.org/ocpu/apps/&lt;github-user&gt;/</code></a></td>
+	        <td><a href="https://github.com/ropensci/">User's Github</td>
 	      </tr>
 
 
@@ -113,9 +117,9 @@ permalink: /cloud.html
 					<td><code>cloud.opencpu.org/ocpu/library/</code></td>
 				</tr>
 				<tr>
-					<td>List repositories from <a href="http://github.com/jeroen">jeroen</a></td>
-					<td><code>jeroen.ocpu.io</code></td>
-					<td><code>cloud.opencpu.org/ocpu/apps/jeroen/</code></td>
+					<td>List repositories from <a href="http://github.com/ropensci">ropensci</a></td>
+					<td><code>ropensci.ocpu.io</code></td>
+					<td><code>cloud.opencpu.org/ocpu/apps/ropensci/</code></td>
 				</tr>
 				<tr><th colspan="3" class="text-center">Package Info</th></tr>
 				<tr>
@@ -124,14 +128,14 @@ permalink: /cloud.html
 					<td><code>cloud.opencpu.org/ocpu/library/MASS/</code></td>
 				</tr>
 				<tr>
-					<td>curl from CRAN</td>
-					<td><code>cran.ocpu.io/curl/</code></td>
-					<td><code>cloud.opencpu.org/ocpu/library/curl/</code></td>
+					<td>cld2 from CRAN</td>
+					<td><code>cran.ocpu.io/cld2/</code></td>
+					<td><code>cloud.opencpu.org/ocpu/library/cld2/</code></td>
 				</tr>
 				<tr>
-					<td>curl from Github</td>
-					<td><code>jeroen.ocpu.io/curl/</code></td>
-					<td><code>cloud.opencpu.org/ocpu/apps/jeroen/curl/</code></td>
+					<td>cld2 from Github</td>
+					<td><code>ropensci.ocpu.io/cld2/</code></td>
+					<td><code>cloud.opencpu.org/ocpu/apps/ropensci/cld2/</code></td>
 				</tr>
 				<tr><th colspan="3" class="text-center">Package Contents</th></tr>
 				<tr>
@@ -140,24 +144,19 @@ permalink: /cloud.html
 					<td><code>cloud.opencpu.org/ocpu/library/MASS/data/</code></td>
 				</tr>
 				<tr>
-					<td>curl datasets</td>
-					<td><code>jeroen.ocpu.io/curl/data/</code></td>
-					<td><code>cloud.opencpu.org/ocpu/apps/jeroen/curl/data/</code></td>
+					<td>cld2 R objects</td>
+					<td><code>ropensci.ocpu.io/cld2/R/</code></td>
+					<td><code>cloud.opencpu.org/ocpu/apps/ropensci/cld2/R/</code></td>
 				</tr>
 				<tr>
-					<td>curl R objects</td>
-					<td><code>jeroen.ocpu.io/curl/R/</code></td>
-					<td><code>cloud.opencpu.org/ocpu/apps/jeroen/curl/R/</code></td>
+					<td>cld2 help pages</td>
+					<td><code>ropensci.ocpu.io/cld2/man/</code></td>
+					<td><code>cloud.opencpu.org/ocpu/apps/ropensci/cld2/man/</code></td>
 				</tr>
 				<tr>
-					<td>curl help pages</td>
-					<td><code>jeroen.ocpu.io/curl/man/</code></td>
-					<td><code>cloud.opencpu.org/ocpu/apps/jeroen/curl/man/</code></td>
-				</tr>
-				<tr>
-					<td>curl files</td>
-					<td><code>jeroen.ocpu.io/curl/DESCRIPTION</code></td>
-					<td><code>cloud.opencpu.org/ocpu/apps/jeroen/curl/DESCRIPTION</code></td>
+					<td>cld2 files</td>
+					<td><code>ropensci.ocpu.io/cld2/DESCRIPTION</code></td>
+					<td><code>cloud.opencpu.org/ocpu/apps/ropensci/cld2/DESCRIPTION</code></td>
 				</tr>
 				<tr><th colspan="3" class="text-center">Datasets</th></tr>
 				<tr>
