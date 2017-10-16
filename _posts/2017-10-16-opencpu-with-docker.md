@@ -54,8 +54,8 @@ packages, etc.
 
 Docker is great for development, but the most powerful use if Docker is 
 shipping and deploying applications via DockerHub. To create a fully standalone
-application container, simply create a new image based of one of the [standard opencpu images](https://hub.docker.com/u/opencpu/) 
-and install your app. 
+application container, simply use a standard [opencpu image](https://hub.docker.com/u/opencpu/) 
+and add your app. 
 
 For the purpose of this blog post I have wrapped up some of the [example apps](https://www.opencpu.org/apps.html) as docker containers by adding a very simple `Dockerfile` to each repository. For example the [nabel](https://rwebapps.ocpu.io/nabel/www/) app has a [Dockerfile](https://github.com/rwebapps/nabel/blob/master/Dockerfile) that contains the following:
 
