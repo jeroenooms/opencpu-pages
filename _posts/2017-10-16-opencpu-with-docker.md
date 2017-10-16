@@ -73,8 +73,7 @@ started by anyone using e.g:
 docker run -d -p 8004:8004 rwebapps/nabel
 ```
 
-The `-d` daemonizes on port 8004.
-Obviously you can tweak the `Dockerfile` to install whatever extra software or settings you need
+The `-d` daemonizes on port 8004. Now open the app via: [http://localhost:8004/ocpu/library/nabel](http://localhost:8004/ocpu/library/nabel). Obviously you can tweak the `Dockerfile` to install whatever extra software or settings you need
 for your application. 
 
 Containerized deployment shows the true power of docker: it allows for shipping fully 
