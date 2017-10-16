@@ -52,8 +52,7 @@ packages, etc.
 
 ## 2: Shipping and Deployment via DockerHub
 
-Docker is great for development, but the most powerful use if Docker is 
-shipping and deploying applications via DockerHub. To create a fully standalone
+The most powerful use if Docker is shipping and deploying applications via DockerHub. To create a fully standalone
 application container, simply use a standard [opencpu image](https://hub.docker.com/u/opencpu/) 
 and add your app. 
 
