@@ -10,7 +10,7 @@ author :
   name : Jeroen Ooms
   github : jeroenooms
   twitter : opencpu
-  email: jeroen.ooms@stat.ucla.edu
+  email: jeroen@berkeley.edu
 gems:
   - jekyll-redirect-from
 future: true

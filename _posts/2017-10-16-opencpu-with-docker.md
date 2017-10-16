@@ -70,7 +70,7 @@ The result is a completeley isolated, standalone application. The application ca
 started by anyone using e.g:
 
 ```
-docker run -d 8004:8004 rwebapps/nabel
+docker run -d -p 8004:8004 rwebapps/nabel
 ```
 
 The `-d` daemonizes on port 8004.
