@@ -9,7 +9,7 @@ thumb: "stockplot.png"
 
 There have been several blog posts going around about why one would use Docker with R.
 In this post I'll try to add a DevOps point of view and explain how containerizing
-R is used in the context of the OpenCPU system.
+R is used in the context of the OpenCPU system for building and deploying R servers.
 
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Has anyone in the <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> world written really well about the *why* of their use of Docker, as opposed to the the *how*?</p>&mdash; Jenny Bryan (@JennyBryan) <a href="https://twitter.com/JennyBryan/status/913785731998289920?ref_src=twsrc%5Etfw">September 29, 2017</a></blockquote>
@@ -18,7 +18,7 @@ R is used in the context of the OpenCPU system.
 
 ## 1: Easy Development
 
-The flagship of the OpenCPU system is the [OpenCPU server](http://localhost:4000/download.html):
+The flagship of the OpenCPU system is the [OpenCPU server](/download.html):
 a mature and powerful Linux stack for embedding R in systems and applications.
 Because OpenCPU is completely open source we can build and ship on DockerHub. A ready-to-go linux server with both OpenCPU and RStudio
 can be started using the following (use port 8004 or 80):
