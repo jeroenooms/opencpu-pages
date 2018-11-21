@@ -8,9 +8,9 @@ permalink: /download.html
 <div class="row">
 
   <div class="col-md-6">
-    <h3>Recommended: Ubuntu 16.04 / 18.04 </h3>
+    <h3>Recommended: Ubuntu 18.04 / 16.04 </h3>
 {% highlight bash %}
-# Requires Ubuntu 16.04 (Xenial) or 18.04 (Bionic)
+# Requires Ubuntu 18.04 (Bionic) or 16.04 (Xenial)
 sudo add-apt-repository -y ppa:opencpu/opencpu-2.1
 sudo apt-get update 
 sudo apt-get upgrade
@@ -61,7 +61,7 @@ ocpu_start_app("rwebapps/stockapp")
 remove_apps("rwebapps/stockapp")
 {% endhighlight %}
 
-    <h3>Docker (new!)</h3>
+    <h3>Docker</h3>
     <p>Images based on various platforms are published on <a href="https://hub.docker.com/u/opencpu">dockerhub</a>. The <a href="https://hub.docker.com/r/opencpu/rstudio"><b>opencpu/rstudio</b></a> is great for development: it runs both <code>opencpu-server</code> and <code>rstudio-server</code>:</p>
 
 {% highlight r %}
