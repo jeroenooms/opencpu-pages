@@ -19,7 +19,7 @@ $(function(){
       var appurl;
 
       $.ajax({
-        url: "//rwebapps.ocpu.io/" + value.name
+        url: "https://rwebapps.ocpu.io/" + value.name
       }).done(function(){
         appurl = "https://rwebapps.ocpu.io/" + value.name;
       }).error(function(){
